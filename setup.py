@@ -75,6 +75,7 @@ setup(
                 '-DBUILD_PY_IF:BOOL=TRUE', 
                 '-DBUILD_CPP_IF:BOOL=FALSE',
                 '-DFLOAT_PREC:STRING=high',
+                '-DUSE_CUDA_TOOLKIT=false',
     ],
     cmake_source_dir='source',
     cmake_minimum_required_version='3.0',

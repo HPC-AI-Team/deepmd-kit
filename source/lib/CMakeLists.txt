@@ -22,9 +22,6 @@ if (USE_CUDA_TOOLKIT)
   target_link_libraries (${libname} ${CUDA_LIBRARIES})
 endif()
 
-# target_link_libraries (${libname} /home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/libpython3.8.so)
-target_link_libraries (${libname} python3)
-
 install(TARGETS ${libname} DESTINATION lib/)
 
 install(

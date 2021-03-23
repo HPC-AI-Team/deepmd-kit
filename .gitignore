@@ -26,3 +26,10 @@ venv*
 .vscode/**
 _build
 _templates
+include
+lib
+out.json
+log.*
+out.*
+*.out
+*.pb
