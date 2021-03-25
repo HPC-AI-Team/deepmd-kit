@@ -18,11 +18,12 @@ void PyNNPInter::run_model_ndarray(ENERGYTYPE &dener,
                                    const NNPAtomMap<VALUETYPE> &nnpmap,
                                    const int nghost)
 {
-  // cout << "in run_model_ndarray 1 -------------------------\n";
+  cout << "in run_model_ndarray 1 -------------------------\n";
   unsigned nloc = nnpmap.get_type().size();
   unsigned nall = nloc + nghost;
   if (nloc == 0)
   {
+    cout << "in run_model_ndarray 1 and nloc == 0" << endl;
     dener = 0;
     // no backward map needed
     // dforce of size nall * 3
@@ -33,7 +34,6 @@ void PyNNPInter::run_model_ndarray(ENERGYTYPE &dener,
     fill(dvirial.begin(), dvirial.end(), 0.0);
     return;
   }
-  // cout << "1--------------------------------------\n";
 
   PyArrayObject *energy_ndarry;
   PyArrayObject *force_ndarry;
@@ -41,7 +41,6 @@ void PyNNPInter::run_model_ndarray(ENERGYTYPE &dener,
 
   pyCaller.infer(pymodel, coord_ndarry, type_ndarry, box_ndarry, mesh_ndarry, natoms_ndarry, fparam_ndarry, aparam_ndarry, &energy_ndarry, &force_ndarry, &virial_ndarry);
 
-  // cout << "2--------------------------------------\n";
   // Tensor output_e = output_tensors[0];
   // Tensor output_f = output_tensors[1];
   // Tensor output_av = output_tensors[2];
@@ -50,47 +49,32 @@ void PyNNPInter::run_model_ndarray(ENERGYTYPE &dener,
   // auto of = output_f.flat<VALUETYPE>();
   // auto oav = output_av.flat<VALUETYPE>();
 
-  dener = *(ENERGYTYPE *)PyArray_GETPTR1(energy_ndarry, 0);
-  // cout << "2.1------------------------------------\n";
+  ENERGYTYPE *oe = (ENERGYTYPE*)PyArray_DATA(energy_ndarry);
+  VALUETYPE *of = (VALUETYPE*)PyArray_DATA(force_ndarry);
+  VALUETYPE *oav = (VALUETYPE*)PyArray_DATA(virial_ndarry);
+
+  dener = oe[0];
   
   vector<VALUETYPE> dforce(3 * nall);
   dvirial.resize(9);
-
-  VALUETYPE *force_data = (VALUETYPE*)PyArray_DATA(force_ndarry);
-
   for (unsigned ii = 0; ii < nall * 3; ++ii)
   {
-    dforce[ii] = force_data[ii];
+    dforce[ii] = of[ii];
   }
-  // cout << "2.2------------------------------------\n";
-
-  // for (int ii = 0; ii < nall; ++ii)
-  // {
-    // dvirial[0] += 1.0 * (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 9 * ii + 0));
-    // dvirial[1] += 1.0 * (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 9 * ii + 1));
-    // dvirial[2] += 1.0 * (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 9 * ii + 2));
-    // dvirial[3] += 1.0 * (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 9 * ii + 3));
-    // dvirial[4] += 1.0 * (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 9 * ii + 4));
-    // dvirial[5] += 1.0 * (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 9 * ii + 5));
-    // dvirial[6] += 1.0 * (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 9 * ii + 6));
-    // dvirial[7] += 1.0 * (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 9 * ii + 7));
-    // dvirial[8] += 1.0 * (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 9 * ii + 8));
-  // } 
-  dvirial[0] = (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 0));
-  dvirial[1] = (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 1));
-  dvirial[2] = (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 2));
-  dvirial[3] = (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 3));
-  dvirial[4] = (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 4));
-  dvirial[5] = (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 5));
-  dvirial[6] = (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 6));
-  dvirial[7] = (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 7));
-  dvirial[8] = (*(VALUETYPE *)PyArray_GETPTR1(virial_ndarry, 8));
-  // cout << "3--------------------------------------\n";
+  for (int ii = 0; ii < nall; ++ii) {
+    dvirial[0] += 1.0 * oav[9*ii+0];
+    dvirial[1] += 1.0 * oav[9*ii+1];
+    dvirial[2] += 1.0 * oav[9*ii+2];
+    dvirial[3] += 1.0 * oav[9*ii+3];
+    dvirial[4] += 1.0 * oav[9*ii+4];
+    dvirial[5] += 1.0 * oav[9*ii+5];
+    dvirial[6] += 1.0 * oav[9*ii+6];
+    dvirial[7] += 1.0 * oav[9*ii+7];
+    dvirial[8] += 1.0 * oav[9*ii+8];
+  }
 
   dforce_ = dforce;
-  // cout << "4--------------------------------------\n";
   nnpmap.backward(dforce_.begin(), dforce.begin(), 3);
-  // cout << "5--------------------------------------\n";
 }
 
 PyNNPInter::PyNNPInter() : inited(false), init_nbor(false)

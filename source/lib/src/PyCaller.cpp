@@ -74,6 +74,9 @@ int PyCaller::session_input_ndarrays(PyArrayObject **coord_ndarry_p,
   }
   datype.insert(datype.end(), datype_.begin() + nloc, datype_.end());
 
+  vector<VALUETYPE> dcoord(dcoord_);
+  nnpmap.forward(dcoord.begin(), dcoord_.begin(), 3);
+
   vector<npy_intp> coord_shape{nframes, nall * 3};
   vector<npy_intp> type_shape{nframes, nall};
   vector<npy_intp> box_shape{nframes, 9};
@@ -97,9 +100,6 @@ int PyCaller::session_input_ndarrays(PyArrayObject **coord_ndarry_p,
   PyArrayObject *type_ndarry = (PyArrayObject *)PyArray_SimpleNew(type_shape.size(), type_shape.data(), NPY_INT32);
   PyArrayObject *mesh_ndarry = (PyArrayObject *)PyArray_SimpleNew(mesh_shape.size(), mesh_shape.data(), NPY_INT32);
   PyArrayObject *natoms_ndarry = (PyArrayObject *)PyArray_SimpleNew(natoms_shape.size(), natoms_shape.data(), NPY_INT32);
-
-  vector<VALUETYPE> dcoord(dcoord_);
-  nnpmap.forward(dcoord.begin(), dcoord_.begin(), 3);
 
   for (int ii = 0; ii < nframes; ++ii)
   {

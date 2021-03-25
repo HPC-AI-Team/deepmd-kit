@@ -7,6 +7,9 @@ from deepmd.common import make_default_mesh
 from deepmd.DeepEval import DeepEval
 from deepmd.DataModifier import DipoleChargeModifier
 
+from tensorflow.python.profiler import model_analyzer
+from tensorflow.python.profiler import option_builder
+
 class DeepPot (DeepEval) :
     def __init__(self, 
                  model_file, 
@@ -68,7 +71,27 @@ class DeepPot (DeepEval) :
             sys_charge_map = [int(ii) for ii in sys_charge_map.decode('UTF-8').split()]
             self.dm = DipoleChargeModifier(mdl_name, mdl_charge_map, sys_charge_map, ewald_h = ewald_h, ewald_beta = ewald_beta)
         
-        print(" in init model ")
+        # profiler
+        print("profile")
+        self.profiler = model_analyzer.Profiler(graph=self.sess.graph)
+        self.run_options = tf.RunOptions(trace_level = tf.RunOptions.FULL_TRACE)
+        self.run_metadata = tf.RunMetadata()
+        print(type(self.run_options))
+        print(type(self.run_metadata))
+        
+        # graph view
+        self.profile_graph_opts_builder = option_builder.ProfileOptionBuilder(option_builder.ProfileOptionBuilder.time_and_memory())
+        self.profile_graph_opts_builder.with_timeline_output(timeline_file='./profile/profiler.json')
+        
+        # op view
+        self.profile_op_opt_builder_1 = option_builder.ProfileOptionBuilder()
+        self.profile_op_opt_builder_1.select(['micros','bytes','float_ops','occurrence'])
+        self.profile_op_opt_builder_1.order_by('micros')
+        self.profile_op_opt_builder_1.with_max_depth(10)
+
+        self.profile=False
+        
+        print("In init model ")
         print("ntypes : ",self.ntypes)
         print("rcut : ",self.rcut)
         print("dfparam : ",self.dfparam)
@@ -193,14 +216,23 @@ class DeepPot (DeepEval) :
                 feed_dict_test[self.t_fparam] = np.reshape(fparam[ii:ii+1, :], [-1])
             if self.has_aparam:
                 feed_dict_test[self.t_aparam] = np.reshape(aparam[ii:ii+1, :], [-1])
-            v_out = self.sess.run (t_out, feed_dict = feed_dict_test)
+
+            if self.profile:
+                v_out = self.sess.run(t_out, feed_dict = feed_dict_test,options=self.run_options, run_metadata=self.run_metadata)
+                self.profiler.add_step(step=ii, run_meta=self.run_metadata)
+
+                self.profiler.profile_graph(self.profile_graph_opts_builder.build())
+                self.profiler.profile_operations(self.profile_op_opt_builder_1.build())
+            else :
+                v_out = self.sess.run (t_out, feed_dict = feed_dict_test)
+
             energy.append(v_out[0])
             force .append(v_out[1])
             virial.append(v_out[2])
             if atomic:
                 ae.append(v_out[3])
                 av.append(v_out[4])
-
+        
         # reverse map of the outputs
         force  = self.reverse_map(np.reshape(force, [nframes,-1,3]), imap)
         if atomic :
@@ -217,4 +249,44 @@ class DeepPot (DeepEval) :
         else :
             return energy, force, virial
 
+
+    def infer(self,t_coord,t_type,t_box,t_mesh,t_natoms):
+        nframes = t_coord.shape[0]
+        energy = []
+        force = []
+        # virial = []
+        av = []
+        feed_dict = {}
+        feed_dict[self.t_mesh ] = t_mesh
+        feed_dict[self.t_natoms] = t_natoms
+
+        t_out = [self.t_energy, 
+                self.t_force, 
+                # self.t_virial,
+                self.t_av]
+
+        for ii in range(nframes) :
+            feed_dict[self.t_coord] = np.reshape(t_coord[ii:ii+1, :], [-1])
+            feed_dict[self.t_type  ] = np.reshape(t_type[ii:ii+1, :], [-1])
+            feed_dict[self.t_box  ] = np.reshape(t_box [ii:ii+1, :], [-1])
+            if self.profile:
+                v_out = self.sess.run (t_out, feed_dict = feed_dict,options=self.run_options,run_metadata=self.run_metadata)
+                self.profiler.add_step(step=ii, run_meta=self.run_metadata)
+                self.profiler.profile_graph(self.profile_graph_opts_builder.build())
+                self.profiler.profile_operations(self.profile_op_opt_builder_1.build())
+            else:
+                v_out = self.sess.run (t_out, feed_dict = feed_dict)
+            energy.append(v_out[0])
+            force .append(v_out[1])
+            # virial.append(v_out[2])
+            av.append(v_out[2])
+
+        # reverse map of the outputs
+        # force  = self.reverse_map(np.reshape(force, [nframes,-1,3]), imap)
+
+        energy = np.reshape(energy, [nframes, 1])
+        force  = np.reshape(force, [nframes,-1,3])
+        # virial = np.reshape(virial, [nframes, 9])
+        av  = np.reshape(av, [nframes,-1,9])
+        return energy, force, av
 
