@@ -12,13 +12,13 @@ then
     echo "not found envoriment variable : tensorflow_root"
 fi
 
+echo tensorflow_root : $tensorflow_root
+echo deepmd_root : $deepmd_root
+
 cd $deepmd_root
 
 mkdir -p source/build
 cd source/build
-
-echo tensorflow_root : $tensorflow_root
-echo deepmd_root : $deepmd_root
 
 cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DUSE_CUDA_TOOLKIT=false ..
 make -j16
