@@ -11,7 +11,7 @@ read_data       ./lmp/water.lmp
 mass            1 16
 mass            2 2
 
-replicate       5 5 5
+replicate       10 10 10
 
 pair_style      deepmd ./model/graph.pb
 pair_coeff
@@ -23,4 +23,4 @@ timestep        0.0005
 thermo_style    custom step pe ke etotal temp press vol
 thermo          20
 
-run             1
+run             3

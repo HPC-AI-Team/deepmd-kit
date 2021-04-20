@@ -64,3 +64,14 @@ def get_module(module_name):
 op_module = get_module("libop_abi")
 op_grads_module = get_module("libop_grads")
 default_tf_session_config = get_tf_session_config()
+
+
+
+from tensorflow.python.framework import ops
+
+@ops.RegisterGradient("GemmLayer")
+def _gemm_layer_fwd_s_cc (op, dy) :
+    d_xyz_scatter = tf.matmul(dy, op.inputs[1], transpose_b=True)
+    d_w = tf.matmul(op.inputs[0], dy, transpose_a=True)
+    d_b = tf.reduce_sum(dy,axis=0,keepdims=True)
+    return [d_xyz_scatter, d_w, d_b]

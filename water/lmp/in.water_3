@@ -11,7 +11,7 @@ read_data       ./lmp/water.lmp
 mass            1 16
 mass            2 2
 
-replicate       5 5 5
+replicate       3 3 3
 
 pair_style      deepmd ./model/graph.pb
 pair_coeff

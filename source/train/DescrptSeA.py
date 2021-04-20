@@ -369,7 +369,10 @@ class DescrptSeA ():
                                   self.filter_precision,
                                   tf.random_normal_initializer(stddev=stddev, mean = bavg, seed = seed), 
                                     trainable = trainable)
-                hidden = tf.reshape(activation_fn(tf.matmul(xyz_scatter, w) + b), [-1, outputs_size[ii]])
+
+                # hidden = tf.reshape(activation_fn(tf.matmul(xyz_scatter, w) + b), [-1, outputs_size[ii]])
+                hidden = tf.reshape(activation_fn(op_module.gemm_layer(xyz_scatter, w, b)), [-1, outputs_size[ii]])
+                
                 if self.filter_resnet_dt :
                     idt = tf.get_variable('idt_'+str(ii)+'_'+str(type_i), 
                                           [1, outputs_size[ii]], 

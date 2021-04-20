@@ -1,4 +1,4 @@
-#!/bin/bash
+#/bin/bash
 
 set -ex
 
@@ -14,5 +14,4 @@ fi
 
 bash $deepmd_root/script/build_deepmd.sh
 
-
-$lammps_root/src/lmp_serial -echo screen -in ./lmp/in.water_8
+dp test -m model/graph.pb -s ./data -n 1
