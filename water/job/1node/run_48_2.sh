@@ -10,4 +10,6 @@
 
 source $HOME/gzq/fj_env.sh
 
-mpiexec -n 48 lmp_mpi -echo screen -in lmp/in.water__48
+export PLE_MPI_STD_EMPTYFILE=off
+
+mpiexec -n 48 lmp_mpi -echo screen -in in.water_2

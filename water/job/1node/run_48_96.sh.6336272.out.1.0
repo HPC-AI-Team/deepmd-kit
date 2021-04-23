@@ -1,0 +1,117 @@
+LAMMPS (29 Oct 2020)
+# bulk water
+
+units           metal
+boundary        p p p
+atom_style      atomic
+
+neighbor        2.0 bin
+neigh_modify    every 50 delay 0 check no
+
+read_data       ../../lmp/water.lmp
+Reading data file ...
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
+  3 by 4 by 4 MPI processor grid
+  reading atoms ...
+  192 atoms
+  read_data CPU = 0.038 seconds
+mass            1 16
+mass            2 2
+
+replicate       8 3 4
+Replicating atoms ...
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (99.557600 37.334100 49.778800) with tilt (0.0000000 0.0000000 0.0000000)
+  6 by 2 by 4 MPI processor grid
+  18432 atoms
+  replicate CPU = 0.038 seconds
+
+pair_style      deepmd ../../model/graph.pb
+Summary of lammps deepmd module ...
+  >>> Info of deepmd-kit:
+  installed to:       /home/hp200266/u01036/gzq/deepmd-kit
+  source:             v1.3.1-9-g738a826-dirty
+  source brach:       fugaku
+  source commit:      738a826
+  source commit at:   2021-04-20 11:00:42 +0800
+  build float prec:   double
+  build with tf inc:  /home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/include;/home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/include
+  build with tf lib:  /home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/lib/libtensorflow_framework.so
+  set tf intra_op_parallelism_threads: 0
+  set tf inter_op_parallelism_threads: 0
+  >>> Info of lammps module:
+  use deepmd-kit at:  /home/hp200266/u01036/gzq/deepmd-kit
+  source:             v1.3.1-9-g738a826-dirty
+  source branch:      fugaku
+  source commit:      738a826
+  source commit at:   2021-04-20 11:00:42 +0800
+  build float prec:   double
+  build with tf inc:  /home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/include;/home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/include
+  build with tf lib:  /home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/lib/libtensorflow_framework.so
+  >>> Info of model(s):
+  using   1 model(s): ../../model/graph.pb 
+  rcut in model:      6
+  ntypes in model:    2
+pair_coeff
+
+velocity        all create 330.0 23456789
+
+fix             1 all nve
+timestep        0.0005
+thermo_style    custom step pe ke etotal temp press vol
+thermo          20
+
+run             99
+Neighbor list info ...
+  update every 50 steps, delay 0 steps, check no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 8
+  ghost atom cutoff = 8
+  binsize = 4, bins = 25 10 13
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair deepmd, perpetual
+      attributes: , newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+Setting up Verlet run ...
+  Unit style    : metal
+  Current step  : 0
+  Time step     : 0.0005
+Per MPI rank memory allocation (min/avg/max) = 2.692 | 2.695 | 2.697 Mbytes
+Step PotEng KinEng TotEng Temp Press Volume 
+       0   -2874575.8    786.18993   -2873789.6          330   -29387.559    185022.49 
+      20   -2874581.1    791.58196   -2873789.6    332.26328   -30299.577    185022.49 
+      40   -2874667.5    877.98001   -2873789.6    368.52851   -37399.011    185022.49 
+      60   -2874814.2    1024.6221   -2873789.6    430.08092   -40065.673    185022.49 
+      80     -2874957    1167.4179   -2873789.6    490.01889   -26256.389    185022.49 
+      99   -2875098.1    1308.4928   -2873789.6     549.2345   -9101.8161    185022.49 
+Loop time of 227.014 on 48 procs for 99 steps with 18432 atoms
+
+Performance: 0.019 ns/day, 1273.929 hours/ns, 0.436 timesteps/s
+99.8% CPU use with 48 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 208.33     | 218.72     | 224.6      |  32.4 | 96.35
+Neigh   | 0.0060323  | 0.0063481  | 0.0066618  |   0.2 |  0.00
+Comm    | 2.3904     | 8.2521     | 18.625     | 166.6 |  3.64
+Output  | 0.0073109  | 0.033536   | 0.053082   |   9.8 |  0.01
+Modify  | 0.0015418  | 0.001672   | 0.0019291  |   0.2 |  0.00
+Other   |            | 0.001096   |            |       |  0.00
+
+Nlocal:        384.000 ave         398 max         365 min
+Histogram: 3 0 3 5 7 4 12 4 4 6
+Nghost:        2830.10 ave        2915 max        2768 min
+Histogram: 7 9 1 7 8 2 2 4 6 2
+Neighs:        0.00000 ave           0 max           0 min
+Histogram: 48 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0.0000000
+Neighbor list builds = 1
+Dangerous builds not checked
+
+Please see the log.cite file for references relevant to this simulation
+
+Total wall time: 0:05:15

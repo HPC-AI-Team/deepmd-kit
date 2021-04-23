@@ -72,25 +72,23 @@ class DeepPot (DeepEval) :
             self.dm = DipoleChargeModifier(mdl_name, mdl_charge_map, sys_charge_map, ewald_h = ewald_h, ewald_beta = ewald_beta)
         
         # profiler
-        print("profile")
-        self.profiler = model_analyzer.Profiler(graph=self.sess.graph)
-        self.run_options = tf.RunOptions(trace_level = tf.RunOptions.FULL_TRACE)
-        self.run_metadata = tf.RunMetadata()
-        print(type(self.run_options))
-        print(type(self.run_metadata))
-        
-        # graph view
-        self.profile_graph_opts_builder = option_builder.ProfileOptionBuilder(option_builder.ProfileOptionBuilder.time_and_memory())
-        self.profile_graph_opts_builder.with_timeline_output(timeline_file='./profile/profiler.json')
-        
-        # op view
-        self.profile_op_opt_builder_1 = option_builder.ProfileOptionBuilder()
-        self.profile_op_opt_builder_1.select(['micros','bytes','float_ops','occurrence'])
-        self.profile_op_opt_builder_1.order_by('micros')
-        self.profile_op_opt_builder_1.with_max_depth(10)
 
         self.profile=False
-        
+
+        if self.profile:
+            print("profile : ture")
+            self.profiler = model_analyzer.Profiler(graph=self.sess.graph)
+            self.run_options = tf.RunOptions(trace_level = tf.RunOptions.FULL_TRACE)
+            self.run_metadata = tf.RunMetadata()
+            # graph view
+            self.profile_graph_opts_builder = option_builder.ProfileOptionBuilder(option_builder.ProfileOptionBuilder.time_and_memory())
+            self.profile_graph_opts_builder.with_timeline_output(timeline_file='./profile/profiler.json')
+            # op view
+            self.profile_op_opt_builder_1 = option_builder.ProfileOptionBuilder()
+            self.profile_op_opt_builder_1.select(['micros','bytes','float_ops','occurrence'])
+            self.profile_op_opt_builder_1.order_by('micros')
+            self.profile_op_opt_builder_1.with_max_depth(10)
+
         print("In init model ")
         print("ntypes : ",self.ntypes)
         print("rcut : ",self.rcut)

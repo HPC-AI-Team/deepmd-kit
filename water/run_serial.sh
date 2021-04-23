@@ -19,4 +19,4 @@ fi
 bash $deepmd_root/script/build_deepmd.sh
 
 
-$lammps_root/src/lmp_serial -echo screen -in ./lmp/in.water_8
+$lammps_root/src/lmp_serial -echo screen -in ./lmp/in.water_5

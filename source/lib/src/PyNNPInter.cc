@@ -18,7 +18,7 @@ void PyNNPInter::run_model_ndarray(ENERGYTYPE &dener,
                                    const NNPAtomMap<VALUETYPE> &nnpmap,
                                    const int nghost)
 {
-  cout << "in run_model_ndarray 1 -------------------------\n";
+  // cout << "in run_model_ndarray 1 -------------------------\n";
   unsigned nloc = nnpmap.get_type().size();
   unsigned nall = nloc + nghost;
   if (nloc == 0)

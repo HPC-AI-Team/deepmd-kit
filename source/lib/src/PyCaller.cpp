@@ -179,8 +179,10 @@ void PyCaller::infer(const PyObject *model,
 {
   PyObject *args = PyTuple_Pack(6, model, coord_ndarry, type_ndarry, box_ndarry, mesh_ndarry, natoms_ndarry);
 
+  // cout << "calling infer function ...\n";
+
   PyObject *ret = PyObject_CallObject(inferFunc, args);
-  check(ret, "call function error !!! ");
+  check(ret, "call infer function error !!! ");
 
   *energy_ndarry = (PyArrayObject *)PyTuple_GetItem(ret, 0);
   *force_ndarry = (PyArrayObject *)PyTuple_GetItem(ret, 1);
@@ -193,7 +195,7 @@ PyObject *PyCaller::init_model(const string &model_path)
   PyObject *args = PyTuple_Pack(1, model_path_obj);
 
   PyObject *ret = PyObject_CallObject(initFunc, args);
-  check(ret, "call function error !!! ");
+  check(ret, "call init function error !!! ");
 
   return ret;
 }
