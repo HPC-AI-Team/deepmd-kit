@@ -18,5 +18,8 @@ fi
 
 bash $deepmd_root/script/build_deepmd.sh
 
+export TF_INTRA_OP_PARALLELISM_THREADS=1
+export TF_INTER_OP_PARALLELISM_THREADS=1
+export TF_CPP_MIN_LOG_LEVEL=3
 
-$lammps_root/src/lmp_serial -echo screen -in ./lmp/in.water_5
+$lammps_root/src/lmp_serial -echo screen -in ./lmp/in.water_1

@@ -2,6 +2,7 @@
 #include "NNPAtomMap.h"
 #include "SimulationRegion.h"
 #include <stdexcept>
+#include <omp.h>
 
 #include "PyCaller.h"
 
@@ -40,14 +41,6 @@ void PyNNPInter::run_model_ndarray(ENERGYTYPE &dener,
   PyArrayObject *virial_ndarry;
 
   pyCaller.infer(pymodel, coord_ndarry, type_ndarry, box_ndarry, mesh_ndarry, natoms_ndarry, fparam_ndarry, aparam_ndarry, &energy_ndarry, &force_ndarry, &virial_ndarry);
-
-  // Tensor output_e = output_tensors[0];
-  // Tensor output_f = output_tensors[1];
-  // Tensor output_av = output_tensors[2];
-
-  // auto oe = output_e.flat<ENERGYTYPE>();
-  // auto of = output_f.flat<VALUETYPE>();
-  // auto oav = output_av.flat<VALUETYPE>();
 
   ENERGYTYPE *oe = (ENERGYTYPE*)PyArray_DATA(energy_ndarry);
   VALUETYPE *of = (VALUETYPE*)PyArray_DATA(force_ndarry);
@@ -94,7 +87,11 @@ void PyNNPInter::init(const string &model_path, const int &gpu_rank)
   // cout << "PyNNPInter::init -------------------------------\n";
   assert(!inited);
 
+  double time1 = omp_get_wtime();
+
   pyCaller.init_python();
+
+  double time2 = omp_get_wtime();
 
   // TODO
   // SessionOptions options;
@@ -104,6 +101,8 @@ void PyNNPInter::init(const string &model_path, const int &gpu_rank)
   // checkStatus(NewSession(options, &session));
   // checkStatus(session->Create(graph_def));
   pymodel = pyCaller.init_model(model_path);
+
+  double time3 = omp_get_wtime();
 
   rcut = pyCaller.get_scalar<VALUETYPE>(pymodel, "descrpt_attr/rcut");
   cell_size = rcut;
@@ -123,6 +122,13 @@ void PyNNPInter::init(const string &model_path, const int &gpu_rank)
   ilist_size = 0;
   jrange_size = 0;
   jlist_size = 0;
+
+  double time4 = omp_get_wtime();
+
+  cout << "total init time : " << time4 - time1 << endl;
+  cout << "init python time : " << time2 - time1 << endl;
+  cout << "load model time : " << time3 - time2 << endl;
+  cout << "other time : " << time4 - time3 << endl;
 }
 
 void PyNNPInter::print_summary(const string &pre) const
