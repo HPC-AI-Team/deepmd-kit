@@ -1,0 +1,321 @@
+LAMMPS (29 Oct 2020)
+# bulk water
+
+units           metal
+boundary        p p p
+atom_style      atomic
+
+neighbor        2.0 bin
+neigh_modify    every 50 delay 0 check no
+
+read_data       ../../lmp/water.lmp
+Reading data file ...
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
+  3 by 4 by 4 MPI processor grid
+  reading atoms ...
+  192 atoms
+  read_data CPU = 0.051 seconds
+mass            1 16
+mass            2 2
+
+replicate       8 3 4
+Replicating atoms ...
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (99.557600 37.334100 49.778800) with tilt (0.0000000 0.0000000 0.0000000)
+  6 by 2 by 4 MPI processor grid
+  18432 atoms
+  replicate CPU = 0.043 seconds
+
+pair_style      deepmd ../../model/graph.pb
+Summary of lammps deepmd module ...
+  >>> Info of deepmd-kit:
+  installed to:       /home/hp200266/u01036/gzq/deepmd-kit
+  source:             v1.3.1-11-g20f79a5-dirty
+  source brach:       fugaku
+  source commit:      20f79a5
+  source commit at:   2021-04-24 21:46:52 +0900
+  build float prec:   double
+  build with tf inc:  /home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/include;/home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/include
+  build with tf lib:  /home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/lib/libtensorflow_framework.so
+  set tf intra_op_parallelism_threads: 0
+  set tf inter_op_parallelism_threads: 0
+  >>> Info of lammps module:
+  use deepmd-kit at:  /home/hp200266/u01036/gzq/deepmd-kit
+  source:             v1.3.1-9-g738a826-dirty
+  source branch:      fugaku
+  source commit:      738a826
+  source commit at:   2021-04-20 11:00:42 +0800
+  build float prec:   double
+  build with tf inc:  /home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/include;/home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/include
+  build with tf lib:  /home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/lib/libtensorflow_framework.so
+total init time : 76.9178
+init python time : 74.0806
+load model time : 2.66129
+other time : 0.17596
+  >>> Info of model(s):
+  using   1 model(s): ../../model/graph.pb 
+  rcut in model:      6
+  ntypes in model:    2
+pair_coeff
+
+velocity        all create 330.0 23456789
+
+fix             1 all nve
+timestep        0.0005
+thermo_style    custom step pe ke etotal temp press vol
+thermo          20
+
+run             99
+Neighbor list info ...
+  update every 50 steps, delay 0 steps, check no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 8
+  ghost atom cutoff = 8
+  binsize = 4, bins = 25 10 13
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair deepmd, perpetual
+      attributes: , newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+Setting up Verlet run ...
+  Unit style    : metal
+  Current step  : 0
+  Time step     : 0.0005
+descrpt_se_a compute time : 0.0842121
+run_model time : 10.2153
+Per MPI rank memory allocation (min/avg/max) = 2.692 | 2.695 | 2.697 Mbytes
+Step PotEng KinEng TotEng Temp Press Volume 
+       0   -2874575.8    786.18993   -2873789.6          330   -29387.559    185022.49 
+descrpt_se_a compute time : 0.045939
+run_model time : 2.12237
+descrpt_se_a compute time : 0.046953
+run_model time : 2.12883
+descrpt_se_a compute time : 0.0474069
+run_model time : 2.13036
+descrpt_se_a compute time : 0.045881
+run_model time : 2.08537
+descrpt_se_a compute time : 0.0459418
+run_model time : 2.08634
+descrpt_se_a compute time : 0.0459251
+run_model time : 2.12534
+descrpt_se_a compute time : 0.0458219
+run_model time : 2.12493
+descrpt_se_a compute time : 0.0461199
+run_model time : 2.08792
+descrpt_se_a compute time : 0.0460072
+run_model time : 2.08807
+descrpt_se_a compute time : 0.0460179
+run_model time : 2.08559
+descrpt_se_a compute time : 0.047307
+run_model time : 2.09278
+descrpt_se_a compute time : 0.046366
+run_model time : 2.12789
+descrpt_se_a compute time : 0.0465772
+run_model time : 2.09107
+descrpt_se_a compute time : 0.0459239
+run_model time : 2.08751
+descrpt_se_a compute time : 0.045867
+run_model time : 2.08802
+descrpt_se_a compute time : 0.045907
+run_model time : 2.0863
+descrpt_se_a compute time : 0.045893
+run_model time : 2.12587
+descrpt_se_a compute time : 0.045928
+run_model time : 2.08663
+descrpt_se_a compute time : 0.04585
+run_model time : 2.08625
+descrpt_se_a compute time : 0.0460529
+run_model time : 2.08722
+      20   -2874581.1    791.58196   -2873789.6    332.26328   -30299.577    185022.49 
+descrpt_se_a compute time : 0.045913
+run_model time : 2.08652
+descrpt_se_a compute time : 0.0459421
+run_model time : 2.12503
+descrpt_se_a compute time : 0.045836
+run_model time : 2.12477
+descrpt_se_a compute time : 0.045836
+run_model time : 2.08775
+descrpt_se_a compute time : 0.0459721
+run_model time : 2.08526
+descrpt_se_a compute time : 0.0459399
+run_model time : 2.08622
+descrpt_se_a compute time : 0.0465798
+run_model time : 2.09019
+descrpt_se_a compute time : 0.0460892
+run_model time : 2.12384
+descrpt_se_a compute time : 0.0458221
+run_model time : 2.08723
+descrpt_se_a compute time : 0.0459371
+run_model time : 2.0876
+descrpt_se_a compute time : 0.045866
+run_model time : 2.08836
+descrpt_se_a compute time : 0.0458381
+run_model time : 2.08748
+descrpt_se_a compute time : 0.0459011
+run_model time : 2.12482
+descrpt_se_a compute time : 0.0459421
+run_model time : 2.08823
+descrpt_se_a compute time : 0.0459111
+run_model time : 2.08594
+descrpt_se_a compute time : 0.0458338
+run_model time : 2.08823
+descrpt_se_a compute time : 0.0459011
+run_model time : 2.08716
+descrpt_se_a compute time : 0.045923
+run_model time : 2.12367
+descrpt_se_a compute time : 0.0458961
+run_model time : 2.12583
+descrpt_se_a compute time : 0.0458829
+run_model time : 2.08759
+      40   -2874667.5    877.98001   -2873789.6    368.52851   -37399.011    185022.49 
+descrpt_se_a compute time : 0.0459409
+run_model time : 2.08612
+descrpt_se_a compute time : 0.0459139
+run_model time : 2.0873
+descrpt_se_a compute time : 0.0459149
+run_model time : 2.08626
+descrpt_se_a compute time : 0.0458999
+run_model time : 2.1241
+descrpt_se_a compute time : 0.0459008
+run_model time : 2.08761
+descrpt_se_a compute time : 0.0458801
+run_model time : 2.08855
+descrpt_se_a compute time : 0.0459299
+run_model time : 2.08667
+descrpt_se_a compute time : 0.0457928
+run_model time : 2.08668
+descrpt_se_a compute time : 0.045933
+run_model time : 2.12197
+descrpt_se_a compute time : 0.046839
+run_model time : 2.13509
+descrpt_se_a compute time : 0.0469642
+run_model time : 2.1357
+descrpt_se_a compute time : 0.046881
+run_model time : 2.13556
+descrpt_se_a compute time : 0.0468531
+run_model time : 2.13474
+descrpt_se_a compute time : 0.0469131
+run_model time : 2.13401
+descrpt_se_a compute time : 0.0468061
+run_model time : 2.17841
+descrpt_se_a compute time : 0.0469511
+run_model time : 2.17383
+descrpt_se_a compute time : 0.046891
+run_model time : 2.13518
+descrpt_se_a compute time : 0.0468211
+run_model time : 2.13506
+descrpt_se_a compute time : 0.0468409
+run_model time : 2.13529
+descrpt_se_a compute time : 0.0469291
+run_model time : 2.13703
+      60   -2874814.2    1024.6221   -2873789.6    430.08092   -40065.673    185022.49 
+descrpt_se_a compute time : 0.0469501
+run_model time : 2.1356
+descrpt_se_a compute time : 0.046793
+run_model time : 2.1342
+descrpt_se_a compute time : 0.0467811
+run_model time : 2.17768
+descrpt_se_a compute time : 0.0469699
+run_model time : 2.17695
+descrpt_se_a compute time : 0.046917
+run_model time : 2.1348
+descrpt_se_a compute time : 0.0469041
+run_model time : 2.13469
+descrpt_se_a compute time : 0.0470619
+run_model time : 2.13541
+descrpt_se_a compute time : 0.0470679
+run_model time : 2.13655
+descrpt_se_a compute time : 0.0469561
+run_model time : 2.13496
+descrpt_se_a compute time : 0.046921
+run_model time : 2.13301
+descrpt_se_a compute time : 0.0470531
+run_model time : 2.17712
+descrpt_se_a compute time : 0.046979
+run_model time : 2.17785
+descrpt_se_a compute time : 0.0470431
+run_model time : 2.13589
+descrpt_se_a compute time : 0.0471339
+run_model time : 2.135
+descrpt_se_a compute time : 0.047128
+run_model time : 2.13558
+descrpt_se_a compute time : 0.0470262
+run_model time : 2.13617
+descrpt_se_a compute time : 0.047153
+run_model time : 2.13547
+descrpt_se_a compute time : 0.04708
+run_model time : 2.136
+descrpt_se_a compute time : 0.046983
+run_model time : 2.17454
+descrpt_se_a compute time : 0.047142
+run_model time : 2.17894
+      80     -2874957    1167.4179   -2873789.6    490.01889   -26256.389    185022.49 
+descrpt_se_a compute time : 0.0470781
+run_model time : 2.13451
+descrpt_se_a compute time : 0.0471411
+run_model time : 2.13521
+descrpt_se_a compute time : 0.047039
+run_model time : 2.13759
+descrpt_se_a compute time : 0.0470459
+run_model time : 2.13589
+descrpt_se_a compute time : 0.0470831
+run_model time : 2.13651
+descrpt_se_a compute time : 0.0471041
+run_model time : 2.13453
+descrpt_se_a compute time : 0.0470719
+run_model time : 2.17817
+descrpt_se_a compute time : 0.047133
+run_model time : 2.1783
+descrpt_se_a compute time : 0.047051
+run_model time : 2.13584
+descrpt_se_a compute time : 0.049835
+run_model time : 2.14146
+descrpt_se_a compute time : 0.0471089
+run_model time : 2.13526
+descrpt_se_a compute time : 0.0470359
+run_model time : 2.13686
+descrpt_se_a compute time : 0.0470998
+run_model time : 2.13471
+descrpt_se_a compute time : 0.0472002
+run_model time : 2.13411
+descrpt_se_a compute time : 0.047174
+run_model time : 2.17863
+descrpt_se_a compute time : 0.047071
+run_model time : 2.17726
+descrpt_se_a compute time : 0.04706
+run_model time : 2.13461
+descrpt_se_a compute time : 0.0471542
+run_model time : 2.13458
+descrpt_se_a compute time : 0.047188
+run_model time : 2.13542
+      99   -2875098.1    1308.4928   -2873789.6     549.2345   -9101.8161    185022.49 
+Loop time of 227.684 on 48 procs for 99 steps with 18432 atoms
+
+Performance: 0.019 ns/day, 1277.690 hours/ns, 0.435 timesteps/s
+100.0% CPU use with 48 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 207.39     | 217.85     | 223.77     |  32.8 | 95.68
+Neigh   | 0.0060163  | 0.0063671  | 0.0066901  |   0.2 |  0.00
+Comm    | 3.8628     | 9.775      | 20.224     | 154.6 |  4.29
+Output  | 0.0063074  | 0.049908   | 0.06789    |   5.5 |  0.02
+Modify  | 0.0030201  | 0.003372   | 0.0036629  |   0.3 |  0.00
+Other   |            | 0.001091   |            |       |  0.00
+
+Nlocal:        384.000 ave         398 max         365 min
+Histogram: 3 0 3 5 7 4 12 4 4 6
+Nghost:        2830.10 ave        2915 max        2768 min
+Histogram: 7 9 1 7 8 2 2 4 6 2
+Neighs:        0.00000 ave           0 max           0 min
+Histogram: 48 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0.0000000
+Neighbor list builds = 1
+Dangerous builds not checked
+
+Please see the log.cite file for references relevant to this simulation
+
+Total wall time: 0:05:16

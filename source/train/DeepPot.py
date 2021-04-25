@@ -72,9 +72,7 @@ class DeepPot (DeepEval) :
             self.dm = DipoleChargeModifier(mdl_name, mdl_charge_map, sys_charge_map, ewald_h = ewald_h, ewald_beta = ewald_beta)
         
         # profiler
-
-        self.profile=False
-
+        self.profile=True
         if self.profile:
             print("profile : ture")
             self.profiler = model_analyzer.Profiler(graph=self.sess.graph)
@@ -216,9 +214,9 @@ class DeepPot (DeepEval) :
                 feed_dict_test[self.t_aparam] = np.reshape(aparam[ii:ii+1, :], [-1])
 
             if self.profile:
+                
                 v_out = self.sess.run(t_out, feed_dict = feed_dict_test,options=self.run_options, run_metadata=self.run_metadata)
                 self.profiler.add_step(step=ii, run_meta=self.run_metadata)
-
                 self.profiler.profile_graph(self.profile_graph_opts_builder.build())
                 self.profiler.profile_operations(self.profile_op_opt_builder_1.build())
             else :

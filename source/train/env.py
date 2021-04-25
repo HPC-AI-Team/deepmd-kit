@@ -34,8 +34,8 @@ def set_mkl():
         reload(np)
 
 def set_tf_default_nthreads():
-    set_env_if_empty("TF_INTRA_OP_PARALLELISM_THREADS", "0", verbose=False)
-    set_env_if_empty("TF_INTER_OP_PARALLELISM_THREADS", "0", verbose=False)
+    set_env_if_empty("TF_INTRA_OP_PARALLELISM_THREADS", "1", verbose=False)
+    set_env_if_empty("TF_INTER_OP_PARALLELISM_THREADS", "1", verbose=False)
 
 def get_tf_default_nthreads():
     return int(os.environ.get('TF_INTRA_OP_PARALLELISM_THREADS')), int(os.environ.get('TF_INTER_OP_PARALLELISM_THREADS'))

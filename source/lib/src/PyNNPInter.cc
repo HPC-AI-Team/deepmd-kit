@@ -40,6 +40,7 @@ void PyNNPInter::run_model_ndarray(ENERGYTYPE &dener,
   PyArrayObject *force_ndarry;
   PyArrayObject *virial_ndarry;
 
+  double time1 = omp_get_wtime();
   pyCaller.infer(pymodel, coord_ndarry, type_ndarry, box_ndarry, mesh_ndarry, natoms_ndarry, fparam_ndarry, aparam_ndarry, &energy_ndarry, &force_ndarry, &virial_ndarry);
 
   ENERGYTYPE *oe = (ENERGYTYPE*)PyArray_DATA(energy_ndarry);
@@ -68,6 +69,8 @@ void PyNNPInter::run_model_ndarray(ENERGYTYPE &dener,
 
   dforce_ = dforce;
   nnpmap.backward(dforce_.begin(), dforce.begin(), 3);
+  double time2 = omp_get_wtime();
+  cout << "run_model time : " << time2 - time1 << endl;
 }
 
 PyNNPInter::PyNNPInter() : inited(false), init_nbor(false)

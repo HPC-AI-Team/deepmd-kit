@@ -9,5 +9,9 @@
 #PJM -s                                    # Statistical information output
 
 source $HOME/gzq/fj_env.sh
+
 export PLE_MPI_STD_EMPTYFILE=off
+
+$deepmd_root/script/build_deepmd.sh
+
 mpiexec -n 48 lmp_mpi -echo screen -in in.water_96

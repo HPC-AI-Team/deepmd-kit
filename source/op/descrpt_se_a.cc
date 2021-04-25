@@ -2,6 +2,7 @@
 #include "tensorflow/core/framework/op_kernel.h"
 #include "tensorflow/core/framework/shape_inference.h"
 #include <iostream>
+#include <omp.h>
 
 #include "ComputeDescriptor.h"
 #include "NeighborList.h"
@@ -60,6 +61,7 @@ public:
 
   void Compute(OpKernelContext *context) override
   {
+    double time1 = omp_get_wtime();
     // cout << "In DescrptSeAOp::Compute --------------------------------" << endl;
     // Grab the input tensor
     int context_input_index = 0;
@@ -365,6 +367,9 @@ public:
       }
     }
     // cout << "In DescrptSeAOp::Compute end--------------------------------" << endl;
+
+    double time2 = omp_get_wtime();
+    cout << "descrpt_se_a compute time : " << time2 - time1 << endl;
   }
 
 private:
