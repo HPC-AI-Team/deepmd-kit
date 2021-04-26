@@ -4,6 +4,10 @@ import platform
 import numpy as np
 from imp import reload
 
+import logging, os
+logging.disable(logging.WARNING)
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3" 
+
 # import tensorflow v1 compatability
 try:
     import tensorflow.compat.v1 as tf
@@ -34,8 +38,8 @@ def set_mkl():
         reload(np)
 
 def set_tf_default_nthreads():
-    set_env_if_empty("TF_INTRA_OP_PARALLELISM_THREADS", "1", verbose=False)
-    set_env_if_empty("TF_INTER_OP_PARALLELISM_THREADS", "1", verbose=False)
+    set_env_if_empty("TF_INTRA_OP_PARALLELISM_THREADS", "0", verbose=False)
+    set_env_if_empty("TF_INTER_OP_PARALLELISM_THREADS", "0", verbose=False)
 
 def get_tf_default_nthreads():
     return int(os.environ.get('TF_INTRA_OP_PARALLELISM_THREADS')), int(os.environ.get('TF_INTER_OP_PARALLELISM_THREADS'))
@@ -47,6 +51,11 @@ def get_tf_session_config():
     print("intra_op_parallelism_threads : {}".format(intra))
     print("inter_op_parallelism_threads : {}".format(inter))
     return tf.ConfigProto(intra_op_parallelism_threads=intra, inter_op_parallelism_threads=inter)
+
+def get_profile():
+    if os.environ.get("TF_PROFILE") is not None:
+        return True
+    return False
 
 def get_module(module_name):
     """Load force module."""

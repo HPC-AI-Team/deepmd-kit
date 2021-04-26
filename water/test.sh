@@ -21,7 +21,8 @@ source $HOME/gzq/fj_env.sh
 
 bash $deepmd_root/script/build_deepmd.sh
 
+export TF_PROFILE=1
 export TF_INTRA_OP_PARALLELISM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
 
-likwid-pin -c 0 dp test -m model/graph.pb -s ./data -n 1
+dp test -m model/graph.pb -s ./data -n 1

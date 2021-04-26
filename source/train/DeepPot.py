@@ -3,6 +3,7 @@
 import numpy as np
 from deepmd.env import tf
 from deepmd.env import default_tf_session_config
+from deepmd.env import get_profile
 from deepmd.common import make_default_mesh
 from deepmd.DeepEval import DeepEval
 from deepmd.DataModifier import DipoleChargeModifier
@@ -72,7 +73,8 @@ class DeepPot (DeepEval) :
             self.dm = DipoleChargeModifier(mdl_name, mdl_charge_map, sys_charge_map, ewald_h = ewald_h, ewald_beta = ewald_beta)
         
         # profiler
-        self.profile=True
+        self.profile=get_profile()
+
         if self.profile:
             print("profile : ture")
             self.profiler = model_analyzer.Profiler(graph=self.sess.graph)
