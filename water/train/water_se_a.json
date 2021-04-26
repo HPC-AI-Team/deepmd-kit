@@ -14,9 +14,9 @@
 			"rcut_smth": 5.80,
 			"rcut": 6.00,
 			"neuron": [
-				25,
-				50,
-				100
+				32,
+				64,
+				128
 			],
 			"resnet_dt": false,
 			"axis_neuron": 16,

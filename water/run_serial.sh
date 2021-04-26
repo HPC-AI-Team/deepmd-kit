@@ -1,6 +1,7 @@
 #!/bin/bash
 #PJM -L "node=1"               # Number of node
-#PJM -L "rscgrp=eap-small"     # Specify resource group
+#PJM -L  "freq=2200"                         
+#PJM -L "rscgrp=small"     # Specify resource group
 #PJM -L "elapse=60:00"         # Job run time limit value
 #PJM -S     
 
@@ -16,10 +17,11 @@ then
     echo "not found envoriment variable : lammps_root"
 fi
 
+source $HOME/gzq/fj_env.sh
+
 bash $deepmd_root/script/build_deepmd.sh
 
 export TF_INTRA_OP_PARALLELISM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
-export TF_CPP_MIN_LOG_LEVEL=3
 
-$lammps_root/src/lmp_serial -echo screen -in ./lmp/in.water_1
+likwid-pin -c 0 $lammps_root/src/lmp_serial -echo screen -in ./lmp/in.water_1

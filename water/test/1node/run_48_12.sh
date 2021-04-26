@@ -9,23 +9,6 @@
 #PJM --mpi "max-proc-per-node=48"          # Maximum number of MPI processes created per node
 #PJM -s                                    # Statistical information output
 
-set -ex
-
-if [ $deepmd_root == "" ]
-then
-    echo "not found envoriment variable : deepmd_root"
-fi
-
-if [ $lammps_root == "" ]
-then
-    echo "not found envoriment variable : lammps_root"
-fi
-
 source $HOME/gzq/fj_env.sh
-
-bash $deepmd_root/script/build_deepmd.sh
-
-export TF_INTRA_OP_PARALLELISM_THREADS=1
-export TF_INTER_OP_PARALLELISM_THREADS=1
-
-mpiexec -n 48 lmp_mpi -echo screen -in lmp/in.water__48
+export PLE_MPI_STD_EMPTYFILE=off
+mpiexec -n 48 lmp_mpi -echo screen -in in.water_12

@@ -1,4 +1,9 @@
-#/bin/bash
+#!/bin/bash
+#PJM -L "node=1"               # Number of node
+#PJM -L  "freq=2200"                         
+#PJM -L "rscgrp=small"     # Specify resource group
+#PJM -L "elapse=01:00:00"         # Job run time limit value
+#PJM -S     
 
 set -ex
 
@@ -11,6 +16,8 @@ if [ $lammps_root == "" ]
 then
     echo "not found envoriment variable : lammps_root"
 fi
+
+source $HOME/gzq/fj_env.sh
 
 bash $deepmd_root/script/build_deepmd.sh
 

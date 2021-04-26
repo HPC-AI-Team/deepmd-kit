@@ -2,6 +2,7 @@
 
 #!/bin/sh -x
 #PJM -L  "node=1"                          # Number of assign node 8 (1 dimention format)
+#PJM -L  "freq=2200"                         
 #PJM -L "rscgrp=small"         # Specify resource group
 #PJM -L  "elapse=01:00:00"                 # Elapsed time limit 1 hour
 #PJM --mpi "shape=1"
@@ -10,4 +11,5 @@
 
 source $HOME/gzq/fj_env.sh
 export PLE_MPI_STD_EMPTYFILE=off
-mpiexec -n 48 lmp_mpi -echo screen -in in.water_48_40
+mpiexec -n 48 lmp_mpi -echo screen -in in.water_48_500
+
