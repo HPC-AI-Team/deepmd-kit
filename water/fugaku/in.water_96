@@ -7,13 +7,13 @@ atom_style      atomic
 neighbor        2.0 bin
 neigh_modify    every 50 delay 0 check no
 
-read_data       ../../lmp/water.lmp
+read_data       ./water.lmp
 mass            1 16
 mass            2 2
 
 replicate       8 3 4
 
-pair_style      deepmd ../../model/graph.pb
+pair_style      deepmd ../model/graph.pb
 pair_coeff
 
 velocity        all create 330.0 23456789

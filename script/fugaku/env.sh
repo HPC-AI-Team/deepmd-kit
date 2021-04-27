@@ -1,7 +1,5 @@
 #!/bin/bash 
 
-set -ex
-
 if [ $deepmd_root == "" ]
 then
     echo "not found envoriment variable : deepmd_root"

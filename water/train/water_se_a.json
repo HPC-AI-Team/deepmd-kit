@@ -54,7 +54,7 @@
 	"_comment": " traing controls",
 	"training": {
 		"systems": [
-			"./data/"
+			"../data/"
 		],
 		"set_prefix": "set",
 		"stop_batch": 1000,

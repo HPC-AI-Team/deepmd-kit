@@ -19,4 +19,4 @@ bash $deepmd_root/script/x86_64/build_deepmd.sh
 export TF_INTRA_OP_PARALLELISM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
 
-mpiexec -n 16 $lammps_root/src/lmp_mpi -echo screen -in lmp/in.water_96
+mpiexec -n 16 $lammps_root/src/lmp_mpi -echo screen -in ../lmp/in.water_96
