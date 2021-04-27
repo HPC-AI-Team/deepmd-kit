@@ -21,7 +21,4 @@ source $deepmd_root/script/fugaku/env.sh
 
 bash $deepmd_root/script/fugaku/build_deepmd.sh
 
-export TF_INTRA_OP_PARALLELISM_THREADS=1
-export TF_INTER_OP_PARALLELISM_THREADS=1
-
 likwid-perfctr -C 0 -g FLOPS_DP $lammps_root/src/lmp_serial -echo screen -in ./in.water_1
