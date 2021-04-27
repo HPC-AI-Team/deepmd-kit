@@ -22,7 +22,5 @@ source $deepmd_root/script/fugaku/env.sh
 bash $deepmd_root/script/fugaku/build_deepmd.sh
 
 export TF_PROFILE=1
-export TF_INTRA_OP_PARALLELISM_THREADS=1
-export TF_INTER_OP_PARALLELISM_THREADS=1
 
-dp test -m model/graph.pb -s ./data -n 1
+likwid-pin -c 0 dp test -m $deepmd_root/water/model/graph.pb -s $deepmd_root/water/data -n 1

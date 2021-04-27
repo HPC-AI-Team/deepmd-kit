@@ -21,8 +21,8 @@ source $deepmd_root/script/fugaku/env.sh
 
 bash $deepmd_root/script/fugaku/build_deepmd.sh
 
-dp train train/water_se_a.json
-dp freeze -o model/graph.pb
-dp test -m model/graph.pb -s ./data -n 1
+dp train ../train/water_se_a.json
+dp freeze -o ../model/graph.pb
+dp test -m ../model/graph.pb -s ../data -n 1
 rm -rf model.ckpt.*
 rm -rf checkpoint

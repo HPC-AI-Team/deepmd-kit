@@ -19,4 +19,4 @@ bash $deepmd_root/script/x86_64/build_deepmd.sh
 export TF_INTRA_OP_PARALLELISM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
 
-likwid-perfctr -C 0 -g FLOPS_DP likwid-pin -c 0 $lammps_root/src/lmp_serial -echo screen -in ./lmp/in.water_1
+likwid-perfctr -C 0 -g FLOPS_DP likwid-pin -c 0 $lammps_root/src/lmp_serial -echo screen -in ../lmp/in.water_1
