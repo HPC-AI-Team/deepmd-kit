@@ -25,5 +25,6 @@ source $deepmd_root/script/fugaku/env.sh
 
 bash $deepmd_root/script/fugaku/build_deepmd.sh
 export PLE_MPI_STD_EMPTYFILE=off
+# export PRINT_TIME=1
 
 $lammps_root/src/lmp_serial -echo screen -in ./in.water_1

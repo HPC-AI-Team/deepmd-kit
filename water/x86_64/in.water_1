@@ -13,7 +13,7 @@ mass            2 2
 
 replicate       1 1 1
 
-pair_style      deepmd ../model/graph.pb
+pair_style      deepmd ../model/graph-master-10000.pb
 pair_coeff
 
 velocity        all create 330.0 23456789

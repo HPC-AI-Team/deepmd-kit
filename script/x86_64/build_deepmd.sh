@@ -2,15 +2,8 @@
 
 set -ex
 
-if [ $deepmd_root == "" ]
-then
-    echo "not found envoriment variable : deepmd_root"
-fi
-
-if [ $tensorflow_root == "" ]
-then
-    echo "not found envoriment variable : tensorflow_root"
-fi
+export deepmd_root=$HOME/deepmd-kit
+source $deepmd_root/script/x86_64/env.sh
 
 echo tensorflow_root : $tensorflow_root
 echo deepmd_root : $deepmd_root
@@ -20,7 +13,7 @@ cd $deepmd_root
 mkdir -p source/build
 cd source/build
 
-cmake -DTENSORFLOW_ROOT=$TENSORFLOW_INSTALL_PATH -DCMAKE_INSTALL_PREFIX=$deepmd_root -DUSE_CUDA_TOOLKIT=false ..
+cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DUSE_CUDA_TOOLKIT=false ..
 make -j16
 make install 
 

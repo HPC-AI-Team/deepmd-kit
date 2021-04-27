@@ -2,21 +2,12 @@
 
 set -ex
 
-if [ $deepmd_root == "" ]
-then
-    echo "not found envoriment variable : deepmd_root"
-fi
-
-if [ $lammps_root == "" ]
-then
-    echo "not found envoriment variable : lammps_root"
-fi
+export deepmd_root=$HOME/deepmd-kit
+source $deepmd_root/script/x86_64/env.sh
 
 cd $deepmd_root/source/build
 
 make lammps
-
-cp -r $deepmd_root/script/fugaku_lammps_patch/* $lammps_root/src
 
 cd $lammps_root/src
 

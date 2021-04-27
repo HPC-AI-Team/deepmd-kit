@@ -5,6 +5,7 @@
 #include <omp.h>
 
 #include "PyCaller.h"
+#include "tool.h"
 
 void PyNNPInter::run_model_ndarray(ENERGYTYPE &dener,
                                    vector<VALUETYPE> &dforce_,
@@ -70,7 +71,11 @@ void PyNNPInter::run_model_ndarray(ENERGYTYPE &dener,
   dforce_ = dforce;
   nnpmap.backward(dforce_.begin(), dforce.begin(), 3);
   double time2 = omp_get_wtime();
-  cout << "run_model time : " << time2 - time1 << endl;
+
+  bool print_time = get_print_time();
+  if(print_time){
+    cout << "run_model time : " << time2 - time1 << endl;
+  }
 }
 
 PyNNPInter::PyNNPInter() : inited(false), init_nbor(false)
@@ -94,8 +99,6 @@ void PyNNPInter::init(const string &model_path, const int &gpu_rank)
 
   pyCaller.init_python();
 
-  double time2 = omp_get_wtime();
-
   // TODO
   // SessionOptions options;
   // options.config.set_inter_op_parallelism_threads(num_inter_nthreads);
@@ -104,8 +107,6 @@ void PyNNPInter::init(const string &model_path, const int &gpu_rank)
   // checkStatus(NewSession(options, &session));
   // checkStatus(session->Create(graph_def));
   pymodel = pyCaller.init_model(model_path);
-
-  double time3 = omp_get_wtime();
 
   rcut = pyCaller.get_scalar<VALUETYPE>(pymodel, "descrpt_attr/rcut");
   cell_size = rcut;
@@ -128,10 +129,10 @@ void PyNNPInter::init(const string &model_path, const int &gpu_rank)
 
   double time4 = omp_get_wtime();
 
-  cout << "total init time : " << time4 - time1 << endl;
-  cout << "init python time : " << time2 - time1 << endl;
-  cout << "load model time : " << time3 - time2 << endl;
-  cout << "other time : " << time4 - time3 << endl;
+  bool print_time = get_print_time();
+  if(print_time){
+    cout << "total init time : " << time4 - time1 << endl;
+  }
 }
 
 void PyNNPInter::print_summary(const string &pre) const
