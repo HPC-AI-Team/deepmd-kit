@@ -34,3 +34,5 @@ out.*
 *.out
 *.pb
 profiler*
+package/**
+*.flag

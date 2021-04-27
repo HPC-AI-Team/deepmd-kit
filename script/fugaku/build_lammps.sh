@@ -16,7 +16,7 @@ cd $deepmd_root/source/build
 
 make lammps
 
-cp -r $deepmd_root/script/fugaku_lammps_patch/* $lammps_root/src
+cp -r $deepmd_root/script/fugaku/fugaku_lammps_patch/* $lammps_root/src
 
 cd $lammps_root/src
 
@@ -29,3 +29,4 @@ make yes-user-deepmd
 make yes-kspace
 make serial -j16
 make mpi -j16
+

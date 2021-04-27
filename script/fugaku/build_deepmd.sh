@@ -20,7 +20,7 @@ cd $deepmd_root
 mkdir -p source/build
 cd source/build
 
-cmake -DTENSORFLOW_ROOT=$TENSORFLOW_INSTALL_PATH -DCMAKE_INSTALL_PREFIX=$deepmd_root -DUSE_CUDA_TOOLKIT=false ..
+cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DUSE_CUDA_TOOLKIT=false ..
 make -j16
 make install 
 
