@@ -22,3 +22,8 @@ cd $deepmd_root
 source ./script/fugaku/env.sh
 bash ./script/fugaku/install.sh
 ```
+
+#### 每次使用之前执行 或者 作业脚本中加入
+```bash
+source $deepmd_root/script/fugaku/env.sh
+```
