@@ -26,8 +26,8 @@ venv*
 .vscode/**
 _build
 _templates
-include
-lib
+/include/**
+/lib/**
 out.json
 log.*
 out.*
