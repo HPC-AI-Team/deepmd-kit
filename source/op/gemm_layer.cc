@@ -5,14 +5,6 @@
 #include <type_traits>  // std::is_name
 #include <iostream>
 #include <string>
-#include <mkl.h>
-
-// REGISTER_OP("GemmLayer")
-//     .Attr("T: {half, float, double}")
-//     .Input("xyz_scatter: T")
-//     .Input("w: T")
-//     .Input("b: T")
-//     .Output("output: T");
 
 using std::cout;
 using std::endl;

@@ -7,12 +7,12 @@
 
 set -ex
 
-if [ $deepmd_root == "" ]
+if [ -z $deepmd_root ]
 then
     echo "not found envoriment variable : deepmd_root"
 fi
 
-if [ $lammps_root == "" ]
+if [ -z $lammps_root ]
 then
     echo "not found envoriment variable : lammps_root"
 fi

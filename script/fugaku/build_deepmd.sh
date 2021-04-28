@@ -2,18 +2,13 @@
 
 set -ex
 
-if [ $deepmd_root == "" ]
+if [ -z $deepmd_root ]
 then
     echo "not found envoriment variable : deepmd_root"
+    exit -1
 fi
 
-if [ $tensorflow_root == "" ]
-then
-    echo "not found envoriment variable : tensorflow_root"
-fi
-
-echo tensorflow_root : $tensorflow_root
-echo deepmd_root : $deepmd_root
+source $deepmd_root/script/fugaku/env.sh
 
 cd $deepmd_root
 

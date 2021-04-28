@@ -5,17 +5,17 @@ export deepmd_root=$HOME/deepmd-kit
 export lammps_root=$HOME/lammps-stable_29Oct2020                                                                                                                                                                                                                                           
 export tensorflow_root=$HOME/software/tensorflow-2.2.2
 
-if [ $deepmd_root == "" ]
+if [ -z $deepmd_root ]
 then
     echo "not found envoriment variable : deepmd_root"
 fi
 
-if [ $tensorflow_root == "" ]
+if [ -z $tensorflow_root ]
 then
     echo "not found envoriment variable : tensorflow_root"
 fi
 
-if [ $lammps_root == "" ]
+if [ -z $lammps_root ]
 then
     echo "not found envoriment variable : tensorflow_root"
 fi

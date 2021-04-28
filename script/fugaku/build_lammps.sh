@@ -2,15 +2,13 @@
 
 set -ex
 
-if [ $deepmd_root == "" ]
+if [ -z $deepmd_root ]
 then
     echo "not found envoriment variable : deepmd_root"
+    exit -1
 fi
 
-if [ $lammps_root == "" ]
-then
-    echo "not found envoriment variable : lammps_root"
-fi
+source $deepmd_root/script/fugaku/env.sh
 
 cd $deepmd_root/source/build
 

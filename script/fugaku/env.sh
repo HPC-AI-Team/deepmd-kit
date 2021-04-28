@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-if [ $deepmd_root == "" ]
+if [ -z $deepmd_root ]
 then
     echo "not found envoriment variable : deepmd_root"
 fi
