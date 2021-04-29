@@ -7,21 +7,10 @@
 
 set -ex
 
-if [ -z $deepmd_root ]
-then
-    echo "not found envoriment variable : deepmd_root"
-fi
-
-if [ -z $lammps_root ]
-then
-    echo "not found envoriment variable : lammps_root"
-fi
-
 source $deepmd_root/script/fugaku/env.sh
-
 bash $deepmd_root/script/fugaku/build_deepmd.sh
 
-dp train ../train/water_se_a.json
+dp train ../train/water_se_a_1000.json
 dp freeze -o ../model/graph.pb
 dp test -m ../model/graph.pb -s ../data -n 1
 rm -rf model.ckpt.*

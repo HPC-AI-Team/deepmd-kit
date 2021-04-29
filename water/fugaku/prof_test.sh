@@ -7,18 +7,7 @@
 
 set -ex
 
-if [ -z $deepmd_root ]
-then
-    echo "not found envoriment variable : deepmd_root"
-fi
-
-if [ -z $lammps_root ]
-then
-    echo "not found envoriment variable : lammps_root"
-fi
-
 source $deepmd_root/script/fugaku/env.sh
-
 bash $deepmd_root/script/fugaku/build_deepmd.sh
 
 export TF_PROFILE=1
