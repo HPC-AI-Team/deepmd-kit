@@ -20,7 +20,6 @@ if [ ! -f "tensorflow_complete.flag" ];then
     cd ./TensorFlow-$tf_version
     cp -r /home/apps/oss/TensorFlow-$tf_version/bin .
     cp -r /home/apps/oss/TensorFlow-$tf_version/build .
-    cp -r /home/apps/oss/TensorFlow-$tf_version/doc .
     cp -r /home/apps/oss/TensorFlow-$tf_version/include .
     cp -r /home/apps/oss/TensorFlow-$tf_version/lib .
     cp -r /home/apps/oss/TensorFlow-$tf_version/LICENSE .
