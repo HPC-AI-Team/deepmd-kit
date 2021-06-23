@@ -1,5 +1,8 @@
 set -e
 
+tensorflow_root=$HOME/software/tensorflow-gpu-2.4
+source $tensorflow_root/env.sh
+
 if [ -z "$FLOAT_PREC" ]
 then
   FLOAT_PREC=high
@@ -25,7 +28,7 @@ NPROC=$(nproc --all)
 BUILD_TMP_DIR=${SCRIPT_PATH}/../build
 mkdir -p ${BUILD_TMP_DIR}
 cd ${BUILD_TMP_DIR}
-cmake -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} -DFLOAT_PREC=${FLOAT_PREC} -DINSTALL_TENSORFLOW=TRUE ${CUDA_ARGS} ..
+cmake -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} -DFLOAT_PREC=${FLOAT_PREC} -DINSTALL_TENSORFLOW=FALSE -DTENSORFLOW_ROOT=$tensorflow_root ${CUDA_ARGS} ..
 make -j${NPROC}
 make install
 

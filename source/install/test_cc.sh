@@ -1,5 +1,8 @@
 set -e
 
+tensorflow_root=$HOME/software/tensorflow-gpu-2.4
+source $tensorflow_root/env.sh
+
 #------------------
 
 SCRIPT_PATH=$(dirname $(realpath -s $0))
@@ -24,7 +27,7 @@ INSTALL_PREFIX=${SCRIPT_PATH}/../../dp
 mkdir -p ${BUILD_TMP_DIR}
 mkdir -p ${INSTALL_PREFIX}
 cd ${BUILD_TMP_DIR}
-cmake -DINSTALL_TENSORFLOW=TRUE -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} ../api_cc/tests
+cmake -DINSTALL_TENSORFLOW=FALSE -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} ../api_cc/tests
 make -j${NPROC}
 
 #------------------
