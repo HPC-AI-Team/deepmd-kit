@@ -2,9 +2,6 @@ set -e
 
 # You need to first run ./build_cc.sh
 
-tensorflow_root=$HOME/software/tensorflow-gpu-2.4
-source $tensorflow_root/env.sh
-
 if [ -z "$FLOAT_PREC" ]
 then
   FLOAT_PREC=high
@@ -49,11 +46,10 @@ cd ${BUILD_TMP_DIR}/lammps-${LAMMPS_VERSION}/build
 if [ ${FLOAT_PREC} == "high" ]; then
     export PREC_DEF="-DHIGH_PREC"
 fi
-cmake -C ../cmake/presets/all_off.cmake -D PKG_USER-DEEPMD=ON -D PKG_KSPACE=ON -D CMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} -D CMAKE_CXX_FLAGS="${PREC_DEF} -I${INSTALL_PREFIX}/include -L${INSTALL_PREFIX}/lib -I$tensorflow_root/include  -L$tensorflow_root/lib -Wl,--no-as-needed -lrt -ldeepmd_op -ldeepmd -ldeepmd_cc -ltensorflow_cc -ltensorflow_framework -Wl,-rpath=${INSTALL_PREFIX}/lib" ../cmake
+cmake -C ../cmake/presets/all_off.cmake -D PKG_USER-DEEPMD=ON -D PKG_KSPACE=ON -D CMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} -D CMAKE_CXX_FLAGS="${PREC_DEF} -I${INSTALL_PREFIX}/include -L${INSTALL_PREFIX}/lib -Wl,--no-as-needed -lrt -ldeepmd_op -ldeepmd -ldeepmd_cc -ltensorflow_cc -ltensorflow_framework -Wl,-rpath=${INSTALL_PREFIX}/lib" ../cmake
 
 make -j${NPROC}
 make install
 
 #------------------
 echo "Congratulations! LAMMPS has been installed at ${INSTALL_PREFIX}"
-

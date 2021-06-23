@@ -2,9 +2,9 @@
 
 set -ex
 
-deepmd_root=/home/guozhuoqiang/deepmd-kit
-source $deepmd_root/script/fugaku/env.sh
-bash $deepmd_root/script/fugaku/build_deepmd.sh
+deepmd_root=$HOME/deepmd-kit
+source $deepmd_root/script/x86/env.sh
+bash $deepmd_root/script/x86/build_deepmd.sh
 
 cd $DEEPMD_BUILD_DIR
 make lammps

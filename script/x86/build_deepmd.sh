@@ -2,8 +2,8 @@
 
 set -ex
 
-deepmd_root=/home/guozhuoqiang/deepmd-kit
-source $deepmd_root/script/fugaku/env.sh
+deepmd_root=$HOME/deepmd-kit
+source $deepmd_root/script/x86/env.sh
 
 cd $deepmd_root
 
@@ -18,6 +18,10 @@ make -j16
 make install 
 
 cd $deepmd_root
+
+
+pip install packaging
+pip install scikit-build
 
 python ./setup.py install -j48
 
