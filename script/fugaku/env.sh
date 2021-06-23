@@ -1,8 +1,8 @@
 #!/bin/bash 
 
 
-export deepmd_root=/home/guozhuoqiang/deepmd-kit
-export tensorflow_root=/vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0
+export deepmd_root=$HOME/gzq/deepmd-kit
+export tensorflow_root=$HOME/gzq/fj_software/tensorflow/TensorFlow-2.2.0
 
 
 if [ -z $deepmd_root ]
