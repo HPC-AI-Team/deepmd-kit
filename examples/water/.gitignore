@@ -8,6 +8,8 @@ tab.xvg
 out.json
 model.ckpt*
 checkpoint
+profiler.json_*
 
 # for lammps
 log.cite
+log.lammps

@@ -156,6 +156,7 @@ if (OLD_LMP_PPPM)
 endif()
 add_definitions (${OLD_LMP_PPPM_DEF})
 
+set (CMAKE_BUILD_TYPE debug)
 # define build type
 if ((NOT DEFINED CMAKE_BUILD_TYPE) OR CMAKE_BUILD_TYPE STREQUAL "")
    set (CMAKE_BUILD_TYPE release)

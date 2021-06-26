@@ -12,6 +12,10 @@ from configparser import ConfigParser
 if TYPE_CHECKING:
     from types import ModuleType
 
+# disable waring
+logging.disable(logging.WARNING)
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3" 
+
 # import tensorflow v1 compatability
 try:
     import tensorflow.compat.v1 as tf
@@ -223,3 +227,7 @@ def global_cvt_2_ener_float(xx: tf.Tensor) -> tf.Tensor:
     return tf.cast(xx, GLOBAL_ENER_FLOAT_PRECISION)
 
 
+def get_profiling():
+    if os.environ.get("TF_PROFILE") is not None:
+        return True
+    return False

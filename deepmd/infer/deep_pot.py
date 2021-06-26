@@ -7,6 +7,10 @@ from deepmd.env import default_tf_session_config, tf
 from deepmd.infer.data_modifier import DipoleChargeModifier
 from deepmd.infer.deep_eval import DeepEval
 
+from deepmd.env import get_profiling
+from tensorflow.python.profiler import model_analyzer
+from tensorflow.python.profiler import option_builder
+
 if TYPE_CHECKING:
     from pathlib import Path
 
@@ -127,6 +131,25 @@ class DeepPot(DeepEval):
             mdl_charge_map = [int(ii) for ii in mdl_charge_map.decode("UTF-8").split()]
             sys_charge_map = [int(ii) for ii in sys_charge_map.decode("UTF-8").split()]
             self.dm = DipoleChargeModifier(mdl_name, mdl_charge_map, sys_charge_map, ewald_h = ewald_h, ewald_beta = ewald_beta)
+        
+        # profiler
+        self.profile=get_profiling()
+        if self.profile:
+            print("profile : ture")
+            self.profiler = model_analyzer.Profiler(graph=self.sess.graph)
+            self.run_options = tf.RunOptions(trace_level = tf.RunOptions.FULL_TRACE)
+            self.run_metadata = tf.RunMetadata()
+            # graph view
+            self.profile_graph_opts_builder = option_builder.ProfileOptionBuilder(option_builder.ProfileOptionBuilder.time_and_memory())
+            self.profile_graph_opts_builder.with_timeline_output(timeline_file='./profiler.json')
+            self.profile_graph_opts_builder.with_step(-1)
+            # op view
+            self.profile_op_opt_builder_1 = option_builder.ProfileOptionBuilder()
+            self.profile_op_opt_builder_1.select(['micros','bytes','float_ops','occurrence'])
+            self.profile_op_opt_builder_1.order_by('micros')
+            self.profile_op_opt_builder_1.with_max_depth(10)
+            self.profile_graph_opts_builder.with_step(-1)
+
 
     def _run_default_sess(self):
         [self.ntypes, self.rcut, self.dfparam, self.daparam, self.tmap] = self.sess.run(
@@ -310,7 +333,22 @@ class DeepPot(DeepEval):
             feed_dict_test[self.t_fparam] = np.reshape(fparam, [-1])
         if self.has_aparam:
             feed_dict_test[self.t_aparam] = np.reshape(aparam, [-1])
-        v_out = self.sess.run (t_out, feed_dict = feed_dict_test)
+        
+        
+        # v_out = self.sess.run (t_out, feed_dict = feed_dict_test)
+        if self.profile:
+            v_out = self.sess.run(t_out, feed_dict = feed_dict_test,options=self.run_options, run_metadata=self.run_metadata)
+            self.profiler.add_step(step=0, run_meta=self.run_metadata)
+            self.profiler.profile_graph(self.profile_graph_opts_builder.build())
+            self.profiler.profile_operations(self.profile_op_opt_builder_1.build())
+            v_out = self.sess.run(t_out, feed_dict = feed_dict_test,options=self.run_options, run_metadata=self.run_metadata)
+            self.profiler.add_step(step=1, run_meta=self.run_metadata)
+            self.profiler.profile_graph(self.profile_graph_opts_builder.build())
+            self.profiler.profile_operations(self.profile_op_opt_builder_1.build())
+
+        else :
+            v_out = self.sess.run (t_out, feed_dict = feed_dict_test)
+
         energy = v_out[0]
         force = v_out[1]
         virial = v_out[2]

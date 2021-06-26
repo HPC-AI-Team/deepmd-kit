@@ -69,6 +69,8 @@ def test(
     # init model
     dp = DeepPotential(model)
 
+    print("dp model type : {}".format(dp.model_type))
+
     for cc, system in enumerate(all_sys):
         log.info("# ---------------output of dp test--------------- ")
         log.info(f"# testing system : {system}")
