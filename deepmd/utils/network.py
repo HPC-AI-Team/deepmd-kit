@@ -2,6 +2,8 @@ import numpy as np
 
 from deepmd.env import tf
 from deepmd.env import GLOBAL_TF_FLOAT_PRECISION
+from deepmd.env import op_module
+
 
 def one_layer_rand_seed_shift():
     return 3
@@ -40,7 +42,10 @@ def one_layer(inputs,
                             ), 
                             trainable = trainable)
         variable_summaries(b, 'bias')
+        
         hidden = tf.matmul(inputs, w) + b
+        # hidden = op_module.gemm_layer(inputs, w, b)
+
         if activation_fn != None and use_timestep :
             idt = tf.get_variable('idt',
                                   [outputs_size],
@@ -137,6 +142,7 @@ def embedding_net(xx,
         variable_summaries(b, 'bias_'+str(ii)+name_suffix)
 
         hidden = tf.reshape(activation_fn(tf.matmul(xx, w) + b), [-1, outputs_size[ii]])
+        # hidden = tf.reshape(activation_fn(op_module.gemm_layer(xx, w, b)), [-1, outputs_size[ii]])
         if resnet_dt :
             idt = tf.get_variable('idt_'+str(ii)+name_suffix, 
                                   [1, outputs_size[ii]], 

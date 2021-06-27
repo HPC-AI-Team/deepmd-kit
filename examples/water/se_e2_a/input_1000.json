@@ -75,6 +75,10 @@
 		"disp_file": "lcurve.out",
 		"disp_freq": 100,
 		"save_freq": 1000,
+		"profiling": true,
+        "profiling_file": "timeline.json",
+        "tensorboard": true,
+        "tensorboard_log_dir": "log",
 		"_comment": "that's all"
 	},
 	"_comment": "that's all"
