@@ -15,7 +15,7 @@ export OMP_NUM_THREADS=48
 export TF_INTRA_OP_PARALLELISM_THREADS=0
 export TF_INTER_OP_PARALLELISM_THREADS=0
 
-# dp train ../se_e2_a_tebd/input_1000.json
+dp train ../se_e2_a_tebd/input_1000.json
 dp train ../se_e2_a/input_1000.json
 dp freeze -o ../model/graph.pb
 dp test -m ../model/graph.pb -s ../data/data_3 -n 1
@@ -23,7 +23,7 @@ dp test -m ../model/graph.pb -s ../data/data_3 -n 1
 rm -rf model.ckpt.*
 rm -rf checkpoint
 
-dp compress ../se_e2_a/input_1000.json -i ../model/graph.pb -o ../model/graph-compress.pb
+dp compress ../se_e2_a/input_1000.json -i ../model/graph.pb -o ../model/graph-compress_1.pb
 
 rm -rf model.ckpt.*
 rm -rf checkpoint

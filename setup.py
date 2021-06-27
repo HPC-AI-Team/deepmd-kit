@@ -111,6 +111,7 @@ setup(
         "deepmd/op",
         "deepmd/model",
         "deepmd/train",
+        "deepmd/tools",
     ],
     python_requires=">=3.6",
     classifiers=[

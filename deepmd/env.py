@@ -13,8 +13,8 @@ if TYPE_CHECKING:
     from types import ModuleType
 
 # disable waring
-logging.disable(logging.WARNING)
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3" 
+# logging.disable(logging.WARNING)
+# os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3" 
 
 # import tensorflow v1 compatability
 try:

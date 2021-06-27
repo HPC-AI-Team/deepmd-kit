@@ -337,12 +337,9 @@ class DeepPot(DeepEval):
         
         # v_out = self.sess.run (t_out, feed_dict = feed_dict_test)
         if self.profile:
+            v_out = self.sess.run(t_out, feed_dict = feed_dict_test,options=self.run_options)
             v_out = self.sess.run(t_out, feed_dict = feed_dict_test,options=self.run_options, run_metadata=self.run_metadata)
             self.profiler.add_step(step=0, run_meta=self.run_metadata)
-            self.profiler.profile_graph(self.profile_graph_opts_builder.build())
-            self.profiler.profile_operations(self.profile_op_opt_builder_1.build())
-            v_out = self.sess.run(t_out, feed_dict = feed_dict_test,options=self.run_options, run_metadata=self.run_metadata)
-            self.profiler.add_step(step=1, run_meta=self.run_metadata)
             self.profiler.profile_graph(self.profile_graph_opts_builder.build())
             self.profiler.profile_operations(self.profile_op_opt_builder_1.build())
 

@@ -1,0 +1,141 @@
+INFO: You are running LIKWID in a cpuset with 50 CPUs. Taking given IDs as logical ID in cpuset
+--------------------------------------------------------------------------------
+CPU name:	
+CPU type:	Fujitsu A64FX
+CPU clock:	0.00 GHz
+--------------------------------------------------------------------------------
+OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
+LAMMPS (29 Oct 2020)
+  using 1 OpenMP thread(s) per MPI task
+# bulk water
+
+units           metal
+boundary        p p p
+atom_style      atomic
+
+neighbor        2.0 bin
+neigh_modify    every 10 delay 0 check no
+
+read_data	    water.lmp
+Reading data file ...
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  192 atoms
+  read_data CPU = 0.007 seconds
+mass 		    1 16
+mass		    2 2
+
+pair_style	    deepmd ../model/graph-compress.pb
+Summary of lammps deepmd module ...
+  >>> Info of deepmd-kit:
+  installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
+  source:             v1.2.2-730-g298f6e1-dirty
+  source brach:       devel_
+  source commit:      298f6e1
+  source commit at:   2021-06-26 17:54:13 +0900
+  surpport model ver.:1.0 
+  build float prec:   double
+  build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
+  build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
+  set tf intra_op_parallelism_threads: 0
+  set tf inter_op_parallelism_threads: 0
+  >>> Info of lammps module:
+  use deepmd-kit at:  /home/hp200266/u01036/gzq/deepmd-kit/dp
+  source:             v1.2.2-727-g0362e5b-dirty
+  source branch:      devel_
+  source commit:      0362e5b
+  source commit at:   2021-06-23 22:31:30 +0800
+  build float prec:   double
+  build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
+  build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
+2021-06-26 19:52:14.486140: I tensorflow/core/common_runtime/process_util.cc:147] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+  >>> Info of model(s):
+  using   1 model(s): ../model/graph-compress.pb 
+  rcut in model:      6
+  ntypes in model:    2
+pair_coeff
+
+velocity        all create 330.0 23456789
+
+fix             1 all nvt temp 330.0 330.0 0.5
+timestep        0.0005
+thermo_style    custom step pe ke etotal temp press vol
+thermo          100
+dump		    1 all custom 100 water.dump id type x y z
+
+run             100
+Neighbor list info ...
+  update every 10 steps, delay 0 steps, check no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 8
+  ghost atom cutoff = 8
+  binsize = 4, bins = 4 4 4
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair deepmd, perpetual
+      attributes: , newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+Setting up Verlet run ...
+  Unit style    : metal
+  Current step  : 0
+  Time step     : 0.0005
+Per MPI rank memory allocation (min/avg/max) = 3.908 | 3.908 | 3.908 Mbytes
+Step PotEng KinEng TotEng Temp Press Volume 
+       0   -29943.638    8.1472669    -29935.49          330    211188.36    1927.3176 
+     100   -29953.039    17.488936    -29935.55    708.37852     205908.9    1927.3176 
+Loop time of 25.7557 on 1 procs for 100 steps with 192 atoms
+
+Performance: 0.168 ns/day, 143.087 hours/ns, 3.883 timesteps/s
+99.7% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 25.714     | 25.714     | 25.714     |   0.0 | 99.84
+Neigh   | 0.03274    | 0.03274    | 0.03274    |   0.0 |  0.13
+Comm    | 0.0037217  | 0.0037217  | 0.0037217  |   0.0 |  0.01
+Output  | 0.0021961  | 0.0021961  | 0.0021961  |   0.0 |  0.01
+Modify  | 0.0019572  | 0.0019572  | 0.0019572  |   0.0 |  0.01
+Other   |            | 0.000905   |            |       |  0.00
+
+Nlocal:        192.000 ave         192 max         192 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:        2160.00 ave        2160 max        2160 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:        0.00000 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0.0000000
+Neighbor list builds = 10
+Dangerous builds not checked
+
+Please see the log.cite file for references relevant to this simulation
+
+Total wall time: 0:00:28
+OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
+--------------------------------------------------------------------------------
+Group 1: FLOPS_DP
++----------------------+---------+-------------+
+|         Event        | Counter | HWThread 12 |
++----------------------+---------+-------------+
+|     INST_RETIRED     |   PMC0  | 47564323661 |
+|      CPU_CYCLES      |   PMC1  | 56415143654 |
+| FP_DP_FIXED_OPS_SPEC |   PMC3  | 62148729175 |
+| FP_DP_SCALE_OPS_SPEC |   PMC4  |   285533064 |
++----------------------+---------+-------------+
+
++--------------------------+-------------+
+|          Metric          | HWThread 12 |
++--------------------------+-------------+
+|    Runtime (RDTSC) [s]   |     32.8153 |
+|        Clock [MHz]       |   1719.1720 |
+|            CPI           |      1.1861 |
+|     DP (FP) [MFLOP/s]    |   1893.8949 |
+| DP (FP+SVE128) [MFLOP/s] |   1902.5961 |
+| DP (FP+SVE256) [MFLOP/s] |   1911.2973 |
+| DP (FP+SVE512) [MFLOP/s] |   1928.6998 |
++--------------------------+-------------+
+
