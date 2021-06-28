@@ -64,9 +64,11 @@ def one_layer(inputs,
                 # return activation_fn(hidden_bn)
             else:
                 if use_timestep :
-                    return tf.reshape(activation_fn(hidden), [-1, outputs_size]) * idt
+                    # return tf.reshape(activation_fn(hidden), [-1, outputs_size]) * idt
+                    return tf.reshape(op_module.fast_tanh(hidden), [-1, outputs_size]) * idt
                 else :
-                    return tf.reshape(activation_fn(hidden), [-1, outputs_size])                    
+                    # return tf.reshape(activation_fn(hidden), [-1, outputs_size])                    
+                    return tf.reshape(op_module.fast_tanh(hidden), [-1, outputs_size])                    
         else:
             if useBN:
                 None
@@ -141,7 +143,8 @@ def embedding_net(xx,
                             trainable = trainable)
         variable_summaries(b, 'bias_'+str(ii)+name_suffix)
 
-        hidden = tf.reshape(activation_fn(tf.matmul(xx, w) + b), [-1, outputs_size[ii]])
+        # hidden = tf.reshape(activation_fn(tf.matmul(xx, w) + b), [-1, outputs_size[ii]])
+        hidden = tf.reshape(op_module.fast_tanh(tf.matmul(xx, w) + b), [-1, outputs_size[ii]])
         # hidden = tf.reshape(activation_fn(op_module.gemm_layer(xx, w, b)), [-1, outputs_size[ii]])
         if resnet_dt :
             idt = tf.get_variable('idt_'+str(ii)+name_suffix, 
