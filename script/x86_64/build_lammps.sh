@@ -3,8 +3,8 @@
 set -ex
 
 deepmd_root=$HOME/deepmd-kit
-source $deepmd_root/script/x86/env.sh
-bash $deepmd_root/script/x86/build_deepmd.sh
+source $deepmd_root/script/x86_64/env.sh
+bash $deepmd_root/script/x86_64/build_deepmd.sh
 
 cd $DEEPMD_BUILD_DIR
 make lammps
