@@ -9,6 +9,7 @@ model.ckpt*
 checkpoint
 profiler.json_*
 events.*
+*.pbtxt
 
 # for lammps
 log.cite
