@@ -10,8 +10,7 @@ neigh_modify    every 10 delay 0 check no
 read_data	    water.lmp
 mass 		    1 16
 mass		    2 2
-
-pair_style	    deepmd ../model/graph-compress.pb
+pair_style	    deepmd ../model/graph-compress-preprocess.pb
 pair_coeff	
 
 velocity        all create 330.0 23456789
@@ -23,4 +22,3 @@ thermo          20
 dump		    1 all custom 100 water.dump id type x y z 
 
 run             100
-

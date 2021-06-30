@@ -78,6 +78,12 @@ class TabulateFusionOp : public OpKernel {
       deepmd::tabulate_fusion_cpu(    
           descriptor,
           table, table_info, em_x, em, nloc, nnei, last_layer_size);
+    //   deepmd::tabulate_fusion_cpu_transpose_sve(    
+    //       descriptor,
+    //       table, table_info, em_x, em, nloc, nnei, last_layer_size);
+    //     deepmd::tabulate_fusion_cpu_packing_sve(    
+    //       descriptor,
+    //       table, table_info, em_x, em, nloc, nnei, last_layer_size);   
     }
   }
 private:
@@ -144,8 +150,14 @@ class TabulateFusionGradOp : public OpKernel {
     }
     else if (device == "CPU") {
       deepmd::tabulate_fusion_grad_cpu(    
-          dy_dem_x, dy_dem,
-          table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
+      dy_dem_x, dy_dem,
+      table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
+        //deepmd::tabulate_fusion_grad_cpu_transpose_sve(    
+        //       dy_dem_x, dy_dem,
+        //       table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
+        // deepmd::tabulate_fusion_grad_cpu_packing_sve(    
+        //     dy_dem_x, dy_dem,
+        //     table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);   
     }
   }
 private:

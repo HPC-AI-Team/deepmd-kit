@@ -29,11 +29,11 @@ void FastTanhLauncher(const double* input,double *output,int N){
     //   output[i] = tanh(input[i]);
     // }
     // taylor_2_tanh_double(input,output,N);
-    // poly_2_tanh_double_vector(input,output,N);
-#pragma omp parallel for 
-    for(int i = 0;i<N ;i++){
-        poly_2_tanh_float(input[i],output[i]);
-    }
+    poly_2_tanh_double_vector(input,output,N);
+// #pragma omp parallel for 
+//     for(int i = 0;i<N ;i++){
+//         poly_2_tanh_float(input[i],output[i]);
+//     }
 }
 
 void FastTanhLauncher(const float* input,float *output,int N){
@@ -41,11 +41,11 @@ void FastTanhLauncher(const float* input,float *output,int N){
     //   output[i] = tanhf(input[i]);
     // }
     // taylor_2_tanh_float(input,output,N);
-    // poly_2_tanh_float_vector(input,output,N);
-#pragma omp parallel for 
-    for(int i = 0;i<N ;i++){
-        poly_2_tanh_float(input[i],output[i]);
-    }
+    poly_2_tanh_float_vector(input,output,N);
+// #pragma omp parallel for 
+//     for(int i = 0;i<N ;i++){
+//         poly_2_tanh_float(input[i],output[i]);
+//     }
 }
 
 template <typename Device, typename T>

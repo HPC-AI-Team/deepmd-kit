@@ -16,7 +16,7 @@ Reading data file ...
   1 by 1 by 1 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.005 seconds
+  read_data CPU = 0.013 seconds
 mass 		    1 16
 mass		    2 2
 
@@ -24,10 +24,10 @@ pair_style	    deepmd ../model/graph-compress.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-735-g2eee843-dirty
+  source:             v1.2.2-737-g688818d-dirty
   source brach:       devel_
-  source commit:      2eee843
-  source commit at:   2021-06-29 19:41:51 +0800
+  source commit:      688818d
+  source commit at:   2021-06-30 12:37:18 +0800
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
@@ -43,7 +43,7 @@ Summary of lammps deepmd module ...
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
   build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
-2021-06-29 21:41:29.402051: I tensorflow/core/common_runtime/process_util.cc:147] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+2021-06-30 13:44:28.514906: I tensorflow/core/common_runtime/process_util.cc:147] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
   >>> Info of model(s):
   using   1 model(s): ../model/graph-compress.pb 
   rcut in model:      6
@@ -55,7 +55,7 @@ velocity        all create 330.0 23456789
 fix             1 all nvt temp 330.0 330.0 0.5
 timestep        0.0005
 thermo_style    custom step pe ke etotal temp press vol
-thermo          100
+thermo          20
 dump		    1 all custom 100 water.dump id type x y z
 
 run             100
@@ -77,22 +77,26 @@ Setting up Verlet run ...
   Time step     : 0.0005
 Per MPI rank memory allocation (min/avg/max) = 3.908 | 3.908 | 3.908 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
-       0   -29943.635    8.1472669   -29935.488          330    211149.75    1927.3176 
-     100   -29953.046    17.498984   -29935.548    708.78552    205885.33    1927.3176 
-Loop time of 10.3762 on 1 procs for 100 steps with 192 atoms
+       0   -29943.634    8.1472669   -29935.487          330    211179.45    1927.3176 
+      20   -29944.752    9.2679005   -29935.484    375.39057    202460.57    1927.3176 
+      40   -29946.614    11.129674   -29935.485    450.80053    209490.46    1927.3176 
+      60   -29949.446    13.950275   -29935.496    565.04723    211386.78    1927.3176 
+      80   -29951.071    15.567255   -29935.504    630.54201    209396.64    1927.3176 
+     100   -29953.032    17.485032   -29935.547    708.22039    205925.98    1927.3176 
+Loop time of 10.3421 on 1 procs for 100 steps with 192 atoms
 
-Performance: 0.416 ns/day, 57.646 hours/ns, 9.637 timesteps/s
-99.7% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 0.418 ns/day, 57.456 hours/ns, 9.669 timesteps/s
+99.8% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 10.335     | 10.335     | 10.335     |   0.0 | 99.60
-Neigh   | 0.032583   | 0.032583   | 0.032583   |   0.0 |  0.31
-Comm    | 0.0036509  | 0.0036509  | 0.0036509  |   0.0 |  0.04
-Output  | 0.0022881  | 0.0022881  | 0.0022881  |   0.0 |  0.02
-Modify  | 0.0018651  | 0.0018651  | 0.0018651  |   0.0 |  0.02
-Other   |            | 0.0009148  |            |       |  0.01
+Pair    | 10.3       | 10.3       | 10.3       |   0.0 | 99.59
+Neigh   | 0.033108   | 0.033108   | 0.033108   |   0.0 |  0.32
+Comm    | 0.0037098  | 0.0037098  | 0.0037098  |   0.0 |  0.04
+Output  | 0.0022552  | 0.0022552  | 0.0022552  |   0.0 |  0.02
+Modify  | 0.0018988  | 0.0018988  | 0.0018988  |   0.0 |  0.02
+Other   |            | 0.0009282  |            |       |  0.01
 
 Nlocal:        192.000 ave         192 max         192 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -106,9 +110,10 @@ Ave neighs/atom = 0.0000000
 Neighbor list builds = 10
 Dangerous builds not checked
 
+
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:13
+Total wall time: 0:00:14
 OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
 INFO: You are running LIKWID in a cpuset with 50 CPUs. Taking given IDs as logical ID in cpuset
 [1;34m[likwid-pin] Main PID -> hwthread 12 - OK[0m
