@@ -40,7 +40,7 @@ inline void _print_time(double start,double end,const char* name){
 
 // IO --------------------------------------------------------------------
 
-void write_to_file(const double* data,int len,std::string file_path){
+static void write_to_file(const double* data,int len,std::string file_path){
     std::ofstream fw(file_path, std::ios::out);
     for(int i = 0; i < len; i++){
         fw << i << " " << std::setprecision(10) << data[i] << std::endl;
@@ -49,7 +49,7 @@ void write_to_file(const double* data,int len,std::string file_path){
 
 // rand env variable
 
-bool get_env_print_time(){
+static bool get_env_print_time(){
     char *var = getenv("PRINT_TIME");
     if(var == NULL){
         return false;
@@ -58,7 +58,7 @@ bool get_env_print_time(){
     }
 }
 
-bool get_env_preprocessed(){
+static bool get_env_preprocessed(){
     char *var = getenv("HAVE_PREPROCESSED");
     if(var == NULL){
         return false;

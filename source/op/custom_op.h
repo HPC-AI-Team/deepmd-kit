@@ -7,6 +7,7 @@
 #include "tensorflow/core/framework/shape_inference.h"
 
 using namespace tensorflow;
+using namespace tensorflow::shape_inference;
 using CPUDevice = Eigen::ThreadPoolDevice;
 using GPUDevice = Eigen::GpuDevice;
 

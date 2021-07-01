@@ -89,8 +89,6 @@ class TabulateFusionOp : public OpKernel {
                 descriptor, 
                 table, table_info, em_x, em, nloc, nnei, last_layer_size);   
         }
-
-
     }
   }
 private:
