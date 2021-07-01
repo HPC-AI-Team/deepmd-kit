@@ -2,7 +2,7 @@
 
 
 export deepmd_root=$HOME/deepmd-kit
-export tensorflow_root=$HOME/software/tensorflow-2.4
+export tensorflow_root=$HOME/software/tensorflow-gpu-2.4
 
 source $HOME/software/cmake/env.sh
 
