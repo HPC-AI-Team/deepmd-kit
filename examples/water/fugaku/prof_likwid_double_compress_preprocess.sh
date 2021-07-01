@@ -11,4 +11,6 @@ deepmd_root=$HOME/gzq/deepmd-kit
 source $deepmd_root/script/fugaku/env.sh
 bash $deepmd_root/script/fugaku/build_deepmd.sh
 
+export HAVE_PREPROCESSED=1
+
 likwid-perfctr -C 0 -g FLOPS_DP lmp -echo screen -in ./in.water_compress_preprocess_1

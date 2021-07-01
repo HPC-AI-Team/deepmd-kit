@@ -19,4 +19,6 @@ export OMP_NUM_THREADS=1
 export TF_INTRA_OP_PARALLELISM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
 
+export HAVE_PREPROCESSED=1
+
 likwid-pin -c 0 lmp -echo screen -in ./in.water_compress_preprocess_1

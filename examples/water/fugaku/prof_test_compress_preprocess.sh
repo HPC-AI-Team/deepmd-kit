@@ -19,6 +19,8 @@ export TF_PROFILE=1
 
 rm -f profiler.json_*
 
+export HAVE_PREPROCESSED=1
+
 likwid-pin -c 0 dp test -m ../model/graph-compress-preprocess.pb -s ../data/data_3 -n 1
 
 python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/profiler_visualization_topk.py profiler 
