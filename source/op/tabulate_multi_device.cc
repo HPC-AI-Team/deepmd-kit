@@ -1,5 +1,6 @@
 #include "custom_op.h"
 #include "tabulate.h"
+#include "tools.h"
 
 REGISTER_OP("TabulateFusion")
     .Attr("T: {float, double}")
@@ -26,6 +27,7 @@ class TabulateFusionOp : public OpKernel {
  public:
   explicit TabulateFusionOp(OpKernelConstruction* context) : OpKernel(context) {
     OP_REQUIRES_OK(context, context->GetAttr("last_layer_size", &last_layer_size));
+    have_preprocessed = get_env_preprocessed();
   }
   void Compute(OpKernelContext* context) override {
     // Grab the input tensor
@@ -75,18 +77,24 @@ class TabulateFusionOp : public OpKernel {
       #endif // TENSORFLOW_USE_ROCM
     }
     else if (device == "CPU") {
-      deepmd::tabulate_fusion_cpu(    
-          descriptor,
-          table, table_info, em_x, em, nloc, nnei, last_layer_size);
-    //   deepmd::tabulate_fusion_cpu_transpose_sve(    
-    //       descriptor,
-    //       table, table_info, em_x, em, nloc, nnei, last_layer_size);
-    //     deepmd::tabulate_fusion_cpu_packing_sve(    
-    //       descriptor,
-    //       table, table_info, em_x, em, nloc, nnei, last_layer_size);   
+        if(!have_preprocessed){
+            deepmd::tabulate_fusion_cpu(    
+                descriptor,
+                table, table_info, em_x, em, nloc, nnei, last_layer_size);
+        }else{
+            // deepmd::tabulate_fusion_cpu_transpose_sve(    
+            //     descriptor, 
+            //     table, table_info, em_x, em, nloc, nnei, last_layer_size);
+            deepmd::tabulate_fusion_cpu_packing_sve(    
+                descriptor, 
+                table, table_info, em_x, em, nloc, nnei, last_layer_size);   
+        }
+
+
     }
   }
 private:
+    bool have_preprocessed = false;
     int last_layer_size;
     std::string device;
 };
@@ -94,7 +102,9 @@ private:
 template<typename Device, typename FPTYPE>
 class TabulateFusionGradOp : public OpKernel {
  public:
-  explicit TabulateFusionGradOp(OpKernelConstruction* context) : OpKernel(context) {}
+  explicit TabulateFusionGradOp(OpKernelConstruction* context) : OpKernel(context) {
+    have_preprocessed = get_env_preprocessed();
+  }
   void Compute(OpKernelContext* context) override {
     // Grab the input tensor
     int context_input_index = 0;
@@ -149,18 +159,22 @@ class TabulateFusionGradOp : public OpKernel {
       #endif // TENSORFLOW_USE_ROCM
     }
     else if (device == "CPU") {
-      deepmd::tabulate_fusion_grad_cpu(    
-      dy_dem_x, dy_dem,
-      table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
-        //deepmd::tabulate_fusion_grad_cpu_transpose_sve(    
-        //       dy_dem_x, dy_dem,
-        //       table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
-        // deepmd::tabulate_fusion_grad_cpu_packing_sve(    
-        //     dy_dem_x, dy_dem,
-        //     table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);   
+        if(!have_preprocessed){
+            deepmd::tabulate_fusion_grad_cpu(    
+                dy_dem_x, dy_dem,
+                table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
+        }else{
+            //deepmd::tabulate_fusion_grad_cpu_transpose_sve(    
+            //       dy_dem_x, dy_dem,
+            //       table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
+            deepmd::tabulate_fusion_grad_cpu_packing_sve(    
+                dy_dem_x, dy_dem,
+                table, table_info, em_x, em, dy, nloc, nnei, last_layer_size); 
+        }
     }
   }
 private:
+    bool have_preprocessed = false;
     std::string device;
 };
 

@@ -15,8 +15,9 @@ cd $LAMMPS_BUILD_DIR
 LAMMPS_VERSION=stable_29Oct2020
 if [ ! -d "lammps-${LAMMPS_VERSION}" ]
 then
-	curl -L -o lammps.tar.gz https://github.com/lammps/lammps/archive/refs/tags/${LAMMPS_VERSION}.tar.gz
-	tar vxzf lammps.tar.gz
+	# curl -L -o lammps.tar.gz https://github.com/lammps/lammps/archive/refs/tags/${LAMMPS_VERSION}.tar.gz
+	# tar vxzf lammps.tar.gz
+	tar -xzf ~/package/stable_29Oct2020.tar.gz
 fi
 curl -L -o lammps.patch https://github.com/deepmd-kit-recipes/lammps-dp-feedstock/raw/fdd954a1af4fadabe5c0dd2f3bed260a484175a4/recipe/deepmd.patch
 cd ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}

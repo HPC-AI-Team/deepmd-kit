@@ -6,7 +6,6 @@ export tensorflow_root=$HOME/software/tensorflow-2.4
 
 source $HOME/software/cmake/env.sh
 
-spack load gcc@7.5.0
 spack load openblas
 
 if [ -z $deepmd_root ]
