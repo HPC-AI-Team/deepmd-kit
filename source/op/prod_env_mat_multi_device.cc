@@ -4,6 +4,7 @@
 #include "region.h"
 #include "neighbor_list.h"
 #include "prod_env_mat.h"
+#include "tools.h"
 
 REGISTER_OP("ProdEnvMatA")
     .Attr("T: {float, double}")
@@ -402,106 +403,118 @@ public:
       const FPTYPE * box = p_box + ff*9;
       const int * type = p_type + ff*nall;
 
-    if(device == "GPU") {
-      #if GOOGLE_CUDA
-      int * idx_mapping = NULL;
-      int * ilist = NULL, * numneigh = NULL;
-      int ** firstneigh = NULL;
-      deepmd::malloc_device_memory(firstneigh, nloc);
-      int * jlist = NULL;
-      FPTYPE * coord_cpy;
-      int * type_cpy;
-      int frame_nall = nall;
-      int mesh_tensor_size = static_cast<int>(mesh_tensor.NumElements());
-      std::vector<Tensor> tensor_list(7);
-      // prepare coord and nlist
-      _prepare_coord_nlist_gpu<FPTYPE>(
-          context, &tensor_list[0], &coord, coord_cpy, &type, type_cpy, idx_mapping, 
-          gpu_inlist, ilist, numneigh, firstneigh, jlist, nbor_list_dev,
+      if(device == "GPU") {
+
+#if GOOGLE_CUDA
+        int * idx_mapping = NULL;
+        int * ilist = NULL, * numneigh = NULL;
+        int ** firstneigh = NULL;
+        deepmd::malloc_device_memory(firstneigh, nloc);
+        int * jlist = NULL;
+        FPTYPE * coord_cpy;
+        int * type_cpy;
+        int frame_nall = nall;
+        int mesh_tensor_size = static_cast<int>(mesh_tensor.NumElements());
+        std::vector<Tensor> tensor_list(7);
+        // prepare coord and nlist
+        _prepare_coord_nlist_gpu<FPTYPE>(
+            context, &tensor_list[0], &coord, coord_cpy, &type, type_cpy, idx_mapping, 
+            gpu_inlist, ilist, numneigh, firstneigh, jlist, nbor_list_dev,
+            frame_nall, mem_cpy, mem_nnei, max_nbor_size,
+            box, mesh_tensor.flat<int>().data(), mesh_tensor_size, nloc, nei_mode, rcut_r, max_cpy_trial, max_nnei_trial);
+
+        // allocate temp memory, temp memory must not be used after this operation!
+        Tensor int_temp;
+        TensorShape int_shape;
+        int_shape.AddDim(sec_a.size() + nloc * sec_a.size() + nloc);
+        OP_REQUIRES_OK(context, context->allocate_temp(DT_INT32, int_shape, &int_temp));
+        Tensor uint64_temp;
+        TensorShape uint64_shape;
+        uint64_shape.AddDim(nloc * GPU_MAX_NBOR_SIZE * 2);
+        OP_REQUIRES_OK(context, context->allocate_temp(DT_UINT64, uint64_shape, &uint64_temp));
+        array_int = int_temp.flat<int>().data(); 
+        array_longlong = uint64_temp.flat<unsigned long long>().data();
+
+        // launch the gpu(nv) compute function
+        deepmd::prod_env_mat_a_gpu_cuda(
+            em, em_deriv, rij, nlist, 
+            coord, type, gpu_inlist, array_int, array_longlong, max_nbor_size, avg, std, nloc, frame_nall, rcut_r, rcut_r_smth, sec_a);
+        if(b_nlist_map) _map_nlist_gpu(nlist, idx_mapping, nloc, nnei);
+        deepmd::delete_device_memory(firstneigh);
+#endif //GOOGLE_CUDA
+
+#if TENSORFLOW_USE_ROCM
+        int * idx_mapping = NULL;
+        int * ilist = NULL, * numneigh = NULL;
+        int ** firstneigh = NULL;
+        deepmd::malloc_device_memory(firstneigh, nloc);
+        int * jlist = NULL;
+        FPTYPE * coord_cpy;
+        int * type_cpy;
+        int frame_nall = nall;
+        int mesh_tensor_size = static_cast<int>(mesh_tensor.NumElements());
+        std::vector<Tensor> tensor_list(7);
+        // prepare coord and nlist
+        _prepare_coord_nlist_gpu_rocm<FPTYPE>(
+            context, &tensor_list[0], &coord, coord_cpy, &type, type_cpy, idx_mapping, 
+            gpu_inlist, ilist, numneigh, firstneigh, jlist, nbor_list_dev,
+            frame_nall, mem_cpy, mem_nnei, max_nbor_size,
+            box, mesh_tensor.flat<int>().data(), mesh_tensor_size, nloc, nei_mode, rcut_r, max_cpy_trial, max_nnei_trial);
+
+        // allocate temp memory, temp memory must not be used after this operation!
+        Tensor int_temp;
+        TensorShape int_shape;
+        int_shape.AddDim(sec_a.size() + nloc * sec_a.size() + nloc);
+        OP_REQUIRES_OK(context, context->allocate_temp(DT_INT32, int_shape, &int_temp));
+        Tensor uint64_temp;
+        TensorShape uint64_shape;
+        uint64_shape.AddDim(nloc * GPU_MAX_NBOR_SIZE * 2);
+        OP_REQUIRES_OK(context, context->allocate_temp(DT_UINT64, uint64_shape, &uint64_temp));
+        array_int = int_temp.flat<int>().data(); 
+        array_longlong = uint64_temp.flat<unsigned long long>().data();
+
+        // launch the gpu(nv) compute function
+        deepmd::prod_env_mat_a_gpu_rocm(
+            em, em_deriv, rij, nlist, 
+            coord, type, gpu_inlist, array_int, array_longlong, max_nbor_size, avg, std, nloc, frame_nall, rcut_r, rcut_r_smth, sec_a);
+        if(b_nlist_map) _map_nlist_gpu_rocm(nlist, idx_mapping, nloc, nnei);
+        deepmd::delete_device_memory(firstneigh);
+#endif //TENSORFLOW_USE_ROCM
+      }
+
+      else if (device == "CPU") {
+        deepmd::InputNlist inlist;
+        // some buffers, be freed after the evaluation of this frame
+        std::vector<int> idx_mapping;
+        std::vector<int> ilist(nloc), numneigh(nloc);
+        std::vector<int*> firstneigh(nloc);
+        std::vector<std::vector<int>> jlist(nloc);
+        std::vector<FPTYPE> coord_cpy;
+        std::vector<int> type_cpy;
+        int frame_nall = nall;
+
+        // double t0 = omp_get_wtime();
+        // prepare coord and nlist
+        _prepare_coord_nlist_cpu<FPTYPE>(
+          context, &coord, coord_cpy, &type, type_cpy, idx_mapping, 
+          inlist, ilist, numneigh, firstneigh, jlist,
           frame_nall, mem_cpy, mem_nnei, max_nbor_size,
-          box, mesh_tensor.flat<int>().data(), mesh_tensor_size, nloc, nei_mode, rcut_r, max_cpy_trial, max_nnei_trial);
-
-      // allocate temp memory, temp memory must not be used after this operation!
-      Tensor int_temp;
-      TensorShape int_shape;
-      int_shape.AddDim(sec_a.size() + nloc * sec_a.size() + nloc);
-      OP_REQUIRES_OK(context, context->allocate_temp(DT_INT32, int_shape, &int_temp));
-      Tensor uint64_temp;
-      TensorShape uint64_shape;
-      uint64_shape.AddDim(nloc * GPU_MAX_NBOR_SIZE * 2);
-      OP_REQUIRES_OK(context, context->allocate_temp(DT_UINT64, uint64_shape, &uint64_temp));
-      array_int = int_temp.flat<int>().data(); 
-      array_longlong = uint64_temp.flat<unsigned long long>().data();
-
-      // launch the gpu(nv) compute function
-      deepmd::prod_env_mat_a_gpu_cuda(
+          box, mesh_tensor.flat<int>().data(), nloc, nei_mode, rcut_r, max_cpy_trial, max_nnei_trial);
+        // launch the cpu compute function
+        
+        // double t1 = omp_get_wtime();
+        
+        deepmd::prod_env_mat_a_cpu(
           em, em_deriv, rij, nlist, 
-          coord, type, gpu_inlist, array_int, array_longlong, max_nbor_size, avg, std, nloc, frame_nall, rcut_r, rcut_r_smth, sec_a);
-      if(b_nlist_map) _map_nlist_gpu(nlist, idx_mapping, nloc, nnei);
-      deepmd::delete_device_memory(firstneigh);
-      #endif //GOOGLE_CUDA
+          coord, type, inlist, max_nbor_size, avg, std, nloc, frame_nall, rcut_r, rcut_r_smth, sec_a);
 
-      #if TENSORFLOW_USE_ROCM
-      int * idx_mapping = NULL;
-      int * ilist = NULL, * numneigh = NULL;
-      int ** firstneigh = NULL;
-      deepmd::malloc_device_memory(firstneigh, nloc);
-      int * jlist = NULL;
-      FPTYPE * coord_cpy;
-      int * type_cpy;
-      int frame_nall = nall;
-      int mesh_tensor_size = static_cast<int>(mesh_tensor.NumElements());
-      std::vector<Tensor> tensor_list(7);
-      // prepare coord and nlist
-      _prepare_coord_nlist_gpu_rocm<FPTYPE>(
-          context, &tensor_list[0], &coord, coord_cpy, &type, type_cpy, idx_mapping, 
-          gpu_inlist, ilist, numneigh, firstneigh, jlist, nbor_list_dev,
-          frame_nall, mem_cpy, mem_nnei, max_nbor_size,
-          box, mesh_tensor.flat<int>().data(), mesh_tensor_size, nloc, nei_mode, rcut_r, max_cpy_trial, max_nnei_trial);
+        // double t2 = omp_get_wtime();
 
-      // allocate temp memory, temp memory must not be used after this operation!
-      Tensor int_temp;
-      TensorShape int_shape;
-      int_shape.AddDim(sec_a.size() + nloc * sec_a.size() + nloc);
-      OP_REQUIRES_OK(context, context->allocate_temp(DT_INT32, int_shape, &int_temp));
-      Tensor uint64_temp;
-      TensorShape uint64_shape;
-      uint64_shape.AddDim(nloc * GPU_MAX_NBOR_SIZE * 2);
-      OP_REQUIRES_OK(context, context->allocate_temp(DT_UINT64, uint64_shape, &uint64_temp));
-      array_int = int_temp.flat<int>().data(); 
-      array_longlong = uint64_temp.flat<unsigned long long>().data();
+        // std::cout << t1 - t0 << ", " << t2 - t1 << ", " << t2 - t0 << ", " << (t1 - t0) / (t2 - t0) << ", " << (t2 - t1) / (t2 - t0) << std::endl;
+        // do nlist mapping if coords were copied
+        if(b_nlist_map) _map_nlist_cpu(nlist, &idx_mapping[0], nloc, nnei);
+      }
 
-      // launch the gpu(nv) compute function
-      deepmd::prod_env_mat_a_gpu_rocm(
-          em, em_deriv, rij, nlist, 
-          coord, type, gpu_inlist, array_int, array_longlong, max_nbor_size, avg, std, nloc, frame_nall, rcut_r, rcut_r_smth, sec_a);
-      if(b_nlist_map) _map_nlist_gpu_rocm(nlist, idx_mapping, nloc, nnei);
-      deepmd::delete_device_memory(firstneigh);
-      #endif //TENSORFLOW_USE_ROCM
-    }
-    else if (device == "CPU") {
-      deepmd::InputNlist inlist;
-      // some buffers, be freed after the evaluation of this frame
-      std::vector<int> idx_mapping;
-      std::vector<int> ilist(nloc), numneigh(nloc);
-      std::vector<int*> firstneigh(nloc);
-      std::vector<std::vector<int>> jlist(nloc);
-      std::vector<FPTYPE> coord_cpy;
-      std::vector<int> type_cpy;
-      int frame_nall = nall;
-      // prepare coord and nlist
-      _prepare_coord_nlist_cpu<FPTYPE>(
-	  context, &coord, coord_cpy, &type, type_cpy, idx_mapping, 
-	  inlist, ilist, numneigh, firstneigh, jlist,
-	  frame_nall, mem_cpy, mem_nnei, max_nbor_size,
-	  box, mesh_tensor.flat<int>().data(), nloc, nei_mode, rcut_r, max_cpy_trial, max_nnei_trial);
-      // launch the cpu compute function
-      deepmd::prod_env_mat_a_cpu(
-	  em, em_deriv, rij, nlist, 
-	  coord, type, inlist, max_nbor_size, avg, std, nloc, frame_nall, rcut_r, rcut_r_smth, sec_a);
-      // do nlist mapping if coords were copied
-      if(b_nlist_map) _map_nlist_cpu(nlist, &idx_mapping[0], nloc, nnei);
-    }
     }
   }
 

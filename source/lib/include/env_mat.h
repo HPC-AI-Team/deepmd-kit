@@ -17,6 +17,34 @@ void env_mat_a_cpu (
     const float &			rmin,
     const float &			rmax) ;
 
+#ifdef __ARM_FEATURE_SVE 
+
+void env_mat_a_cpu_sve (
+    std::vector<double > &	        descrpt_a,
+    std::vector<double > &	        descrpt_a_deriv,
+    std::vector<double > &	        rij_a,
+    const std::vector<double > &	posi,
+    const std::vector<int > &		type,
+    const int &				        i_idx,
+    const std::vector<int > &		fmt_nlist_a,
+    const std::vector<int > &		sec_a, 
+    const float &			        rmin,
+    const float &			        rmax) ;
+
+void env_mat_a_cpu_sve (
+    std::vector<float > &	        descrpt_a,
+    std::vector<float > &	        descrpt_a_deriv,
+    std::vector<float > &	        rij_a,
+    const std::vector<float > &	    posi,
+    const std::vector<int > &		type,
+    const int &				        i_idx,
+    const std::vector<int > &		fmt_nlist_a,
+    const std::vector<int > &		sec_a, 
+    const float &			        rmin,
+    const float &			        rmax) ;
+
+#endif
+
 template<typename FPTYPE> 
 void env_mat_r_cpu (
     std::vector<FPTYPE > &	        descrpt_a,

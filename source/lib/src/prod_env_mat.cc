@@ -4,6 +4,7 @@
 #include "prod_env_mat.h"
 #include "fmt_nlist.h"
 #include "env_mat.h"
+#include "tools.h"
 
 using namespace deepmd;
 
@@ -61,15 +62,29 @@ prod_env_mat_a_cpu(
     
 #pragma omp parallel for 
   for (int ii = 0; ii < nloc; ++ii) {
+    
+    // double t0 = omp_get_wtime();
+
     std::vector<int> fmt_nlist_a;
     int ret = format_nlist_i_cpu(fmt_nlist_a, d_coord3, d_type, ii, d_nlist_a[ii], rcut, sec);
+    
+    // double t1 = omp_get_wtime();
+    
     std::vector<FPTYPE> d_em_a;
     std::vector<FPTYPE> d_em_a_deriv;
     std::vector<FPTYPE> d_em_r;
     std::vector<FPTYPE> d_em_r_deriv;
     std::vector<FPTYPE> d_rij_a;
-    env_mat_a_cpu (d_em_a, d_em_a_deriv, d_rij_a, d_coord3, d_type, ii, fmt_nlist_a, sec, rcut_smth, rcut);
 
+#ifdef __ARM_FEATURE_SVE 
+    env_mat_a_cpu_sve (d_em_a, d_em_a_deriv, d_rij_a, d_coord3, d_type, ii, fmt_nlist_a, sec, rcut_smth, rcut);
+#else
+    env_mat_a_cpu (d_em_a, d_em_a_deriv, d_rij_a, d_coord3, d_type, ii, fmt_nlist_a, sec, rcut_smth, rcut);
+#endif 
+
+    // double t2 = omp_get_wtime();
+    // std::cout << "format_nlist_i_cpu : env_mat_a_cpu : " << (t1 - t0) / (t2 - t0) << ", " << (t2 - t1) / (t2 - t0) << std::endl;
+    
     // check sizes
     assert (d_em_a.size() == nem);
     assert (d_em_a_deriv.size() == nem * 3);
