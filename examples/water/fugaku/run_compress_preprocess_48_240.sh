@@ -1,13 +1,11 @@
-#!/bin/bash
+#!/bin/sh -x
 #PJM -L  "node=1"                          # Number of assign node 8 (1 dimention format)
-#PJM -L  "freq=2200"                         
-#PJM -L "rscgrp=small"         # Specify resource group
-#PJM -L  "elapse=01:00:00"                 # Elapsed time limit 1 hour
+#PJM -L  "freq=2000"                         
+#PJM -L "rscgrp=small"                     # Specify resource group
+#PJM -L  "elapse=00:5:00"                 # Elapsed time limit 1 hour
 #PJM --mpi "shape=1"
 #PJM --mpi "max-proc-per-node=48"          # Maximum number of MPI processes created per node
 #PJM -s                                    # Statistical information output
-
-set -ex
 
 deepmd_root=$HOME/gzq/deepmd-kit
 source $deepmd_root/script/fugaku/env.sh
@@ -20,5 +18,6 @@ export TF_INTRA_OP_PARALLELISM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
 
 export HAVE_PREPROCESSED=1
+export TF_CPP_MIN_LOG_LEVEL=3
 
-likwid-pin -c 0 lmp -echo screen -in ./in.water_compress_preprocess_1
+mpirun -np 48 lmp_mpi -echo screen -in ./in.water_compress_preprocess_240

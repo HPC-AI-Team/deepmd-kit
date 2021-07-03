@@ -1,9 +1,5 @@
---------------------------------------------------------------------------------
-CPU name:	
-CPU type:	Fujitsu A64FX
-CPU clock:	0.00 GHz
---------------------------------------------------------------------------------
 LAMMPS (29 Oct 2020)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (../comm.cpp:94)
   using 1 OpenMP thread(s) per MPI task
 # bulk water
 
@@ -17,14 +13,15 @@ neigh_modify    every 10 delay 0 check no
 read_data	    water.lmp
 Reading data file ...
   triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
-  1 by 1 by 1 MPI processor grid
+  3 by 4 by 4 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.026 seconds
+  read_data CPU = 0.037 seconds
 mass 		    1 16
 mass		    2 2
 
-pair_style	    deepmd ../model/graph.pb
+
+pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
@@ -40,18 +37,25 @@ Summary of lammps deepmd module ...
   set tf inter_op_parallelism_threads: 0
   >>> Info of lammps module:
   use deepmd-kit at:  /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-727-g0362e5b-dirty
+  source:             v1.2.2-742-g4fdac66-dirty
   source branch:      devel_
-  source commit:      0362e5b
-  source commit at:   2021-06-23 22:31:30 +0800
+  source commit:      4fdac66
+  source commit at:   2021-07-01 22:31:51 +0900
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
   build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
   >>> Info of model(s):
-  using   1 model(s): ../model/graph.pb 
+  using   1 model(s): ../model/graph-compress-preprocess.pb 
   rcut in model:      6
   ntypes in model:    2
 pair_coeff
+
+replicate       6 8 6
+Replicating atoms ...
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (74.668200 99.557600 74.668200) with tilt (0.0000000 0.0000000 0.0000000)
+  3 by 4 by 4 MPI processor grid
+  55296 atoms
+  replicate CPU = 0.048 seconds
 
 velocity        all create 330.0 23456789
 
@@ -67,7 +71,7 @@ Neighbor list info ...
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 8
   ghost atom cutoff = 8
-  binsize = 4, bins = 4 4 4
+  binsize = 4, bins = 19 25 19
   1 neighbor lists, perpetual/occasional/extra = 1 0 0
   (1) pair deepmd, perpetual
       attributes: , newton on
@@ -78,35 +82,35 @@ Setting up Verlet run ...
   Unit style    : metal
   Current step  : 0
   Time step     : 0.0005
-Per MPI rank memory allocation (min/avg/max) = 3.908 | 3.908 | 3.908 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 4.842 | 4.842 | 4.842 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
-       0   -29943.634    8.1472669   -29935.487          330    211179.44    1927.3176 
-      20   -29944.752    9.2679004   -29935.484    375.39056    202460.57    1927.3176 
-      40   -29946.614    11.129675   -29935.485    450.80057    209490.45    1927.3176 
-      60   -29949.446    13.950277   -29935.496    565.04734    211386.77    1927.3176 
-      80   -29951.072    15.567256   -29935.504    630.54208    209396.62    1927.3176 
-     100   -29953.032    17.485037   -29935.547    708.22058    205925.99    1927.3176 
-Loop time of 12.0344 on 1 procs for 100 steps with 192 atoms
+       0   -8623766.6    2358.6551   -8621407.9          330    211203.01    555067.48 
+      20   -8624059.2    2651.4544   -8621407.7    370.96562    204917.56    555067.48 
+      40   -8624788.3    3379.7972   -8621408.6    472.86824    206064.54    555067.48 
+      60   -8625431.4    4020.9308   -8621410.4    562.56938    209045.43    555067.48 
+      80   -8625979.3    4563.7983   -8621415.5    638.52211    208615.51    555067.48 
+     100   -8626285.1    4861.9224   -8621423.2    680.23273    211709.93    555067.48 
+Loop time of 38.2575 on 48 procs for 100 steps with 55296 atoms
 
-Performance: 0.359 ns/day, 66.858 hours/ns, 8.310 timesteps/s
-99.6% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 0.113 ns/day, 212.542 hours/ns, 2.614 timesteps/s
+99.7% CPU use with 48 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 11.993     | 11.993     | 11.993     |   0.0 | 99.66
-Neigh   | 0.032572   | 0.032572   | 0.032572   |   0.0 |  0.27
-Comm    | 0.0036683  | 0.0036683  | 0.0036683  |   0.0 |  0.03
-Output  | 0.0021279  | 0.0021279  | 0.0021279  |   0.0 |  0.02
-Modify  | 0.0020943  | 0.0020943  | 0.0020943  |   0.0 |  0.02
-Other   |            | 0.0009036  |            |       |  0.01
+Pair    | 35.939     | 36.86      | 37.947     |   7.9 | 96.35
+Neigh   | 0.2131     | 0.22371    | 0.23907    |   1.2 |  0.58
+Comm    | 0.047488   | 1.1176     | 2.062      |  45.4 |  2.92
+Output  | 0.011479   | 0.011488   | 0.011531   |   0.0 |  0.03
+Modify  | 0.0069257  | 0.042987   | 0.18024    |  30.9 |  0.11
+Other   |            | 0.001978   |            |       |  0.01
 
-Nlocal:        192.000 ave         192 max         192 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:        2160.00 ave        2160 max        2160 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
+Nlocal:        1152.00 ave        1178 max        1128 min
+Histogram: 4 4 5 7 4 4 5 10 4 1
+Nghost:        4708.50 ave        4749 max        4675 min
+Histogram: 4 2 7 6 8 9 6 3 2 1
 Neighs:        0.00000 ave           0 max           0 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
+Histogram: 48 0 0 0 0 0 0 0 0 0
 
 Total # of neighbors = 0
 Ave neighs/atom = 0.0000000
@@ -115,27 +119,4 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:16
---------------------------------------------------------------------------------
-Group 1: FLOPS_DP
-+----------------------+---------+-------------+
-|         Event        | Counter | HWThread 12 |
-+----------------------+---------+-------------+
-|     INST_RETIRED     |   PMC0  | 39497158326 |
-|      CPU_CYCLES      |   PMC1  | 30507238946 |
-| FP_DP_FIXED_OPS_SPEC |   PMC3  |  4203756636 |
-| FP_DP_SCALE_OPS_SPEC |   PMC4  | 42832610464 |
-+----------------------+---------+-------------+
-
-+--------------------------+-------------+
-|          Metric          | HWThread 12 |
-+--------------------------+-------------+
-|    Runtime (RDTSC) [s]   |     20.5649 |
-|        Clock [MHz]       |   1483.4647 |
-|            CPI           |      0.7724 |
-|     DP (FP) [MFLOP/s]    |    204.4146 |
-| DP (FP+SVE128) [MFLOP/s] |   2287.2207 |
-| DP (FP+SVE256) [MFLOP/s] |   4370.0269 |
-| DP (FP+SVE512) [MFLOP/s] |   8535.6391 |
-+--------------------------+-------------+
-
+Total wall time: 0:00:47

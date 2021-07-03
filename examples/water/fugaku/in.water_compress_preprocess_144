@@ -11,11 +11,12 @@ read_data	    water.lmp
 mass 		    1 16
 mass		    2 2
 
-replicate       1 1 1
 
 pair_style	    deepmd ../model/graph-compress-preprocess.pb
 pair_coeff	
 
+replicate       6 6 4
+ 
 velocity        all create 330.0 23456789
 
 fix             1 all nvt temp 330.0 330.0 0.5

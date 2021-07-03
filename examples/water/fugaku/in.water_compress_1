@@ -10,7 +10,7 @@ neigh_modify    every 10 delay 0 check no
 read_data	    water.lmp
 mass 		    1 16
 mass		    2 2
-
+replicate       1 1 1
 pair_style	    deepmd ../model/graph-compress.pb
 pair_coeff	
 
