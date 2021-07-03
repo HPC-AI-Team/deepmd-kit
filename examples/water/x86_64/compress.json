@@ -47,7 +47,7 @@
         "compress": {
             "type": "se_e2_a",
             "compress": true,
-            "model_file": "../model/graph.pb",
+            "model_file": "../model/graph_baseline.pb",
             "table_config": [
                 5,
                 0.01,
@@ -102,13 +102,13 @@
         "disp_file": "lcurve.out",
         "disp_freq": 100,
         "save_freq": 1000,
-        "profiling": false,
-        "profiling_file": "timeline.json",
-        "tensorboard": false,
-        "tensorboard_log_dir": "log",
         "numb_test": 1,
         "save_ckpt": "model.ckpt",
         "disp_training": true,
-        "time_training": true
+        "time_training": true,
+        "profiling": false,
+        "profiling_file": "timeline.json",
+        "tensorboard": false,
+        "tensorboard_log_dir": "log"
     }
 }
