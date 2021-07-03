@@ -1,7 +1,6 @@
 #include "custom_op.h"
 #include "tools.h"
-#include <cblas.h>
-
+#include "gemm.h"
 
 REGISTER_OP("GemmLayer")
     .Attr("T: {float, double}")
@@ -24,40 +23,6 @@ REGISTER_OP("GemmLayer")
       return Status::OK();
     });
 
-// double
-static void GemmLauncher(const int m, const int n, const int k,
-                  const double alpha, const double beta,
-                  const double * A, const double * B, double * C)
-{   
-  cblas_dgemm(CblasRowMajor,CblasNoTrans,CblasNoTrans,
-    m,n,k,
-    alpha,A,k,
-    B,n,
-    beta,C,n);
-}
-// float 
-static void GemmLauncher(const int m, const int n, const int k,
-                  const float alpha, const float beta,
-                  const float * A, const float * B, float * C)
-{   
-  cblas_sgemm(CblasRowMajor,CblasNoTrans,CblasNoTrans,
-    m,n,k,
-    alpha,A,k,
-    B,n,
-    beta,C,n);
-}
-
-static void GemmLauncherCuda(const int m, const int n, const int k,
-                  const double alpha, const double beta,
-                  const double * A, const double * B, double * C)
-{   
-}
-
-static void GemmLauncherCuda(const int m, const int n, const int k,
-                  const float alpha, const float beta,
-                  const float * A, const float * B, float * C)
-{   
-}
 
 // OpKernel definition.
 // template parameter <T> is the datatype of the tensors.
@@ -91,27 +56,22 @@ class GemmLayerOp : public OpKernel {
       output_shape.AddDim(m);
       output_shape.AddDim(n);
       OP_REQUIRES_OK(context, context->allocate_output(0, output_shape,&output));
-      auto output_matrix = output->matrix<T> ();
-      auto b_vector = b.flat<T>();
-      for(int i = 0;i<m;i++){
-        for(int j = 0;j<n;j++){
-          output_matrix(i,j) = b_vector(j);
-        }
-      }
       if(device == "CPU"){
-        GemmLauncher(
+        deepmd::gemm_launcer(
                 m, n, k,
-                1., 1.,
                 x.flat<T>().data(),
                 w.flat<T>().data(),
+                b.flat<T>().data(),
                 output->flat<T>().data());
       }else if(device == "GPU"){
-        GemmLauncherCuda(
+#if GOOGLE_CUDA
+        deepmd::gemm_launcer_cuda(
                 m, n, k,
-                1., 1.,
                 x.flat<T>().data(),
                 w.flat<T>().data(),
+                b.flat<T>().data(),
                 output->flat<T>().data());
+#endif
       }
     }
     ~GemmLayerOp () {}
@@ -121,7 +81,6 @@ class GemmLayerOp : public OpKernel {
 };
 
 #define REGISTER_CPU(T)                                                         \
-    /* Declare explicit instantiations in kernel_example.cu.cc. */              \
     REGISTER_KERNEL_BUILDER(                                                    \
         Name("GemmLayer").Device(DEVICE_CPU).TypeConstraint<T>("T"),            \
         GemmLayerOp<CPUDevice, T>);                                          
@@ -129,3 +88,12 @@ class GemmLayerOp : public OpKernel {
 // REGISTER_GPU(Eigen::half);
 REGISTER_CPU(float);
 REGISTER_CPU(double);
+
+#if  GOOGLE_CUDA
+#define REGISTER_GPU(T)                                                         \
+    REGISTER_KERNEL_BUILDER(                                                    \
+        Name("GemmLayer").Device(DEVICE_GPU).TypeConstraint<T>("T"),            \
+        GemmLayerOp<GPUDevice, T>);    
+REGISTER_GPU(float);
+REGISTER_GPU(double);
+#endif
