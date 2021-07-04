@@ -1,6 +1,4 @@
-#!/bin/bash 
-
-set -ex
+#!/bin/bash -e
 
 deepmd_root=$HOME/deepmd-kit
 source $deepmd_root/script/x86_64/env.sh

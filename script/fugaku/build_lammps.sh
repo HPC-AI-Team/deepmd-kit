@@ -1,6 +1,4 @@
-#!/bin/bash 
-
-set -ex
+#!/bin/bash -e
 
 deepmd_root=$HOME/gzq/deepmd-kit
 source $deepmd_root/script/fugaku/env.sh

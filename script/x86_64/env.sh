@@ -1,5 +1,4 @@
-#!/bin/bash 
-
+#!/bin/bash -e
 
 export deepmd_root=$HOME/deepmd-kit
 export tensorflow_root=$HOME/software/tensorflow-gpu-2.4
