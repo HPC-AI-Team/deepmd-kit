@@ -8,8 +8,15 @@ from deepmd.env import tf
 # xw + b = y
 @ops.RegisterGradient("GemmLayer")
 def _gemm_layer_grad (op, dy) :
-    # dx = tf.matmul(dy, op.inputs[1], transpose_b=True)
-    # dw = tf.matmul(op.inputs[0], dy, transpose_a=True)
+    dx = op_module.matmul_nt(dy, op.inputs[1])
+    dw = op_module.matmul_tn(op.inputs[0], dy)
+    db = tf.reduce_sum(dy,axis=0)
+    return [dx, dw, db]
+
+# tanh(xw + b) = z
+@ops.RegisterGradient("GemmTanhLayer")
+def _gemm_layer_grad (op, dz) :
+    dy = dz * (1 - tf.square(op.outputs[0]))
     dx = op_module.matmul_nt(dy, op.inputs[1])
     dw = op_module.matmul_tn(op.inputs[0], dy)
     db = tf.reduce_sum(dy,axis=0)

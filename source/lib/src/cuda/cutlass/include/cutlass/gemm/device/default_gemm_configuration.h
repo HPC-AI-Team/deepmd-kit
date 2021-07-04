@@ -36,6 +36,7 @@
 
 #include "cutlass/gemm/gemm.h"
 #include "cutlass/epilogue/thread/linear_combination.h"
+#include "cutlass/epilogue/thread/linear_combination_tanh.h"
 #include "cutlass/epilogue/thread/linear_combination_clamp.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -80,6 +81,37 @@ struct DefaultGemmConfiguration<
   static int const kStages = 2;
 
   using EpilogueOutputOp = epilogue::thread::LinearCombination<
+    ElementC,
+    1,
+    ElementAccumulator,
+    ElementAccumulator
+  >;
+
+  using Operator = arch::OpMultiplyAdd;
+};
+
+template <
+  typename ArchTag,
+  typename ElementA, 
+  typename ElementB, 
+  typename ElementC, 
+  typename ElementAccumulator>
+struct DefaultGemmConfiguration<
+  arch::OpClassSimtTanh, 
+  ArchTag,
+  ElementA, 
+  ElementB, 
+  ElementC, 
+  ElementAccumulator> {
+  
+  static int const kAlignmentA = 1;
+  static int const kAlignmentB = 1;
+  using ThreadblockShape = GemmShape<128, 128, 8>;
+  using WarpShape = GemmShape<32, 64, 8>;
+  using InstructionShape = GemmShape<1, 1, 1>;
+  static int const kStages = 2;
+
+  using EpilogueOutputOp = epilogue::thread::LinearCombinationTanh<
     ElementC,
     1,
     ElementAccumulator,

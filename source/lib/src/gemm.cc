@@ -8,7 +8,7 @@
 // C (   n)
 // D (m, n)
 // double
-void deepmd::gemm_launcer(const int m, const int n, const int k,
+void deepmd::gemm(const int m, const int n, const int k,
                           const double * A, const double * B,const double * C, double * D)
 {  
   double alpha = 1.;
@@ -23,7 +23,7 @@ void deepmd::gemm_launcer(const int m, const int n, const int k,
     beta,D,n);
 }
 // float 
-void deepmd::gemm_launcer(const int m, const int n, const int k,
+void deepmd::gemm(const int m, const int n, const int k,
                           const float * A, const float * B,const float * C , float * D)
 {   
   float alpha = 1.f;

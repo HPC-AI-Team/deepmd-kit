@@ -234,6 +234,30 @@ struct dGELU<Array<T, N> > {
   }
 };
 
+
+// Tanh operator
+template <typename T>
+struct Tanh {
+  CUTLASS_HOST_DEVICE
+  T operator()(T const &scalar) const {
+    return tanh(scalar);
+  }
+};
+
+template <typename T, int N>
+struct Tanh<Array<T, N> > {
+  CUTLASS_HOST_DEVICE
+  Array<T, N> operator()(Array<T, N> const &rhs) const {
+    Array<T, N> y;
+    Tanh<T> tanh_op;
+    CUTLASS_PRAGMA_UNROLL
+    for (int i = 0; i < int(rhs.size()); ++i) {
+      y[i] = tanh_op(rhs[i]);
+    }
+    return y;
+  }
+};
+
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 } // namespace thread

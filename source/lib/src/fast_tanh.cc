@@ -1,7 +1,5 @@
-#include <cmath>
 #include "fast_tanh.h"
 
-#define min(x,y) (x < y ? x : y)
 
 
 void deepmd::fast_tanh_cpu(const double* inputs,double* outputs,size_t N){

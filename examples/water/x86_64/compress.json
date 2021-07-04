@@ -47,7 +47,7 @@
         "compress": {
             "type": "se_e2_a",
             "compress": true,
-            "model_file": "../model/graph_gemm_tanh.pb",
+            "model_file": "../model/graph_gemm_tanh_fushion.pb",
             "table_config": [
                 5,
                 0.01,

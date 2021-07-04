@@ -1,9 +1,9 @@
 #include "custom_op.h"
 #include "tools.h"
-#include "gemm.h"
+#include "gemm_tanh.h"
 
 
-REGISTER_OP("GemmLayer")
+REGISTER_OP("GemmTanhLayer")
     .Attr("T: {float, double}")
     .Input("x: T")
     .Input("w: T")
@@ -28,9 +28,9 @@ REGISTER_OP("GemmLayer")
 // OpKernel definition.
 // template parameter <T> is the datatype of the tensors.
 template <typename Device, typename T>
-class GemmLayerOp : public OpKernel {
+class GemmTanhLayerOp : public OpKernel {
   public :
-    explicit GemmLayerOp(OpKernelConstruction* context) : OpKernel(context) {
+    explicit GemmTanhLayerOp(OpKernelConstruction* context) : OpKernel(context) {
     }
 
     void Compute(OpKernelContext* context) override {
@@ -57,7 +57,7 @@ class GemmLayerOp : public OpKernel {
       OP_REQUIRES_OK(context, context->allocate_output(0, output_shape,&output));
       
       if(device == "CPU"){
-        deepmd::gemm(
+        deepmd::gemm_tanh(
                 m, n, k,
                 x.flat<T>().data(),
                 w.flat<T>().data(),
@@ -65,7 +65,7 @@ class GemmLayerOp : public OpKernel {
                 output->flat<T>().data());
       }else if(device == "GPU"){
 #if GOOGLE_CUDA
-        deepmd::gemm_cuda(
+        deepmd::gemm_tanh_cuda(
                 m, n, k,
                 x.flat<T>().data(),
                 w.flat<T>().data(),
@@ -74,7 +74,7 @@ class GemmLayerOp : public OpKernel {
 #endif
       }
     }
-    ~GemmLayerOp () {
+    ~GemmTanhLayerOp () {
     }
   private :
     std::string device;
@@ -83,8 +83,8 @@ class GemmLayerOp : public OpKernel {
 
 #define REGISTER_CPU(T)                                                         \
     REGISTER_KERNEL_BUILDER(                                                    \
-        Name("GemmLayer").Device(DEVICE_CPU).TypeConstraint<T>("T"),            \
-        GemmLayerOp<CPUDevice, T>);                                          
+        Name("GemmTanhLayer").Device(DEVICE_CPU).TypeConstraint<T>("T"),            \
+        GemmTanhLayerOp<CPUDevice, T>);                                          
 
 // REGISTER_GPU(Eigen::half);
 REGISTER_CPU(float);
@@ -93,8 +93,8 @@ REGISTER_CPU(double);
 #if  GOOGLE_CUDA
 #define REGISTER_GPU(T)                                                         \
     REGISTER_KERNEL_BUILDER(                                                    \
-        Name("GemmLayer").Device(DEVICE_GPU).TypeConstraint<T>("T"),            \
-        GemmLayerOp<GPUDevice, T>);    
+        Name("GemmTanhLayer").Device(DEVICE_GPU).TypeConstraint<T>("T"),            \
+        GemmTanhLayerOp<GPUDevice, T>);    
 REGISTER_GPU(float);
 REGISTER_GPU(double);
 #endif
