@@ -3,7 +3,6 @@
 #include "fast_tanh.h"
 
 
-
 REGISTER_OP("FastTanh")
     .Attr("T: {float, double}")
     .Input("x: T")
@@ -12,7 +11,6 @@ REGISTER_OP("FastTanh")
       c->set_output(0, c->input(0));
       return Status::OK();
     });
-
 
 template <typename Device, typename T>
 class FastTanhOp : public OpKernel {

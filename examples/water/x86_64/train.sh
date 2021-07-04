@@ -6,7 +6,7 @@ export deepmd_root=$HOME/deepmd-kit
 source $deepmd_root/script/x86_64/env.sh
 bash $deepmd_root/script/x86_64/build_deepmd.sh
 
-name=gemm_tanh_fushion
+name=gemm_tanh_fusion
 
 dp train ../se_e2_a/input_1000.json
 

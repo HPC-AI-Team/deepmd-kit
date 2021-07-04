@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh -e
 #PJM -L  "node=1"                          # Number of assign node 8 (1 dimention format)
 #PJM -L  "freq=2000"                         
 #PJM -L "rscgrp=small"                     # Specify resource group

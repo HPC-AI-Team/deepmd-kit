@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh -e
 #PJM -L  "node=1"                          # Number of assign node 8 (1 dimention format)
 #PJM -L  "freq=2000"                         
 #PJM -L "rscgrp=small"                     # Specify resource group
@@ -13,9 +13,9 @@ bash $deepmd_root/script/fugaku/build_deepmd.sh
 
 export PLE_MPI_STD_EMPTYFILE=off
 # export PRINT_TIME=1
-# export OMP_NUM_THREADS=1
-# export TF_INTRA_OP_PARALLELISM_THREADS=1
-# export TF_INTER_OP_PARALLELISM_THREADS=1
+export OMP_NUM_THREADS=1
+export TF_INTRA_OP_PARALLELISM_THREADS=1
+export TF_INTER_OP_PARALLELISM_THREADS=1
 
 export HAVE_PREPROCESSED=1
 export TF_CPP_MIN_LOG_LEVEL=3
