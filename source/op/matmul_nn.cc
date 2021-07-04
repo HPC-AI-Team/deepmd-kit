@@ -1,22 +1,9 @@
-#include "tensorflow/core/framework/op.h"
-#include "tensorflow/core/framework/op_kernel.h"
-#include "tensorflow/core/framework/register_types.h"
-#include "tensorflow/core/framework/shape_inference.h"
-#include <type_traits>  // std::is_name
-#include <iostream>
-#include <string>
-#include <cblas.h>
-#include <omp.h>
-
-using std::cout;
-using std::endl;
-using namespace tensorflow;
-using namespace tensorflow::shape_inference;
-using CPUDevice = Eigen::ThreadPoolDevice;
+#include "custom_op.h"
+#include "tools.h"
+#include "matmul.h"
 
 
-// C=A(B^T)
-
+// C=AB
 REGISTER_OP("MatmulNn")
     .Attr("T: {float, double}")
     .Input("a: T")
@@ -37,85 +24,66 @@ REGISTER_OP("MatmulNn")
       return Status::OK();
     });
 
-// double
-static void GemmLauncher(const int m, const int n, const int k,
-                  const double * A, const double * B, double * C)
-{   
-    double alpha = 1.;
-    double beta = 0.;
-    int lda = k;
-    int ldb = n;
-    int ldc = n;
-    cblas_dgemm(CblasRowMajor,CblasNoTrans,CblasNoTrans,
-        m,n,k,
-        alpha,A,lda,
-        B,ldb,
-        beta,C,ldc);
-}
 
-
-// float 
-static void GemmLauncher(const int m, const int n, const int k,
-                  const float * A, const float * B, float * C)
-{   
-    float alpha = 1.;
-    float beta = 0.;
-    int lda = k;
-    int ldb = n;
-    int ldc = n;
-    cblas_sgemm(CblasRowMajor,CblasNoTrans,CblasNoTrans,
-        m,n,k,
-        alpha,A,lda,
-        B,ldb,
-        beta,C,ldc);
-}
-
-// half
-// void GemmLauncher(const int m, consst int n, const int k,
-//     const float alpha, const float beta,
-//     const Eigen::half * A, const Eigen::half * B, 
-//     const Eigen::half * C, Eigen::half * D) 
-// {
-// }
-
-// OpKernel definition.
-// template parameter <T> is the datatype of the tensors.
 template <typename Device, typename T>
 class MatmulNnOp : public OpKernel {
   public :
     explicit MatmulNnOp(OpKernelConstruction* context) : OpKernel(context) {}
 
     void Compute(OpKernelContext* context) override {
-        // Grab the input tensor
-        const Tensor& a = context->input(0);
-        const Tensor& b = context->input(1);
-        OP_REQUIRES (context, (a.shape().dims() == 2),	errors::InvalidArgument ("Dim of x should be 2"));
-        OP_REQUIRES (context, (b.shape().dims() == 2),	errors::InvalidArgument ("Dim of w should be 2"));
-        OP_REQUIRES (context, (a.shape().dim_size(1) == b.shape().dim_size(0)),	errors::InvalidArgument ("dimensions of x and w do not match!"));
-        int m = a.shape().dim_size(0);
-        int k = a.shape().dim_size(1);
-        int n = b.shape().dim_size(1);
-        Tensor * output = NULL;
-        TensorShape output_shape;
-        output_shape.AddDim(m);
-        output_shape.AddDim(n);
-        OP_REQUIRES_OK(context, context->allocate_output(0, output_shape,&output));
-        GemmLauncher(
+      DeviceFunctor() (device,context->eigen_device<Device>());
+      // Grab the input tensor
+      const Tensor& a = context->input(0);
+      const Tensor& b = context->input(1);
+      OP_REQUIRES (context, (a.shape().dims() == 2),	errors::InvalidArgument ("Dim of x should be 2"));
+      OP_REQUIRES (context, (b.shape().dims() == 2),	errors::InvalidArgument ("Dim of w should be 2"));
+      OP_REQUIRES (context, (a.shape().dim_size(1) == b.shape().dim_size(0)),	errors::InvalidArgument ("dimensions of x and w do not match!"));
+      int m = a.shape().dim_size(0);
+      int k = a.shape().dim_size(1);
+      int n = b.shape().dim_size(1);
+      Tensor * output = NULL;
+      TensorShape output_shape;
+      output_shape.AddDim(m);
+      output_shape.AddDim(n);
+      OP_REQUIRES_OK(context, context->allocate_output(0, output_shape,&output));
+
+      if(device == "CPU"){
+        deepmd::matmul_nn_row_launcer(
                 m, n, k,
                 a.flat<T>().data(),
                 b.flat<T>().data(),
                 output->flat<T>().data());
+      }else if(device == "GPU"){
+#if GOOGLE_CUDA
+        deepmd::matmul_nn_row_launcer_cuda(
+                m, n, k,
+                a.flat<T>().data(),
+                b.flat<T>().data(),
+                output->flat<T>().data());
+#endif
+      }
+    
     }
     ~MatmulNnOp () {}
   private :
+  
+  std::string device;
+  
 };
 
 #define REGISTER_CPU(T)                                                         \
-    /* Declare explicit instantiations in kernel_example.cu.cc. */              \
     REGISTER_KERNEL_BUILDER(                                                    \
-        Name("MatmulNn").Device(DEVICE_CPU).TypeConstraint<T>("T"),            \
+        Name("MatmulNn").Device(DEVICE_CPU).TypeConstraint<T>("T"),             \
         MatmulNnOp<CPUDevice, T>);                                          
-
 // REGISTER_GPU(Eigen::half);
 REGISTER_CPU(float);
 REGISTER_CPU(double);
+
+#if GOOGLE_CUDA
+#define REGISTER_GPU(T)                                                         \
+    REGISTER_KERNEL_BUILDER(                                                    \
+        Name("MatmulNn").Device(DEVICE_GPU).TypeConstraint<T>("T"),             \
+        MatmulNnOp<GPUDevice, T>);   
+REGISTER_GPU(float);
+REGISTER_GPU(double);
+#endif 

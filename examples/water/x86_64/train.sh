@@ -6,9 +6,10 @@ export deepmd_root=$HOME/deepmd-kit
 source $deepmd_root/script/x86_64/env.sh
 bash $deepmd_root/script/x86_64/build_deepmd.sh
 
-name=baseline
+name=gemm_tanh
 
-dp train ../se_e2_a/input.json
+dp train ../se_e2_a/input_1000.json
+
 dp freeze -o ../model/graph_$name.pb
 dp test -m ../model/graph_$name.pb -s ../data/data_3 -n 1
 

@@ -2,6 +2,7 @@
 #include "tools.h"
 #include "gemm.h"
 
+
 REGISTER_OP("GemmLayer")
     .Attr("T: {float, double}")
     .Input("x: T")
@@ -29,14 +30,12 @@ REGISTER_OP("GemmLayer")
 template <typename Device, typename T>
 class GemmLayerOp : public OpKernel {
   public :
-    explicit GemmLayerOp(OpKernelConstruction* context) : OpKernel(context) {}
+    explicit GemmLayerOp(OpKernelConstruction* context) : OpKernel(context) {
+    }
 
     void Compute(OpKernelContext* context) override {
-      DeviceFunctor() (
-          device,
-          context->eigen_device<Device>()
-      );
-
+      DeviceFunctor() (device,context->eigen_device<Device>());
+      // Grab the input tensor
       const Tensor& x = context->input(0);
       const Tensor& w = context->input(1);
       const Tensor& b = context->input(2);
@@ -56,6 +55,7 @@ class GemmLayerOp : public OpKernel {
       output_shape.AddDim(m);
       output_shape.AddDim(n);
       OP_REQUIRES_OK(context, context->allocate_output(0, output_shape,&output));
+      
       if(device == "CPU"){
         deepmd::gemm_launcer(
                 m, n, k,
@@ -74,7 +74,8 @@ class GemmLayerOp : public OpKernel {
 #endif
       }
     }
-    ~GemmLayerOp () {}
+    ~GemmLayerOp () {
+    }
   private :
     std::string device;
 

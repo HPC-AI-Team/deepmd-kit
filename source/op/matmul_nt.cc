@@ -1,22 +1,9 @@
-#include "tensorflow/core/framework/op.h"
-#include "tensorflow/core/framework/op_kernel.h"
-#include "tensorflow/core/framework/register_types.h"
-#include "tensorflow/core/framework/shape_inference.h"
-#include <type_traits>  // std::is_name
-#include <iostream>
-#include <string>
-#include <cblas.h>
-#include <omp.h>
-
-using std::cout;
-using std::endl;
-using namespace tensorflow;
-using namespace tensorflow::shape_inference;
-using CPUDevice = Eigen::ThreadPoolDevice;
+#include "custom_op.h"
+#include "tools.h"
+#include "matmul.h"
 
 
 // C=A(B^T)
-
 REGISTER_OP("MatmulNt")
     .Attr("T: {float, double}")
     .Input("a: T")
@@ -37,46 +24,6 @@ REGISTER_OP("MatmulNt")
       return Status::OK();
     });
 
-// double
-static void GemmLauncher(const int m, const int n, const int k,
-                  const double * A, const double * B, double * C)
-{   
-    double alpha = 1.;
-    double beta = 0.;
-    int lda=k;
-    int ldb=k;
-    int ldc=n;
-    cblas_dgemm(CblasRowMajor,CblasNoTrans,CblasTrans,
-        m,n,k,
-        alpha,A,lda,
-        B,ldb,
-        beta,C,ldc);
-}
-
-
-// float 
-static void GemmLauncher(const int m, const int n, const int k,
-                  const float * A, const float * B, float * C)
-{   
-    float alpha = 1.;
-    float beta = 0.;
-    int lda=k;
-    int ldb=k;
-    int ldc=n;
-    cblas_sgemm(CblasRowMajor,CblasNoTrans,CblasTrans,
-        m,n,k,
-        alpha,A,lda,
-        B,ldb,
-        beta,C,ldc);
-}
-
-// half
-// void GemmLauncher(const int m, consst int n, const int k,
-//     const float alpha, const float beta,
-//     const Eigen::half * A, const Eigen::half * B, 
-//     const Eigen::half * C, Eigen::half * D) 
-// {
-// }
 
 // OpKernel definition.
 // template parameter <T> is the datatype of the tensors.
@@ -86,6 +33,7 @@ class MatmulNtOp : public OpKernel {
     explicit MatmulNtOp(OpKernelConstruction* context) : OpKernel(context) {}
 
     void Compute(OpKernelContext* context) override {
+        DeviceFunctor() (device,context->eigen_device<Device>());
         // Grab the input tensor
         const Tensor& a = context->input(0);
         const Tensor& b = context->input(1);
@@ -100,22 +48,44 @@ class MatmulNtOp : public OpKernel {
         output_shape.AddDim(m);
         output_shape.AddDim(n);
         OP_REQUIRES_OK(context, context->allocate_output(0, output_shape,&output));
-        GemmLauncher(
+
+     
+      if(device == "CPU"){
+        deepmd::matmul_nt_row_launcer(
                 m, n, k,
                 a.flat<T>().data(),
                 b.flat<T>().data(),
                 output->flat<T>().data());
+      }else if(device == "GPU"){
+#if GOOGLE_CUDA
+        deepmd::matmul_nt_row_launcer_cuda(
+                m, n, k,
+                a.flat<T>().data(),
+                b.flat<T>().data(),
+                output->flat<T>().data());
+#endif
+      }
+
     }
     ~MatmulNtOp () {}
   private :
+  std::string device;
 };
 
 #define REGISTER_CPU(T)                                                         \
-    /* Declare explicit instantiations in kernel_example.cu.cc. */              \
     REGISTER_KERNEL_BUILDER(                                                    \
-        Name("MatmulNt").Device(DEVICE_CPU).TypeConstraint<T>("T"),            \
+        Name("MatmulNt").Device(DEVICE_CPU).TypeConstraint<T>("T"),             \
         MatmulNtOp<CPUDevice, T>);                                          
-
-// REGISTER_GPU(Eigen::half);
 REGISTER_CPU(float);
 REGISTER_CPU(double);
+
+#if GOOGLE_CUDA
+
+#define REGISTER_GPU(T)                                                         \
+    REGISTER_KERNEL_BUILDER(                                                    \
+        Name("MatmulNt").Device(DEVICE_GPU).TypeConstraint<T>("T"),             \
+        MatmulNtOp<GPUDevice, T>);   
+REGISTER_GPU(float);
+REGISTER_GPU(double);
+
+#endif 

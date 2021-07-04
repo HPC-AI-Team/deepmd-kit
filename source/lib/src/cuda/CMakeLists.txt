@@ -16,6 +16,7 @@ SET(CMAKE_CUDA_STANDARD 11)
 # very important here! Include path to cub.
 # for searching device compute capability, https://developer.nvidia.com/cuda-gpus
 include_directories(cub)
+include_directories(cutlass/include)
 
 message(STATUS "CUDA major version is " ${CUDA_VERSION_MAJOR})
 

@@ -1,76 +1,50 @@
 #include "gpu_cuda.h"
-#include "cublas_v2.h"
 #include "gemm.h"
 #include <iostream>
+#include "cutlass/gemm/device/gemm.h"
 
 void deepmd::gemm_launcer_cuda(
     const int m, const int n, const int k,
     const double * A, const double * B,const double * C, double * D)
 {
-    cudaError_t cudaStat;
-    cublasStatus_t stat;
-    cublasHandle_t handle;
-    stat = cublasCreate(&handle);
-    if(stat != CUBLAS_STATUS_SUCCESS){
-        std::cerr << "cublasCreate error!!!" << std::endl;
-        exit(-1);
-    }
+    using ColumnMajor = cutlass::layout::ColumnMajor;
+    using CutlassGemm = cutlass::gemm::device::Gemm<double,        // Data-type of A matrix
+                                                  ColumnMajor,  // Layout of A matrix
+                                                  double,        // Data-type of B matrix
+                                                  ColumnMajor,  // Layout of B matrix
+                                                  double,        // Data-type of C matrix
+                                                  ColumnMajor>; // Layout of C matrix
+    CutlassGemm gemm_operator;
     double alpha = 1.;
     double beta = 1.;
-    for(int i = 0; i < m; i++){
-        cudaStat = cudaMemcpy(D + i * n, C, n * sizeof(double), cudaMemcpyDeviceToDevice);
-        if(cudaStat != cudaSuccess){
-            std::cerr << "cudaMemcpy error!!!" << std::endl;
-            exit(-1);
-        }
-    }
-    stat = cublasDgemm( handle,
-                        CUBLAS_OP_N, CUBLAS_OP_N,   
-                        n, m, k,
-                        &alpha,
-                        B, n,
-                        A, k,
-                        &beta,
-                        D, n);
-    if(stat != CUBLAS_STATUS_SUCCESS){
-        std::cerr << "cublasDgemm error!!!" << std::endl;
-        exit(-1);
-    }
-    cublasDestroy(handle);
+    CutlassGemm::Arguments args({n,m,k},     // Gemm Problem dimensions
+                                {B, n},    // Tensor-ref for source matrix A
+                                {A, k},    // Tensor-ref for source matrix B
+                                {C, 0},      // Tensor-ref for source matrix C
+                                {D, n},    // Tensor-ref for destination matrix D (may be different memory than source C matrix)
+                                {alpha, beta}); // Scalars used in the Epilogue
+    cutlass::Status status = gemm_operator(args);
 }
 
 void deepmd::gemm_launcer_cuda(
     const int m, const int n, const int k,
     const float * A, const float * B,const float * C, float * D)
 {   
-    cudaError_t cudaStat;
-    cublasStatus_t stat;
-    cublasHandle_t handle;
-    stat = cublasCreate(&handle);
-    if(stat != CUBLAS_STATUS_SUCCESS){
-        std::cerr << "cublasCreate error!!!" << std::endl;
-        exit(-1);
-    }
-    float alpha = 1.f;
-    float beta = 1.f;
-    for(int i = 0; i < m; i++){
-        cudaStat = cudaMemcpy(D + i * n, C, n * sizeof(float), cudaMemcpyDeviceToDevice);
-        if(cudaStat != cudaSuccess){
-            std::cerr << "cudaMemcpy error!!!" << std::endl;
-            exit(-1);
-        }
-    }
-    stat = cublasSgemm( handle,
-                        CUBLAS_OP_N, CUBLAS_OP_N,
-                        n, m, k,
-                        &alpha,
-                        B, n,
-                        A, k,
-                        &beta,
-                        D, n);
-    if(stat != CUBLAS_STATUS_SUCCESS){
-        std::cerr << "cublasDgemm error!!!" << std::endl;
-        exit(-1);
-    }
-    cublasDestroy(handle);
+    using ColumnMajor = cutlass::layout::ColumnMajor;
+    using CutlassGemm = cutlass::gemm::device::Gemm<float,        // Data-type of A matrix
+                                                    ColumnMajor,  // Layout of A matrix
+                                                    float,        // Data-type of B matrix
+                                                    ColumnMajor,  // Layout of B matrix
+                                                    float,        // Data-type of C matrix
+                                                    ColumnMajor>; // Layout of C matrix
+    CutlassGemm gemm_operator;
+    float alpha = 1.;
+    float beta = 1.;
+    CutlassGemm::Arguments args({n,m,k},     // Gemm Problem dimensions
+                                {B, n},    // Tensor-ref for source matrix A
+                                {A, k},    // Tensor-ref for source matrix B
+                                {C, 0},      // Tensor-ref for source matrix C
+                                {D, n},    // Tensor-ref for destination matrix D (may be different memory than source C matrix)
+                                {alpha, beta}); // Scalars used in the Epilogue
+    cutlass::Status status = gemm_operator(args);
 }

@@ -1,19 +1,8 @@
-#include "tensorflow/core/framework/op.h"
-#include "tensorflow/core/framework/op_kernel.h"
-#include "tensorflow/core/framework/register_types.h"
-#include "tensorflow/core/framework/shape_inference.h"
-#include <type_traits>  // std::is_name
-#include <iostream>
-#include <string>
-#include <cmath>
-// #include "fast_tanh_taylor_2.h"
-#include "fast_tanh_poly_2.h"
+#include "custom_op.h"
+#include "tools.h"
+#include "fast_tanh.h"
 
-using std::cout;
-using std::endl;
 
-using CPUDevice = Eigen::ThreadPoolDevice;
-using namespace tensorflow;
 
 REGISTER_OP("FastTanh")
     .Attr("T: {float, double}")
@@ -24,29 +13,6 @@ REGISTER_OP("FastTanh")
       return Status::OK();
     });
 
-void FastTanhLauncher(const double* input,double *output,int N){
-    // for (int i = 1; i < N; i++) {
-    //   output[i] = tanh(input[i]);
-    // }
-    // taylor_2_tanh_double(input,output,N);
-    poly_2_tanh_double_vector(input,output,N);
-// #pragma omp parallel for 
-//     for(int i = 0;i<N ;i++){
-//         poly_2_tanh_float(input[i],output[i]);
-//     }
-}
-
-void FastTanhLauncher(const float* input,float *output,int N){
-    // for (int i = 1; i < N; i++) {
-    //   output[i] = tanhf(input[i]);
-    // }
-    // taylor_2_tanh_float(input,output,N);
-    poly_2_tanh_float_vector(input,output,N);
-// #pragma omp parallel for 
-//     for(int i = 0;i<N ;i++){
-//         poly_2_tanh_float(input[i],output[i]);
-//     }
-}
 
 template <typename Device, typename T>
 class FastTanhOp : public OpKernel {
@@ -54,19 +20,30 @@ class FastTanhOp : public OpKernel {
   explicit FastTanhOp(OpKernelConstruction* context) : OpKernel(context) {}
 
   void Compute(OpKernelContext* context) override {
-    // Grab the input tensor
+    DeviceFunctor() (device,context->eigen_device<Device>());
     const Tensor& input_tensor = context->input(0);
-
-    // Create an output tensor
     Tensor* output_tensor = NULL;
     OP_REQUIRES_OK(context, context->allocate_output(0, input_tensor.shape(),
                                                      &output_tensor));
+    
+    if(device == "CPU"){
+        deepmd::fast_tanh_cpu(
+            input_tensor.flat<T>().data(),
+            output_tensor->flat<T>().data(),
+            input_tensor.flat<T>().size());
+    }else if(device == "GPU"){
+#if GOOGLE_CUDA
+        deepmd::fast_tanh_cuda(
+            input_tensor.flat<T>().data(),
+            output_tensor->flat<T>().data(),
+            input_tensor.flat<T>().size());
+#endif
+    }
 
-    FastTanhLauncher(
-        input_tensor.flat<T>().data(),
-        output_tensor->flat<T>().data(),
-        input_tensor.flat<T>().size());
   }
+  private:
+    std::string device;
+  
 };
 
 #define REGISTER_CPU(T)                                                         \
