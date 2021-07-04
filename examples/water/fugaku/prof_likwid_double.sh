@@ -10,5 +10,6 @@ set -ex
 deepmd_root=$HOME/gzq/deepmd-kit
 source $deepmd_root/script/fugaku/env.sh
 bash $deepmd_root/script/fugaku/build_deepmd.sh
+export TF_CPP_MIN_LOG_LEVEL=3
 
 likwid-perfctr -C 0 -g FLOPS_DP lmp -echo screen -in ./in.water_1

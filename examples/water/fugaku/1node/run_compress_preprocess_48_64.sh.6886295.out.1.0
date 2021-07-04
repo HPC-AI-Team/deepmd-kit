@@ -1,5 +1,4 @@
 LAMMPS (29 Oct 2020)
-OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (../comm.cpp:94)
   using 1 OpenMP thread(s) per MPI task
 # bulk water
 
@@ -16,7 +15,7 @@ Reading data file ...
   3 by 4 by 4 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.047 seconds
+  read_data CPU = 0.033 seconds
 mass 		    1 16
 mass		    2 2
 
@@ -25,16 +24,16 @@ pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-742-g4fdac66-dirty
+  source:             v1.2.2-746-g2071c59-dirty
   source brach:       devel_
-  source commit:      4fdac66
-  source commit at:   2021-07-01 22:31:51 +0900
+  source commit:      2071c59
+  source commit at:   2021-07-04 01:52:02 +0900
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
   build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
-  set tf intra_op_parallelism_threads: 0
-  set tf inter_op_parallelism_threads: 0
+  set tf intra_op_parallelism_threads: 1
+  set tf inter_op_parallelism_threads: 1
   >>> Info of lammps module:
   use deepmd-kit at:  /home/hp200266/u01036/gzq/deepmd-kit/dp
   source:             v1.2.2-742-g4fdac66-dirty
@@ -50,12 +49,12 @@ Summary of lammps deepmd module ...
   ntypes in model:    2
 pair_coeff
 
-replicate       4 6 4
+replicate       4 4 4
 Replicating atoms ...
-  triclinic box = (0.0000000 0.0000000 0.0000000) to (49.778800 74.668200 49.778800) with tilt (0.0000000 0.0000000 0.0000000)
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (49.778800 49.778800 49.778800) with tilt (0.0000000 0.0000000 0.0000000)
   3 by 4 by 4 MPI processor grid
-  18432 atoms
-  replicate CPU = 0.035 seconds
+  12288 atoms
+  replicate CPU = 0.034 seconds
 
 velocity        all create 330.0 23456789
 
@@ -71,7 +70,7 @@ Neighbor list info ...
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 8
   ghost atom cutoff = 8
-  binsize = 4, bins = 13 19 13
+  binsize = 4, bins = 13 13 13
   1 neighbor lists, perpetual/occasional/extra = 1 0 0
   (1) pair deepmd, perpetual
       attributes: , newton on
@@ -82,33 +81,33 @@ Setting up Verlet run ...
   Unit style    : metal
   Current step  : 0
   Time step     : 0.0005
-Per MPI rank memory allocation (min/avg/max) = 3.957 | 3.960 | 3.962 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 3.925 | 3.926 | 3.927 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
-       0   -2874588.9    786.18993   -2873802.7          330    211202.84    185022.49 
-      20   -2874687.9    885.26828   -2873802.6    371.58773    204862.17    185022.49 
-      40   -2874928.7    1125.7799   -2873802.9    472.54148    206031.89    185022.49 
-      60   -2875139.8    1336.3079   -2873803.5    560.90975    209047.01    185022.49 
-      80   -2875322.8    1517.6342   -2873805.2    637.02073    208644.04    185022.49 
-     100   -2875426.4    1618.5517   -2873807.9    679.38043    211151.36    185022.49 
-Loop time of 13.3214 on 48 procs for 100 steps with 18432 atoms
+       0   -1916392.6     524.1124   -1915868.5          330    211202.72    123348.33 
+      20   -1916457.4    588.99797   -1915868.4    370.85429    204717.28    123348.33 
+      40   -1916618.2    749.61467   -1915868.6    471.98433    206059.47    123348.33 
+      60   -1916754.5    885.52768     -1915869    557.56004    209309.69    123348.33 
+      80     -1916877    1006.8889   -1915870.1    633.97341    208523.85    123348.33 
+     100   -1916943.1    1071.1781   -1915871.9    674.45223    211321.77    123348.33 
+Loop time of 8.90099 on 48 procs for 100 steps with 12288 atoms
 
-Performance: 0.324 ns/day, 74.008 hours/ns, 7.507 timesteps/s
-99.5% CPU use with 48 MPI tasks x 1 OpenMP threads
+Performance: 0.485 ns/day, 49.450 hours/ns, 11.235 timesteps/s
+99.8% CPU use with 48 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 12.177     | 12.794     | 13.154     |   8.0 | 96.04
-Neigh   | 0.067133   | 0.068799   | 0.072198   |   0.4 |  0.52
-Comm    | 0.079423   | 0.43696    | 1.0483     |  43.0 |  3.28
-Output  | 0.0078772  | 0.0078884  | 0.0079316  |   0.0 |  0.06
-Modify  | 0.0053308  | 0.012356   | 0.023242   |   5.0 |  0.09
-Other   |            | 0.001164   |            |       |  0.01
+Pair    | 8.1258     | 8.4928     | 8.8144     |   6.0 | 95.41
+Neigh   | 0.042434   | 0.044464   | 0.046013   |   0.4 |  0.50
+Comm    | 0.026629   | 0.34592    | 0.72095    |  30.1 |  3.89
+Output  | 0.0050599  | 0.0050695  | 0.0051126  |   0.0 |  0.06
+Modify  | 0.0033585  | 0.011704   | 0.037847   |  11.7 |  0.13
+Other   |            | 0.0009834  |            |       |  0.01
 
-Nlocal:        384.000 ave         398 max         368 min
-Histogram: 4 3 2 2 5 9 9 6 6 2
-Nghost:        2854.56 ave        2925 max        2791 min
-Histogram: 6 5 4 3 7 8 1 7 4 3
+Nlocal:        256.000 ave         265 max         247 min
+Histogram: 2 6 3 6 6 8 4 7 3 3
+Nghost:        2406.65 ave        2451 max        2375 min
+Histogram: 7 11 9 3 2 0 0 6 3 7
 Neighs:        0.00000 ave           0 max           0 min
 Histogram: 48 0 0 0 0 0 0 0 0 0
 
@@ -119,4 +118,4 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:22
+Total wall time: 0:00:16

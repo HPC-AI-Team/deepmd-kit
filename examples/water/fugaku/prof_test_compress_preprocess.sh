@@ -19,6 +19,7 @@ export TF_PROFILE=1
 
 rm -f profiler.json_*
 
+export TF_CPP_MIN_LOG_LEVEL=3
 export HAVE_PREPROCESSED=1
 
 likwid-pin -c 0 dp test -m ../model/graph-compress-preprocess.pb -s ../data/data_3 -n 1

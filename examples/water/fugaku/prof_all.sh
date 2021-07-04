@@ -29,25 +29,27 @@ export OMP_NUM_THREADS=1
 export TF_INTRA_OP_PARALLELISM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
 export TF_PROFILE=1
+export TF_CPP_MIN_LOG_LEVEL=3
 
 
-likwid-pin -c 0 lmp -echo screen -in ./in.water_1 &> output/output.$name
-likwid-perfctr -C 0 -g FLOPS_DP lmp -echo screen -in ./in.water_1 &> likwid/likwid.$name
+likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_1 &> output/output.$name
+likwid-perfctr -C 0 -g FLOPS_DP lmp_serial -echo screen -in ./in.water_1 &> likwid/likwid.$name
 rm -f profiler.json_*
 likwid-pin -c 0 dp test -m ../model/graph.pb -s ../data/data_3 -n 1 &> prof/prof.$name
 python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/profiler_visualization_topk.py profiler >> prof/prof.$name
 
 
-likwid-pin -c 0 lmp -echo screen -in ./in.water_compress_1 &> output/output.$name-compress
-likwid-perfctr -C 0 -g FLOPS_DP lmp -echo screen -in ./in.water_compress_1 &> likwid/likwid.$name-compress
+likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_1 &> output/output.compress-$name
+likwid-perfctr -C 0 -g FLOPS_DP lmp_serial -echo screen -in ./in.water_compress_1 &> likwid/likwid.compress-$name
 rm -f profiler.json_*
-likwid-pin -c 0 dp test -m ../model/graph-compress.pb -s ../data/data_3 -n 1 &> prof/prof.$name-compress
-python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/profiler_visualization_topk.py profiler >> prof/prof.$name-compress
+likwid-pin -c 0 dp test -m ../model/graph-compress.pb -s ../data/data_3 -n 1 &> prof/prof.compress-$name
+python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/profiler_visualization_topk.py profiler >> prof/prof.compress-$name
 
 
 export HAVE_PREPROCESSED=1
-likwid-pin -c 0 lmp -echo screen -in ./in.water_compress_preprocess_1 &> output/output.$name-compress-preprocess
-likwid-perfctr -C 0 -g FLOPS_DP lmp -echo screen -in ./in.water_compress_preprocess_1 &> likwid/likwid.$name-compress-preprocess
+
+likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_preprocess_1 &> output/output.compress-preprocess-$name
+likwid-perfctr -C 0 -g FLOPS_DP lmp_serial -echo screen -in ./in.water_compress_preprocess_1 &> likwid/likwid.compress-preprocess-$name
 rm -f profiler.json_*
-likwid-pin -c 0 dp test -m ../model/graph-compress-preprocess.pb -s ../data/data_3 -n 1 &> prof/prof.$name-compress-preprocess
-python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/profiler_visualization_topk.py profiler >> prof/prof.$name-compress-preprocess
+likwid-pin -c 0 dp test -m ../model/graph-compress-preprocess.pb -s ../data/data_3 -n 1 &> prof/prof.compress-preprocess-$name
+python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/profiler_visualization_topk.py profiler >> prof/prof.compress-preprocess-$name

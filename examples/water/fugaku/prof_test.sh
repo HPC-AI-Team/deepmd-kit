@@ -16,6 +16,7 @@ export TF_INTRA_OP_PARALLELISM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
 
 export TF_PROFILE=1
+export TF_CPP_MIN_LOG_LEVEL=3
 
 rm -f profiler.json_*
 

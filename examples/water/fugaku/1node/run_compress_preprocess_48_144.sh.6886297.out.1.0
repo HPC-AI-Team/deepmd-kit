@@ -1,5 +1,4 @@
 LAMMPS (29 Oct 2020)
-OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (../comm.cpp:94)
   using 1 OpenMP thread(s) per MPI task
 # bulk water
 
@@ -25,16 +24,16 @@ pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-742-g4fdac66-dirty
+  source:             v1.2.2-746-g2071c59-dirty
   source brach:       devel_
-  source commit:      4fdac66
-  source commit at:   2021-07-01 22:31:51 +0900
+  source commit:      2071c59
+  source commit at:   2021-07-04 01:52:02 +0900
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
   build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
-  set tf intra_op_parallelism_threads: 0
-  set tf inter_op_parallelism_threads: 0
+  set tf intra_op_parallelism_threads: 1
+  set tf inter_op_parallelism_threads: 1
   >>> Info of lammps module:
   use deepmd-kit at:  /home/hp200266/u01036/gzq/deepmd-kit/dp
   source:             v1.2.2-742-g4fdac66-dirty
@@ -55,7 +54,7 @@ Replicating atoms ...
   triclinic box = (0.0000000 0.0000000 0.0000000) to (74.668200 74.668200 49.778800) with tilt (0.0000000 0.0000000 0.0000000)
   4 by 4 by 3 MPI processor grid
   27648 atoms
-  replicate CPU = 0.036 seconds
+  replicate CPU = 0.033 seconds
 
 velocity        all create 330.0 23456789
 
@@ -90,20 +89,20 @@ Step PotEng KinEng TotEng Temp Press Volume
       60   -4312715.5    2010.1959   -4310705.3    562.50415    208772.65    277533.74 
       80   -4312987.6    2279.7874   -4310707.8    637.94273    208821.01    277533.74 
      100   -4313135.6    2423.7954   -4310711.8    678.23987    211789.62    277533.74 
-Loop time of 19.7374 on 48 procs for 100 steps with 27648 atoms
+Loop time of 19.2283 on 48 procs for 100 steps with 27648 atoms
 
-Performance: 0.219 ns/day, 109.652 hours/ns, 5.067 timesteps/s
-99.6% CPU use with 48 MPI tasks x 1 OpenMP threads
+Performance: 0.225 ns/day, 106.824 hours/ns, 5.201 timesteps/s
+99.9% CPU use with 48 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 18.145     | 18.805     | 19.575     |   7.9 | 95.28
-Neigh   | 0.098049   | 0.10345    | 0.11244    |   0.9 |  0.52
-Comm    | 0.033089   | 0.75505    | 1.4022     |  38.1 |  3.83
-Output  | 0.0090869  | 0.0090962  | 0.009139   |   0.0 |  0.05
-Modify  | 0.0060829  | 0.063393   | 0.23863    |  28.8 |  0.32
-Other   |            | 0.001421   |            |       |  0.01
+Pair    | 17.592     | 18.244     | 19.086     |   7.7 | 94.88
+Neigh   | 0.097458   | 0.10193    | 0.10773    |   0.6 |  0.53
+Comm    | 0.019891   | 0.76695    | 1.38       |  35.7 |  3.99
+Output  | 0.0088538  | 0.0088687  | 0.0089095  |   0.0 |  0.05
+Modify  | 0.0043275  | 0.10467    | 0.33303    |  41.5 |  0.54
+Other   |            | 0.001372   |            |       |  0.01
 
 Nlocal:        576.000 ave         598 max         554 min
 Histogram: 2 3 6 4 7 8 8 7 2 1
