@@ -1,6 +1,7 @@
 #include "env_mat.h"
 #include "switcher.h"
 #include "tools.h"
+#include <string.h>
 
 #ifdef __ARM_FEATURE_SVE 
 #include <arm_sve.h> 
@@ -105,27 +106,31 @@ inline void spline5_switch_vector (
 }
 
 void deepmd::env_mat_a_cpu_sve (
-  std::vector<double > &	        descrpt_a,
-  std::vector<double > &	        descrpt_a_deriv,
-  std::vector<double > &	        rij_a,
+  double*	        descrpt_a,
+  double*	        descrpt_a_deriv,
+  double*	        rij_a,
   const std::vector<double > &	  posi,
   const std::vector<int > &		    type,
   const int &				              i_idx,
-  const std::vector<int > &		    fmt_nlist_a,
+  const int *		                  fmt_nlist_a,
   const std::vector<int > &		    sec_a, 
   const float &			              rmin,
-  const float &			              rmax)  {
-  
-  // compute the diff of the neighbors
-  rij_a.resize (sec_a.back() * 3);
-  fill (rij_a.begin(), rij_a.end(), 0.0);
-  // 1./rr, cos(theta), cos(phi), sin(phi)
-  descrpt_a.resize (sec_a.back() * 4);
-  fill (descrpt_a.begin(), descrpt_a.end(), 0.0);
-  // deriv wrt center: 3
-  descrpt_a_deriv.resize (sec_a.back() * 4 * 3);
-  fill (descrpt_a_deriv.begin(), descrpt_a_deriv.end(), 0.0);
+  const float &			              rmax
+  )  {
+    
+  // // compute the diff of the neighbors
+  // rij_a.resize (sec_a.back() * 3);
+  // fill (rij_a.begin(), rij_a.end(), 0.0);
+  // // 1./rr, cos(theta), cos(phi), sin(phi)
+  // descrpt_a.resize (sec_a.back() * 4);
+  // fill (descrpt_a.begin(), descrpt_a.end(), 0.0);
+  // // deriv wrt center: 3
+  // descrpt_a_deriv.resize (sec_a.back() * 4 * 3);
+  // fill (descrpt_a_deriv.begin(), descrpt_a_deriv.end(), 0.0);
 
+  memset(rij_a,'\0',sec_a.back() * 3 * sizeof(double));
+  memset(descrpt_a,'\0',sec_a.back() * 4 * sizeof(double));
+  memset(descrpt_a_deriv,'\0',sec_a.back() * 4 * 3 * sizeof(double));
 
   svfloat64_t vposi_0 = svdup_f64(posi[i_idx*3]);
   svfloat64_t vposi_1 = svdup_f64(posi[i_idx*3+1]);
@@ -315,26 +320,30 @@ void deepmd::env_mat_a_cpu_sve (
 
 
 void deepmd::env_mat_a_cpu_sve (
-    std::vector<float > &	        descrpt_a,
-    std::vector<float > &	        descrpt_a_deriv,
-    std::vector<float > &	        rij_a,
+    float*	        descrpt_a,
+    float*        descrpt_a_deriv,
+    float*	        rij_a,
     const std::vector<float > &	  posi,
     const std::vector<int > &		  type,
     const int &				            i_idx,
-    const std::vector<int > &		  fmt_nlist_a,
+    const int *		                fmt_nlist_a,
     const std::vector<int > &		  sec_a, 
     const float &			            rmin,
     const float &			            rmax) {
-    // compute the diff of the neighbors
-    rij_a.resize (sec_a.back() * 3);
-    fill (rij_a.begin(), rij_a.end(), 0.0);
-    // 1./rr, cos(theta), cos(phi), sin(phi)
-    descrpt_a.resize (sec_a.back() * 4);
-    fill (descrpt_a.begin(), descrpt_a.end(), 0.0);
-    // deriv wrt center: 3
-    descrpt_a_deriv.resize (sec_a.back() * 4 * 3);
-    fill (descrpt_a_deriv.begin(), descrpt_a_deriv.end(), 0.0);
+    // // compute the diff of the neighbors
+    // rij_a.resize (sec_a.back() * 3);
+    // fill (rij_a.begin(), rij_a.end(), 0.0);
+    // // 1./rr, cos(theta), cos(phi), sin(phi)
+    // descrpt_a.resize (sec_a.back() * 4);
+    // fill (descrpt_a.begin(), descrpt_a.end(), 0.0);
+    // // deriv wrt center: 3
+    // descrpt_a_deriv.resize (sec_a.back() * 4 * 3);
+    // fill (descrpt_a_deriv.begin(), descrpt_a_deriv.end(), 0.0);
     
+    memset(rij_a,'\0',sec_a.back() * 3 * sizeof(float));
+    memset(descrpt_a,'\0',sec_a.back() * 4 * sizeof(float));
+    memset(descrpt_a_deriv,'\0',sec_a.back() * 3 * 4 * sizeof(float));
+
     for (int sec_iter = 0; sec_iter < int(sec_a.size()) - 1; ++sec_iter) {
         for (int nei_iter = sec_a[sec_iter]; nei_iter < sec_a[sec_iter + 1]; ++nei_iter) {
             if (fmt_nlist_a[nei_iter] < 0) break;

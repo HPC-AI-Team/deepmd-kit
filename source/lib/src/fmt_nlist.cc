@@ -119,13 +119,18 @@ int format_nlist_i_cpu (
     // allocate the information for all neighbors
     std::vector<NeighborInfo > sel_nei;
     sel_nei.reserve (nei_idx_a.size());
+
+    FPTYPE ix = posi[i_idx * 3 + 0];
+    FPTYPE iy = posi[i_idx * 3 + 1];
+    FPTYPE iz = posi[i_idx * 3 + 2];
+
     for (unsigned kk = 0; kk < nei_idx.size(); ++kk) {
         FPTYPE diff[3];
         const int & j_idx = nei_idx[kk];
-        for (int dd = 0; dd < 3; ++dd) {
-            diff[dd] = posi[j_idx * 3 + dd] - posi[i_idx * 3 + dd];
-        }
-        FPTYPE rr = sqrt(deepmd::dot3(diff, diff));    
+        diff[0] = posi[j_idx * 3 + 0] - ix;
+        diff[1] = posi[j_idx * 3 + 1] - iy;
+        diff[2] = posi[j_idx * 3 + 2] - iz;
+        FPTYPE rr = sqrt(diff[0] * diff[0] + diff[1] * diff[1] + diff[2] * diff[2]);    
         if (rr <= rcut) {
             sel_nei.push_back(NeighborInfo(type[j_idx], rr, j_idx));
         }
@@ -141,7 +146,7 @@ int format_nlist_i_cpu (
         }
         else{
           overflowed = nei_type;
-	}
+	      }
     }
     return overflowed;
 }
@@ -238,5 +243,83 @@ format_nlist_cpu<float> (
     const int nall, 
     const float rcut, 
     const std::vector<int> sec);
+
+
+// ----------------------------------------------------------------------------------------------
+// my format_nlist_i_cpu
+
+template<typename FPTYPE> 
+int format_nlist_i_cpu (
+    int*                      	  fmt_nei_idx_a,
+    const std::vector<FPTYPE > &  posi,
+    const std::vector<int > &     type,
+    const int &			              i_idx,
+    const std::vector<int > &     nei_idx_a, 
+    const float &		              rcut,
+    const std::vector<int > &     sec_a)
+{
+    for(int i = 0;i< sec_a.back();i++){
+      fmt_nei_idx_a[i] = -1;
+    }
+
+    std::vector<int > nei_idx (nei_idx_a);
+    std::vector<NeighborInfo > sel_nei;
+    sel_nei.reserve (nei_idx_a.size());
+
+    FPTYPE ix = posi[i_idx * 3 + 0];
+    FPTYPE iy = posi[i_idx * 3 + 1];
+    FPTYPE iz = posi[i_idx * 3 + 2];
+    for (unsigned kk = 0; kk < nei_idx.size(); ++kk) {
+        FPTYPE diff[3];
+        const int & j_idx = nei_idx[kk];
+        diff[0] = posi[j_idx * 3 + 0] - ix;
+        diff[1] = posi[j_idx * 3 + 1] - iy;
+        diff[2] = posi[j_idx * 3 + 2] - iz;
+        FPTYPE rr = sqrt(diff[0] * diff[0] + diff[1] * diff[1] + diff[2] * diff[2]);    
+        if (rr <= rcut) {
+            sel_nei.push_back(NeighborInfo(type[j_idx], rr, j_idx));
+        }
+    }
+    sort(sel_nei.begin(), sel_nei.end());  
+
+
+    std::vector<int > nei_iter = sec_a;
+    int overflowed = -1;
+    for (unsigned kk = 0; kk < sel_nei.size(); ++kk) {
+        const int & nei_type = sel_nei[kk].type;
+        if (nei_iter[nei_type] < sec_a[nei_type+1]) {
+            fmt_nei_idx_a[nei_iter[nei_type] ++] = sel_nei[kk].index;
+        }
+        else{
+          overflowed = nei_type;
+	      }
+    }
+    return overflowed;
+}
+
+template
+int format_nlist_i_cpu<double> (
+    int*		fmt_nei_idx_a,
+    const std::vector<double > &posi,
+    const std::vector<int > &   type,
+    const int &			i_idx,
+    const std::vector<int > &   nei_idx_a, 
+    const float &		rcut,
+    const std::vector<int > &   sec_a);
+
+
+template
+int format_nlist_i_cpu<float> (
+    int*		fmt_nei_idx_a,
+    const std::vector<float > &	posi,
+    const std::vector<int > &   type,
+    const int &			i_idx,
+    const std::vector<int > &   nei_idx_a, 
+    const float &		rcut,
+    const std::vector<int > &   sec_a);
+
+// ----------------------------------------------------------------------------------------------
+
+
 
 

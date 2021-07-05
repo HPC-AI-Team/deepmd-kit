@@ -65,44 +65,40 @@ prod_env_mat_a_cpu(
     
     // double t0 = omp_get_wtime();
 
-    std::vector<int> fmt_nlist_a;
+    int*  fmt_nlist_a = &nlist[ii * nnei];
     int ret = format_nlist_i_cpu(fmt_nlist_a, d_coord3, d_type, ii, d_nlist_a[ii], rcut, sec);
-    
+
     // double t1 = omp_get_wtime();
     
-    std::vector<FPTYPE> d_em_a;
-    std::vector<FPTYPE> d_em_a_deriv;
-    std::vector<FPTYPE> d_em_r;
-    std::vector<FPTYPE> d_em_r_deriv;
-    std::vector<FPTYPE> d_rij_a;
+
+    FPTYPE* d_em_a = &em[ii * nem];
+    FPTYPE* d_em_a_deriv = &em_deriv[ii * nem * 3];
+    FPTYPE* d_rij_a = &rij[ii * nnei * 3];
 
 #ifdef __ARM_FEATURE_SVE 
     env_mat_a_cpu_sve (d_em_a, d_em_a_deriv, d_rij_a, d_coord3, d_type, ii, fmt_nlist_a, sec, rcut_smth, rcut);
 #else
     env_mat_a_cpu (d_em_a, d_em_a_deriv, d_rij_a, d_coord3, d_type, ii, fmt_nlist_a, sec, rcut_smth, rcut);
 #endif 
-
-    // double t2 = omp_get_wtime();
-    // std::cout << "format_nlist_i_cpu : env_mat_a_cpu : " << (t1 - t0) / (t2 - t0) << ", " << (t2 - t1) / (t2 - t0) << std::endl;
     
-    // check sizes
-    assert (d_em_a.size() == nem);
-    assert (d_em_a_deriv.size() == nem * 3);
-    assert (d_rij_a.size() == nnei * 3);
-    assert (fmt_nlist_a.size() == nnei);
-    // record outputs
+    const FPTYPE * AVG = &avg[d_type[ii] * nem];
+    const FPTYPE * STD = &std[d_type[ii] * nem];
     for (int jj = 0; jj < nem; ++jj) {
-      em[ii * nem + jj] = (d_em_a[jj] - avg[d_type[ii] * nem + jj]) / std[d_type[ii] * nem + jj];
+      d_em_a[jj] = (d_em_a[jj] - AVG[jj]) / STD[jj];
+      d_em_a_deriv[jj*3+0] /= STD[jj];
+      d_em_a_deriv[jj*3+1] /= STD[jj];
+      d_em_a_deriv[jj*3+2] /= STD[jj];
     }
-    for (int jj = 0; jj < nem * 3; ++jj) {
-      em_deriv[ii * nem * 3 + jj] = d_em_a_deriv[jj] / std[d_type[ii] * nem + jj / 3];
-    }
-    for (int jj = 0; jj < nnei * 3; ++jj) {
-      rij[ii * nnei * 3 + jj] = d_rij_a[jj];
-    }
-    for (int jj = 0; jj < nnei; ++jj) {
-      nlist[ii * nnei + jj] = fmt_nlist_a[jj];
-    }
+    // double t3 = omp_get_wtime();
+
+    // std::cout << (t1 - t0) << ", " 
+    //           << (t2 - t1) << ", " 
+    //           << (t3 - t2) << "--";
+  
+    // std::cout << (t1 - t0) / (t3 - t0) << ", " 
+    //           << (t2 - t1) / (t3 - t0) << ", " 
+    //           << (t3 - t2) / (t3 - t0) << std::endl;
+
   }
 }
 
