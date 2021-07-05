@@ -37,10 +37,10 @@ pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-752-g2555311-dirty
+  source:             v1.2.2-753-gc3b2938-dirty
   source brach:       devel_
-  source commit:      2555311
-  source commit at:   2021-07-04 23:33:27 +0800
+  source commit:      c3b2938
+  source commit at:   2021-07-05 11:26:06 +0900
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
@@ -95,20 +95,20 @@ Step PotEng KinEng TotEng Temp Press Volume
       60   -29943.946    7.9864812   -29935.959    323.48747    4701.8386    1927.3176 
       80   -29944.873    8.9010067   -29935.972    360.52976    2061.5908    1927.3176 
      100   -29944.145    8.1837761   -29935.961    331.47878   -5249.3479    1927.3176 
-Loop time of 5.74686 on 1 procs for 100 steps with 192 atoms
+Loop time of 4.97754 on 1 procs for 100 steps with 192 atoms
 
-Performance: 0.752 ns/day, 31.927 hours/ns, 17.401 timesteps/s
-99.7% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 0.868 ns/day, 27.653 hours/ns, 20.090 timesteps/s
+99.6% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 5.7048     | 5.7048     | 5.7048     |   0.0 | 99.27
-Neigh   | 0.033962   | 0.033962   | 0.033962   |   0.0 |  0.59
-Comm    | 0.0034056  | 0.0034056  | 0.0034056  |   0.0 |  0.06
-Output  | 0.001967   | 0.001967   | 0.001967   |   0.0 |  0.03
-Modify  | 0.0018852  | 0.0018852  | 0.0018852  |   0.0 |  0.03
-Other   |            | 0.0008771  |            |       |  0.02
+Pair    | 4.9326     | 4.9326     | 4.9326     |   0.0 | 99.10
+Neigh   | 0.035776   | 0.035776   | 0.035776   |   0.0 |  0.72
+Comm    | 0.003418   | 0.003418   | 0.003418   |   0.0 |  0.07
+Output  | 0.00092077 | 0.00092077 | 0.00092077 |   0.0 |  0.02
+Modify  | 0.0018182  | 0.0018182  | 0.0018182  |   0.0 |  0.04
+Other   |            | 0.003057   |            |       |  0.06
 
 Nlocal:        192.000 ave         192 max         192 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -124,28 +124,28 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:08
+Total wall time: 0:00:07
 OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
 --------------------------------------------------------------------------------
 Group 1: FLOPS_DP
 +----------------------+---------+-------------+
 |         Event        | Counter | HWThread 12 |
 +----------------------+---------+-------------+
-|     INST_RETIRED     |   PMC0  | 17952634829 |
-|      CPU_CYCLES      |   PMC1  | 16452567681 |
-| FP_DP_FIXED_OPS_SPEC |   PMC3  |  1277279572 |
-| FP_DP_SCALE_OPS_SPEC |   PMC4  | 15219195752 |
+|     INST_RETIRED     |   PMC0  | 18178428466 |
+|      CPU_CYCLES      |   PMC1  | 14288924910 |
+| FP_DP_FIXED_OPS_SPEC |   PMC3  |  1136907719 |
+| FP_DP_SCALE_OPS_SPEC |   PMC4  | 15236742232 |
 +----------------------+---------+-------------+
 
 +--------------------------+-------------+
 |          Metric          | HWThread 12 |
 +--------------------------+-------------+
-|    Runtime (RDTSC) [s]   |     11.2281 |
-|        Clock [MHz]       |   1465.2994 |
-|            CPI           |      0.9164 |
-|     DP (FP) [MFLOP/s]    |    113.7571 |
-| DP (FP+SVE128) [MFLOP/s] |   1469.2099 |
-| DP (FP+SVE256) [MFLOP/s] |   2824.6627 |
-| DP (FP+SVE512) [MFLOP/s] |   5535.5682 |
+|    Runtime (RDTSC) [s]   |      9.9894 |
+|        Clock [MHz]       |   1430.4134 |
+|            CPI           |      0.7860 |
+|     DP (FP) [MFLOP/s]    |    113.8118 |
+| DP (FP+SVE128) [MFLOP/s] |   1639.1079 |
+| DP (FP+SVE256) [MFLOP/s] |   3164.4039 |
+| DP (FP+SVE512) [MFLOP/s] |   6214.9961 |
 +--------------------------+-------------+
 

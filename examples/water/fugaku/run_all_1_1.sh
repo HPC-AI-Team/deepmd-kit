@@ -25,30 +25,30 @@ name=baseline
 ln -sf ../model/graph_$name.pb ../model/graph.pb 
 ln -sf ../model/graph-compress_$name.pb ../model/graph-compress.pb
 ln -sf ../model/graph-compress-preprocess_$name.pb ../model/graph-compress-preprocess.pb
-# likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_1  >  out.$name
-# likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_1  > out.compress-$name
+likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_1  >  out.$name
+likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_1  > out.compress-$name
 likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_preprocess_1 > out.compress-preprocess-$name
 
 name=gemm
 ln -sf ../model/graph_$name.pb ../model/graph.pb 
 ln -sf ../model/graph-compress_$name.pb ../model/graph-compress.pb
 ln -sf ../model/graph-compress-preprocess_$name.pb ../model/graph-compress-preprocess.pb
-# likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_1  >  out.$name
-# likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_1  > out.compress-$name
+likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_1  >  out.$name
+likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_1  > out.compress-$name
 likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_preprocess_1 > out.compress-preprocess-$name
 
 name=gemm_tanh
 ln -sf ../model/graph_$name.pb ../model/graph.pb 
 ln -sf ../model/graph-compress_$name.pb ../model/graph-compress.pb
 ln -sf ../model/graph-compress-preprocess_$name.pb ../model/graph-compress-preprocess.pb
-# likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_1  >  out.$name
-# likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_1  > out.compress-$name
+likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_1  >  out.$name
+likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_1  > out.compress-$name
 likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_preprocess_1 > out.compress-preprocess-$name
 
 name=gemm_tanh_fusion
 ln -sf ../model/graph_$name.pb ../model/graph.pb 
 ln -sf ../model/graph-compress_$name.pb ../model/graph-compress.pb
 ln -sf ../model/graph-compress-preprocess_$name.pb ../model/graph-compress-preprocess.pb
-# likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_1  >  out.$name
-# likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_1  > out.compress-$name
+likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_1  >  out.$name
+likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_1  > out.compress-$name
 likwid-pin -c 0 lmp_serial -echo screen -in ./in.water_compress_preprocess_1 > out.compress-preprocess-$name

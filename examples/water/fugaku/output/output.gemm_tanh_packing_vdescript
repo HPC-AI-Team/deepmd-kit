@@ -16,7 +16,7 @@ Reading data file ...
   1 by 1 by 1 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.016 seconds
+  read_data CPU = 0.011 seconds
 mass 		    1 16
 mass		    2 2
 replicate       1 1 1
@@ -29,10 +29,10 @@ pair_style	    deepmd ../model/graph.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-752-g2555311-dirty
+  source:             v1.2.2-753-gc3b2938-dirty
   source brach:       devel_
-  source commit:      2555311
-  source commit at:   2021-07-04 23:33:27 +0800
+  source commit:      c3b2938
+  source commit at:   2021-07-05 11:26:06 +0900
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
@@ -87,20 +87,20 @@ Step PotEng KinEng TotEng Temp Press Volume
       60   -29943.947    7.9866151    -29935.96     323.4929    4692.0272    1927.3176 
       80   -29944.873    8.9002014   -29935.972    360.49714    2060.4911    1927.3176 
      100   -29944.145    8.1830784   -29935.962    331.45052   -5252.7391    1927.3176 
-Loop time of 11.3665 on 1 procs for 100 steps with 192 atoms
+Loop time of 11.398 on 1 procs for 100 steps with 192 atoms
 
-Performance: 0.380 ns/day, 63.147 hours/ns, 8.798 timesteps/s
-99.9% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 0.379 ns/day, 63.322 hours/ns, 8.774 timesteps/s
+99.5% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 11.324     | 11.324     | 11.324     |   0.0 | 99.63
-Neigh   | 0.033857   | 0.033857   | 0.033857   |   0.0 |  0.30
-Comm    | 0.0034194  | 0.0034194  | 0.0034194  |   0.0 |  0.03
-Output  | 0.0019929  | 0.0019929  | 0.0019929  |   0.0 |  0.02
-Modify  | 0.0018599  | 0.0018599  | 0.0018599  |   0.0 |  0.02
-Other   |            | 0.0008688  |            |       |  0.01
+Pair    | 11.353     | 11.353     | 11.353     |   0.0 | 99.61
+Neigh   | 0.034124   | 0.034124   | 0.034124   |   0.0 |  0.30
+Comm    | 0.0034454  | 0.0034454  | 0.0034454  |   0.0 |  0.03
+Output  | 0.002038   | 0.002038   | 0.002038   |   0.0 |  0.02
+Modify  | 0.0020044  | 0.0020044  | 0.0020044  |   0.0 |  0.02
+Other   |            | 0.003071   |            |       |  0.03
 
 Nlocal:        192.000 ave         192 max         192 min
 Histogram: 1 0 0 0 0 0 0 0 0 0

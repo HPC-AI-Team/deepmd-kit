@@ -1,1 +1,1 @@
-graph_gemm_tanh_fusion.pb
+graph_gemm_tanh.pb
