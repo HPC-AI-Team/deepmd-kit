@@ -87,17 +87,17 @@ occurrence: The number of times it occurs
 
 Profile:
 node name | requested bytes | total execution time | accelerator execution time | cpu execution time | # float_ops | op occurrence (run|defined)
-GemmLayer                     48.59MB (100.00%, 17.64%),      20.97ms (100.00%, 17.55%),             0us (0.00%, 0.00%),      20.97ms (100.00%, 17.55%),   0 float_ops (100.00%, 0.00%),      20|20
-MatmulNt                        24.81MB (82.36%, 9.01%),       19.47ms (82.45%, 16.29%),             0us (0.00%, 0.00%),       19.47ms (82.45%, 16.29%),   0 float_ops (100.00%, 0.00%),      20|20
-BatchMatMulV2                  33.58MB (73.35%, 12.19%),       13.11ms (66.16%, 10.97%),             0us (0.00%, 0.00%),       13.11ms (66.16%, 10.97%), 162.79m float_ops (100.00%, 86.92%),      18|18
-FastTanh                       48.59MB (61.16%, 17.64%),       12.27ms (55.19%, 10.27%),             0us (0.00%, 0.00%),       12.27ms (55.19%, 10.27%),    0 float_ops (13.08%, 0.00%),      18|18
-Slice                          49.00MB (43.52%, 17.79%),        10.01ms (44.92%, 8.38%),             0us (0.00%, 0.00%),        10.01ms (44.92%, 8.38%),    0 float_ops (13.08%, 0.00%),      34|34
-ProdEnvMatA                      4.13MB (25.73%, 1.50%),         9.68ms (36.55%, 8.10%),             0us (0.00%, 0.00%),         9.68ms (36.55%, 8.10%),    0 float_ops (13.08%, 0.00%),        1|1
-ConcatV2                       43.85MB (24.23%, 15.92%),         6.24ms (28.45%, 5.22%),             0us (0.00%, 0.00%),         6.24ms (28.45%, 5.22%),    0 float_ops (13.08%, 0.00%),      24|24
-Mul                               1.47MB (8.31%, 0.54%),         5.65ms (23.23%, 4.73%),             0us (0.00%, 0.00%),         5.65ms (23.23%, 4.73%), 6.45m float_ops (13.08%, 3.45%),      39|44
-AddV2                                 4B (7.78%, 0.00%),         4.36ms (18.50%, 3.65%),             0us (0.00%, 0.00%),         4.36ms (18.50%, 3.65%),     0 float_ops (9.63%, 0.00%),      15|16
-Square                                0B (0.00%, 0.00%),         3.77ms (14.85%, 3.16%),             0us (0.00%, 0.00%),         3.77ms (14.85%, 3.16%), 6.07m float_ops (9.63%, 3.24%),      18|18
-Sub                                  56B (7.78%, 0.00%),         3.68ms (11.69%, 3.08%),             0us (0.00%, 0.00%),         3.68ms (11.69%, 3.08%), 6.07m float_ops (6.39%, 3.24%),      36|46
+GemmLayer                     48.59MB (100.00%, 17.64%),      21.11ms (100.00%, 18.02%),             0us (0.00%, 0.00%),      21.11ms (100.00%, 18.02%),   0 float_ops (100.00%, 0.00%),      20|20
+MatmulNt                        24.81MB (82.36%, 9.01%),       19.49ms (81.98%, 16.64%),             0us (0.00%, 0.00%),       19.49ms (81.98%, 16.64%),   0 float_ops (100.00%, 0.00%),      20|20
+BatchMatMulV2                  33.58MB (73.35%, 12.19%),       13.02ms (65.33%, 11.12%),             0us (0.00%, 0.00%),       13.02ms (65.33%, 11.12%), 162.79m float_ops (100.00%, 86.92%),      18|18
+FastTanh                       48.59MB (61.16%, 17.64%),       12.23ms (54.22%, 10.44%),             0us (0.00%, 0.00%),       12.23ms (54.22%, 10.44%),    0 float_ops (13.08%, 0.00%),      18|18
+Slice                          49.00MB (43.52%, 17.79%),        10.30ms (43.78%, 8.79%),             0us (0.00%, 0.00%),        10.30ms (43.78%, 8.79%),    0 float_ops (13.08%, 0.00%),      34|34
+ProdEnvMatA                      4.13MB (25.73%, 1.50%),         9.66ms (34.99%, 8.25%),             0us (0.00%, 0.00%),         9.66ms (34.99%, 8.25%),    0 float_ops (13.08%, 0.00%),        1|1
+Mul                              1.47MB (24.23%, 0.54%),         5.69ms (26.74%, 4.86%),             0us (0.00%, 0.00%),         5.69ms (26.74%, 4.86%), 6.45m float_ops (13.08%, 3.45%),      39|44
+ConcatV2                       43.85MB (23.70%, 15.92%),         4.44ms (21.88%, 3.79%),             0us (0.00%, 0.00%),         4.44ms (21.88%, 3.79%),     0 float_ops (9.63%, 0.00%),      24|24
+AddV2                                 4B (7.78%, 0.00%),         4.39ms (18.09%, 3.75%),             0us (0.00%, 0.00%),         4.39ms (18.09%, 3.75%),     0 float_ops (9.63%, 0.00%),      15|16
+Square                                0B (0.00%, 0.00%),         3.77ms (14.34%, 3.22%),             0us (0.00%, 0.00%),         3.77ms (14.34%, 3.22%), 6.07m float_ops (9.63%, 3.24%),      18|18
+Sub                                  56B (7.78%, 0.00%),         3.68ms (11.12%, 3.14%),             0us (0.00%, 0.00%),         3.68ms (11.12%, 3.14%), 6.07m float_ops (6.39%, 3.24%),      36|46
 
 ======================End of Report==========================
 DEEPMD INFO    # number of test data : 1 
@@ -115,126 +115,126 @@ INFO: You are running LIKWID in a cpuset with 50 CPUs. Taking given IDs as logic
 
 Top k op
 average time	min time	max time	percentage	op name
- 9682.00	    9682	    9682	    0.09	load/ProdEnvMatA
- 5028.00	    5028	    5028	    0.05	load/filter_type_1/GemmLayer_5
- 4021.00	    4021	    4021	    0.04	load/gradients/filter_type_1/GemmLayer_5_grad/MatmulNt
- 3581.00	    3581	    3581	    0.03	load/gradients/layer_0_type_1/GemmLayer_grad/MatmulNt
- 3020.00	    3020	    3020	    0.03	load/filter_type_1/FastTanh_5
- 2950.00	    2950	    2950	    0.03	load/layer_0_type_1/GemmLayer
- 2457.00	    2457	    2457	    0.02	load/filter_type_1/GemmLayer_2
- 2456.00	    2456	    2456	    0.02	load/filter_type_0/GemmLayer_5
- 2222.00	    2222	    2222	    0.02	load/gradients/filter_type_1/MatMul_1_grad/MatMul
- 2189.00	    2189	    2189	    0.02	load/gradients/layer_0_type_0/GemmLayer_grad/MatmulNt
- 2181.00	    2181	    2181	    0.02	load/filter_type_0/concat
- 2049.00	    2049	    2049	    0.02	load/gradients/filter_type_0/GemmLayer_5_grad/MatmulNt
- 2041.00	    2041	    2041	    0.02	load/gradients/filter_type_1/GemmLayer_2_grad/MatmulNt
- 2034.00	    2034	    2034	    0.02	load/ProdVirialSeA
- 1632.00	    1632	    1632	    0.02	load/layer_0_type_0/GemmLayer
- 1518.00	    1518	    1518	    0.01	load/filter_type_0/FastTanh_5
- 1517.00	    1517	    1517	    0.01	load/filter_type_1/FastTanh_4
+ 9658.00	    9658	    9658	    0.09	load/ProdEnvMatA
+ 5037.00	    5037	    5037	    0.05	load/filter_type_1/GemmLayer_5
+ 4016.00	    4016	    4016	    0.04	load/gradients/filter_type_1/GemmLayer_5_grad/MatmulNt
+ 3601.00	    3601	    3601	    0.03	load/gradients/layer_0_type_1/GemmLayer_grad/MatmulNt
+ 3016.00	    3016	    3016	    0.03	load/filter_type_1/FastTanh_5
+ 2947.00	    2947	    2947	    0.03	load/layer_0_type_1/GemmLayer
+ 2549.00	    2549	    2549	    0.02	load/filter_type_1/GemmLayer_2
+ 2500.00	    2500	    2500	    0.02	load/filter_type_0/GemmLayer_5
+ 2200.00	    2200	    2200	    0.02	load/gradients/filter_type_1/MatMul_1_grad/MatMul
+ 2196.00	    2196	    2196	    0.02	load/gradients/layer_0_type_0/GemmLayer_grad/MatmulNt
+ 2041.00	    2041	    2041	    0.02	load/gradients/filter_type_0/GemmLayer_5_grad/MatmulNt
+ 2034.00	    2034	    2034	    0.02	load/gradients/filter_type_1/GemmLayer_2_grad/MatmulNt
+ 2013.00	    2013	    2013	    0.02	load/ProdVirialSeA
+ 1633.00	    1633	    1633	    0.02	load/layer_0_type_0/GemmLayer
+ 1519.00	    1519	    1519	    0.01	load/filter_type_0/FastTanh_5
+ 1516.00	    1516	    1516	    0.01	load/filter_type_1/FastTanh_4
  1512.00	    1512	    1512	    0.01	load/filter_type_1/FastTanh_2
- 1448.00	    1448	    1448	    0.01	load/filter_type_1/GemmLayer_4
- 1444.00	    1444	    1444	    0.01	load/gradients/filter_type_1/concat_3_grad/Slice
- 1442.00	    1442	    1442	    0.01	load/gradients/filter_type_1/concat_3_grad/Slice_1
- 1272.00	    1272	    1272	    0.01	load/filter_type_0/GemmLayer_2
- 1266.00	    1266	    1266	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul
- 1240.00	    1240	    1240	    0.01	load/filter_type_1/add_3
- 1196.00	    1196	    1196	    0.01	load/gradients/filter_type_1/MatMul_1_grad/MatMul_1
- 1125.00	    1125	    1125	    0.01	load/filter_type_1/MatMul_1
- 1118.00	    1118	    1118	    0.01	load/gradients/filter_type_0/MatMul_1_grad/MatMul
- 1034.00	    1034	    1034	    0.01	load/filter_type_1/concat_3
+ 1461.00	    1461	    1461	    0.01	load/filter_type_1/GemmLayer_4
+ 1442.00	    1442	    1442	    0.01	load/gradients/filter_type_1/concat_3_grad/Slice
+ 1441.00	    1441	    1441	    0.01	load/gradients/filter_type_1/concat_3_grad/Slice_1
+ 1244.00	    1244	    1244	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul
+ 1243.00	    1243	    1243	    0.01	load/filter_type_0/GemmLayer_2
+ 1238.00	    1238	    1238	    0.01	load/filter_type_1/add_3
+ 1188.00	    1188	    1188	    0.01	load/gradients/filter_type_1/MatMul_1_grad/MatMul_1
+ 1126.00	    1126	    1126	    0.01	load/filter_type_1/MatMul_1
+ 1114.00	    1114	    1114	    0.01	load/gradients/filter_type_0/MatMul_1_grad/MatMul
+ 1050.00	    1050	    1050	    0.01	load/filter_type_1/concat_3
+ 1038.00	    1038	    1038	    0.01	load/gradients/filter_type_1/concat_2_grad/Slice_1
  1027.00	    1027	    1027	    0.01	load/gradients/filter_type_1/GemmLayer_4_grad/MatmulNt
- 1002.00	    1002	    1002	    0.01	load/gradients/filter_type_1/concat_2_grad/Slice_1
-  969.00	     969	     969	    0.01	load/gradients/filter_type_0/GemmLayer_2_grad/MatmulNt
-  950.00	     950	     950	    0.01	load/Reshape_6/shape
-  832.00	     832	     832	    0.01	load/filter_type_1/MatMul_2
+  985.00	     985	     985	    0.01	load/gradients/filter_type_0/GemmLayer_2_grad/MatmulNt
+  838.00	     838	     838	    0.01	load/filter_type_1/MatMul_2
   824.00	     824	     824	    0.01	load/ProdForceSeA
-  804.00	     804	     804	    0.01	load/gradients/AddN_10
-  755.00	     755	     755	    0.01	load/filter_type_0/FastTanh_4
+  809.00	     809	     809	    0.01	load/gradients/AddN_10
+  760.00	     760	     760	    0.01	load/filter_type_0/FastTanh_4
   750.00	     750	     750	    0.01	load/filter_type_1/FastTanh_3
-  748.00	     748	     748	    0.01	load/filter_type_1/FastTanh_1
-  731.00	     731	     731	    0.01	load/filter_type_0/FastTanh_2
-  727.00	     727	     727	    0.01	load/gradients/filter_type_0/concat_3_grad/Slice
-  696.00	     696	     696	    0.01	load/filter_type_0/GemmLayer_4
-  696.00	     696	     696	    0.01	load/filter_type_1/GemmLayer_1
-  692.00	     692	     692	    0.01	load/gradients/filter_type_1/concat_1_grad/Slice
-  646.00	     646	     646	    0.01	load/filter_type_1/MatMul
+  747.00	     747	     747	    0.01	load/filter_type_1/FastTanh_1
+  732.00	     732	     732	    0.01	load/filter_type_0/FastTanh_2
+  726.00	     726	     726	    0.01	load/gradients/filter_type_1/concat_1_grad/Slice
+  726.00	     726	     726	    0.01	load/gradients/filter_type_0/concat_3_grad/Slice
+  694.00	     694	     694	    0.01	load/filter_type_1/GemmLayer_1
+  693.00	     693	     693	    0.01	load/filter_type_0/GemmLayer_4
+  688.00	     688	     688	    0.01	load/gradients/filter_type_1/concat_2_grad/Slice
+  663.00	     663	     663	    0.01	load/filter_type_0/concat_3
+  648.00	     648	     648	    0.01	load/filter_type_1/concat_1
+  645.00	     645	     645	    0.01	load/filter_type_1/MatMul
   636.00	     636	     636	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul_1
-  635.00	     635	     635	    0.01	load/filter_type_1/concat_1
+  626.00	     626	     626	    0.01	load/filter_type_1/add_2
   624.00	     624	     624	    0.01	load/filter_type_1/add_1
   623.00	     623	     623	    0.01	load/filter_type_0/add_3
-  623.00	     623	     623	    0.01	load/filter_type_1/add_2
-  617.00	     617	     617	    0.01	load/gradients/filter_type_1/MatMul_2_grad/MatMul
-  611.00	     611	     611	    0.01	load/gradients/filter_type_0/MatMul_grad/MatMul
+  612.00	     612	     612	    0.01	load/filter_type_1/concat_2
+  604.00	     604	     604	    0.01	load/gradients/filter_type_0/MatMul_grad/MatMul
+  595.00	     595	     595	    0.01	load/gradients/filter_type_1/MatMul_2_grad/MatMul
   593.00	     593	     593	    0.01	load/gradients/filter_type_0/MatMul_1_grad/MatMul_1
-  577.00	     577	     577	    0.01	load/filter_type_0/MatMul_1
-  566.00	     566	     566	    0.01	load/filter_type_1/concat_2
-  562.00	     562	     562	    0.01	load/gradients/filter_type_1/concat_1_grad/Slice_1
-  537.00	     537	     537	    0.00	load/gradients/filter_type_0/concat_3_grad/Slice_1
-  509.00	     509	     509	    0.00	load/filter_type_0/concat_3
-  504.00	     504	     504	    0.00	load/gradients/filter_type_1/concat_2_grad/Slice
-  504.00	     504	     504	    0.00	load/gradients/filter_type_0/GemmLayer_4_grad/MatmulNt
-  500.00	     500	     500	    0.00	load/gradients/filter_type_1/GemmLayer_1_grad/MatmulNt
-  440.00	     440	     440	    0.00	load/gradients/AddN_9
-  437.00	     437	     437	    0.00	load/filter_type_0/MatMul_2
+  589.00	     589	     589	    0.01	load/gradients/filter_type_1/concat_1_grad/Slice_1
+  578.00	     578	     578	    0.01	load/filter_type_0/MatMul_1
+  569.00	     569	     569	    0.01	load/gradients/filter_type_0/concat_3_grad/Slice_1
+  505.00	     505	     505	    0.00	load/gradients/filter_type_0/GemmLayer_4_grad/MatmulNt
+  503.00	     503	     503	    0.00	load/gradients/filter_type_1/GemmLayer_1_grad/MatmulNt
+  437.00	     437	     437	    0.00	load/gradients/AddN_9
+  434.00	     434	     434	    0.00	load/filter_type_0/MatMul_2
   418.00	     418	     418	    0.00	load/gradients/AddN_8
-  414.00	     414	     414	    0.00	load/gradients/AddN_14
-  405.00	     405	     405	    0.00	load/gradients/filter_type_1/GemmLayer_3_grad/MatmulNt
+  417.00	     417	     417	    0.00	load/gradients/AddN_14
+  402.00	     402	     402	    0.00	load/gradients/filter_type_1/GemmLayer_3_grad/MatmulNt
   397.00	     397	     397	    0.00	load/gradients/layer_2_type_1/GemmLayer_grad/MatmulNt
   393.00	     393	     393	    0.00	load/gradients/layer_1_type_1/GemmLayer_grad/MatmulNt
   383.00	     383	     383	    0.00	load/filter_type_0/FastTanh_1
-  382.00	     382	     382	    0.00	load/filter_type_1/FastTanh
-  381.00	     381	     381	    0.00	load/filter_type_0/FastTanh_3
-  369.00	     369	     369	    0.00	load/layer_1_type_1/GemmLayer
-  366.00	     366	     366	    0.00	load/layer_2_type_1/GemmLayer
-  365.00	     365	     365	    0.00	load/filter_type_0/GemmLayer_1
-  344.00	     344	     344	    0.00	load/filter_type_0/MatMul
-  337.00	     337	     337	    0.00	load/concat
-  324.00	     324	     324	    0.00	load/gradients/filter_type_1/FastTanh_3_grad/mul
+  381.00	     381	     381	    0.00	load/filter_type_1/FastTanh
+  380.00	     380	     380	    0.00	load/filter_type_0/FastTanh_3
+  367.00	     367	     367	    0.00	load/layer_2_type_1/GemmLayer
+  366.00	     366	     366	    0.00	load/layer_1_type_1/GemmLayer
+  355.00	     355	     355	    0.00	load/filter_type_0/GemmLayer_1
+  342.00	     342	     342	    0.00	load/filter_type_0/MatMul
+  336.00	     336	     336	    0.00	load/concat
+  328.00	     328	     328	    0.00	load/gradients/filter_type_1/FastTanh_3_grad/mul
+  322.00	     322	     322	    0.00	load/filter_type_0/concat_2
   321.00	     321	     321	    0.00	load/gradients/AddN_4
-  314.00	     314	     314	    0.00	load/gradients/filter_type_0/MatMul_2_grad/MatMul
-  314.00	     314	     314	    0.00	load/gradients/filter_type_0/FastTanh_2_grad/mul
-  310.00	     310	     310	    0.00	load/filter_type_1/GemmLayer_3
-  310.00	     310	     310	    0.00	load/gradients/filter_type_1/concat_grad/Slice_1
-  309.00	     309	     309	    0.00	load/filter_type_0/add_2
-  307.00	     307	     307	    0.00	load/filter_type_1/add
-  304.00	     304	     304	    0.00	load/filter_type_0/add_1
-  293.00	     293	     293	    0.00	load/filter_type_1/concat
-  283.00	     283	     283	    0.00	load/filter_type_0/concat_2
-  275.00	     275	     275	    0.00	load/gradients/layer_2_type_0/GemmLayer_grad/MatmulNt
-  269.00	     269	     269	    0.00	load/filter_type_0/concat_1
-  266.00	     266	     266	    0.00	load/gradients/filter_type_1/Slice_3_grad/Pad
-  266.00	     266	     266	    0.00	load/gradients/filter_type_0/concat_2_grad/Slice_1
-  264.00	     264	     264	    0.00	load/gradients/Slice_3_grad/Pad
-  262.00	     262	     262	    0.00	load/gradients/filter_type_0/GemmLayer_1_grad/MatmulNt
-  256.00	     256	     256	    0.00	load/gradients/layer_1_type_0/GemmLayer_grad/MatmulNt
-  245.00	     245	     245	    0.00	load/gradients/filter_type_1/concat_grad/Slice
-  244.00	     244	     244	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul_1
-  231.00	     231	     231	    0.00	load/gradients/Slice_2_grad/Pad
-  228.00	     228	     228	    0.00	load/gradients/concat_grad/Slice_1
-  227.00	     227	     227	    0.00	load/filter_type_0/FastTanh
-  221.00	     221	     221	    0.00	load/Slice_3
-  218.00	     218	     218	    0.00	load/gradients/filter_type_0/FastTanh_2_grad/sub
+  320.00	     320	     320	    0.00	load/filter_type_0/add_2
+  317.00	     317	     317	    0.00	load/gradients/filter_type_0/FastTanh_2_grad/mul
+  316.00	     316	     316	    0.00	load/gradients/filter_type_0/MatMul_2_grad/MatMul
+  315.00	     315	     315	    0.00	load/filter_type_1/GemmLayer_3
+  314.00	     314	     314	    0.00	load/filter_type_0/add_1
+  314.00	     314	     314	    0.00	load/filter_type_1/add
+  298.00	     298	     298	    0.00	load/gradients/filter_type_1/concat_grad/Slice_1
+  291.00	     291	     291	    0.00	load/filter_type_1/concat
+  276.00	     276	     276	    0.00	load/gradients/filter_type_0/concat_2_grad/Slice_1
+  274.00	     274	     274	    0.00	load/gradients/layer_2_type_0/GemmLayer_grad/MatmulNt
+  265.00	     265	     265	    0.00	load/gradients/filter_type_1/Slice_3_grad/Pad
+  262.00	     262	     262	    0.00	load/gradients/Slice_3_grad/Pad
+  260.00	     260	     260	    0.00	load/gradients/filter_type_0/GemmLayer_1_grad/MatmulNt
+  257.00	     257	     257	    0.00	load/gradients/layer_1_type_0/GemmLayer_grad/MatmulNt
+  247.00	     247	     247	    0.00	load/gradients/filter_type_1/concat_grad/Slice
+  246.00	     246	     246	    0.00	load/filter_type_0/concat_1
+  242.00	     242	     242	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul_1
+  230.00	     230	     230	    0.00	load/gradients/Slice_2_grad/Pad
+  229.00	     229	     229	    0.00	load/gradients/concat_grad/Slice_1
+  223.00	     223	     223	    0.00	load/Slice_3
+  219.00	     219	     219	    0.00	load/gradients/filter_type_0/FastTanh_2_grad/sub
+  214.00	     214	     214	    0.00	load/layer_1_type_0/GemmLayer
+  213.00	     213	     213	    0.00	load/gradients/filter_type_1/GemmLayer_grad/MatmulNt
+  212.00	     212	     212	    0.00	load/gradients/filter_type_1/MatMul_2_grad/MatMul_1
 
 Top k op type
 average time	percentage	op type
-20974.00	    0.19	GemmLayer
-19472.00	    0.18	MatmulNt
-13108.00	    0.12	MatMul
-12268.00	    0.11	FastTanh
-10010.00	    0.09	Slice
- 9682.00	    0.09	ProdEnvMatA
- 6240.00	    0.06	concat
- 4360.00	    0.04	add
+21107.00	    0.20	GemmLayer
+19491.00	    0.18	MatmulNt
+13021.00	    0.12	MatMul
+12226.00	    0.12	FastTanh
+10296.00	    0.10	Slice
+ 9658.00	    0.09	ProdEnvMatA
+ 4442.00	    0.04	concat
+ 4393.00	    0.04	add
  3557.00	    0.03	AddN
- 2034.00	    0.02	ProdVirialSeA
- 1534.00	    0.01	Pad
- 1457.00	    0.01	mul
- 1023.00	    0.01	shape
+ 2013.00	    0.02	ProdVirialSeA
+ 1524.00	    0.01	Pad
+ 1495.00	    0.01	mul
   824.00	    0.01	ProdForceSeA
-  312.00	    0.00	Shape
-  294.00	    0.00	sub
-  259.00	    0.00	Mul
-  234.00	    0.00	Reshape
-  204.00	    0.00	strided
-  100.00	    0.00	Sum
+  311.00	    0.00	Shape
+  295.00	    0.00	sub
+  257.00	    0.00	Mul
+  245.00	    0.00	Reshape
+  209.00	    0.00	strided
+  105.00	    0.00	Sum
+   94.00	    0.00	ShapeN

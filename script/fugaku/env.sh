@@ -5,6 +5,8 @@ export deepmd_root=$HOME/gzq/deepmd-kit
 export tensorflow_root=$HOME/gzq/fj_software/tensorflow/TensorFlow-2.2.0
 export lammps_root=$HOME/gzq/deepmd-kit/source/build_lammps/lammps-stable_29Oct2020
 
+alias "build_deempd=$deepmd_root/script/fugaku/build_deepmd.sh"
+
 if [ -z $deepmd_root ]
 then
     echo "not found envoriment variable : deepmd_root"

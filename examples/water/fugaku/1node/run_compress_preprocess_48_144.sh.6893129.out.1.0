@@ -15,7 +15,7 @@ Reading data file ...
   3 by 4 by 4 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.030 seconds
+  read_data CPU = 0.043 seconds
 mass 		    1 16
 mass		    2 2
 
@@ -24,10 +24,10 @@ pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-752-g2555311-dirty
+  source:             v1.2.2-754-gfc5e4d0-dirty
   source brach:       devel_
-  source commit:      2555311
-  source commit at:   2021-07-04 23:33:27 +0800
+  source commit:      fc5e4d0
+  source commit at:   2021-07-05 14:55:58 +0900
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
@@ -49,12 +49,12 @@ Summary of lammps deepmd module ...
   ntypes in model:    2
 pair_coeff
 
-replicate       4 4 4
+replicate       6 6 4
 Replicating atoms ...
-  triclinic box = (0.0000000 0.0000000 0.0000000) to (49.778800 49.778800 49.778800) with tilt (0.0000000 0.0000000 0.0000000)
-  3 by 4 by 4 MPI processor grid
-  12288 atoms
-  replicate CPU = 0.032 seconds
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (74.668200 74.668200 49.778800) with tilt (0.0000000 0.0000000 0.0000000)
+  4 by 4 by 3 MPI processor grid
+  27648 atoms
+  replicate CPU = 0.033 seconds
 
 velocity        all create 330.0 23456789
 
@@ -70,7 +70,7 @@ Neighbor list info ...
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 8
   ghost atom cutoff = 8
-  binsize = 4, bins = 13 13 13
+  binsize = 4, bins = 19 19 13
   1 neighbor lists, perpetual/occasional/extra = 1 0 0
   (1) pair deepmd, perpetual
       attributes: , newton on
@@ -81,33 +81,33 @@ Setting up Verlet run ...
   Unit style    : metal
   Current step  : 0
   Time step     : 0.0005
-Per MPI rank memory allocation (min/avg/max) = 3.925 | 3.926 | 3.927 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 4.353 | 4.358 | 4.362 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
-       0   -1916423.3     524.1124   -1915899.2          330     4888.933    123348.33 
-      20   -1916414.1    514.82087   -1915899.3    324.14971     1705.425    123348.33 
-      40   -1916436.4    537.14506   -1915899.3    338.20583   -1388.7441    123348.33 
-      60   -1916433.6    534.44058   -1915899.2    336.50299    1744.1998    123348.33 
-      80   -1916431.6    532.24266   -1915899.4     335.1191     2466.711    123348.33 
-     100   -1916418.6    519.44557   -1915899.2     327.0616   -1043.4826    123348.33 
-Loop time of 8.18592 on 48 procs for 100 steps with 12288 atoms
+       0   -4311952.5    1179.3062   -4310773.2          330    4889.1382    277533.74 
+      20   -4311933.3    1159.8873   -4310773.4    324.56609    2053.0794    277533.74 
+      40   -4311986.3    1212.9481   -4310773.4    339.41385   -1275.7848    277533.74 
+      60     -4311979    1205.8928   -4310773.1     337.4396    1258.5595    277533.74 
+      80   -4311973.3    1199.7678   -4310773.5    335.72568    2201.5384    277533.74 
+     100   -4311946.9    1173.7369   -4310773.2    328.44157   -553.11926    277533.74 
+Loop time of 15.6889 on 48 procs for 100 steps with 27648 atoms
 
-Performance: 0.528 ns/day, 45.477 hours/ns, 12.216 timesteps/s
-99.8% CPU use with 48 MPI tasks x 1 OpenMP threads
+Performance: 0.275 ns/day, 87.161 hours/ns, 6.374 timesteps/s
+99.9% CPU use with 48 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 7.4774     | 7.8302     | 8.0597     |   6.4 | 95.65
-Neigh   | 0.03888    | 0.040279   | 0.041513   |   0.4 |  0.49
-Comm    | 0.066301   | 0.29424    | 0.64963    |  33.4 |  3.59
-Output  | 0.011821   | 0.011831   | 0.011867   |   0.0 |  0.14
-Modify  | 0.004442   | 0.008502   | 0.016798   |   4.6 |  0.10
-Other   |            | 0.0009052  |            |       |  0.01
+Pair    | 14.167     | 14.698     | 15.559     |   7.3 | 93.69
+Neigh   | 0.087911   | 0.092165   | 0.097269   |   0.6 |  0.59
+Comm    | 0.018145   | 0.73561    | 1.323      |  34.9 |  4.69
+Output  | 0.0081136  | 0.0081263  | 0.0081665  |   0.0 |  0.05
+Modify  | 0.0041787  | 0.15328    | 0.5124     |  51.3 |  0.98
+Other   |            | 0.001261   |            |       |  0.01
 
-Nlocal:        256.000 ave         264 max         245 min
-Histogram: 1 3 11 1 0 4 6 13 5 4
-Nghost:        2365.35 ave        2412 max        2330 min
-Histogram: 7 11 10 3 1 0 0 0 6 10
+Nlocal:        576.000 ave         598 max         550 min
+Histogram: 2 6 0 2 5 10 13 6 0 4
+Nghost:        3329.85 ave        3419 max        3251 min
+Histogram: 4 6 4 7 6 8 1 3 3 6
 Neighs:        0.00000 ave           0 max           0 min
 Histogram: 48 0 0 0 0 0 0 0 0 0
 
@@ -118,4 +118,4 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:15
+Total wall time: 0:00:23

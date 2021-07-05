@@ -15,7 +15,7 @@ Reading data file ...
   3 by 4 by 4 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.031 seconds
+  read_data CPU = 0.170 seconds
 mass 		    1 16
 mass		    2 2
 
@@ -24,10 +24,10 @@ pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-752-g2555311-dirty
+  source:             v1.2.2-754-gfc5e4d0-dirty
   source brach:       devel_
-  source commit:      2555311
-  source commit at:   2021-07-04 23:33:27 +0800
+  source commit:      fc5e4d0
+  source commit at:   2021-07-05 14:55:58 +0900
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
@@ -54,7 +54,7 @@ Replicating atoms ...
   triclinic box = (0.0000000 0.0000000 0.0000000) to (62.223500 99.557600 74.668200) with tilt (0.0000000 0.0000000 0.0000000)
   3 by 4 by 4 MPI processor grid
   46080 atoms
-  replicate CPU = 0.037 seconds
+  replicate CPU = 0.046 seconds
 
 velocity        all create 330.0 23456789
 
@@ -89,20 +89,20 @@ Step PotEng KinEng TotEng Temp Press Volume
       60   -7186636.2    2014.2783   -7184621.9    338.18301    1262.8602    462556.23 
       80   -7186624.5    2001.9779   -7184622.5    336.11786    2212.1282    462556.23 
      100   -7186575.4    1953.3995     -7184622    327.96189   -562.08563    462556.23 
-Loop time of 29.1598 on 48 procs for 100 steps with 46080 atoms
+Loop time of 25.3535 on 48 procs for 100 steps with 46080 atoms
 
-Performance: 0.148 ns/day, 161.999 hours/ns, 3.429 timesteps/s
+Performance: 0.170 ns/day, 140.853 hours/ns, 3.944 timesteps/s
 99.9% CPU use with 48 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 26.618     | 27.552     | 28.919     |  12.1 | 94.49
-Neigh   | 0.1564     | 0.16324    | 0.17348    |   1.2 |  0.56
-Comm    | 0.046727   | 1.4149     | 2.3566     |  53.5 |  4.85
-Output  | 0.0093761  | 0.0093856  | 0.0094286  |   0.0 |  0.03
-Modify  | 0.0061562  | 0.018524   | 0.061636   |  13.0 |  0.06
-Other   |            | 0.001624   |            |       |  0.01
+Pair    | 23.344     | 24.037     | 25.098     |  10.9 | 94.81
+Neigh   | 0.15746    | 0.16327    | 0.17302    |   1.2 |  0.64
+Comm    | 0.064271   | 1.1233     | 1.8317     |  50.8 |  4.43
+Output  | 0.011239   | 0.011248   | 0.011288   |   0.0 |  0.04
+Modify  | 0.0060201  | 0.017241   | 0.048918   |  11.6 |  0.07
+Other   |            | 0.001631   |            |       |  0.01
 
 Nlocal:        960.000 ave        1002 max         932 min
 Histogram: 7 5 6 11 4 6 1 0 4 4
@@ -118,4 +118,4 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:36
+Total wall time: 0:00:33

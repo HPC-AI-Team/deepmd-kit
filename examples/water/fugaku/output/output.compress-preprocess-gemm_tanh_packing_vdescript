@@ -16,7 +16,7 @@ Reading data file ...
   1 by 1 by 1 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.017 seconds
+  read_data CPU = 0.012 seconds
 mass 		    1 16
 mass		    2 2
 
@@ -31,10 +31,10 @@ pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-753-gc3b2938-dirty
+  source:             v1.2.2-754-gfc5e4d0-dirty
   source brach:       devel_
-  source commit:      c3b2938
-  source commit at:   2021-07-05 11:26:06 +0900
+  source commit:      fc5e4d0
+  source commit at:   2021-07-05 14:55:58 +0900
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
@@ -89,20 +89,20 @@ Step PotEng KinEng TotEng Temp Press Volume
       60   -29943.946    7.9864812   -29935.959    323.48747    4701.8386    1927.3176 
       80   -29944.873    8.9010067   -29935.972    360.52976    2061.5908    1927.3176 
      100   -29944.145    8.1837761   -29935.961    331.47878   -5249.3479    1927.3176 
-Loop time of 4.97119 on 1 procs for 100 steps with 192 atoms
+Loop time of 4.97833 on 1 procs for 100 steps with 192 atoms
 
-Performance: 0.869 ns/day, 27.618 hours/ns, 20.116 timesteps/s
-99.7% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 0.868 ns/day, 27.657 hours/ns, 20.087 timesteps/s
+99.6% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 4.929      | 4.929      | 4.929      |   0.0 | 99.15
-Neigh   | 0.033965   | 0.033965   | 0.033965   |   0.0 |  0.68
-Comm    | 0.0034485  | 0.0034485  | 0.0034485  |   0.0 |  0.07
-Output  | 0.00092292 | 0.00092292 | 0.00092292 |   0.0 |  0.02
-Modify  | 0.0018392  | 0.0018392  | 0.0018392  |   0.0 |  0.04
-Other   |            | 0.001998   |            |       |  0.04
+Pair    | 4.9323     | 4.9323     | 4.9323     |   0.0 | 99.08
+Neigh   | 0.035728   | 0.035728   | 0.035728   |   0.0 |  0.72
+Comm    | 0.0034492  | 0.0034492  | 0.0034492  |   0.0 |  0.07
+Output  | 0.0020118  | 0.0020118  | 0.0020118  |   0.0 |  0.04
+Modify  | 0.0018282  | 0.0018282  | 0.0018282  |   0.0 |  0.04
+Other   |            | 0.00303    |            |       |  0.06
 
 Nlocal:        192.000 ave         192 max         192 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -118,7 +118,7 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:08
+Total wall time: 0:00:10
 OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
 INFO: You are running LIKWID in a cpuset with 50 CPUs. Taking given IDs as logical ID in cpuset
 [1;34m[likwid-pin] Main PID -> hwthread 12 - OK[0m

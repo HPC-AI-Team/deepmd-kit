@@ -87,17 +87,17 @@ occurrence: The number of times it occurs
 
 Profile:
 node name | requested bytes | total execution time | accelerator execution time | cpu execution time | # float_ops | op occurrence (run|defined)
-TabulateFusionGrad              1.06MB (100.00%, 1.25%),      10.83ms (100.00%, 21.86%),             0us (0.00%, 0.00%),      10.83ms (100.00%, 21.86%),   0 float_ops (100.00%, 0.00%),        4|4
-ProdEnvMatA                      4.13MB (98.75%, 4.88%),        9.67ms (78.14%, 19.53%),             0us (0.00%, 0.00%),        9.67ms (78.14%, 19.53%),   0 float_ops (100.00%, 0.00%),        1|1
-MatmulNt                         4.25MB (93.86%, 5.02%),        7.04ms (58.61%, 14.22%),             0us (0.00%, 0.00%),        7.04ms (58.61%, 14.22%),   0 float_ops (100.00%, 0.00%),        8|8
-GemmTanhLayer                    1.11MB (88.84%, 1.31%),        5.97ms (44.39%, 12.05%),             0us (0.00%, 0.00%),        5.97ms (44.39%, 12.05%),   0 float_ops (100.00%, 0.00%),        6|6
-TabulateFusion                   1.57MB (87.53%, 1.86%),         4.56ms (32.34%, 9.21%),             0us (0.00%, 0.00%),         4.56ms (32.34%, 9.21%),   0 float_ops (100.00%, 0.00%),        4|4
-BatchMatMulV2                    4.03MB (85.67%, 4.76%),         2.47ms (23.13%, 4.99%),             0us (0.00%, 0.00%),         2.47ms (23.13%, 4.99%), 106.95m float_ops (100.00%, 98.52%),        6|6
-ProdVirialSeA                   13.90KB (80.91%, 0.02%),         1.85ms (18.15%, 3.73%),             0us (0.00%, 0.00%),         1.85ms (18.15%, 3.73%),     0 float_ops (1.48%, 0.00%),        1|1
-Pad                            11.32MB (80.89%, 13.37%),         1.50ms (14.42%, 3.02%),             0us (0.00%, 0.00%),         1.50ms (14.42%, 3.02%),     0 float_ops (1.48%, 0.00%),      14|14
-Slice                            8.30MB (67.52%, 9.81%),         1.42ms (11.39%, 2.86%),             0us (0.00%, 0.00%),         1.42ms (11.39%, 2.86%),     0 float_ops (1.48%, 0.00%),      18|18
-ProdForceSeA                     4.61KB (57.71%, 0.01%),           838us (8.54%, 1.69%),             0us (0.00%, 0.00%),           838us (8.54%, 1.69%),     0 float_ops (1.48%, 0.00%),        1|1
-AddN                                  0B (0.00%, 0.00%),           759us (6.84%, 1.53%),             0us (0.00%, 0.00%),           759us (6.84%, 1.53%), 809.47k float_ops (1.48%, 0.75%),      14|14
+TabulateFusionGrad              1.06MB (100.00%, 1.25%),      10.80ms (100.00%, 21.90%),             0us (0.00%, 0.00%),      10.80ms (100.00%, 21.90%),   0 float_ops (100.00%, 0.00%),        4|4
+ProdEnvMatA                      4.13MB (98.75%, 4.88%),        9.67ms (78.10%, 19.61%),             0us (0.00%, 0.00%),        9.67ms (78.10%, 19.61%),   0 float_ops (100.00%, 0.00%),        1|1
+MatmulNt                         4.25MB (93.86%, 5.02%),        7.10ms (58.49%, 14.40%),             0us (0.00%, 0.00%),        7.10ms (58.49%, 14.40%),   0 float_ops (100.00%, 0.00%),        8|8
+GemmTanhLayer                    1.11MB (88.84%, 1.31%),        5.96ms (44.09%, 12.08%),             0us (0.00%, 0.00%),        5.96ms (44.09%, 12.08%),   0 float_ops (100.00%, 0.00%),        6|6
+TabulateFusion                   1.57MB (87.53%, 1.86%),         4.50ms (32.01%, 9.13%),             0us (0.00%, 0.00%),         4.50ms (32.01%, 9.13%),   0 float_ops (100.00%, 0.00%),        4|4
+BatchMatMulV2                    4.03MB (85.67%, 4.76%),         2.29ms (22.88%, 4.64%),             0us (0.00%, 0.00%),         2.29ms (22.88%, 4.64%), 106.95m float_ops (100.00%, 98.52%),        6|6
+ProdVirialSeA                   13.90KB (80.91%, 0.02%),         1.84ms (18.23%, 3.74%),             0us (0.00%, 0.00%),         1.84ms (18.23%, 3.74%),     0 float_ops (1.48%, 0.00%),        1|1
+Pad                            11.32MB (80.89%, 13.37%),         1.49ms (14.49%, 3.03%),             0us (0.00%, 0.00%),         1.49ms (14.49%, 3.03%),     0 float_ops (1.48%, 0.00%),      14|14
+Slice                            8.30MB (67.52%, 9.81%),         1.43ms (11.46%, 2.89%),             0us (0.00%, 0.00%),         1.43ms (11.46%, 2.89%),     0 float_ops (1.48%, 0.00%),      18|18
+ProdForceSeA                     4.61KB (57.71%, 0.01%),           839us (8.57%, 1.70%),             0us (0.00%, 0.00%),           839us (8.57%, 1.70%),     0 float_ops (1.48%, 0.00%),        1|1
+AddN                                  0B (0.00%, 0.00%),           756us (6.87%, 1.53%),             0us (0.00%, 0.00%),           756us (6.87%, 1.53%), 809.47k float_ops (1.48%, 0.75%),      14|14
 
 ======================End of Report==========================
 DEEPMD INFO    # number of test data : 1 
@@ -115,126 +115,126 @@ INFO: You are running LIKWID in a cpuset with 50 CPUs. Taking given IDs as logic
 
 Top k op
 average time	min time	max time	percentage	op name
- 9673.00	    9673	    9673	    0.20	load/ProdEnvMatA
- 4671.00	    4671	    4671	    0.09	load/gradients/filter_type_1/TabulateFusion_1_grad/TabulateFusionGrad
- 3555.00	    3555	    3555	    0.07	load/gradients/layer_0_type_1/GemmTanhLayer_grad/MatmulNt
- 3007.00	    3007	    3007	    0.06	load/layer_0_type_1/GemmTanhLayer
- 2508.00	    2508	    2508	    0.05	load/gradients/filter_type_1/TabulateFusion_grad/TabulateFusionGrad
- 2445.00	    2445	    2445	    0.05	load/gradients/filter_type_0/TabulateFusion_1_grad/TabulateFusionGrad
- 2100.00	    2100	    2100	    0.04	load/gradients/layer_0_type_0/GemmTanhLayer_grad/MatmulNt
- 1930.00	    1930	    1930	    0.04	load/filter_type_1/TabulateFusion_1
- 1846.00	    1846	    1846	    0.04	load/ProdVirialSeA
- 1659.00	    1659	    1659	    0.03	load/layer_0_type_0/GemmTanhLayer
- 1205.00	    1205	    1205	    0.02	load/gradients/filter_type_0/TabulateFusion_grad/TabulateFusionGrad
- 1089.00	    1089	    1089	    0.02	load/filter_type_1/TabulateFusion
- 1015.00	    1015	    1015	    0.02	load/filter_type_0/TabulateFusion_1
-  838.00	     838	     838	    0.02	load/ProdForceSeA
-  834.00	     834	     834	    0.02	load/filter_type_1/MatMul
-  619.00	     619	     619	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul
-  527.00	     527	     527	    0.01	load/filter_type_0/TabulateFusion
-  420.00	     420	     420	    0.01	load/layer_1_type_1/GemmTanhLayer
-  406.00	     406	     406	    0.01	load/layer_2_type_1/GemmTanhLayer
-  395.00	     395	     395	    0.01	load/gradients/layer_2_type_1/GemmTanhLayer_grad/MatmulNt
-  392.00	     392	     392	    0.01	load/gradients/layer_1_type_1/GemmTanhLayer_grad/MatmulNt
-  388.00	     388	     388	    0.01	load/filter_type_0/MatMul
-  337.00	     337	     337	    0.01	load/concat
-  318.00	     318	     318	    0.01	load/gradients/AddN_4
-  287.00	     287	     287	    0.01	load/gradients/filter_type_0/MatMul_grad/MatMul
-  277.00	     277	     277	    0.01	load/gradients/layer_2_type_0/GemmTanhLayer_grad/MatmulNt
-  260.00	     260	     260	    0.01	load/gradients/Slice_3_grad/Pad
-  258.00	     258	     258	    0.01	load/gradients/layer_1_type_0/GemmTanhLayer_grad/MatmulNt
-  258.00	     258	     258	    0.01	load/gradients/filter_type_1/Slice_3_grad/Pad
-  240.00	     240	     240	    0.00	load/layer_1_type_0/GemmTanhLayer
-  235.00	     235	     235	    0.00	load/layer_2_type_0/GemmTanhLayer
-  232.00	     232	     232	    0.00	load/gradients/Slice_2_grad/Pad
+ 9669.00	    9669	    9669	    0.20	load/ProdEnvMatA
+ 4673.00	    4673	    4673	    0.10	load/gradients/filter_type_1/TabulateFusion_1_grad/TabulateFusionGrad
+ 3569.00	    3569	    3569	    0.07	load/gradients/layer_0_type_1/GemmTanhLayer_grad/MatmulNt
+ 3001.00	    3001	    3001	    0.06	load/layer_0_type_1/GemmTanhLayer
+ 2492.00	    2492	    2492	    0.05	load/gradients/filter_type_1/TabulateFusion_grad/TabulateFusionGrad
+ 2432.00	    2432	    2432	    0.05	load/gradients/filter_type_0/TabulateFusion_1_grad/TabulateFusionGrad
+ 2154.00	    2154	    2154	    0.04	load/gradients/layer_0_type_0/GemmTanhLayer_grad/MatmulNt
+ 1887.00	    1887	    1887	    0.04	load/filter_type_1/TabulateFusion_1
+ 1844.00	    1844	    1844	    0.04	load/ProdVirialSeA
+ 1654.00	    1654	    1654	    0.03	load/layer_0_type_0/GemmTanhLayer
+ 1201.00	    1201	    1201	    0.02	load/gradients/filter_type_0/TabulateFusion_grad/TabulateFusionGrad
+ 1084.00	    1084	    1084	    0.02	load/filter_type_1/TabulateFusion
+ 1010.00	    1010	    1010	    0.02	load/filter_type_0/TabulateFusion_1
+  839.00	     839	     839	    0.02	load/ProdForceSeA
+  752.00	     752	     752	    0.02	load/filter_type_1/MatMul
+  546.00	     546	     546	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul
+  523.00	     523	     523	    0.01	load/filter_type_0/TabulateFusion
+  419.00	     419	     419	    0.01	load/layer_1_type_1/GemmTanhLayer
+  408.00	     408	     408	    0.01	load/layer_2_type_1/GemmTanhLayer
+  392.00	     392	     392	    0.01	load/gradients/layer_2_type_1/GemmTanhLayer_grad/MatmulNt
+  391.00	     391	     391	    0.01	load/gradients/layer_1_type_1/GemmTanhLayer_grad/MatmulNt
+  389.00	     389	     389	    0.01	load/filter_type_0/MatMul
+  339.00	     339	     339	    0.01	load/concat
+  319.00	     319	     319	    0.01	load/gradients/AddN_4
+  278.00	     278	     278	    0.01	load/gradients/layer_2_type_0/GemmTanhLayer_grad/MatmulNt
+  274.00	     274	     274	    0.01	load/gradients/filter_type_0/MatMul_grad/MatMul
+  259.00	     259	     259	    0.01	load/gradients/Slice_3_grad/Pad
+  257.00	     257	     257	    0.01	load/gradients/filter_type_1/Slice_3_grad/Pad
+  256.00	     256	     256	    0.01	load/gradients/layer_1_type_0/GemmTanhLayer_grad/MatmulNt
+  239.00	     239	     239	    0.00	load/layer_1_type_0/GemmTanhLayer
+  234.00	     234	     234	    0.00	load/layer_2_type_0/GemmTanhLayer
+  231.00	     231	     231	    0.00	load/gradients/Slice_2_grad/Pad
   227.00	     227	     227	    0.00	load/gradients/concat_grad/Slice_1
-  224.00	     224	     224	    0.00	load/gradients/filter_type_1/MatMul_grad/MatMul_1
   223.00	     223	     223	    0.00	load/Slice_3
-  164.00	     164	     164	    0.00	load/filter_type_1/Slice_3
-  138.00	     138	     138	    0.00	load/gradients/filter_type_1/Slice_1_grad/Pad
+  206.00	     206	     206	    0.00	load/gradients/filter_type_1/MatMul_grad/MatMul_1
+  162.00	     162	     162	    0.00	load/filter_type_1/Slice_3
+  137.00	     137	     137	    0.00	load/gradients/filter_type_1/Slice_1_grad/Pad
   136.00	     136	     136	    0.00	load/gradients/filter_type_0/Slice_3_grad/Pad
+  123.00	     123	     123	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul_1
   119.00	     119	     119	    0.00	load/gradients/concat_grad/Slice
   118.00	     118	     118	    0.00	load/Slice_2
-  117.00	     117	     117	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul_1
-   90.00	      90	      90	    0.00	load/gradients/AddN_13
-   88.00	      88	      88	    0.00	load/filter_type_1/Slice_1
-   84.00	      84	      84	    0.00	load/filter_type_0/Slice_3
-   78.00	      78	      78	    0.00	load/gradients/Slice_1_grad/Pad
-   74.00	      74	      74	    0.00	load/gradients/filter_type_0/Slice_1_grad/Pad
+   94.00	      94	      94	    0.00	load/filter_type_1/Slice_1
+   89.00	      89	      89	    0.00	load/filter_type_0/Slice_3
+   89.00	      89	      89	    0.00	load/gradients/AddN_13
+   77.00	      77	      77	    0.00	load/gradients/Slice_1_grad/Pad
+   73.00	      73	      73	    0.00	load/gradients/filter_type_0/Slice_1_grad/Pad
    72.00	      72	      72	    0.00	load/gradients/Slice_grad/Pad
    68.00	      68	      68	    0.00	load/Slice_1
-   65.00	      65	      65	    0.00	load/layer_1_type_1/mul
-   64.00	      64	      64	    0.00	load/filter_type_1/add
+   65.00	      65	      65	    0.00	load/filter_type_1/add
+   64.00	      64	      64	    0.00	load/layer_1_type_1/mul
    58.00	      58	      58	    0.00	load/gradients/filter_type_1/Slice_4_grad/Pad
-   57.00	      57	      57	    0.00	load/layer_2_type_1/mul
    57.00	      57	      57	    0.00	load/gradients/layer_2_type_1/mul_grad/Mul
    56.00	      56	      56	    0.00	load/gradients/layer_1_type_1/mul_grad/Mul
    56.00	      56	      56	    0.00	load/gradients/AddN_12
+   55.00	      55	      55	    0.00	load/layer_2_type_1/mul
+   54.00	      54	      54	    0.00	load/filter_type_1/Slice_4
    54.00	      54	      54	    0.00	load/gradients/AddN_6
-   52.00	      52	      52	    0.00	load/filter_type_1/Slice_4
    51.00	      51	      51	    0.00	load/filter_type_1/Slice_2
    51.00	      51	      51	    0.00	load/gradients/filter_type_1/Slice_2_grad/Pad
-   48.00	      48	      48	    0.00	load/filter_type_0/Slice_1
    48.00	      48	      48	    0.00	load/gradients/filter_type_1/Slice_grad/Pad
-   46.00	      46	      46	    0.00	load/final_layer_type_1/GemmLayer
-   45.00	      45	      45	    0.00	load/gradients/layer_2_type_0/mul_grad/Mul
-   42.00	      42	      42	    0.00	load/gradients/filter_type_1/mul_grad/Mul
-   41.00	      41	      41	    0.00	load/filter_type_1/mul
+   45.00	      45	      45	    0.00	load/filter_type_0/Slice_1
+   45.00	      45	      45	    0.00	load/final_layer_type_1/GemmLayer
+   44.00	      44	      44	    0.00	load/gradients/layer_2_type_0/mul_grad/Mul
+   42.00	      42	      42	    0.00	load/filter_type_1/mul
    41.00	      41	      41	    0.00	load/layer_1_type_0/mul
+   41.00	      41	      41	    0.00	load/gradients/filter_type_1/mul_grad/Mul
    39.00	      39	      39	    0.00	load/Slice
-   39.00	      39	      39	    0.00	load/gradients/AddN_10
-   36.00	      36	      36	    0.00	load/layer_2_type_0/mul
+   38.00	      38	      38	    0.00	load/gradients/AddN_10
+   36.00	      36	      36	    0.00	load/filter_type_0/add
    36.00	      36	      36	    0.00	load/gradients/layer_1_type_0/mul_grad/Mul
-   35.00	      35	      35	    0.00	load/filter_type_0/add
-   35.00	      35	      35	    0.00	load/gradients/layer_0_type_1/GemmTanhLayer_grad/Square
-   34.00	      34	      34	    0.00	load/gradients/final_layer_type_0/GemmLayer_grad/MatmulNt
+   34.00	      34	      34	    0.00	load/gradients/layer_0_type_1/GemmTanhLayer_grad/Square
+   34.00	      34	      34	    0.00	load/layer_2_type_0/mul
+   33.00	      33	      33	    0.00	load/filter_type_0/Slice_4
    33.00	      33	      33	    0.00	load/filter_type_1/Slice
-   33.00	      33	      33	    0.00	load/gradients/filter_type_0/Slice_4_grad/Pad
-   32.00	      32	      32	    0.00	load/filter_type_0/Slice_4
+   33.00	      33	      33	    0.00	load/gradients/final_layer_type_0/GemmLayer_grad/MatmulNt
+   32.00	      32	      32	    0.00	load/gradients/filter_type_0/Slice_4_grad/Pad
    31.00	      31	      31	    0.00	load/filter_type_0/Slice_2
-   31.00	      31	      31	    0.00	load/gradients/final_layer_type_1/GemmLayer_grad/MatmulNt
-   31.00	      31	      31	    0.00	load/gradients/filter_type_0/Slice_2_grad/Pad
+   31.00	      31	      31	    0.00	load/gradients/filter_type_0/Slice_grad/Pad
+   30.00	      30	      30	    0.00	load/gradients/filter_type_0/Slice_2_grad/Pad
+   30.00	      30	      30	    0.00	load/gradients/AddN_11
+   29.00	      29	      29	    0.00	load/final_layer_type_0/GemmLayer
+   29.00	      29	      29	    0.00	load/gradients/final_layer_type_1/GemmLayer_grad/MatmulNt
    29.00	      29	      29	    0.00	load/gradients/layer_2_type_1/GemmTanhLayer_grad/mul
    29.00	      29	      29	    0.00	load/gradients/AddN_1
-   29.00	      29	      29	    0.00	load/gradients/layer_1_type_1/GemmTanhLayer_grad/mul
-   29.00	      29	      29	    0.00	load/gradients/filter_type_0/Slice_grad/Pad
-   29.00	      29	      29	    0.00	load/gradients/AddN_11
-   28.00	      28	      28	    0.00	load/add_5
-   28.00	      28	      28	    0.00	load/final_layer_type_0/GemmLayer
+   28.00	      28	      28	    0.00	load/gradients/layer_1_type_1/GemmTanhLayer_grad/mul
    28.00	      28	      28	    0.00	load/gradients/layer_0_type_1/GemmTanhLayer_grad/mul
-   28.00	      28	      28	    0.00	load/gradients/AddN_5
+   27.00	      27	      27	    0.00	load/add_5
    27.00	      27	      27	    0.00	load/add_6
    27.00	      27	      27	    0.00	load/gradients/AddN_3
+   27.00	      27	      27	    0.00	load/gradients/AddN_5
    23.00	      23	      23	    0.00	load/filter_type_0/mul
-   23.00	      23	      23	    0.00	load/gradients/layer_0_type_1/GemmTanhLayer_grad/sub
-   22.00	      22	      22	    0.00	load/gradients/filter_type_0/mul_grad/Mul
+   23.00	      23	      23	    0.00	load/gradients/filter_type_0/mul_grad/Mul
+   22.00	      22	      22	    0.00	load/gradients/layer_0_type_1/GemmTanhLayer_grad/sub
    21.00	      21	      21	    0.00	load/filter_type_0/Slice
    21.00	      21	      21	    0.00	load/gradients/AddN_9
    21.00	      21	      21	    0.00	load/gradients/AddN_8
    18.00	      18	      18	    0.00	load/strided_slice_30
-   18.00	      18	      18	    0.00	load/gradients/AddN
-   16.00	      16	      16	    0.00	load/add_2
-   16.00	      16	      16	    0.00	load/gradients/AddN_2
+   17.00	      17	      17	    0.00	load/add_2
+   17.00	      17	      17	    0.00	load/gradients/AddN
+   16.00	      16	      16	    0.00	load/add_3
 
 Top k op type
 average time	percentage	op type
-10829.00	    0.22	TabulateFusionGrad
- 9673.00	    0.20	ProdEnvMatA
- 7042.00	    0.14	MatmulNt
- 5967.00	    0.12	GemmTanhLayer
- 4561.00	    0.09	TabulateFusion
- 2469.00	    0.05	MatMul
- 1846.00	    0.04	ProdVirialSeA
- 1498.00	    0.03	Pad
- 1415.00	    0.03	Slice
-  838.00	    0.02	ProdForceSeA
-  759.00	    0.02	AddN
-  452.00	    0.01	concat
-  448.00	    0.01	mul
-  258.00	    0.01	Mul
-  211.00	    0.00	Shape
-  192.00	    0.00	add
-  190.00	    0.00	Reshape
-  102.00	    0.00	sub
-   95.00	    0.00	strided
-   77.00	    0.00	shape
+10798.00	    0.22	TabulateFusionGrad
+ 9669.00	    0.20	ProdEnvMatA
+ 7102.00	    0.14	MatmulNt
+ 5955.00	    0.12	GemmTanhLayer
+ 4504.00	    0.09	TabulateFusion
+ 2290.00	    0.05	MatMul
+ 1844.00	    0.04	ProdVirialSeA
+ 1492.00	    0.03	Pad
+ 1425.00	    0.03	Slice
+  839.00	    0.02	ProdForceSeA
+  756.00	    0.02	AddN
+  453.00	    0.01	concat
+  441.00	    0.01	mul
+  257.00	    0.01	Mul
+  214.00	    0.00	Shape
+  197.00	    0.00	Reshape
+  195.00	    0.00	add
+   99.00	    0.00	sub
+   97.00	    0.00	strided
+   80.00	    0.00	shape
