@@ -1,1 +1,1 @@
-../model/graph-compress_gemm_tanh_fusion.pb
+graph-compress_gemm_tanh_fusion.pb

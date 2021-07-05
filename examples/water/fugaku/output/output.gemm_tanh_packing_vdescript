@@ -29,10 +29,10 @@ pair_style	    deepmd ../model/graph.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-746-g2071c59-dirty
+  source:             v1.2.2-752-g2555311-dirty
   source brach:       devel_
-  source commit:      2071c59
-  source commit at:   2021-07-04 01:52:02 +0900
+  source commit:      2555311
+  source commit at:   2021-07-04 23:33:27 +0800
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
@@ -81,30 +81,30 @@ Setting up Verlet run ...
   Time step     : 0.0005
 Per MPI rank memory allocation (min/avg/max) = 3.908 | 3.908 | 3.908 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
-       0   -29943.634    8.1472669   -29935.487          330    211179.44    1927.3176 
-      20   -29944.752    9.2679004   -29935.484    375.39056    202460.57    1927.3176 
-      40   -29946.614    11.129675   -29935.485    450.80057    209490.45    1927.3176 
-      60   -29949.446    13.950277   -29935.496    565.04734    211386.77    1927.3176 
-      80   -29951.072    15.567256   -29935.504    630.54208    209396.62    1927.3176 
-     100   -29953.032    17.485037   -29935.547    708.22058    205925.99    1927.3176 
-Loop time of 11.3655 on 1 procs for 100 steps with 192 atoms
+       0   -29944.115    8.1472669   -29935.968          330    4862.1689    1927.3176 
+      20   -29943.788    7.8204635   -29935.967    316.76303    514.11924    1927.3176 
+      40   -29944.397    8.4282169   -29935.968     341.3797   -2399.2532    1927.3176 
+      60   -29943.947    7.9866151    -29935.96     323.4929    4692.0272    1927.3176 
+      80   -29944.873    8.9002014   -29935.972    360.49714    2060.4911    1927.3176 
+     100   -29944.145    8.1830784   -29935.962    331.45052   -5252.7391    1927.3176 
+Loop time of 11.3665 on 1 procs for 100 steps with 192 atoms
 
-Performance: 0.380 ns/day, 63.142 hours/ns, 8.799 timesteps/s
-99.8% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 0.380 ns/day, 63.147 hours/ns, 8.798 timesteps/s
+99.9% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 11.323     | 11.323     | 11.323     |   0.0 | 99.63
-Neigh   | 0.03423    | 0.03423    | 0.03423    |   0.0 |  0.30
-Comm    | 0.0035372  | 0.0035372  | 0.0035372  |   0.0 |  0.03
-Output  | 0.0020428  | 0.0020428  | 0.0020428  |   0.0 |  0.02
-Modify  | 0.001734   | 0.001734   | 0.001734   |   0.0 |  0.02
-Other   |            | 0.0008879  |            |       |  0.01
+Pair    | 11.324     | 11.324     | 11.324     |   0.0 | 99.63
+Neigh   | 0.033857   | 0.033857   | 0.033857   |   0.0 |  0.30
+Comm    | 0.0034194  | 0.0034194  | 0.0034194  |   0.0 |  0.03
+Output  | 0.0019929  | 0.0019929  | 0.0019929  |   0.0 |  0.02
+Modify  | 0.0018599  | 0.0018599  | 0.0018599  |   0.0 |  0.02
+Other   |            | 0.0008688  |            |       |  0.01
 
 Nlocal:        192.000 ave         192 max         192 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:        2160.00 ave        2160 max        2160 min
+Nghost:        2113.00 ave        2113 max        2113 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Neighs:        0.00000 ave           0 max           0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0

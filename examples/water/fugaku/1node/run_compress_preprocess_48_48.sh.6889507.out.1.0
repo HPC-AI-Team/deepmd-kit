@@ -1,4 +1,3 @@
-OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
 LAMMPS (29 Oct 2020)
   using 1 OpenMP thread(s) per MPI task
 # bulk water
@@ -13,19 +12,13 @@ neigh_modify    every 10 delay 0 check no
 read_data	    water.lmp
 Reading data file ...
   triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
-  1 by 1 by 1 MPI processor grid
+  3 by 4 by 4 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.015 seconds
+  read_data CPU = 0.034 seconds
 mass 		    1 16
 mass		    2 2
 
-replicate       1 1 1
-Replicating atoms ...
-  triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
-  1 by 1 by 1 MPI processor grid
-  192 atoms
-  replicate CPU = 0.000 seconds
 
 pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
@@ -56,6 +49,13 @@ Summary of lammps deepmd module ...
   ntypes in model:    2
 pair_coeff
 
+replicate       4 4 3
+Replicating atoms ...
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (49.778800 49.778800 37.334100) with tilt (0.0000000 0.0000000 0.0000000)
+  4 by 4 by 3 MPI processor grid
+  9216 atoms
+  replicate CPU = 0.040 seconds
+
 velocity        all create 330.0 23456789
 
 fix             1 all nvt temp 330.0 330.0 0.5
@@ -70,7 +70,7 @@ Neighbor list info ...
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 8
   ghost atom cutoff = 8
-  binsize = 4, bins = 4 4 4
+  binsize = 4, bins = 13 13 10
   1 neighbor lists, perpetual/occasional/extra = 1 0 0
   (1) pair deepmd, perpetual
       attributes: , newton on
@@ -83,33 +83,33 @@ Setting up Verlet run ...
   Time step     : 0.0005
 Per MPI rank memory allocation (min/avg/max) = 3.908 | 3.908 | 3.908 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
-       0   -29944.115    8.1472669   -29935.967          330    4865.6625    1927.3176 
-      20   -29943.787    7.8209379   -29935.966    316.78225    516.97012    1927.3176 
-      40   -29944.397    8.4288856   -29935.968    341.40679   -2392.0198    1927.3176 
-      60   -29943.946    7.9864812   -29935.959    323.48747    4701.8386    1927.3176 
-      80   -29944.873    8.9010067   -29935.972    360.52976    2061.5908    1927.3176 
-     100   -29944.145    8.1837761   -29935.961    331.47878   -5249.3479    1927.3176 
-Loop time of 5.77676 on 1 procs for 100 steps with 192 atoms
+       0   -1437317.5    393.07364   -1436924.4          330    4888.8098    92511.246 
+      20   -1437310.9    386.37428   -1436924.5    324.37564    1526.0539    92511.246 
+      40   -1437328.8    404.28896   -1436924.5    339.41568   -1427.5139    92511.246 
+      60   -1437327.1    402.65573   -1436924.4    338.04452    1728.1479    92511.246 
+      80   -1437322.1    397.55177   -1436924.5    333.75956    2349.5481    92511.246 
+     100   -1437313.9    389.48048   -1436924.4    326.98341   -1208.8179    92511.246 
+Loop time of 6.24284 on 48 procs for 100 steps with 9216 atoms
 
-Performance: 0.748 ns/day, 32.093 hours/ns, 17.311 timesteps/s
-99.6% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 0.692 ns/day, 34.682 hours/ns, 16.018 timesteps/s
+99.7% CPU use with 48 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 5.7335     | 5.7335     | 5.7335     |   0.0 | 99.25
-Neigh   | 0.035052   | 0.035052   | 0.035052   |   0.0 |  0.61
-Comm    | 0.0034113  | 0.0034113  | 0.0034113  |   0.0 |  0.06
-Output  | 0.0020151  | 0.0020151  | 0.0020151  |   0.0 |  0.03
-Modify  | 0.0019     | 0.0019     | 0.0019     |   0.0 |  0.03
-Other   |            | 0.0008326  |            |       |  0.01
+Pair    | 5.9613     | 6.0557     | 6.156      |   1.7 | 97.00
+Neigh   | 0.029423   | 0.029937   | 0.030348   |   0.2 |  0.48
+Comm    | 0.047899   | 0.13572    | 0.2304     |  11.6 |  2.17
+Output  | 0.0040096  | 0.0040187  | 0.0040567  |   0.0 |  0.06
+Modify  | 0.0039254  | 0.016619   | 0.042677   |   8.9 |  0.27
+Other   |            | 0.0008236  |            |       |  0.01
 
-Nlocal:        192.000 ave         192 max         192 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:        2113.00 ave        2113 max        2113 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
+Nlocal:        192.000 ave         196 max         188 min
+Histogram: 2 4 5 6 0 14 7 3 5 2
+Nghost:        2101.98 ave        2112 max        2088 min
+Histogram: 4 3 3 3 4 6 3 8 6 8
 Neighs:        0.00000 ave           0 max           0 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
+Histogram: 48 0 0 0 0 0 0 0 0 0
 
 Total # of neighbors = 0
 Ave neighs/atom = 0.0000000
@@ -118,7 +118,4 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:09
-OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
-INFO: You are running LIKWID in a cpuset with 50 CPUs. Taking given IDs as logical ID in cpuset
-[1;34m[likwid-pin] Main PID -> hwthread 12 - OK[0m
+Total wall time: 0:00:13

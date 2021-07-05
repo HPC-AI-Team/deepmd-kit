@@ -1,3 +1,9 @@
+INFO: You are running LIKWID in a cpuset with 50 CPUs. Taking given IDs as logical ID in cpuset
+--------------------------------------------------------------------------------
+CPU name:	
+CPU type:	Fujitsu A64FX
+CPU clock:	0.00 GHz
+--------------------------------------------------------------------------------
 OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
 LAMMPS (29 Oct 2020)
   using 1 OpenMP thread(s) per MPI task
@@ -16,7 +22,7 @@ Reading data file ...
   1 by 1 by 1 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.015 seconds
+  read_data CPU = 0.004 seconds
 mass 		    1 16
 mass		    2 2
 
@@ -89,20 +95,20 @@ Step PotEng KinEng TotEng Temp Press Volume
       60   -29943.946    7.9864812   -29935.959    323.48747    4701.8386    1927.3176 
       80   -29944.873    8.9010067   -29935.972    360.52976    2061.5908    1927.3176 
      100   -29944.145    8.1837761   -29935.961    331.47878   -5249.3479    1927.3176 
-Loop time of 5.77676 on 1 procs for 100 steps with 192 atoms
+Loop time of 5.74919 on 1 procs for 100 steps with 192 atoms
 
-Performance: 0.748 ns/day, 32.093 hours/ns, 17.311 timesteps/s
-99.6% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 0.751 ns/day, 31.940 hours/ns, 17.394 timesteps/s
+99.7% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 5.7335     | 5.7335     | 5.7335     |   0.0 | 99.25
-Neigh   | 0.035052   | 0.035052   | 0.035052   |   0.0 |  0.61
-Comm    | 0.0034113  | 0.0034113  | 0.0034113  |   0.0 |  0.06
-Output  | 0.0020151  | 0.0020151  | 0.0020151  |   0.0 |  0.03
-Modify  | 0.0019     | 0.0019     | 0.0019     |   0.0 |  0.03
-Other   |            | 0.0008326  |            |       |  0.01
+Pair    | 5.7082     | 5.7082     | 5.7082     |   0.0 | 99.29
+Neigh   | 0.033878   | 0.033878   | 0.033878   |   0.0 |  0.59
+Comm    | 0.003438   | 0.003438   | 0.003438   |   0.0 |  0.06
+Output  | 0.00090408 | 0.00090408 | 0.00090408 |   0.0 |  0.02
+Modify  | 0.0018797  | 0.0018797  | 0.0018797  |   0.0 |  0.03
+Other   |            | 0.0008831  |            |       |  0.02
 
 Nlocal:        192.000 ave         192 max         192 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -118,7 +124,28 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:09
+Total wall time: 0:00:08
 OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
-INFO: You are running LIKWID in a cpuset with 50 CPUs. Taking given IDs as logical ID in cpuset
-[1;34m[likwid-pin] Main PID -> hwthread 12 - OK[0m
+--------------------------------------------------------------------------------
+Group 1: FLOPS_DP
++----------------------+---------+-------------+
+|         Event        | Counter | HWThread 12 |
++----------------------+---------+-------------+
+|     INST_RETIRED     |   PMC0  | 17954471613 |
+|      CPU_CYCLES      |   PMC1  | 16395753416 |
+| FP_DP_FIXED_OPS_SPEC |   PMC3  |  1277279559 |
+| FP_DP_SCALE_OPS_SPEC |   PMC4  | 15219195752 |
++----------------------+---------+-------------+
+
++--------------------------+-------------+
+|          Metric          | HWThread 12 |
++--------------------------+-------------+
+|    Runtime (RDTSC) [s]   |     10.9014 |
+|        Clock [MHz]       |   1504.0063 |
+|            CPI           |      0.9132 |
+|     DP (FP) [MFLOP/s]    |    117.1667 |
+| DP (FP+SVE128) [MFLOP/s] |   1513.2457 |
+| DP (FP+SVE256) [MFLOP/s] |   2909.3247 |
+| DP (FP+SVE512) [MFLOP/s] |   5701.4826 |
++--------------------------+-------------+
+

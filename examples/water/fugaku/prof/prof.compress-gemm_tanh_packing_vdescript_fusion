@@ -1,0 +1,240 @@
+WARNING:tensorflow:From /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/python/compat/v2_compat.py:96: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
+WARNING:tensorflow:From /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+DEEPMD WARNING From /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+73 ops no flops stats due to incomplete shapes.
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : ../data/data_3
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Parsing Inputs...
+generating trace file.
+
+******************************************************
+Timeline file is written to ./profiler.json_0.
+Open a Chrome browser, enter URL chrome://tracing and load the timeline file.
+******************************************************
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+
+=========================Options=============================
+-max_depth                  10
+-min_bytes                  0
+-min_peak_bytes             0
+-min_residual_bytes         0
+-min_output_bytes           0
+-min_micros                 0
+-min_accelerator_micros     0
+-min_cpu_micros             0
+-min_params                 0
+-min_float_ops              0
+-min_occurrence             0
+-step                       -1
+-order_by                   micros
+-account_type_regexes       .*
+-start_name_regexes         .*
+-trim_name_regexes          
+-show_name_regexes          .*
+-hide_name_regexes          
+-account_displayed_op_only  false
+-select                     bytes,float_ops,micros,occurrence
+-output                     stdout:
+
+==================Model Analysis Report======================
+
+Doc:
+op: The nodes are operation kernel type, such as MatMul, Conv2D. Graph nodes belonging to the same type are aggregated together.
+requested bytes: The memory requested by the operation, accumulatively.
+flops: Number of float operations. Note: Please read the implementation for the math behind it.
+total execution time: Sum of accelerator execution time and cpu execution time.
+cpu execution time: The time from the start to the end of the operation. It's the sum of actual cpu run time plus the time that it spends waiting if part of computation is launched asynchronously.
+accelerator execution time: Time spent executing on the accelerator. This is normally measured by the actual hardware library.
+occurrence: The number of times it occurs
+
+Profile:
+node name | requested bytes | total execution time | accelerator execution time | cpu execution time | # float_ops | op occurrence (run|defined)
+TabulateFusionGrad              1.06MB (100.00%, 1.25%),      43.38ms (100.00%, 42.61%),             0us (0.00%, 0.00%),      43.38ms (100.00%, 42.61%),   0 float_ops (100.00%, 0.00%),        4|4
+TabulateFusion                   1.57MB (98.75%, 1.86%),       24.14ms (57.39%, 23.72%),             0us (0.00%, 0.00%),       24.14ms (57.39%, 23.72%),   0 float_ops (100.00%, 0.00%),        4|4
+ProdEnvMatA                      4.13MB (96.89%, 4.88%),         9.63ms (33.67%, 9.46%),             0us (0.00%, 0.00%),         9.63ms (33.67%, 9.46%),   0 float_ops (100.00%, 0.00%),        1|1
+MatmulNt                         4.25MB (92.00%, 5.02%),         7.14ms (24.21%, 7.02%),             0us (0.00%, 0.00%),         7.14ms (24.21%, 7.02%),   0 float_ops (100.00%, 0.00%),        8|8
+GemmTanhLayer                    1.11MB (86.98%, 1.31%),         5.97ms (17.19%, 5.86%),             0us (0.00%, 0.00%),         5.97ms (17.19%, 5.86%),   0 float_ops (100.00%, 0.00%),        6|6
+BatchMatMulV2                    4.03MB (85.67%, 4.76%),         2.53ms (11.33%, 2.49%),             0us (0.00%, 0.00%),         2.53ms (11.33%, 2.49%), 106.95m float_ops (100.00%, 98.52%),        6|6
+ProdVirialSeA                   13.90KB (80.91%, 0.02%),          1.86ms (8.84%, 1.83%),             0us (0.00%, 0.00%),          1.86ms (8.84%, 1.83%),     0 float_ops (1.48%, 0.00%),        1|1
+Pad                            11.32MB (80.89%, 13.37%),          1.50ms (7.02%, 1.47%),             0us (0.00%, 0.00%),          1.50ms (7.02%, 1.47%),     0 float_ops (1.48%, 0.00%),      14|14
+Slice                            8.30MB (67.52%, 9.81%),          1.42ms (5.55%, 1.40%),             0us (0.00%, 0.00%),          1.42ms (5.55%, 1.40%),     0 float_ops (1.48%, 0.00%),      18|18
+ProdForceSeA                     4.61KB (57.71%, 0.01%),           838us (4.15%, 0.82%),             0us (0.00%, 0.00%),           838us (4.15%, 0.82%),     0 float_ops (1.48%, 0.00%),        1|1
+AddN                                  0B (0.00%, 0.00%),           759us (3.32%, 0.75%),             0us (0.00%, 0.00%),           759us (3.32%, 0.75%), 809.47k float_ops (1.48%, 0.75%),      14|14
+
+======================End of Report==========================
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 6.076734e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 3.164966e-04 eV
+DEEPMD INFO    Force  RMSE        : 6.465624e-02 eV/A
+DEEPMD INFO    Virial RMSE        : 5.265184e+00 eV
+DEEPMD INFO    Virial RMSE/Natoms : 2.742283e-02 eV
+DEEPMD INFO    # ----------------------------------------------- 
+profile : ture
+dp model type : ener
+OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
+INFO: You are running LIKWID in a cpuset with 50 CPUs. Taking given IDs as logical ID in cpuset
+[1;34m[likwid-pin] Main PID -> hwthread 12 - OK[0m
+
+Top k op
+average time	min time	max time	percentage	op name
+18905.00	   18905	   18905	    0.19	load/gradients/filter_type_1/TabulateFusion_1_grad/TabulateFusionGrad
+10460.00	   10460	   10460	    0.10	load/filter_type_1/TabulateFusion_1
+ 9989.00	    9989	    9989	    0.10	load/gradients/filter_type_1/TabulateFusion_grad/TabulateFusionGrad
+ 9721.00	    9721	    9721	    0.10	load/gradients/filter_type_0/TabulateFusion_1_grad/TabulateFusionGrad
+ 9634.00	    9634	    9634	    0.09	load/ProdEnvMatA
+ 5635.00	    5635	    5635	    0.06	load/filter_type_1/TabulateFusion
+ 5383.00	    5383	    5383	    0.05	load/filter_type_0/TabulateFusion_1
+ 4760.00	    4760	    4760	    0.05	load/gradients/filter_type_0/TabulateFusion_grad/TabulateFusionGrad
+ 3582.00	    3582	    3582	    0.04	load/gradients/layer_0_type_1/GemmTanhLayer_grad/MatmulNt
+ 3007.00	    3007	    3007	    0.03	load/layer_0_type_1/GemmTanhLayer
+ 2667.00	    2667	    2667	    0.03	load/filter_type_0/TabulateFusion
+ 2171.00	    2171	    2171	    0.02	load/gradients/layer_0_type_0/GemmTanhLayer_grad/MatmulNt
+ 1858.00	    1858	    1858	    0.02	load/ProdVirialSeA
+ 1658.00	    1658	    1658	    0.02	load/layer_0_type_0/GemmTanhLayer
+  839.00	     839	     839	    0.01	load/filter_type_1/MatMul
+  838.00	     838	     838	    0.01	load/ProdForceSeA
+  608.00	     608	     608	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul
+  436.00	     436	     436	    0.00	load/filter_type_0/MatMul
+  419.00	     419	     419	    0.00	load/layer_1_type_1/GemmTanhLayer
+  408.00	     408	     408	    0.00	load/layer_2_type_1/GemmTanhLayer
+  396.00	     396	     396	    0.00	load/gradients/layer_1_type_1/GemmTanhLayer_grad/MatmulNt
+  394.00	     394	     394	    0.00	load/gradients/layer_2_type_1/GemmTanhLayer_grad/MatmulNt
+  338.00	     338	     338	    0.00	load/concat
+  317.00	     317	     317	    0.00	load/gradients/AddN_4
+  306.00	     306	     306	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul
+  278.00	     278	     278	    0.00	load/gradients/layer_2_type_0/GemmTanhLayer_grad/MatmulNt
+  261.00	     261	     261	    0.00	load/gradients/Slice_3_grad/Pad
+  258.00	     258	     258	    0.00	load/gradients/filter_type_1/Slice_3_grad/Pad
+  257.00	     257	     257	    0.00	load/gradients/layer_1_type_0/GemmTanhLayer_grad/MatmulNt
+  238.00	     238	     238	    0.00	load/layer_1_type_0/GemmTanhLayer
+  236.00	     236	     236	    0.00	load/layer_2_type_0/GemmTanhLayer
+  231.00	     231	     231	    0.00	load/gradients/Slice_2_grad/Pad
+  227.00	     227	     227	    0.00	load/gradients/concat_grad/Slice_1
+  222.00	     222	     222	    0.00	load/Slice_3
+  222.00	     222	     222	    0.00	load/gradients/filter_type_1/MatMul_grad/MatMul_1
+  170.00	     170	     170	    0.00	load/filter_type_1/Slice_3
+  139.00	     139	     139	    0.00	load/gradients/filter_type_1/Slice_1_grad/Pad
+  137.00	     137	     137	    0.00	load/gradients/filter_type_0/Slice_3_grad/Pad
+  121.00	     121	     121	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul_1
+  119.00	     119	     119	    0.00	load/gradients/concat_grad/Slice
+  118.00	     118	     118	    0.00	load/Slice_2
+   90.00	      90	      90	    0.00	load/gradients/AddN_13
+   88.00	      88	      88	    0.00	load/filter_type_0/Slice_3
+   87.00	      87	      87	    0.00	load/filter_type_1/Slice_1
+   77.00	      77	      77	    0.00	load/gradients/Slice_1_grad/Pad
+   73.00	      73	      73	    0.00	load/gradients/filter_type_0/Slice_1_grad/Pad
+   71.00	      71	      71	    0.00	load/gradients/Slice_grad/Pad
+   68.00	      68	      68	    0.00	load/Slice_1
+   64.00	      64	      64	    0.00	load/layer_1_type_1/mul
+   63.00	      63	      63	    0.00	load/filter_type_1/add
+   58.00	      58	      58	    0.00	load/gradients/layer_2_type_1/mul_grad/Mul
+   57.00	      57	      57	    0.00	load/layer_2_type_1/mul
+   57.00	      57	      57	    0.00	load/gradients/filter_type_1/Slice_4_grad/Pad
+   56.00	      56	      56	    0.00	load/gradients/layer_1_type_1/mul_grad/Mul
+   56.00	      56	      56	    0.00	load/gradients/AddN_12
+   54.00	      54	      54	    0.00	load/filter_type_1/Slice_4
+   54.00	      54	      54	    0.00	load/gradients/AddN_6
+   51.00	      51	      51	    0.00	load/gradients/filter_type_1/Slice_2_grad/Pad
+   50.00	      50	      50	    0.00	load/filter_type_1/Slice_2
+   48.00	      48	      48	    0.00	load/filter_type_0/Slice_1
+   48.00	      48	      48	    0.00	load/gradients/filter_type_1/Slice_grad/Pad
+   45.00	      45	      45	    0.00	load/final_layer_type_1/GemmLayer
+   44.00	      44	      44	    0.00	load/gradients/layer_2_type_0/mul_grad/Mul
+   41.00	      41	      41	    0.00	load/filter_type_1/mul
+   41.00	      41	      41	    0.00	load/layer_1_type_0/mul
+   41.00	      41	      41	    0.00	load/gradients/filter_type_1/mul_grad/Mul
+   39.00	      39	      39	    0.00	load/Slice
+   39.00	      39	      39	    0.00	load/gradients/AddN_10
+   35.00	      35	      35	    0.00	load/filter_type_0/add
+   35.00	      35	      35	    0.00	load/layer_2_type_0/mul
+   35.00	      35	      35	    0.00	load/gradients/final_layer_type_0/GemmLayer_grad/MatmulNt
+   35.00	      35	      35	    0.00	load/gradients/layer_1_type_0/mul_grad/Mul
+   33.00	      33	      33	    0.00	load/filter_type_1/Slice
+   33.00	      33	      33	    0.00	load/gradients/filter_type_0/Slice_4_grad/Pad
+   32.00	      32	      32	    0.00	load/filter_type_0/Slice_4
+   32.00	      32	      32	    0.00	load/gradients/layer_0_type_1/GemmTanhLayer_grad/Square
+   31.00	      31	      31	    0.00	load/filter_type_0/Slice_2
+   31.00	      31	      31	    0.00	load/gradients/filter_type_0/Slice_2_grad/Pad
+   30.00	      30	      30	    0.00	load/gradients/final_layer_type_1/GemmLayer_grad/MatmulNt
+   30.00	      30	      30	    0.00	load/gradients/filter_type_0/Slice_grad/Pad
+   29.00	      29	      29	    0.00	load/final_layer_type_0/GemmLayer
+   29.00	      29	      29	    0.00	load/gradients/AddN_1
+   29.00	      29	      29	    0.00	load/gradients/layer_1_type_1/GemmTanhLayer_grad/mul
+   29.00	      29	      29	    0.00	load/gradients/AddN_11
+   28.00	      28	      28	    0.00	load/add_5
+   28.00	      28	      28	    0.00	load/gradients/layer_2_type_1/GemmTanhLayer_grad/mul
+   28.00	      28	      28	    0.00	load/gradients/AddN_5
+   27.00	      27	      27	    0.00	load/gradients/AddN_3
+   27.00	      27	      27	    0.00	load/gradients/layer_0_type_1/GemmTanhLayer_grad/mul
+   26.00	      26	      26	    0.00	load/add_6
+   23.00	      23	      23	    0.00	load/filter_type_0/mul
+   22.00	      22	      22	    0.00	load/gradients/layer_0_type_1/GemmTanhLayer_grad/sub
+   22.00	      22	      22	    0.00	load/gradients/AddN_9
+   22.00	      22	      22	    0.00	load/gradients/filter_type_0/mul_grad/Mul
+   21.00	      21	      21	    0.00	load/filter_type_0/Slice
+   21.00	      21	      21	    0.00	load/gradients/AddN_8
+   18.00	      18	      18	    0.00	load/gradients/AddN
+   17.00	      17	      17	    0.00	load/strided_slice_28
+   16.00	      16	      16	    0.00	load/add_2
+   16.00	      16	      16	    0.00	load/add_3
+
+Top k op type
+average time	percentage	op type
+43375.00	    0.43	TabulateFusionGrad
+24145.00	    0.24	TabulateFusion
+ 9634.00	    0.09	ProdEnvMatA
+ 7143.00	    0.07	MatmulNt
+ 5966.00	    0.06	GemmTanhLayer
+ 2532.00	    0.02	MatMul
+ 1858.00	    0.02	ProdVirialSeA
+ 1497.00	    0.01	Pad
+ 1423.00	    0.01	Slice
+  838.00	    0.01	ProdForceSeA
+  759.00	    0.01	AddN
+  452.00	    0.00	concat
+  444.00	    0.00	mul
+  256.00	    0.00	Mul
+  211.00	    0.00	Shape
+  203.00	    0.00	Reshape
+  191.00	    0.00	add
+  101.00	    0.00	sub
+   99.00	    0.00	strided
+   74.00	    0.00	GemmLayer

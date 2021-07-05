@@ -22,7 +22,7 @@ Reading data file ...
   1 by 1 by 1 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.013 seconds
+  read_data CPU = 0.004 seconds
 mass 		    1 16
 mass		    2 2
 replicate       1 1 1
@@ -35,10 +35,10 @@ pair_style	    deepmd ../model/graph.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-746-g2071c59-dirty
+  source:             v1.2.2-752-g2555311-dirty
   source brach:       devel_
-  source commit:      2071c59
-  source commit at:   2021-07-04 01:52:02 +0900
+  source commit:      2555311
+  source commit at:   2021-07-04 23:33:27 +0800
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
@@ -87,30 +87,30 @@ Setting up Verlet run ...
   Time step     : 0.0005
 Per MPI rank memory allocation (min/avg/max) = 3.908 | 3.908 | 3.908 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
-       0   -29943.634    8.1472669   -29935.487          330    211179.44    1927.3176 
-      20   -29944.752    9.2679004   -29935.484    375.39056    202460.57    1927.3176 
-      40   -29946.614    11.129675   -29935.485    450.80057    209490.45    1927.3176 
-      60   -29949.446    13.950277   -29935.496    565.04734    211386.77    1927.3176 
-      80   -29951.072    15.567256   -29935.504    630.54208    209396.62    1927.3176 
-     100   -29953.032    17.485037   -29935.547    708.22058    205925.99    1927.3176 
-Loop time of 11.3642 on 1 procs for 100 steps with 192 atoms
+       0   -29944.115    8.1472669   -29935.968          330    4862.1689    1927.3176 
+      20   -29943.788    7.8204635   -29935.967    316.76303    514.11924    1927.3176 
+      40   -29944.397    8.4282169   -29935.968     341.3797   -2399.2532    1927.3176 
+      60   -29943.947    7.9866151    -29935.96     323.4929    4692.0272    1927.3176 
+      80   -29944.873    8.9002014   -29935.972    360.49714    2060.4911    1927.3176 
+     100   -29944.145    8.1830784   -29935.962    331.45052   -5252.7391    1927.3176 
+Loop time of 11.3671 on 1 procs for 100 steps with 192 atoms
 
-Performance: 0.380 ns/day, 63.134 hours/ns, 8.800 timesteps/s
+Performance: 0.380 ns/day, 63.151 hours/ns, 8.797 timesteps/s
 99.8% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 11.322     | 11.322     | 11.322     |   0.0 | 99.63
-Neigh   | 0.033808   | 0.033808   | 0.033808   |   0.0 |  0.30
-Comm    | 0.0035257  | 0.0035257  | 0.0035257  |   0.0 |  0.03
-Output  | 0.0020502  | 0.0020502  | 0.0020502  |   0.0 |  0.02
-Modify  | 0.0017357  | 0.0017357  | 0.0017357  |   0.0 |  0.02
-Other   |            | 0.0009336  |            |       |  0.01
+Pair    | 11.325     | 11.325     | 11.325     |   0.0 | 99.63
+Neigh   | 0.034029   | 0.034029   | 0.034029   |   0.0 |  0.30
+Comm    | 0.0034161  | 0.0034161  | 0.0034161  |   0.0 |  0.03
+Output  | 0.0020866  | 0.0020866  | 0.0020866  |   0.0 |  0.02
+Modify  | 0.0019069  | 0.0019069  | 0.0019069  |   0.0 |  0.02
+Other   |            | 0.0008776  |            |       |  0.01
 
 Nlocal:        192.000 ave         192 max         192 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:        2160.00 ave        2160 max        2160 min
+Nghost:        2113.00 ave        2113 max        2113 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Neighs:        0.00000 ave           0 max           0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -129,21 +129,21 @@ Group 1: FLOPS_DP
 +----------------------+---------+-------------+
 |         Event        | Counter | HWThread 12 |
 +----------------------+---------+-------------+
-|     INST_RETIRED     |   PMC0  | 39568573411 |
-|      CPU_CYCLES      |   PMC1  | 29414876412 |
-| FP_DP_FIXED_OPS_SPEC |   PMC3  |  3950408183 |
-| FP_DP_SCALE_OPS_SPEC |   PMC4  | 42864570574 |
+|     INST_RETIRED     |   PMC0  | 39567526516 |
+|      CPU_CYCLES      |   PMC1  | 29444360092 |
+| FP_DP_FIXED_OPS_SPEC |   PMC3  |  3949543652 |
+| FP_DP_SCALE_OPS_SPEC |   PMC4  | 42864531520 |
 +----------------------+---------+-------------+
 
 +--------------------------+-------------+
 |          Metric          | HWThread 12 |
 +--------------------------+-------------+
-|    Runtime (RDTSC) [s]   |     17.4206 |
-|        Clock [MHz]       |   1688.5075 |
-|            CPI           |      0.7434 |
-|     DP (FP) [MFLOP/s]    |    226.7660 |
-| DP (FP+SVE128) [MFLOP/s] |   2687.3288 |
-| DP (FP+SVE256) [MFLOP/s] |   5147.8915 |
-| DP (FP+SVE512) [MFLOP/s] |  10069.0170 |
+|    Runtime (RDTSC) [s]   |     17.3349 |
+|        Clock [MHz]       |   1698.5606 |
+|            CPI           |      0.7442 |
+|     DP (FP) [MFLOP/s]    |    227.8378 |
+| DP (FP+SVE128) [MFLOP/s] |   2700.5697 |
+| DP (FP+SVE256) [MFLOP/s] |   5173.3015 |
+| DP (FP+SVE512) [MFLOP/s] |  10118.7651 |
 +--------------------------+-------------+
 

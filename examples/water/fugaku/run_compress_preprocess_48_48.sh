@@ -1,6 +1,6 @@
 #!/bin/sh -e
 #PJM -L  "node=1"                          # Number of assign node 8 (1 dimention format)
-#PJM -L  "freq=2000"                         
+#PJM -L  "freq=2200"                         
 #PJM -L "rscgrp=small"                     # Specify resource group
 #PJM -L  "elapse=00:05:00"                 # Elapsed time limit 1 hour
 #PJM --mpi "shape=1"

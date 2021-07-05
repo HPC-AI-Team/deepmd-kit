@@ -85,7 +85,10 @@ def preprocess_tabulate_table_packing(node):
     tensor_proto = node.attr["value"].tensor
     node_type = PRECISION_MAPPING[tensor_proto.dtype]
     array = np.frombuffer(tensor_proto.tensor_content).astype(node_type)
+    
     array = array.reshape([-1,8,16,6]).transpose((0,1,3,2))
+    # array = array.reshape([-1,4,32,6]).transpose((0,1,3,2))
+    
     node.attr["value"].tensor.tensor_content = array.tostring() 
 
 

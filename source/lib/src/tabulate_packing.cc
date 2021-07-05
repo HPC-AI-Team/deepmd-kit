@@ -453,7 +453,6 @@ void deepmd::tabulate_fusion_cpu_packing_sve(
       }
       int table_idx = 0;
       locate_xx(lower, upper, _max, stride0, stride1, xx, table_idx);
-
       for (int kbs = 0; kbs < last_layer_size; kbs+=16){
         int kbe = kbs + 16;
         const float* table0 = &table[table_idx * last_layer_size * 6 + kbs * 6 + 16 * 0];
@@ -484,7 +483,6 @@ void deepmd::tabulate_fusion_cpu_packing_sve(
           }
         }
       }
-      
       if (unloop) break;
     }
   }
@@ -538,6 +536,10 @@ void deepmd::tabulate_fusion_grad_cpu_packing_sve(
 
       double* dy_dem_tmp = &dy_dem[ii * nnei * 4 + jj * 4];
       double grad = 0.0;
+      double dy_dem_0 = 0.0;
+      double dy_dem_1 = 0.0;
+      double dy_dem_2 = 0.0;
+      double dy_dem_3 = 0.0;
 
 #ifdef __ARM_FEATURE_SVE 
 
@@ -668,15 +670,15 @@ void deepmd::tabulate_fusion_grad_cpu_packing_sve(
           vres3_1 = svmul_z(ptrue, vres3_1, vnei_sub_jj);
         }
         grad += svaddv(ptrue, vgard_0);
-        dy_dem_tmp[0] += svaddv(ptrue, vres0_0);
-        dy_dem_tmp[1] += svaddv(ptrue, vres1_0);
-        dy_dem_tmp[2] += svaddv(ptrue, vres2_0);
-        dy_dem_tmp[3] += svaddv(ptrue, vres3_0);
+        dy_dem_0 += svaddv(ptrue, vres0_0);
+        dy_dem_1 += svaddv(ptrue, vres1_0);
+        dy_dem_2 += svaddv(ptrue, vres2_0);
+        dy_dem_3 += svaddv(ptrue, vres3_0);
         grad += svaddv(ptrue, vgard_1);
-        dy_dem_tmp[0] += svaddv(ptrue, vres0_1);
-        dy_dem_tmp[1] += svaddv(ptrue, vres1_1);
-        dy_dem_tmp[2] += svaddv(ptrue, vres2_1);
-        dy_dem_tmp[3] += svaddv(ptrue, vres3_1);
+        dy_dem_0 += svaddv(ptrue, vres0_1);
+        dy_dem_1 += svaddv(ptrue, vres1_1);
+        dy_dem_2 += svaddv(ptrue, vres2_1);
+        dy_dem_3 += svaddv(ptrue, vres3_1);
       }
 #else
       for (int kbs = 0; kbs < last_layer_size; kbs += 16){
@@ -702,23 +704,26 @@ void deepmd::tabulate_fusion_grad_cpu_packing_sve(
 
           if (unloop) {
             grad += (a1 + (2 * a2 + (3 * a3 + (4 * a4 + 5 * a5 * xx) * xx) * xx) * xx) * dot(ll, rr) * (nnei - jj);
-            dy_dem[ii * nnei * 4 + jj * 4 + 0] += res * rr[0] * (nnei - jj);
-            dy_dem[ii * nnei * 4 + jj * 4 + 1] += res * rr[1] * (nnei - jj);
-            dy_dem[ii * nnei * 4 + jj * 4 + 2] += res * rr[2] * (nnei - jj);
-            dy_dem[ii * nnei * 4 + jj * 4 + 3] += res * rr[3] * (nnei - jj);
+            dy_dem_0 += res * rr[0] * (nnei - jj);
+            dy_dem_1 += res * rr[1] * (nnei - jj);
+            dy_dem_2 += res * rr[2] * (nnei - jj);
+            dy_dem_3 += res * rr[3] * (nnei - jj);
           }
           else {
             grad += (a1 + (2 * a2 + (3 * a3 + (4 * a4 + 5 * a5 * xx) * xx) * xx) * xx) * dot(ll, rr);
-            dy_dem[ii * nnei * 4 + jj * 4 + 0] += res * rr[0];
-            dy_dem[ii * nnei * 4 + jj * 4 + 1] += res * rr[1];
-            dy_dem[ii * nnei * 4 + jj * 4 + 2] += res * rr[2];
-            dy_dem[ii * nnei * 4 + jj * 4 + 3] += res * rr[3];
+            dy_dem_0 += res * rr[0];
+            dy_dem_1 += res * rr[1];
+            dy_dem_2 += res * rr[2];
+            dy_dem_3 += res * rr[3];
           }
         }
       }
-
 #endif /* __ARM_FEATURE_SVE */
       dy_dem_x[ii * nnei + jj] = grad;
+      dy_dem_tmp[0] = dy_dem_0;
+      dy_dem_tmp[1] = dy_dem_1;
+      dy_dem_tmp[2] = dy_dem_2;
+      dy_dem_tmp[3] = dy_dem_3;
       if (unloop) break;
     }
   }

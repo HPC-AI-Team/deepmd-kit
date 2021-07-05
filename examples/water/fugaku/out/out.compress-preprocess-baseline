@@ -12,22 +12,28 @@ neigh_modify    every 10 delay 0 check no
 read_data	    water.lmp
 Reading data file ...
   triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
-  3 by 4 by 4 MPI processor grid
+  1 by 1 by 1 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.037 seconds
+  read_data CPU = 0.003 seconds
 mass 		    1 16
 mass		    2 2
 
+replicate       1 1 1
+Replicating atoms ...
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
+  1 by 1 by 1 MPI processor grid
+  192 atoms
+  replicate CPU = 0.000 seconds
 
 pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-746-g2071c59-dirty
+  source:             v1.2.2-752-g2555311-dirty
   source brach:       devel_
-  source commit:      2071c59
-  source commit at:   2021-07-04 01:52:02 +0900
+  source commit:      2555311
+  source commit at:   2021-07-04 23:33:27 +0800
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
@@ -49,13 +55,6 @@ Summary of lammps deepmd module ...
   ntypes in model:    2
 pair_coeff
 
-replicate       5 8 6
-Replicating atoms ...
-  triclinic box = (0.0000000 0.0000000 0.0000000) to (62.223500 99.557600 74.668200) with tilt (0.0000000 0.0000000 0.0000000)
-  3 by 4 by 4 MPI processor grid
-  46080 atoms
-  replicate CPU = 0.042 seconds
-
 velocity        all create 330.0 23456789
 
 fix             1 all nvt temp 330.0 330.0 0.5
@@ -70,7 +69,7 @@ Neighbor list info ...
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 8
   ghost atom cutoff = 8
-  binsize = 4, bins = 16 25 19
+  binsize = 4, bins = 4 4 4
   1 neighbor lists, perpetual/occasional/extra = 1 0 0
   (1) pair deepmd, perpetual
       attributes: , newton on
@@ -81,35 +80,35 @@ Setting up Verlet run ...
   Unit style    : metal
   Current step  : 0
   Time step     : 0.0005
-Per MPI rank memory allocation (min/avg/max) = 4.810 | 4.812 | 4.813 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 3.908 | 3.908 | 3.908 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
-       0   -7186472.2    1965.5388   -7184506.6          330    211202.99    462556.23 
-      20   -7186716.3    2209.7907   -7184506.5    371.00816    204989.07    462556.23 
-      40   -7187321.5    2814.3912   -7184507.1    472.51628    205948.28    462556.23 
-      60   -7187854.1     3345.388   -7184508.7    561.66688    208900.73    462556.23 
-      80   -7188312.2    3799.2764   -7184512.9    637.87152    208846.99    462556.23 
-     100   -7188574.7    4055.3515   -7184519.4    680.86469    211810.12    462556.23 
-Loop time of 31.3304 on 48 procs for 100 steps with 46080 atoms
+       0   -29944.115    8.1472669   -29935.967          330    4865.6699    1927.3176 
+      20   -29943.787    7.8209388   -29935.966    316.78228    516.97111    1927.3176 
+      40   -29944.397    8.4288859   -29935.968     341.4068   -2392.0246    1927.3176 
+      60   -29943.946    7.9864816   -29935.959    323.48749    4701.8446    1927.3176 
+      80   -29944.873    8.9010074   -29935.972    360.52979    2061.6136    1927.3176 
+     100   -29944.145    8.1837767   -29935.961    331.47881   -5249.3451    1927.3176 
+Loop time of 21.7186 on 1 procs for 100 steps with 192 atoms
 
-Performance: 0.138 ns/day, 174.058 hours/ns, 3.192 timesteps/s
-99.9% CPU use with 48 MPI tasks x 1 OpenMP threads
+Performance: 0.199 ns/day, 120.659 hours/ns, 4.604 timesteps/s
+99.9% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 29.15      | 29.939     | 31.034     |  10.3 | 95.56
-Neigh   | 0.17263    | 0.18058    | 0.19159    |   1.2 |  0.58
-Comm    | 0.077459   | 1.1569     | 1.9749     |  52.5 |  3.69
-Output  | 0.019914   | 0.019925   | 0.019966   |   0.0 |  0.06
-Modify  | 0.00676    | 0.031794   | 0.13166    |  22.9 |  0.10
-Other   |            | 0.001772   |            |       |  0.01
+Pair    | 21.676     | 21.676     | 21.676     |   0.0 | 99.81
+Neigh   | 0.034022   | 0.034022   | 0.034022   |   0.0 |  0.16
+Comm    | 0.003443   | 0.003443   | 0.003443   |   0.0 |  0.02
+Output  | 0.002017   | 0.002017   | 0.002017   |   0.0 |  0.01
+Modify  | 0.0018291  | 0.0018291  | 0.0018291  |   0.0 |  0.01
+Other   |            | 0.0008605  |            |       |  0.00
 
-Nlocal:        960.000 ave         992 max         935 min
-Histogram: 5 4 5 7 10 6 2 3 4 2
-Nghost:        4295.50 ave        4342 max        4239 min
-Histogram: 2 3 3 6 3 7 11 7 3 3
+Nlocal:        192.000 ave         192 max         192 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:        2113.00 ave        2113 max        2113 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
 Neighs:        0.00000 ave           0 max           0 min
-Histogram: 48 0 0 0 0 0 0 0 0 0
+Histogram: 1 0 0 0 0 0 0 0 0 0
 
 Total # of neighbors = 0
 Ave neighs/atom = 0.0000000
@@ -118,4 +117,6 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:39
+Total wall time: 0:00:25
+INFO: You are running LIKWID in a cpuset with 50 CPUs. Taking given IDs as logical ID in cpuset
+[1;34m[likwid-pin] Main PID -> hwthread 12 - OK[0m

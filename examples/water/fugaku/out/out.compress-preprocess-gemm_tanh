@@ -1,4 +1,3 @@
-OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
 LAMMPS (29 Oct 2020)
   using 1 OpenMP thread(s) per MPI task
 # bulk water
@@ -16,7 +15,7 @@ Reading data file ...
   1 by 1 by 1 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.015 seconds
+  read_data CPU = 0.004 seconds
 mass 		    1 16
 mass		    2 2
 
@@ -89,20 +88,20 @@ Step PotEng KinEng TotEng Temp Press Volume
       60   -29943.946    7.9864812   -29935.959    323.48747    4701.8386    1927.3176 
       80   -29944.873    8.9010067   -29935.972    360.52976    2061.5908    1927.3176 
      100   -29944.145    8.1837761   -29935.961    331.47878   -5249.3479    1927.3176 
-Loop time of 5.77676 on 1 procs for 100 steps with 192 atoms
+Loop time of 5.76404 on 1 procs for 100 steps with 192 atoms
 
-Performance: 0.748 ns/day, 32.093 hours/ns, 17.311 timesteps/s
-99.6% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 0.749 ns/day, 32.022 hours/ns, 17.349 timesteps/s
+99.7% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 5.7335     | 5.7335     | 5.7335     |   0.0 | 99.25
-Neigh   | 0.035052   | 0.035052   | 0.035052   |   0.0 |  0.61
-Comm    | 0.0034113  | 0.0034113  | 0.0034113  |   0.0 |  0.06
-Output  | 0.0020151  | 0.0020151  | 0.0020151  |   0.0 |  0.03
-Modify  | 0.0019     | 0.0019     | 0.0019     |   0.0 |  0.03
-Other   |            | 0.0008326  |            |       |  0.01
+Pair    | 5.7221     | 5.7221     | 5.7221     |   0.0 | 99.27
+Neigh   | 0.033832   | 0.033832   | 0.033832   |   0.0 |  0.59
+Comm    | 0.0034249  | 0.0034249  | 0.0034249  |   0.0 |  0.06
+Output  | 0.0019984  | 0.0019984  | 0.0019984  |   0.0 |  0.03
+Modify  | 0.0018144  | 0.0018144  | 0.0018144  |   0.0 |  0.03
+Other   |            | 0.0008507  |            |       |  0.01
 
 Nlocal:        192.000 ave         192 max         192 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -118,7 +117,6 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:09
-OMP: Warning #181: OMP_PROC_BIND: ignored because KMP_AFFINITY has been defined
+Total wall time: 0:00:08
 INFO: You are running LIKWID in a cpuset with 50 CPUs. Taking given IDs as logical ID in cpuset
 [1;34m[likwid-pin] Main PID -> hwthread 12 - OK[0m
