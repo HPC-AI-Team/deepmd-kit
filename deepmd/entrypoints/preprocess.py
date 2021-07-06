@@ -64,10 +64,8 @@ def preprocess_tabulate_table_transpose(node):
     tabulate_table_node_pattern = re.compile(r"filter_type_\d/TabulateFusion(_\d)?/table")
     if tabulate_table_node_pattern.fullmatch(node.name) is None:
         return
-        
     print(f"preprocess_tabulate_table match node : {node.name}")
     print("precessing tabulate table")
-
     tensor_proto = node.attr["value"].tensor
     node_type = PRECISION_MAPPING[tensor_proto.dtype]
     array = np.frombuffer(tensor_proto.tensor_content).astype(node_type)
@@ -78,19 +76,27 @@ def preprocess_tabulate_table_packing(node):
     tabulate_table_node_pattern = re.compile(r"filter_type_\d/TabulateFusion(_\d)?/table")
     if tabulate_table_node_pattern.fullmatch(node.name) is None:
         return
-
     print(f"preprocess_tabulate_table match node : {node.name}")
     print("precessing tabulate table")
+    tensor_proto = node.attr["value"].tensor
+    node_type = PRECISION_MAPPING[tensor_proto.dtype]
+    array = np.frombuffer(tensor_proto.tensor_content).astype(node_type)
+    array = array.reshape([-1,8,16,6]).transpose((0,1,3,2))
+    node.attr["value"].tensor.tensor_content = array.tostring() 
+
+def preprocess_std_reciprocal(node):
+    tabulate_table_node_pattern = re.compile(r"descrpt_attr/t_std")
+    if tabulate_table_node_pattern.fullmatch(node.name) is None:
+        return
+    print(f"preprocess_std_reciprocal match node : {node.name}")
+    print("precessing std")
 
     tensor_proto = node.attr["value"].tensor
     node_type = PRECISION_MAPPING[tensor_proto.dtype]
     array = np.frombuffer(tensor_proto.tensor_content).astype(node_type)
+    array = 1. / array
     
-    array = array.reshape([-1,8,16,6]).transpose((0,1,3,2))
-    # array = array.reshape([-1,4,32,6]).transpose((0,1,3,2))
-    
-    node.attr["value"].tensor.tensor_content = array.tostring() 
-
+    node.attr["value"].tensor.tensor_content = array.tostring()
 
 def preprocess_graph(old_graph):
     old_graph_def = old_graph.as_graph_def()
@@ -98,7 +104,7 @@ def preprocess_graph(old_graph):
     for node in old_graph_def.node:
         # print(f"node name : {node.name} in the old graph")
         preprocess_tabulate_table_packing(node)
-
+        preprocess_std_reciprocal(node)
     return old_graph_def
         
 

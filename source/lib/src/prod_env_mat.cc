@@ -28,6 +28,8 @@ prod_env_mat_a_cpu(
     const float rcut_smth, 
     const std::vector<int> sec) 
 {
+
+  bool have_preprocessed = get_env_preprocessed();
   const int nnei = sec.back();
   const int nem = nnei * 4;
 
@@ -79,16 +81,39 @@ prod_env_mat_a_cpu(
     env_mat_a_cpu_sve (d_em_a, d_em_a_deriv, d_rij_a, d_coord3, d_type, ii, fmt_nlist_a, sec, rcut_smth, rcut);
 #else
     env_mat_a_cpu (d_em_a, d_em_a_deriv, d_rij_a, d_coord3, d_type, ii, fmt_nlist_a, sec, rcut_smth, rcut);
-#endif 
-    
-    const FPTYPE * AVG = &avg[d_type[ii] * nem];
-    const FPTYPE * STD = &std[d_type[ii] * nem];
-    for (int jj = 0; jj < nem; ++jj) {
-      d_em_a[jj] = (d_em_a[jj] - AVG[jj]) / STD[jj];
-      d_em_a_deriv[jj*3+0] /= STD[jj];
-      d_em_a_deriv[jj*3+1] /= STD[jj];
-      d_em_a_deriv[jj*3+2] /= STD[jj];
+#endif
+
+    // double t2 = omp_get_wtime();
+
+    // const FPTYPE * AVG = &avg[d_type[ii] * nem];
+    // const FPTYPE * STD = &std[d_type[ii] * nem];
+    // for (int jj = 0; jj < nem; ++jj) {
+    //   d_em_a[jj] = (d_em_a[jj] - AVG[jj]) / STD[jj];
+    //   d_em_a_deriv[jj*3+0] /= STD[jj];
+    //   d_em_a_deriv[jj*3+1] /= STD[jj];
+    //   d_em_a_deriv[jj*3+2] /= STD[jj];
+    // }
+
+    if(!have_preprocessed){
+      const FPTYPE * AVG = &avg[d_type[ii] * nem];
+      const FPTYPE * STD = &std[d_type[ii] * nem];
+      for (int jj = 0; jj < nem; ++jj) {
+        d_em_a[jj] = (d_em_a[jj] - AVG[jj]) / STD[jj];
+        d_em_a_deriv[jj*3+0] /= STD[jj];
+        d_em_a_deriv[jj*3+1] /= STD[jj];
+        d_em_a_deriv[jj*3+2] /= STD[jj];
+      }
+    }else{
+      const FPTYPE * AVG = &avg[d_type[ii] * nem];
+      const FPTYPE * STD = &std[d_type[ii] * nem];
+      for (int jj = 0; jj < nem; ++jj) {
+        d_em_a[jj] = (d_em_a[jj] - AVG[jj]) * STD[jj];
+        d_em_a_deriv[jj*3+0] *= STD[jj];
+        d_em_a_deriv[jj*3+1] *= STD[jj];
+        d_em_a_deriv[jj*3+2] *= STD[jj];
+      }
     }
+
     // double t3 = omp_get_wtime();
 
     // std::cout << (t1 - t0) << ", " 
