@@ -13,10 +13,10 @@ neigh_modify    every 10 delay 0 check no
 read_data	    water.lmp
 Reading data file ...
   triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
-  3 by 4 by 4 MPI processor grid
+  8 by 8 by 12 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.040 seconds
+  read_data CPU = 0.051 seconds
 mass 		    1 16
 mass		    2 2
 
@@ -25,10 +25,10 @@ pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-756-gf9e66ec-dirty
+  source:             v1.2.2-757-g73c5dd7-dirty
   source brach:       devel_
-  source commit:      f9e66ec
-  source commit at:   2021-07-05 20:12:00 +0900
+  source commit:      73c5dd7
+  source commit at:   2021-07-06 14:00:09 +0900
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
@@ -50,12 +50,12 @@ Summary of lammps deepmd module ...
   ntypes in model:    2
 pair_coeff
 
-replicate       6 8 6
+replicate       12 16 24
 Replicating atoms ...
-  triclinic box = (0.0000000 0.0000000 0.0000000) to (74.668200 99.557600 74.668200) with tilt (0.0000000 0.0000000 0.0000000)
-  3 by 4 by 4 MPI processor grid
-  55296 atoms
-  replicate CPU = 0.034 seconds
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (149.33640 199.11520 298.67280) with tilt (0.0000000 0.0000000 0.0000000)
+  6 by 8 by 16 MPI processor grid
+  884736 atoms
+  replicate CPU = 0.162 seconds
 
 velocity        all create 330.0 23456789
 
@@ -71,7 +71,7 @@ Neighbor list info ...
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 8
   ghost atom cutoff = 8
-  binsize = 4, bins = 19 25 19
+  binsize = 4, bins = 38 50 75
   1 neighbor lists, perpetual/occasional/extra = 1 0 0
   (1) pair deepmd, perpetual
       attributes: , newton on
@@ -82,35 +82,35 @@ Setting up Verlet run ...
   Unit style    : metal
   Current step  : 0
   Time step     : 0.0005
-Per MPI rank memory allocation (min/avg/max) = 4.842 | 4.842 | 4.842 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 4.846 | 4.846 | 4.847 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
-       0     -8623905    2358.6551   -8621546.3          330    4889.2203    555067.48 
-      20   -8623871.4    2324.5954   -8621546.8     325.2347    1926.1461    555067.48 
-      40   -8623976.3    2429.6208   -8621546.6    339.92882    -1412.439    555067.48 
-      60   -8623963.7    2417.4394   -8621546.2    338.22453    1262.2204    555067.48 
-      80   -8623947.4    2400.4434     -8621547    335.84661    2288.0364    555067.48 
-     100   -8623888.3    2341.9321   -8621546.4    327.66028    -505.4115    555067.48 
-Loop time of 29.8483 on 48 procs for 100 steps with 55296 atoms
+       0 -1.3798248e+08    37739.122 -1.3794474e+08          330    4889.2972    8881079.7 
+      20 -1.3798196e+08    37215.178 -1.3794475e+08    325.41851    1741.9856    8881079.7 
+      40 -1.3798355e+08    38809.837 -1.3794474e+08     339.3626   -1141.9569    8881079.7 
+      60 -1.3798336e+08    38618.458 -1.3794474e+08    337.68913    1509.2113    8881079.7 
+      80 -1.3798318e+08    38427.289 -1.3794475e+08    336.01751     1941.272    8881079.7 
+     100 -1.3798217e+08    37433.359 -1.3794474e+08    327.32634   -652.46074    8881079.7 
+Loop time of 30.0377 on 768 procs for 100 steps with 884736 atoms
 
-Performance: 0.145 ns/day, 165.824 hours/ns, 3.350 timesteps/s
-99.7% CPU use with 48 MPI tasks x 1 OpenMP threads
+Performance: 0.144 ns/day, 166.876 hours/ns, 3.329 timesteps/s
+99.7% CPU use with 768 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 28.042     | 28.762     | 29.59      |   6.1 | 96.36
-Neigh   | 0.19341    | 0.20082    | 0.21238    |   1.0 |  0.67
-Comm    | 0.030249   | 0.83174    | 1.5901     |  35.0 |  2.79
-Output  | 0.01135    | 0.011522   | 0.011569   |   0.0 |  0.04
-Modify  | 0.0071414  | 0.040697   | 0.1953     |  32.9 |  0.14
-Other   |            | 0.001801   |            |       |  0.01
+Pair    | 27.691     | 28.568     | 29.506     |   6.8 | 95.11
+Neigh   | 0.182      | 0.19333    | 0.2155     |   1.3 |  0.64
+Comm    | 0.058844   | 0.84998    | 1.7568     |  39.6 |  2.83
+Output  | 0.15484    | 0.15486    | 0.1549     |   0.0 |  0.52
+Modify  | 0.099148   | 0.26963    | 0.52967    |  19.0 |  0.90
+Other   |            | 0.00182    |            |       |  0.01
 
-Nlocal:        1152.00 ave        1170 max        1134 min
-Histogram: 2 14 4 3 1 1 3 8 6 6
-Nghost:        4647.27 ave        4674 max        4618 min
-Histogram: 1 5 3 7 6 6 3 9 6 2
+Nlocal:        1152.00 ave        1173 max        1131 min
+Histogram: 15 112 151 83 24 23 80 157 95 28
+Nghost:        4646.89 ave        4688 max        4607 min
+Histogram: 15 44 85 136 121 105 132 86 33 11
 Neighs:        0.00000 ave           0 max           0 min
-Histogram: 48 0 0 0 0 0 0 0 0 0
+Histogram: 768 0 0 0 0 0 0 0 0 0
 
 Total # of neighbors = 0
 Ave neighs/atom = 0.0000000
