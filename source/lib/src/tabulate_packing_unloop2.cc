@@ -690,6 +690,12 @@ void deepmd::tabulate_fusion_grad_cpu_packing_sve(
 
 #else
 
+      double grad = 0.0;
+      double dy_dem_0 = 0.0;
+      double dy_dem_1 = 0.0;
+      double dy_dem_2 = 0.0;
+      double dy_dem_3 = 0.0;
+
       for (int kbs = 0; kbs < last_layer_size; kbs += 16){
         int kbe = kbs + 16;
         const double* table0 = &table[table_idx * last_layer_size * 6 + kbs * 6 + 16 * 0];
