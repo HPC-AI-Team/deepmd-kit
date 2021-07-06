@@ -4,22 +4,31 @@ deepmd_root=$HOME/gzq/deepmd-kit
 source $deepmd_root/script/fugaku/env.sh
 # bash $deepmd_root/script/fugaku/build_deepmd.sh
 
-cp $deepmd_root/deepmd/entrypoints/preprocess.py $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/preprocess.py
+
+model_path=../model
+python_file_path=$deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/preprocess.py
+
+cp $deepmd_root/deepmd/entrypoints/preprocess.py $python_file_path
 
 set -ex
 
-rm ../model/graph-compress-preprocess_* -rf
+rm $model_path/double/preprocess/* -rf
 
-# name=baseline
-# python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/preprocess.py  ../model/graph-compress_$name.pb  ../model/graph-compress-preprocess_$name.pb
+name_list=(baseline gemm gemm_tanh gemm_tanh_fusion)
+precision_list=(double float)
 
-# name=gemm
-# python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/preprocess.py  ../model/graph-compress_$name.pb  ../model/graph-compress-preprocess_$name.pb
-
-name=gemm_tanh
-python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/preprocess.py  ../model/graph-compress_$name.pb  ../model/graph-compress-preprocess_$name.pb
-
-python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/pb2pbtxt.py ../model/graph-compress_$name.pb ../model/graph-compress_$name.pbtxt
-
-# name=gemm_tanh_fusion
-# python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/preprocess.py  ../model/graph-compress_$name.pb  ../model/graph-compress-preprocess_$name.pb
+for precision in ${precision_list[*]}
+do
+    for name in ${name_list[*]}
+    do
+        origin_model=$model_path/$precision/compress/graph-compress-$name.pb
+        target_model=$model_path/$precision/compress-preprocess/graph-compress-preprocess-$name.pb
+        if [ -e $origin_model ]
+        then
+            python $python_file_path $origin_model $target_model
+        else
+            echo "$origin_model_path not exist !!!"
+            # exit -1
+        fi
+    done
+done

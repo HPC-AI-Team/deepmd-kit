@@ -14,4 +14,4 @@ bash $deepmd_root/script/fugaku/build_deepmd.sh
 export HAVE_PREPROCESSED=1
 export TF_CPP_MIN_LOG_LEVEL=3
 
-likwid-perfctr -C 0 -g FLOPS_DP lmp -echo screen -in ./in.water_compress_preprocess_1
+likwid-perfctr -C 0 -g FLOPS_DP lmp -echo screen -in ../lmp/in.water_compress_preprocess_1

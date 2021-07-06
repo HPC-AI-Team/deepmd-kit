@@ -10,6 +10,9 @@ checkpoint
 profiler.json_*
 events.*
 *.pbtxt
+graph-compress-preprocess.pb
+graph-compress.pb
+graph-original.pb
 
 # for lammps
 log.cite
