@@ -61,22 +61,22 @@ def one_layer(inputs,
                 # return activation_fn(hidden_bn)
             else:
                 if use_timestep :
-                    # return tf.reshape(activation_fn(tf.matmul(inputs, w) + b), [-1, outputs_size]) * idt
+                    return tf.reshape(activation_fn(tf.matmul(inputs, w) + b), [-1, outputs_size]) * idt
                     # return tf.reshape(activation_fn(op_module.gemm_layer(inputs, w, b)), [-1, outputs_size]) * idt
                     # return tf.reshape(op_module.fast_tanh(op_module.gemm_layer(inputs, w, b)), [-1, outputs_size]) * idt
-                    return op_module.gemm_tanh_layer(inputs, w, b) * idt
+                    # return op_module.gemm_tanh_layer(inputs, w, b) * idt
                 else :
-                    # return activation_fn(tf.matmul(inputs, w) + b)                  
+                    return activation_fn(tf.matmul(inputs, w) + b)                  
                     # return activation_fn(op_module.gemm_layer(inputs, w, b))                  
                     # return op_module.fast_tanh(op_module.gemm_layer(inputs, w, b))                  
-                    return op_module.gemm_tanh_layer(inputs, w, b)                
+                    # return op_module.gemm_tanh_layer(inputs, w, b)                
         else:
             if useBN:
                 None
                 # return self._batch_norm(hidden, name=name+'_normalization', reuse=reuse)
             else:
-                # return tf.matmul(inputs, w) + b
-                return op_module.gemm_layer(inputs, w, b)
+                return tf.matmul(inputs, w) + b
+                # return op_module.gemm_layer(inputs, w, b)
 
 
 def embedding_net_rand_seed_shift(
@@ -145,11 +145,11 @@ def embedding_net(xx,
                             trainable = trainable)
         variable_summaries(b, 'bias_'+str(ii)+name_suffix)
 
-        # hidden = tf.reshape(activation_fn(tf.matmul(xx, w) + b), [-1, outputs_size[ii]])
+        hidden = tf.reshape(activation_fn(tf.matmul(xx, w) + b), [-1, outputs_size[ii]])
         # hidden = tf.reshape(activation_fn(op_module.gemm_layer(xx, w, b)), [-1, outputs_size[ii]])
         # hidden = tf.reshape(op_module.fast_tanh(op_module.gemm_layer(xx, w, b)), [-1, outputs_size[ii]])
         # hidden = tf.reshape(op_module.gemm_tanh_layer(xx, w, b), [-1, outputs_size[ii]])
-        hidden = op_module.gemm_tanh_layer(xx, w, b)
+        # hidden = op_module.gemm_tanh_layer(xx, w, b)
 
         if resnet_dt :
             idt = tf.get_variable('idt_'+str(ii)+name_suffix, 
