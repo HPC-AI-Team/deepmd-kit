@@ -17,3 +17,4 @@ graph-original.pb
 # for lammps
 log.cite
 log.lammps
+*.dump
