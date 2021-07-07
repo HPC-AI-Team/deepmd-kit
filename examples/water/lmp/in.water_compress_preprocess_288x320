@@ -15,7 +15,7 @@ mass		    2 2
 pair_style	    deepmd ../model/graph-compress-preprocess.pb
 pair_coeff	
 
-replicate       48 48 48
+replicate       40 48 48
 
 velocity        all create 330.0 23456789
 

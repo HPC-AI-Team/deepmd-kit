@@ -4,7 +4,7 @@
 #PJM -L  "rscgrp=small"                     # Specify resource group
 #PJM -L  "elapse=00:02:00"                 # Elapsed time limit 1 hour
 #PJM --mpi "max-proc-per-node=48"          # Maximum number of MPI processes created per node
-# #PJM -s                                    # Statistical information output
+#PJM -s                                    # Statistical information output
 
 deepmd_root=$HOME/gzq/deepmd-kit
 source $deepmd_root/script/fugaku/env.sh
