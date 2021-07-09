@@ -30,6 +30,7 @@ prod_env_mat_a_cpu(
 {
 
   bool have_preprocessed = get_env_preprocessed();
+  
   const int nnei = sec.back();
   const int nem = nnei * 4;
 
