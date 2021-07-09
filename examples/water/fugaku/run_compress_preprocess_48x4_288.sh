@@ -1,5 +1,5 @@
 #!/bin/sh -e
-#PJM -L  "node=1"                          # Number of assign node 8 (1 dimention format)
+#PJM -L  "node=2x2"                          # Number of assign node 8 (1 dimention format)
 #PJM -L  "freq=2200"                         
 #PJM -L "rscgrp=small"                     # Specify resource group
 #PJM -L  "elapse=00:02:00"                 # Elapsed time limit 1 hour
@@ -19,4 +19,4 @@ export TF_INTER_OP_PARALLELISM_THREADS=1
 export HAVE_PREPROCESSED=1
 export TF_CPP_MIN_LOG_LEVEL=3
 
-mpiexec lmp_mpi -echo screen -in ../lmp/in.water_compress_preprocess_192
+mpiexec lmp_mpi -echo screen -in ../lmp/in.water_compress_preprocess_288

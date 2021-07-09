@@ -1,5 +1,4 @@
 LAMMPS (29 Oct 2020)
-OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (../comm.cpp:94)
   using 1 OpenMP thread(s) per MPI task
 # bulk water
 
@@ -8,15 +7,15 @@ boundary        p p p
 atom_style      atomic
 
 neighbor        2.0 bin
-neigh_modify    every 10 delay 0 check no
+neigh_modify    every 10 delay 10 check no
 
 read_data	    water.lmp
 Reading data file ...
   triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
-  8 by 8 by 12 MPI processor grid
+  32 by 16 by 24 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.051 seconds
+  read_data CPU = 0.095 seconds
 mass 		    1 16
 mass		    2 2
 
@@ -25,22 +24,22 @@ pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-757-g73c5dd7-dirty
+  source:             v1.2.2-763-g23df0e7f-dirty
   source brach:       devel_
-  source commit:      73c5dd7
-  source commit at:   2021-07-06 14:00:09 +0900
+  source commit:      23df0e7f
+  source commit at:   2021-07-07 12:07:43 +0900
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
   build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
-  set tf intra_op_parallelism_threads: 0
-  set tf inter_op_parallelism_threads: 0
+  set tf intra_op_parallelism_threads: 1
+  set tf inter_op_parallelism_threads: 1
   >>> Info of lammps module:
   use deepmd-kit at:  /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-742-g4fdac66-dirty
+  source:             v1.2.2-763-g23df0e7f
   source branch:      devel_
-  source commit:      4fdac66
-  source commit at:   2021-07-01 22:31:51 +0900
+  source commit:      23df0e7f
+  source commit at:   2021-07-07 12:07:43 +0900
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
   build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
@@ -50,28 +49,28 @@ Summary of lammps deepmd module ...
   ntypes in model:    2
 pair_coeff
 
-replicate       12 16 24
+replicate       6 8 6
 Replicating atoms ...
-  triclinic box = (0.0000000 0.0000000 0.0000000) to (149.33640 199.11520 298.67280) with tilt (0.0000000 0.0000000 0.0000000)
-  6 by 8 by 16 MPI processor grid
-  884736 atoms
-  replicate CPU = 0.162 seconds
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (74.668200 99.557600 74.668200) with tilt (0.0000000 0.0000000 0.0000000)
+  16 by 32 by 24 MPI processor grid
+  55296 atoms
+  replicate CPU = 0.340 seconds
 
 velocity        all create 330.0 23456789
 
 fix             1 all nvt temp 330.0 330.0 0.5
 timestep        0.0005
 thermo_style    custom step pe ke etotal temp press vol
-thermo          20
-dump		    1 all custom 100 water.dump id type x y z
+# thermo          20
+# dump		    1 all custom 100 water.dump id type x y z
 
 run             100
 Neighbor list info ...
-  update every 10 steps, delay 0 steps, check no
+  update every 10 steps, delay 10 steps, check no
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 8
   ghost atom cutoff = 8
-  binsize = 4, bins = 38 50 75
+  binsize = 4, bins = 19 25 19
   1 neighbor lists, perpetual/occasional/extra = 1 0 0
   (1) pair deepmd, perpetual
       attributes: , newton on
@@ -82,35 +81,31 @@ Setting up Verlet run ...
   Unit style    : metal
   Current step  : 0
   Time step     : 0.0005
-Per MPI rank memory allocation (min/avg/max) = 4.846 | 4.846 | 4.847 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 2.524 | 2.525 | 2.525 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
-       0 -1.3798248e+08    37739.122 -1.3794474e+08          330    4889.2972    8881079.7 
-      20 -1.3798196e+08    37215.178 -1.3794475e+08    325.41851    1741.9856    8881079.7 
-      40 -1.3798355e+08    38809.837 -1.3794474e+08     339.3626   -1141.9569    8881079.7 
-      60 -1.3798336e+08    38618.458 -1.3794474e+08    337.68913    1509.2113    8881079.7 
-      80 -1.3798318e+08    38427.289 -1.3794475e+08    336.01751     1941.272    8881079.7 
-     100 -1.3798217e+08    37433.359 -1.3794474e+08    327.32634   -652.46074    8881079.7 
-Loop time of 30.0377 on 768 procs for 100 steps with 884736 atoms
+       0     -8623905    2358.6551   -8621546.3          330    4889.2203    555067.48 
+     100   -8623888.3    2341.9321   -8621546.4    327.66028    -505.4115    555067.48 
+Loop time of 0.996066 on 12288 procs for 100 steps with 55296 atoms
 
-Performance: 0.144 ns/day, 166.876 hours/ns, 3.329 timesteps/s
-99.7% CPU use with 768 MPI tasks x 1 OpenMP threads
+Performance: 4.337 ns/day, 5.534 hours/ns, 100.395 timesteps/s
+98.4% CPU use with 12288 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 27.691     | 28.568     | 29.506     |   6.8 | 95.11
-Neigh   | 0.182      | 0.19333    | 0.2155     |   1.3 |  0.64
-Comm    | 0.058844   | 0.84998    | 1.7568     |  39.6 |  2.83
-Output  | 0.15484    | 0.15486    | 0.1549     |   0.0 |  0.52
-Modify  | 0.099148   | 0.26963    | 0.52967    |  19.0 |  0.90
-Other   |            | 0.00182    |            |       |  0.01
+Pair    | 0.044347   | 0.70651    | 0.90448    |  11.4 | 70.93
+Neigh   | 0.00027067 | 0.0008747  | 0.0032112  |   0.0 |  0.09
+Comm    | 0.037326   | 0.2115     | 0.92495    |  22.3 | 21.23
+Output  | 8.605e-05  | 9.2175e-05 | 9.807e-05  |   0.0 |  0.01
+Modify  | 0.022577   | 0.076642   | 0.16022    |  14.9 |  7.69
+Other   |            | 0.0004472  |            |       |  0.04
 
-Nlocal:        1152.00 ave        1173 max        1131 min
-Histogram: 15 112 151 83 24 23 80 157 95 28
-Nghost:        4646.89 ave        4688 max        4607 min
-Histogram: 15 44 85 136 121 105 132 86 33 11
+Nlocal:        4.50000 ave          10 max           0 min
+Histogram: 102 319 664 1828 3158 2897 2350 823 137 10
+Nghost:        747.732 ave         793 max         699 min
+Histogram: 51 242 877 1778 2482 3105 1966 1265 429 93
 Neighs:        0.00000 ave           0 max           0 min
-Histogram: 768 0 0 0 0 0 0 0 0 0
+Histogram: 12288 0 0 0 0 0 0 0 0 0
 
 Total # of neighbors = 0
 Ave neighs/atom = 0.0000000
@@ -119,4 +114,4 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:38
+Total wall time: 0:00:12
