@@ -20,9 +20,9 @@
             "resnet_dt": false,
             "axis_neuron": 16,
             "seed": 1,
+            "precision": "float64",
             "activation_function": "tanh",
             "type_one_side": false,
-            "precision": "float64",
             "trainable": true,
             "exclude_types": [],
             "set_davg_zero": false
@@ -35,11 +35,11 @@
             ],
             "resnet_dt": true,
             "seed": 1,
+            "precision": "float64",
             "type": "ener",
             "numb_fparam": 0,
             "numb_aparam": 0,
             "activation_function": "tanh",
-            "precision": "float64",
             "trainable": true,
             "rcond": 0.001,
             "atom_ener": []
@@ -47,7 +47,7 @@
         "compress": {
             "type": "se_e2_a",
             "compress": true,
-            "model_file": "../model/graph_gemm_tanh_fusion.pb",
+            "model_file": "../model/double/original/graph-original-gemm_tanh_fusion.pb",
             "table_config": [
                 5,
                 0.01,
