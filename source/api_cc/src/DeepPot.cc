@@ -54,6 +54,8 @@ run_model (ENERGYTYPE &			dener,
 	   const AtomMap<VALUETYPE>&	atommap, 
 	   const int			nghost = 0)
 {
+  // here
+  // std::cout << "run model 1 start" << std::endl;
   unsigned nloc = atommap.get_type().size();
   unsigned nall = nloc + nghost;
   if (nloc == 0) {
@@ -67,12 +69,23 @@ run_model (ENERGYTYPE &			dener,
     fill(dvirial.begin(), dvirial.end(), 0.0);
     return;
   }
-
+  // std::cout << "nloc : " << nloc << std::endl;
+  // std::cout << "nall : " << nall << std::endl;
+  // for(int i = 0;i<input_tensors.size();i++){
+  //   const std::pair<std::string, Tensor> &pair = input_tensors[i];
+  //   std::cout << pair.first << std::endl;
+  //   const Tensor &tensor = pair.second;
+  //   std::cout << tensor.dims() << std::endl;
+  //   for(int j = 0;j< tensor.dims(); j++){
+  //     std::cout << tensor.dim_size(j) << std::endl;
+  //   }
+  // }
+  
   std::vector<Tensor> output_tensors;
   check_status (session->Run(input_tensors, 
-			    {"o_energy", "o_force", "o_atom_virial"}, 
-			    {}, 
-			    &output_tensors));
+            {"o_energy", "o_force", "o_atom_virial"}, 
+            {}, 
+            &output_tensors));
   
   Tensor output_e = output_tensors[0];
   Tensor output_f = output_tensors[1];
@@ -101,6 +114,7 @@ run_model (ENERGYTYPE &			dener,
   }
   dforce_ = dforce;
   atommap.backward (dforce_.begin(), dforce.begin(), 3);
+  // std::cout << "run model 1 end" << std::endl;
 }
 
 static void run_model (ENERGYTYPE   &		dener,
@@ -388,6 +402,8 @@ compute (ENERGYTYPE &			dener,
 	 const std::vector<VALUETYPE> &	fparam,
 	 const std::vector<VALUETYPE> &	aparam_)
 {
+  // here
+  // std::cout << "DeepPot::compute 2 start " << std::endl;
   std::vector<VALUETYPE> dcoord, dforce, aparam;
   std::vector<int> datype, fwd_map, bkw_map;
   int nghost_real;
@@ -412,6 +428,7 @@ compute (ENERGYTYPE &			dener,
   // bkw map
   dforce_.resize(fwd_map.size() * 3);
   select_map<VALUETYPE>(dforce_, dforce, bkw_map, 3);
+  // std::cout << "DeepPot::compute 2 end" << std::endl;
 }
 
 void
@@ -427,8 +444,10 @@ compute_inner (ENERGYTYPE &			dener,
 	       const std::vector<VALUETYPE> &	fparam,
 	       const std::vector<VALUETYPE> &	aparam)
 {
-  int nall = dcoord_.size() / 3;
-  int nloc = nall - nghost;
+    // std::cout << "DeepPot::compute_inner start" << std::endl;
+    int nall = dcoord_.size() / 3;
+    int nloc = nall - nghost;
+    // int nloc = nlist_data.ilist.size();
 
     validate_fparam_aparam(nloc, fparam, aparam);
     std::vector<std::pair<std::string, Tensor>> input_tensors;
@@ -443,6 +462,7 @@ compute_inner (ENERGYTYPE &			dener,
     int ret = session_input_tensors (input_tensors, dcoord_, ntypes, datype_, dbox, nlist, fparam, aparam, atommap, nghost, ago);
     assert (nloc == ret);
     run_model (dener, dforce_, dvirial, session, input_tensors, atommap, nghost);
+    // std::cout << "DeepPot::compute_inner end" << std::endl;
 }
 
 

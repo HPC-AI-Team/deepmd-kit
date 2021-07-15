@@ -18,7 +18,7 @@ pair_style	    deepmd ../model/graph-compress-preprocess.pb
 pair_coeff	
 
 
-replicate       6 8 6 bbox
+replicate       8 8 6 bbox
 
 velocity        all create 330.0 23456789
 

@@ -3,26 +3,10 @@
 #PJM -L  "freq=2200"                         
 #PJM -L "rscgrp=small"         # Specify resource group
 #PJM -L  "elapse=00:05:00"                 # Elapsed time limit 1 hour
+#PJM --mpi "shape=1"
 #PJM --mpi "max-proc-per-node=48"          # Maximum number of MPI processes created per node
 #PJM -s                                    # Statistical information output
 
 deepmd_root=$HOME/gzq/deepmd-kit
 source $deepmd_root/script/fugaku/env.sh
-# bash $deepmd_root/script/fugaku/build_deepmd.sh
-
-export PLE_MPI_STD_EMPTYFILE=off
-# export PRINT_TIME=1
-
-# export OMP_NUM_THREADS=12
-# export BLIS_JC_NT=1 BLIS_IC_NT=1 BLIS_JR_NT=12
-# export TF_INTER_OP_PARALLELISM_THREADS=1
-# export TF_INTRA_OP_PARALLELISM_THREADS=12
-
-export OMP_NUM_THREADS=12
-#export BLIS_JC_NT=1 BLIS_IC_NT=1 BLIS_JR_NT=12
-export TF_INTER_OP_PARALLELISM_THREADS=1
-export TF_INTRA_OP_PARALLELISM_THREADS=1
-
-export TF_CPP_MIN_LOG_LEVEL=3
-
-mpiexec -n 1 lmp_mpi -echo screen -in ../lmp/in.water_1
+bash $deepmd_root/script/fugaku/build_lammps.sh

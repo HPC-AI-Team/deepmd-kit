@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.7)
 project(DeePMD)
 set(CMAKE_LINK_WHAT_YOU_USE TRUE)
 
+add_definitions(-D_FUGAKU)
+# add_definitions(-DGZQ_ASSERT)
+# add_definitions(-DGZQ_TIME)
+
 # build cpp or python interfaces
 if (NOT DEFINED BUILD_CPP_IF) 
   set(BUILD_CPP_IF TRUE)

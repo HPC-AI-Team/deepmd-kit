@@ -28,5 +28,5 @@ FLOAT_PREC=high
 DEEPMD_BUILD_DIR=$deepmd_root/source/build
 LAMMPS_BUILD_DIR=$deepmd_root/source/build_lammps
 
-export CC="fcc -Nclang -Ofast -fopenmp -ffj-no-largepage -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0"
-export CXX="FCC -Nclang -Ofast -fopenmp -ffj-no-largepage -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0"
+export CC="fcc -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0 -lfjlapackexsve -SSL2"
+export CXX="FCC -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0 -lfjlapackexsve -SSL2"

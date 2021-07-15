@@ -4,10 +4,8 @@ units           metal
 boundary        p p p
 atom_style      atomic
 
-newton          off
-
 neighbor        2.0 bin
-neigh_modify    every 50 delay 50 check no
+neigh_modify    every 10 delay 0 check no
 
 read_data	    water.lmp
 mass 		    1 16
@@ -17,8 +15,7 @@ mass		    2 2
 pair_style	    deepmd ../model/graph-compress-preprocess.pb
 pair_coeff	
 
-
-replicate       6 8 6 bbox
+replicate       32 40 48 bbox
 
 velocity        all create 330.0 23456789
 
@@ -28,4 +25,4 @@ thermo_style    custom step pe ke etotal temp press vol
 thermo          50
 # dump		    1 all custom 100 water.dump id type x y z 
 
-run             99
+run             499

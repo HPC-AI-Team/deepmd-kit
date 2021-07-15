@@ -8,17 +8,22 @@
 
 deepmd_root=$HOME/gzq/deepmd-kit
 source $deepmd_root/script/fugaku/env.sh
-bash $deepmd_root/script/fugaku/build_deepmd.sh
+# bash $deepmd_root/script/fugaku/build_deepmd.sh
 
 export PLE_MPI_STD_EMPTYFILE=off
 # export PRINT_TIME=1
+
+# export OMP_NUM_THREADS=12
+# export BLIS_JC_NT=1 BLIS_IC_NT=1 BLIS_JR_NT=12
+# export TF_INTER_OP_PARALLELISM_THREADS=1
+# export TF_INTRA_OP_PARALLELISM_THREADS=12
+
 export OMP_NUM_THREADS=1
-export TF_INTRA_OP_PARALLELISM_THREADS=1
+# export BLIS_JC_NT=1 BLIS_IC_NT=1 BLIS_JR_NT=12
 export TF_INTER_OP_PARALLELISM_THREADS=1
+export TF_INTRA_OP_PARALLELISM_THREADS=1
 
 export HAVE_PREPROCESSED=1
 export TF_CPP_MIN_LOG_LEVEL=3
 
-model=../model/double/preprocess/
-
-likwid-pin -c 0 lmp_serial -echo screen -in ../lmp/in.water_compress_preprocess_1
+mpiexec -n 1 lmp_mpi -echo screen -in ../lmp/in.water_compress_preprocess_1

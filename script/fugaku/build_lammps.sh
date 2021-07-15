@@ -21,9 +21,9 @@ fi
 # cd ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}
 # patch -f -p1 < ../lammps.patch || true 
 # 
-# rm -rf ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}/src/USER-DEEPMD
-# mkdir -p ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}/src/USER-DEEPMD
-# cp -r ${DEEPMD_BUILD_DIR}/USER-DEEPMD/* ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}/src/USER-DEEPMD
+rm -rf ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}/src/USER-DEEPMD
+mkdir -p ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}/src/USER-DEEPMD
+cp -r ${DEEPMD_BUILD_DIR}/USER-DEEPMD/* ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}/src/USER-DEEPMD
 
 
 # rm -rf ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}/build
@@ -40,11 +40,11 @@ fi
 # make install
 
 lammps_root=${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}
-# cp -r $deepmd_root/script/fugaku/fugaku_lammps_patch/* $lammps_root/src
+cp -r $deepmd_root/script/fugaku/fugaku_lammps_patch/* $lammps_root/src
 cd $lammps_root/src
 # make clean-all
 # make no-user-deepmd
-# make yes-user-deepmd
-# make yes-kspace
+make yes-user-deepmd
+make yes-kspace
 # make serial -j16
 make mpi -j16
