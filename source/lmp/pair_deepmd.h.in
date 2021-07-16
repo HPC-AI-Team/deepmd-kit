@@ -61,6 +61,7 @@ class PairDeepMD : public Pair {
 
 private:  
   deepmd::DeepPot deep_pot;
+  std::vector<deepmd::DeepPot> deep_pots;
   deepmd::DeepPotModelDevi deep_pot_model_devi;
   unsigned numb_models;
   double cutoff;

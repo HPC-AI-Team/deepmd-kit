@@ -68,7 +68,6 @@ static bool get_env_preprocessed(){
     }
 }
 
-#ifdef _FUGAKU
 static int get_env_num_threads(){
     char *var = getenv("DEEPMD_NUM_THREADS");
     int ret = 12;
@@ -78,4 +77,3 @@ static int get_env_num_threads(){
     // std::cout << "thread num : " << var << ", " << ret << std::endl;
     return ret;
 }
-#endif 

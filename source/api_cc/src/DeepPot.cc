@@ -54,8 +54,6 @@ run_model (ENERGYTYPE &			dener,
 	   const AtomMap<VALUETYPE>&	atommap, 
 	   const int			nghost = 0)
 {
-  // here
-  // std::cout << "run model 1 start" << std::endl;
   unsigned nloc = atommap.get_type().size();
   unsigned nall = nloc + nghost;
   if (nloc == 0) {
@@ -69,17 +67,6 @@ run_model (ENERGYTYPE &			dener,
     fill(dvirial.begin(), dvirial.end(), 0.0);
     return;
   }
-  // std::cout << "nloc : " << nloc << std::endl;
-  // std::cout << "nall : " << nall << std::endl;
-  // for(int i = 0;i<input_tensors.size();i++){
-  //   const std::pair<std::string, Tensor> &pair = input_tensors[i];
-  //   std::cout << pair.first << std::endl;
-  //   const Tensor &tensor = pair.second;
-  //   std::cout << tensor.dims() << std::endl;
-  //   for(int j = 0;j< tensor.dims(); j++){
-  //     std::cout << tensor.dim_size(j) << std::endl;
-  //   }
-  // }
   
   std::vector<Tensor> output_tensors;
   check_status (session->Run(input_tensors, 
@@ -114,7 +101,6 @@ run_model (ENERGYTYPE &			dener,
   }
   dforce_ = dforce;
   atommap.backward (dforce_.begin(), dforce.begin(), 3);
-  // std::cout << "run model 1 end" << std::endl;
 }
 
 static void run_model (ENERGYTYPE   &		dener,
@@ -218,6 +204,7 @@ void
 DeepPot::
 init (const std::string & model, const int & gpu_rank, const std::string & file_content)
 {
+  // std::cout << "DeepPot::init start " << std::endl;
   if (inited){
     std::cerr << "WARNING: deepmd-kit should not be initialized twice, do nothing at the second call of initializer" << std::endl;
     return ;
@@ -278,6 +265,7 @@ init (const std::string & model, const int & gpu_rank, const std::string & file_
   inited = true;
   
   init_nbor = false;
+  // std::cout << "DeepPot::init end " << std::endl;
 }
 
 void 
@@ -517,7 +505,7 @@ compute (ENERGYTYPE &			dener,
 
         nlist_data.copy_from_nlist(lmp_list);
         nlist_data.shuffle(atommap);
-	nlist_data.make_inlist(nlist);
+	      nlist_data.make_inlist(nlist);
     }
 
     int ret = session_input_tensors (input_tensors, dcoord_, ntypes, datype_, dbox, nlist, fparam, aparam, atommap, nghost, ago);

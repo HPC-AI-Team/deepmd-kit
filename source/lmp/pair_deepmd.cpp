@@ -21,8 +21,10 @@
 #endif
 
 #include "pair_deepmd.h"
+#include "deepmd/tools.h"
 #include <omp.h>
 #include <iostream>
+#include <vector>
 
 using namespace LAMMPS_NS;
 using namespace std;
@@ -301,6 +303,7 @@ PairDeepMD::~PairDeepMD()
 
 void PairDeepMD::compute(int eflag, int vflag)
 {
+  // std::cout << "PairDeepMD::compute start" << std::endl;
   if (numb_models == 0) return;
   if (eflag || vflag) ev_setup(eflag,vflag);
   bool do_ghost = true;
@@ -339,7 +342,7 @@ void PairDeepMD::compute(int eflag, int vflag)
   dbox[7] = domain->h[3];	// zy
   dbox[6] = domain->h[4];	// zx
   dbox[3] = domain->h[5];	// yx
-
+  
   // get coord
   for (int ii = 0; ii < nall; ++ii){
     for (int dd = 0; dd < 3; ++dd){
@@ -376,65 +379,153 @@ void PairDeepMD::compute(int eflag, int vflag)
     if (single_model || multi_models_no_mod_devi) {
       if ( ! (eflag_atom || vflag_atom) ) {      
 #ifdef HIGH_PREC
+
+  // std::vector<int> count (nall,0);
+  // for(int i = 0; i < list->inum; i++){
+  //   int i_idx = list->ilist[i];
+  //   assert(i == i_idx);
+  //   count[i_idx] += 1;
+  //   int i_numneigh = list->numneigh[i];
+  //   int* firstneigh = list->firstneigh[i];
+  //   // std::cout << i << " , " << i_idx << " : ";
+  //   for(int j = 0;j < i_numneigh;j++){
+  //     int j_idx = firstneigh[j];
+  //     count[j_idx] += 1;
+  //     // std::cout << j_idx << " ";
+  //   }
+  //   // std::cout << std::endl;
+  // }
+  // for(int i = 0;i < nall;i++){
+  //   std::cout << count[i] << " " << std::endl;
+  //   // assert(count[i] > 0);
+  //   if(count[i] <= 0){
+  //     std::cout << "index : " << i << " not be accessed !!!" << std::endl;
+  //   }
+  // }
+
   // here
-  // std::cout << "compute 1 " << std::endl;
+  // std::cout << "HIGH_PREC start" << std::endl;
 
-//   int num_threads = 2;
-//   vector<double> parallel_dener (num_threads,0.);
-//   vector<vector<double>> parallel_dforce (num_threads, vector<double>(nall * 3,0.));
-//   vector<vector<double>> parallel_dvirial (num_threads, vector<double>(9,0.));
-// #pragma omp parallel num_threads(num_threads)
-//   {
-//     int tid = omp_get_thread_num();
-//     int local_i_start = (tid * list->inum) / num_threads;
-//     int local_i_end = ((tid+1) * list->inum) / num_threads;
-//     int local_inum = local_i_end - local_i_start;
-//     int local_ilist[local_inum];
-//     int local_numneigh[local_inum];
-//     int *firstneigh[local_inum];
-//     int total_neigh=0;
-//     for(int i = 0; i < local_inum;i++){
-//       int ii = i + local_i_start;
-//       local_ilist[i] = list->ilist[ii];
-//       local_numneigh[i] = list->numneigh[ii];
-//       total_neigh += local_numneigh[i];
-//     }
-//     int neigh[total_neigh];
-//     int cur_neigh = 0;
-//     for(int i = 0; i < local_inum;i++){
-//       int ii = i + local_i_start;
-//       firstneigh[i] = &neigh[cur_neigh];
-//       for(int j = 0; j < local_numneigh[i];j++ )
-//         firstneigh[i][j] = list->firstneigh[ii][j];
-//       cur_neigh += local_numneigh[i];
-//     }
-//     deepmd::InputNlist local_lmp_list(local_inum,local_ilist,local_numneigh,firstneigh);
-//     deep_pot.compute (parallel_dener[tid], parallel_dforce[tid], parallel_dvirial[tid], dcoord, dtype, dbox, nghost, local_lmp_list, ago, fparam, daparam);
-//   }
+  vector<double> time(tid * 2);
+  double t0 = omp_get_wtime();
 
-// #pragma omp parallel for num_threads(num_threads)
-//   for(int i = 0;i<num_threads;i++){
-//     dener += parallel_dener[i];
-//     dvirial[0] += parallel_dvirial[i][0];
-//     dvirial[1] += parallel_dvirial[i][1];
-//     dvirial[2] += parallel_dvirial[i][2];
-//     dvirial[3] += parallel_dvirial[i][3];
-//     dvirial[4] += parallel_dvirial[i][4];
-//     dvirial[5] += parallel_dvirial[i][5];
-//     dvirial[6] += parallel_dvirial[i][6];
-//     dvirial[7] += parallel_dvirial[i][7];
-//     dvirial[8] += parallel_dvirial[i][8];
-//   }
+  int num_threads = get_env_num_threads();
+  
+  vector<double> parallel_dener (num_threads);
+  vector<vector<double>> parallel_dforce (num_threads);
+  vector<vector<double>> parallel_dvirial (num_threads);
+#pragma omp parallel num_threads(num_threads)
+  {
+    int tid = omp_get_thread_num();
+    time[tid * 2 + 0] = omp_get_wtime();
+    // std::cout << "thread " << tid << "start " << std::endl;
+    vector<double> local_dcoord;
+    vector<int> local_dtype;
+    int local_i_start = (tid * list->inum) / num_threads;
+    int local_i_end = ((tid+1) * list->inum) / num_threads;
 
-// #pragma omp parallel for num_threads(num_threads)
-//   for(int i = 0 ;i < nall * 3;i++){
-//     for(int j = 0; j < num_threads;j++){
-//       dforce[i] += parallel_dforce[j][i];
-//     }
-//   }
-  // std::cout << "before deep_pot.compute  " << std::endl;
-  deep_pot.compute (dener, dforce, dvirial, dcoord, dtype, dbox, nghost, lmp_list, ago, fparam, daparam);
-  // std::cout << "after deep_pot.compute  " << std::endl;
+    vector<int> forward_index_map(nall,-1); // old -> new
+    vector<int> backward_index_map;        // new -> old
+
+    int local_nloc = local_i_end - local_i_start;
+    int local_ilist[local_nloc];
+    int local_numneigh[local_nloc];
+    int *firstneigh[local_nloc];
+    int total_neigh=0;
+    for(int local_i_index = 0; local_i_index < local_nloc; local_i_index++){
+      int global_i_index = local_i_index + local_i_start;
+      int global_i_index_ = list->ilist[global_i_index];
+      assert(global_i_index == global_i_index);
+      
+      local_ilist[local_i_index] = local_i_index;
+      local_numneigh[local_i_index] = list->numneigh[global_i_index];
+      total_neigh += local_numneigh[local_i_index];
+      // put local_nloc to local_dcoord local_dtype
+      local_dcoord.push_back(dcoord[global_i_index*3+0]);
+      local_dcoord.push_back(dcoord[global_i_index*3+1]);
+      local_dcoord.push_back(dcoord[global_i_index*3+2]);
+      local_dtype.push_back(dtype[global_i_index]);
+      forward_index_map[global_i_index] = local_i_index;
+      backward_index_map.push_back(global_i_index);
+    }
+    int neigh[total_neigh];
+    int local_nall=local_nloc;
+    int cur_neigh = 0;
+    for(int local_i_index = 0; local_i_index < local_nloc;local_i_index++){
+      int global_i_index = local_i_index + local_i_start;
+      firstneigh[local_i_index] = &neigh[cur_neigh];
+      for(int nei_iter = 0; nei_iter < local_numneigh[local_i_index];nei_iter++ ){
+        int global_j_idx = list->firstneigh[global_i_index][nei_iter];
+        int local_j_index = forward_index_map[global_j_idx];
+        if(local_j_index == -1){
+          local_j_index = local_nall++;
+          forward_index_map[global_j_idx] = local_j_index;
+          backward_index_map.push_back(global_j_idx);
+          local_dcoord.push_back(dcoord[global_j_idx*3+0]);
+          local_dcoord.push_back(dcoord[global_j_idx*3+1]);
+          local_dcoord.push_back(dcoord[global_j_idx*3+2]);
+          local_dtype.push_back(dtype[global_j_idx]);
+        }
+        firstneigh[local_i_index][nei_iter] = local_j_index;
+      }
+      cur_neigh += local_numneigh[local_i_index];
+    }
+    int local_nghost = local_nall - local_nloc;
+    deepmd::InputNlist local_lmp_list(local_nloc,local_ilist,local_numneigh,firstneigh);
+
+    vector<double> local_dforce(local_nall * 3);
+
+    parallel_dener[tid] = 0.;
+    parallel_dforce[tid].resize(nall * 3);
+    std::fill(parallel_dforce[tid].begin(),parallel_dforce[tid].end(),0.);
+    parallel_dvirial[tid].resize(9);
+    std::fill(parallel_dvirial[tid].begin(),parallel_dvirial[tid].end(),0.);
+    
+    // std::cout << "thread " << tid << "compute before " << std::endl;
+
+    deep_pots[tid].compute (parallel_dener[tid], local_dforce, parallel_dvirial[tid], local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
+
+    // std::cout << "thread " << tid << "compute after " << std::endl;
+
+    for(int local_index = 0; local_index<local_nall; local_index++){
+      int global_index = backward_index_map[local_index];
+      parallel_dforce[tid][global_index * 3 + 0] = local_dforce[local_index * 3 + 0];
+      parallel_dforce[tid][global_index * 3 + 1] = local_dforce[local_index * 3 + 1];
+      parallel_dforce[tid][global_index * 3 + 2] = local_dforce[local_index * 3 + 2];
+    }
+    // std::cout << "thread " << tid << " end " << std::endl;
+    time[tid * 2 + 1] = omp_get_wtime();
+  }
+
+#pragma omp parallel for num_threads(num_threads)
+  for(int i = 0;i<num_threads;i++){
+    dener += parallel_dener[i];
+    dvirial[0] += parallel_dvirial[i][0];
+    dvirial[1] += parallel_dvirial[i][1];
+    dvirial[2] += parallel_dvirial[i][2];
+    dvirial[3] += parallel_dvirial[i][3];
+    dvirial[4] += parallel_dvirial[i][4];
+    dvirial[5] += parallel_dvirial[i][5];
+    dvirial[6] += parallel_dvirial[i][6];
+    dvirial[7] += parallel_dvirial[i][7];
+    dvirial[8] += parallel_dvirial[i][8];
+  }
+
+#pragma omp parallel for num_threads(num_threads)
+  for(int i = 0 ;i < nall * 3;i++){
+    for(int j = 0; j < num_threads;j++){
+      dforce[i] += parallel_dforce[j][i];
+    }
+  }
+  // deep_pot.compute (dener, dforce, dvirial, dcoord, dtype, dbox, nghost, lmp_list, ago, fparam, daparam);
+    // std::cout << "HIGH_PREC end" << std::endl;
+  double t1 = omp_get_wtime();
+  if(comm->me == 0){
+    for(int i = 0;i<num_threads;i++){
+      std::cout << i << " : " << time[i * 2 + 1] - time[i * 2] << std::endl;
+    }
+  }
+  std::cout << i << " : " << t1 - t0 << std::endl;
 
 #else
 
@@ -754,6 +845,7 @@ void PairDeepMD::compute(int eflag, int vflag)
     virial[4] += 1.0 * dvirial[6] * scale[1][1];
     virial[5] += 1.0 * dvirial[7] * scale[1][1];
   }
+  // std::cout << "PairDeepMD::compute end" << std::endl;
 }
 
 
@@ -807,6 +899,7 @@ is_key (const string& input)
 
 void PairDeepMD::settings(int narg, char **arg)
 {
+  // std::cout << "PairDeepMD::settings start " << std::endl;
   if (narg <= 0) error->all(FLERR,"Illegal pair_style command");
 
   vector<string> models;
@@ -822,6 +915,13 @@ void PairDeepMD::settings(int narg, char **arg)
   }
   numb_models = models.size();
   if (numb_models == 1) {    
+    std::string file_content = get_file_content(arg[0]);
+    int rank = get_node_rank();
+    int num_threads = get_env_num_threads();
+    deep_pots = std::vector<deepmd::DeepPot>(num_threads);
+    for(int i = 0;i<num_threads;i++){
+      deep_pots[i].init (arg[0], rank, file_content);
+    }
     deep_pot.init (arg[0],rank, file_content);
     cutoff = deep_pot.cutoff ();
     numb_types = deep_pot.numb_types();
@@ -977,6 +1077,7 @@ void PairDeepMD::settings(int narg, char **arg)
   
   comm_reverse = numb_models * 3;
   all_force.resize(numb_models);
+  // std::cout << "PairDeepMD::settings end " << std::endl;
 }
 
 void PairDeepMD::read_restart(FILE *)
