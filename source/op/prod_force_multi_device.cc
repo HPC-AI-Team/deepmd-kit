@@ -213,4 +213,3 @@ REGISTER_KERNEL_BUILDER(                                                        
 REGISTER_GPU(float);
 REGISTER_GPU(double);
 #endif  // GOOGLE_CUDA || TENSORFLOW_USE_ROCM
-

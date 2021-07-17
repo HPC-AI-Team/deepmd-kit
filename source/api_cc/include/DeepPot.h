@@ -176,8 +176,12 @@ public:
   * @param[out] type_map The type map of this model.
   **/
   void get_type_map (std::string & type_map);
+
+  tensorflow::Session* get_session(){return this->session;};
+  void set_session(tensorflow::Session* sess){this->session = sess;};
+
 private:
-  tensorflow::Session* session;
+  tensorflow::Session* session = NULL;
   int num_intra_nthreads, num_inter_nthreads;
   tensorflow::GraphDef graph_def;
   bool inited;

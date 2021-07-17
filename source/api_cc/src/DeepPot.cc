@@ -209,44 +209,51 @@ init (const std::string & model, const int & gpu_rank, const std::string & file_
     std::cerr << "WARNING: deepmd-kit should not be initialized twice, do nothing at the second call of initializer" << std::endl;
     return ;
   }
-  SessionOptions options;
-  get_env_nthreads(num_intra_nthreads, num_inter_nthreads);
-  options.config.set_inter_op_parallelism_threads(num_inter_nthreads);
-  options.config.set_intra_op_parallelism_threads(num_intra_nthreads);
 
-  if(file_content.size() == 0)
-    check_status (ReadBinaryProto(Env::Default(), model, &graph_def));
-  else
-    graph_def.ParseFromString(file_content);
-  int gpu_num = -1;
-  #if GOOGLE_CUDA
-  cudaGetDeviceCount(&gpu_num); // check current device environment
-  if (gpu_num > 0) {
-    options.config.set_allow_soft_placement(true);
-    options.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.9);
-    options.config.mutable_gpu_options()->set_allow_growth(true);
-    cudaErrcheck(cudaSetDevice(gpu_rank % gpu_num));
-    std::string str = "/gpu:";
-    str += std::to_string(gpu_rank % gpu_num);
-    graph::SetDefaultDevice(str, &graph_def);
+  if(session == NULL){
+    SessionOptions options;
+    auto* device_count = options.config.mutable_device_count();
+    // device_count->insert({"CPU", 1});
+    get_env_nthreads(num_intra_nthreads, num_inter_nthreads);
+    options.config.set_inter_op_parallelism_threads(num_inter_nthreads);
+    options.config.set_intra_op_parallelism_threads(num_intra_nthreads);
+    // options.config.config.set_use_per_session_threads(false);
+
+    if(file_content.size() == 0)
+      check_status (ReadBinaryProto(Env::Default(), model, &graph_def));
+    else
+      graph_def.ParseFromString(file_content);
+    int gpu_num = -1;
+    #if GOOGLE_CUDA
+    cudaGetDeviceCount(&gpu_num); // check current device environment
+    if (gpu_num > 0) {
+      options.config.set_allow_soft_placement(true);
+      options.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.9);
+      options.config.mutable_gpu_options()->set_allow_growth(true);
+      cudaErrcheck(cudaSetDevice(gpu_rank % gpu_num));
+      std::string str = "/gpu:";
+      str += std::to_string(gpu_rank % gpu_num);
+      graph::SetDefaultDevice(str, &graph_def);
+    }
+    #endif // GOOGLE_CUDA
+
+    #if TENSORFLOW_USE_ROCM
+    hipGetDeviceCount(&gpu_num); // check current device environment
+    if (gpu_num > 0) {
+      options.config.set_allow_soft_placement(true);
+      options.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.9);
+      options.config.mutable_gpu_options()->set_allow_growth(true);
+      hipErrcheck(hipSetDevice(gpu_rank % gpu_num));
+      std::string str = "/gpu:";
+      str += std::to_string(gpu_rank % gpu_num);
+      graph::SetDefaultDevice(str, &graph_def);
+    }
+    #endif // TENSORFLOW_USE_ROCM
+
+    check_status (NewSession(options, &session));
+    check_status (session->Create(graph_def));
   }
-  #endif // GOOGLE_CUDA
 
-  #if TENSORFLOW_USE_ROCM
-  hipGetDeviceCount(&gpu_num); // check current device environment
-  if (gpu_num > 0) {
-    options.config.set_allow_soft_placement(true);
-    options.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.9);
-    options.config.mutable_gpu_options()->set_allow_growth(true);
-    hipErrcheck(hipSetDevice(gpu_rank % gpu_num));
-    std::string str = "/gpu:";
-    str += std::to_string(gpu_rank % gpu_num);
-    graph::SetDefaultDevice(str, &graph_def);
-  }
-  #endif // TENSORFLOW_USE_ROCM
-
-  check_status (NewSession(options, &session));
-  check_status (session->Create(graph_def));
   rcut = get_scalar<VALUETYPE>("descrpt_attr/rcut");
   cell_size = rcut;
   ntypes = get_scalar<int>("descrpt_attr/ntypes");
@@ -564,8 +571,9 @@ init (const std::vector<std::string> & models, const int & gpu_rank, const std::
   #endif //TENSORFLOW_USE_ROCM
 
   SessionOptions options;
-  options.config.set_inter_op_parallelism_threads(num_inter_nthreads);
-  options.config.set_intra_op_parallelism_threads(num_intra_nthreads);
+  options.config.set_inter_op_parallelism_threads(1);
+  options.config.set_intra_op_parallelism_threads(1);
+
   for (unsigned ii = 0; ii < numb_models; ++ii){
     if (file_contents.size() == 0)
       check_status (ReadBinaryProto(Env::Default(), models[ii], &graph_defs[ii]));
