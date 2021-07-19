@@ -475,6 +475,11 @@ void PairDeepMD::compute(int eflag, int vflag)
         }
         cur_neigh += local_numneigh[local_i_index];
       }
+
+      forward_index_map.clear();
+      forward_index_map.shrink_to_fit();
+      // assert(forward_index_map.capacity() == 0);
+
       int local_nghost = local_nall - local_nlocal;
       deepmd::InputNlist local_lmp_list(local_nlocal,local_ilist,local_numneigh,firstneigh);
 
@@ -502,7 +507,7 @@ void PairDeepMD::compute(int eflag, int vflag)
     }
     double t1 = omp_get_wtime();
 
-  #pragma omp parallel for num_threads(num_threads)
+  // #pragma omp parallel for num_threads(num_threads)
     for(int i = 0;i<num_threads;i++){
       dener += parallel_dener[i];
       dvirial[0] += parallel_dvirial[i][0];
@@ -546,7 +551,7 @@ void PairDeepMD::compute(int eflag, int vflag)
     deep_pot.compute (dener, dforce, dvirial, dcoord, dtype, dbox, nghost, lmp_list, ago, fparam, daparam);
     double t1 = omp_get_wtime();
     std::cout << "total" << " : " << t1 - t0 << std::endl;
-  
+    std::cout << "global : (" << nlocal << " , " << nghost << ", " << nall << ", " << nghost * 100. / nall  << "%)" << std::endl;
   }
   std::cout << "HIGH_PREC end" << std::endl;
 #else
