@@ -222,7 +222,7 @@ get_env_nthreads(int & num_intra_nthreads,
   }
   if (env_inter_nthreads && 
       std::string(env_inter_nthreads) != std::string("") &&
-      atoi(env_inter_nthreads) >= 0
+      (atoi(env_inter_nthreads) >= 0 || atoi(env_inter_nthreads) == -1)
       ) {
     num_inter_nthreads = atoi(env_inter_nthreads);
   }
