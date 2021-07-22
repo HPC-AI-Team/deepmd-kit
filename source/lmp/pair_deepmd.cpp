@@ -303,7 +303,7 @@ PairDeepMD::~PairDeepMD()
 
 void PairDeepMD::compute(int eflag, int vflag)
 {
-  std::cout << "PairDeepMD::compute start" << std::endl;
+  // std::cout << "PairDeepMD::compute start" << std::endl;
   if (numb_models == 0) return;
   if (eflag || vflag) ev_setup(eflag,vflag);
   bool do_ghost = true;
@@ -404,7 +404,7 @@ void PairDeepMD::compute(int eflag, int vflag)
   // }
 
   // here
-  std::cout << "HIGH_PREC start" << std::endl;
+  // std::cout << "HIGH_PREC start" << std::endl;
 
 
   int num_threads = get_env_num_threads();
@@ -478,7 +478,6 @@ void PairDeepMD::compute(int eflag, int vflag)
 
       forward_index_map.clear();
       forward_index_map.shrink_to_fit();
-      // assert(forward_index_map.capacity() == 0);
 
       int local_nghost = local_nall - local_nlocal;
       deepmd::InputNlist local_lmp_list(local_nlocal,local_ilist,local_numneigh,firstneigh);
@@ -491,7 +490,16 @@ void PairDeepMD::compute(int eflag, int vflag)
       parallel_dvirial[tid].resize(9);
       std::fill(parallel_dvirial[tid].begin(),parallel_dvirial[tid].end(),0.);
       
-      deep_pots[tid].compute (parallel_dener[tid], local_dforce, parallel_dvirial[tid], local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
+      if(first_time){
+        if(tid == 0)
+          deep_pots[tid].compute (parallel_dener[tid], local_dforce, parallel_dvirial[tid], local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
+#pragma omp barrier
+        if(tid != 0)
+          deep_pots[tid].compute (parallel_dener[tid], local_dforce, parallel_dvirial[tid], local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
+        first_time=false;
+      }else{
+          deep_pots[tid].compute (parallel_dener[tid], local_dforce, parallel_dvirial[tid], local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
+      }
 
       for(int local_index = 0; local_index<local_nall; local_index++){
         int global_index = backward_index_map[local_index];
@@ -527,11 +535,8 @@ void PairDeepMD::compute(int eflag, int vflag)
         dforce[i] += parallel_dforce[j][i];
       }
     }
-    
     double t2 = omp_get_wtime();
-
     if(comm->me == 0){
-
       for(int i = 0;i<num_threads;i++){
         std::cout << i << " : " << time[i * 2 + 1] - time[i * 2] << std::endl;
       }
@@ -545,7 +550,6 @@ void PairDeepMD::compute(int eflag, int vflag)
       }  
       std::cout << "global : (" << nlocal << " , " << nghost << ", " << nall << ", " << nghost * 100. / nall  << "%)" << std::endl;
     }
-
   }else{
     double t0 = omp_get_wtime();
     deep_pot.compute (dener, dforce, dvirial, dcoord, dtype, dbox, nghost, lmp_list, ago, fparam, daparam);
@@ -553,7 +557,7 @@ void PairDeepMD::compute(int eflag, int vflag)
     std::cout << "total" << " : " << t1 - t0 << std::endl;
     std::cout << "global : (" << nlocal << " , " << nghost << ", " << nall << ", " << nghost * 100. / nall  << "%)" << std::endl;
   }
-  std::cout << "HIGH_PREC end" << std::endl;
+  // std::cout << "HIGH_PREC end" << std::endl;
 #else
 
 	vector<float> dcoord_(dcoord.size());
@@ -872,7 +876,7 @@ void PairDeepMD::compute(int eflag, int vflag)
     virial[4] += 1.0 * dvirial[6] * scale[1][1];
     virial[5] += 1.0 * dvirial[7] * scale[1][1];
   }
-  std::cout << "PairDeepMD::compute end" << std::endl;
+  // std::cout << "PairDeepMD::compute end" << std::endl;
 }
 
 

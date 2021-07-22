@@ -11,12 +11,12 @@ read_data	    water.lmp
 mass 		    1 16
 mass		    2 2
 
-replicate       3 3 3 bbox
+replicate       3 4 4 bbox
 
-pair_style	    deepmd ../model/graph-compress-preprocess.pb
+pair_style	    deepmd ../model/graph-original.pb
 pair_coeff	
 
-velocity        all create 330.0 23456789
+velocity        all create 330.0 23456789 loop local
 
 fix             1 all nvt temp 330.0 330.0 0.5
 timestep        0.0005
@@ -24,4 +24,4 @@ thermo_style    custom step pe ke etotal temp press vol
 thermo          20
 # dump		    1 all custom 100 water.dump id type x y z 
 
-run             19
+run             99

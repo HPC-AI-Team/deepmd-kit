@@ -212,12 +212,9 @@ init (const std::string & model, const int & gpu_rank, const std::string & file_
 
   if(session == NULL){
     SessionOptions options;
-    auto* device_count = options.config.mutable_device_count();
-    // device_count->insert({"CPU", 1});
     get_env_nthreads(num_intra_nthreads, num_inter_nthreads);
     options.config.set_inter_op_parallelism_threads(num_inter_nthreads);
     options.config.set_intra_op_parallelism_threads(num_intra_nthreads);
-    // options.config.config.set_use_per_session_threads(false);
 
     if(file_content.size() == 0)
       check_status (ReadBinaryProto(Env::Default(), model, &graph_def));

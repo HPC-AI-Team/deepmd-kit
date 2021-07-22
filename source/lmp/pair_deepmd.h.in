@@ -60,6 +60,7 @@ class PairDeepMD : public Pair {
   double **scale;
 
 private:  
+  bool first_time = true;
   deepmd::DeepPot deep_pot;
   std::vector<deepmd::DeepPot> deep_pots;
   deepmd::DeepPotModelDevi deep_pot_model_devi;
