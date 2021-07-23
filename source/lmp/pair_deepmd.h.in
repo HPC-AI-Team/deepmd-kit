@@ -63,6 +63,10 @@ private:
   bool first_time = true;
   deepmd::DeepPot deep_pot;
   std::vector<deepmd::DeepPot> deep_pots;
+  int num_threads = 1;
+  std::vector<std::vector<int>> backward_index_maps;
+  
+
   deepmd::DeepPotModelDevi deep_pot_model_devi;
   unsigned numb_models;
   double cutoff;
