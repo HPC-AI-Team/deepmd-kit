@@ -273,6 +273,7 @@ PairDeepMD::PairDeepMD(LAMMPS *lmp)
 
   num_threads = get_env_num_threads();
   backward_index_maps.resize(num_threads);
+  lmp_lists.resize(num_threads);
 
 }
 
@@ -414,101 +415,128 @@ void PairDeepMD::compute(int eflag, int vflag)
   if(num_threads > 1){
 
 // partition 
-    for(int i = 0;i<num_threads;i++ ){
-      backward_index_maps[i].clear();
-    }
+    if(ago == 0){
+
+      for(int i = 0;i<num_threads;i++ ){
+        backward_index_maps[i].clear();
+      }
 #pragma omp parallel for num_threads(num_threads)
-    for(int global_i_index = 0; global_i_index < nlocal; global_i_index++){
-      int id = omp_get_thread_num();
-      backward_index_maps[id].push_back(global_i_index);
+      for(int global_i_index = 0; global_i_index < nlocal; global_i_index++){
+        int id = omp_get_thread_num();
+        backward_index_maps[id].push_back(global_i_index);
+      }
     }
 
 // statistic info -------------------------------------------------------------------------------
-    vector<double> time(num_threads * 2);
-    vector<int> nlocs(num_threads);
-    vector<int> nghosts(num_threads);
-    vector<int> nalls(num_threads);
+    // vector<double> time(num_threads * 2);
+    // vector<int> nlocs(num_threads);
+    // vector<int> nghosts(num_threads);
+    // vector<int> nalls(num_threads);
 // ----------------------------------------------------------------------------------------------
-    double t0 = omp_get_wtime();
+    // double t0 = omp_get_wtime();
     vector<double> parallel_dener (num_threads);
     vector<vector<double>> parallel_dforce (num_threads);
     vector<vector<double>> parallel_dvirial (num_threads);
 #pragma omp parallel num_threads(num_threads)
     {
       int tid = omp_get_thread_num();
-      time[tid * 2 + 0] = omp_get_wtime();
-      vector<int> & local_backward_index_map = backward_index_maps[tid];
-      int local_nlocal = local_backward_index_map.size();
+      // time[tid * 2 + 0] = omp_get_wtime();
+      
+      vector<int>& local_backward_index_map = backward_index_maps[tid];
+      deepmd::InputNlist&  local_lmp_list = lmp_lists[tid];
 
-      vector<double> local_dcoord;
-      vector<int> local_dtype;
-      vector<int> forward_index_map(nall,-1); // old -> new
+      int local_nlocal = ago == 0 ? local_backward_index_map.size() : local_lmp_list.inum;
 
-      int local_ilist[local_nlocal];
-      int local_numneigh[local_nlocal];
-      int *firstneigh[local_nlocal];
-      int total_neigh=0;
-      for(int local_i_index = 0; local_i_index < local_nlocal; local_i_index++){
-        int global_i_index = local_backward_index_map[local_i_index];
-        int global_i_index_ = list->ilist[global_i_index];
-        assert(global_i_index == global_i_index);
-        local_ilist[local_i_index] = local_i_index;
-        local_numneigh[local_i_index] = list->numneigh[global_i_index];
-        total_neigh += local_numneigh[local_i_index];
-        local_dcoord.push_back(dcoord[global_i_index*3+0]);
-        local_dcoord.push_back(dcoord[global_i_index*3+1]);
-        local_dcoord.push_back(dcoord[global_i_index*3+2]);
-        local_dtype.push_back(dtype[global_i_index]);
-        forward_index_map[global_i_index] = local_i_index;
-      }
-      int neigh[total_neigh];
-      int local_nall=local_nlocal;
-      int cur_neigh = 0;
-      for(int local_i_index = 0; local_i_index < local_nlocal;local_i_index++){
-        int global_i_index = local_backward_index_map[local_i_index];
-        firstneigh[local_i_index] = &neigh[cur_neigh];
-        for(int nei_iter = 0; nei_iter < local_numneigh[local_i_index];nei_iter++ ){
-          int global_j_idx = list->firstneigh[global_i_index][nei_iter];
-          int local_j_index = forward_index_map[global_j_idx];
-          if(local_j_index == -1){
-            local_j_index = local_nall++;
-            forward_index_map[global_j_idx] = local_j_index;
-            local_backward_index_map.push_back(global_j_idx);
-            local_dcoord.push_back(dcoord[global_j_idx*3+0]);
-            local_dcoord.push_back(dcoord[global_j_idx*3+1]);
-            local_dcoord.push_back(dcoord[global_j_idx*3+2]);
-            local_dtype.push_back(dtype[global_j_idx]);
-          }
-          firstneigh[local_i_index][nei_iter] = local_j_index;
+      if(ago == 0){
+        if(local_lmp_list.inum != 0){
+          delete local_lmp_list.ilist;
+          delete local_lmp_list.numneigh;
+          delete local_lmp_list.firstneigh[0];
+          delete local_lmp_list.firstneigh;
         }
-        cur_neigh += local_numneigh[local_i_index];
+
+        vector<int> forward_index_map(nall,-1); // old -> new
+
+        int* local_ilist = new int[local_nlocal];
+        int* local_numneigh = new int[local_nlocal];
+        int** firstneigh = new int*[local_nlocal];
+
+        int total_neigh=0;
+        for(int local_i_index = 0; local_i_index < local_nlocal; local_i_index++){
+          int global_i_index = local_backward_index_map[local_i_index];
+          int global_i_index_ = list->ilist[global_i_index];
+          assert(global_i_index == global_i_index);
+          local_ilist[local_i_index] = local_i_index;
+          local_numneigh[local_i_index] = list->numneigh[global_i_index];
+          total_neigh += local_numneigh[local_i_index];
+          forward_index_map[global_i_index] = local_i_index;
+        }
+        int* neigh = new int[total_neigh];
+
+        int local_nall=local_nlocal;
+        int cur_neigh = 0;
+        for(int local_i_index = 0; local_i_index < local_nlocal;local_i_index++){
+          int global_i_index = local_backward_index_map[local_i_index];
+          firstneigh[local_i_index] = &neigh[cur_neigh];
+          for(int nei_iter = 0; nei_iter < local_numneigh[local_i_index];nei_iter++ ){
+            int global_j_idx = list->firstneigh[global_i_index][nei_iter];
+            int local_j_index = forward_index_map[global_j_idx];
+            if(local_j_index == -1){
+              local_j_index = local_nall++;
+              forward_index_map[global_j_idx] = local_j_index;
+              local_backward_index_map.push_back(global_j_idx);
+            }
+            firstneigh[local_i_index][nei_iter] = local_j_index;
+          }
+          cur_neigh += local_numneigh[local_i_index];
+        }
+        local_lmp_list.inum = local_nlocal;
+        local_lmp_list.ilist = local_ilist;
+        local_lmp_list.numneigh = local_numneigh;
+        local_lmp_list.firstneigh = firstneigh;
+        assert(cur_neigh == total_neigh);
       }
 
-      forward_index_map.clear();
-      forward_index_map.shrink_to_fit();
+      int local_nall = local_backward_index_map.size();
+      vector<double> local_dcoord(local_nall * 3);
+      vector<int> local_dtype(local_nall);
+      for(int local_index = 0;local_index < local_nall;local_index++){
+        int global_index = local_backward_index_map[local_index];
+        local_dcoord[local_index*3+0] = dcoord[global_index*3+0];
+        local_dcoord[local_index*3+1] = dcoord[global_index*3+1];
+        local_dcoord[local_index*3+2] = dcoord[global_index*3+2];
+        local_dtype[local_index] = dtype[global_index];
+      }
 
       int local_nghost = local_nall - local_nlocal;
-      deepmd::InputNlist local_lmp_list(local_nlocal,local_ilist,local_numneigh,firstneigh);
-
+      double local_dener = 0.;
       vector<double> local_dforce(local_nall * 3);
-
-      parallel_dener[tid] = 0.;
-      parallel_dforce[tid].resize(nall * 3);
-      std::fill(parallel_dforce[tid].begin(),parallel_dforce[tid].end(),0.);
-      parallel_dvirial[tid].resize(9);
-      std::fill(parallel_dvirial[tid].begin(),parallel_dvirial[tid].end(),0.);
-      
+      vector<double> local_dvirial(9,0.);
       if(first_time){
         if(tid == 0)
-          deep_pots[tid].compute (parallel_dener[tid], local_dforce, parallel_dvirial[tid], local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
+          deep_pots[tid].compute (local_dener, local_dforce, local_dvirial, local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
 #pragma omp barrier
         if(tid != 0)
-          deep_pots[tid].compute (parallel_dener[tid], local_dforce, parallel_dvirial[tid], local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
+          deep_pots[tid].compute (local_dener, local_dforce, local_dvirial, local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
         first_time=false;
       }else{
-          deep_pots[tid].compute (parallel_dener[tid], local_dforce, parallel_dvirial[tid], local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
+          deep_pots[tid].compute (local_dener, local_dforce, local_dvirial, local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
       }
 
+      parallel_dener[tid] = local_dener;
+      parallel_dvirial[tid].resize(9);
+      parallel_dvirial[tid][0] = local_dvirial[0];
+      parallel_dvirial[tid][1] = local_dvirial[1];
+      parallel_dvirial[tid][2] = local_dvirial[2];
+      parallel_dvirial[tid][3] = local_dvirial[3];
+      parallel_dvirial[tid][4] = local_dvirial[4];
+      parallel_dvirial[tid][5] = local_dvirial[5];
+      parallel_dvirial[tid][6] = local_dvirial[6];
+      parallel_dvirial[tid][7] = local_dvirial[7];
+      parallel_dvirial[tid][8] = local_dvirial[8];
+
+      parallel_dforce[tid].resize(nall * 3);
+      std::fill(parallel_dforce[tid].begin(),parallel_dforce[tid].end(),0.);
       for(int local_index = 0; local_index<local_nall; local_index++){
         int global_index = local_backward_index_map[local_index];
         parallel_dforce[tid][global_index * 3 + 0] = local_dforce[local_index * 3 + 0];
@@ -516,12 +544,12 @@ void PairDeepMD::compute(int eflag, int vflag)
         parallel_dforce[tid][global_index * 3 + 2] = local_dforce[local_index * 3 + 2];
       }
 
-      time[tid * 2 + 1] = omp_get_wtime();
-      nlocs[tid] = local_nlocal;
-      nghosts[tid] = local_nghost;
-      nalls[tid] = local_nall;
+      // time[tid * 2 + 1] = omp_get_wtime();
+      // nlocs[tid] = local_nlocal;
+      // nghosts[tid] = local_nghost;
+      // nalls[tid] = local_nall;
     }
-    double t1 = omp_get_wtime();
+    // double t1 = omp_get_wtime();
 
   // #pragma omp parallel for num_threads(num_threads)
     for(int i = 0;i<num_threads;i++){
@@ -543,28 +571,28 @@ void PairDeepMD::compute(int eflag, int vflag)
         dforce[i] += parallel_dforce[j][i];
       }
     }
-    double t2 = omp_get_wtime();
-    if(comm->me == 0){
-      for(int i = 0;i<num_threads;i++){
-        std::cout << i << " : " << time[i * 2 + 1] - time[i * 2] << std::endl;
-      }
-      std::cout << "total" << " : " << t2 - t0 << std::endl;
-      std::cout << "multithread inference time" << " : " << t1 - t0 << "   " << (t1 - t0) / (t2 - t0) * 100 << "%" << std::endl;
-      std::cout << "multithread merge result time" << " : " << t2 - t1 << "   " << (t2 - t1) / (t2 - t0) * 100 << "%" << std::endl;
-      std::cout << "(nloc , nghost, nall, nghost rate)" << std::endl;
-      for(int i = 0;i<num_threads;i++){
-        std::cout << i << " : " << time[i * 2 + 1] - time[i * 2] << std::endl;
-        std::cout << "(" << nlocs[i] << " , "<< nghosts[i] << ", " << nalls[i] << ", " << nghosts[i] * 100. /nalls[i] << "%)" << std::endl;
-      }  
-      std::cout << "global : (" << nlocal << " , " << nghost << ", " << nall << ", " << nghost * 100. / nall  << "%)" << std::endl;
-    }
+    // double t2 = omp_get_wtime();
+    // if(comm->me == 0){
+    //   for(int i = 0;i<num_threads;i++){
+    //     std::cout << i << " : " << time[i * 2 + 1] - time[i * 2] << std::endl;
+    //   }
+    //   std::cout << "total" << " : " << t2 - t0 << std::endl;
+    //   std::cout << "multithread inference time" << " : " << t1 - t0 << "   " << (t1 - t0) / (t2 - t0) * 100 << "%" << std::endl;
+    //   std::cout << "multithread merge result time" << " : " << t2 - t1 << "   " << (t2 - t1) / (t2 - t0) * 100 << "%" << std::endl;
+    //   std::cout << "(nloc , nghost, nall, nghost rate)" << std::endl;
+    //   for(int i = 0;i<num_threads;i++){
+    //     std::cout << i << " : " << time[i * 2 + 1] - time[i * 2] << std::endl;
+    //     std::cout << "(" << nlocs[i] << " , "<< nghosts[i] << ", " << nalls[i] << ", " << nghosts[i] * 100. /nalls[i] << "%)" << std::endl;
+    //   }  
+    //   std::cout << "global : (" << nlocal << " , " << nghost << ", " << nall << ", " << nghost * 100. / nall  << "%)" << std::endl;
+    // }
   }else{
 
-    double t0 = omp_get_wtime();
+    // double t0 = omp_get_wtime();
     deep_pot.compute (dener, dforce, dvirial, dcoord, dtype, dbox, nghost, lmp_list, ago, fparam, daparam);
-    double t1 = omp_get_wtime();
-    std::cout << "total" << " : " << t1 - t0 << std::endl;
-    std::cout << "global : (" << nlocal << " , " << nghost << ", " << nall << ", " << nghost * 100. / nall  << "%)" << std::endl;
+    // double t1 = omp_get_wtime();
+    // std::cout << "total" << " : " << t1 - t0 << std::endl;
+    // std::cout << "global : (" << nlocal << " , " << nghost << ", " << nall << ", " << nghost * 100. / nall  << "%)" << std::endl;
   
   }
   // std::cout << "HIGH_PREC end" << std::endl;

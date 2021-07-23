@@ -65,6 +65,7 @@ private:
   std::vector<deepmd::DeepPot> deep_pots;
   int num_threads = 1;
   std::vector<std::vector<int>> backward_index_maps;
+  std::vector<deepmd::InputNlist> lmp_lists;
   
 
   deepmd::DeepPotModelDevi deep_pot_model_devi;
