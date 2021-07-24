@@ -7,7 +7,7 @@ atom_style      atomic
 neighbor        2.0 bin
 neigh_modify    every 50 delay 0 check no
 
-read_data	    water.lmp
+read_data	    ../lmp/water.lmp
 mass 		    1 16
 mass		    2 2
 
