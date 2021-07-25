@@ -11,6 +11,7 @@ deepmd_root=$HOME/gzq/deepmd-kit
 source $deepmd_root/script/fugaku/env.sh
 # bash $deepmd_root/script/fugaku/build_deepmd.sh
 
+export OMPI_MCA_plm_ple_memory_allocation_policy=bind_local
 export PLE_MPI_STD_EMPTYFILE=off
 export OMP_NUM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=-1

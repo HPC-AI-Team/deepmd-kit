@@ -1,0 +1,254 @@
+Job Statistical Information
+
+ JOB ID                    : 6995864
+ SUB JOB NUM               : -
+ START BULKNO              : -
+ END BULKNO                : -
+ HOST NAME                 : fn01sv06
+ JOB NAME                  : run_compress_preprocess_12x4x1_720.sh
+ JOB TYPE                  : BATCH
+ JOB MODEL                 : NM
+ USER                      : u01036
+ GROUP                     : hp200266
+ RESOURCE UNIT             : rscunit_ft01 <DEFAULT>
+ RESOURCE GROUP            : small
+ APRIORITY                 : 127 <DEFAULT>
+ PRIORITY                  : 127 <DEFAULT>
+ SHELL                     : /bin/bash
+ MAIL SEND FLAG            : ----
+ MAIL ADDRESS              : u01036
+ STEP DEPENDENCY EXP       : 
+ FILE MASK                 : 18
+ STANDARD OUT FILE         : /vol0004/hp200266/u01036/gzq/deepmd-kit/examples/water/fugaku_one_node_max_scale/run_compress_preprocess_12x4x1_720.sh.6995864.out
+ STANDARD ERR FILE         : /vol0004/hp200266/u01036/gzq/deepmd-kit/examples/water/fugaku_one_node_max_scale/run_compress_preprocess_12x4x1_720.sh.6995864.err
+ INFORMATION FILE          : /vol0004/hp200266/u01036/gzq/deepmd-kit/examples/water/fugaku_one_node_max_scale/run_compress_preprocess_12x4x1_720.sh.6995864.stats
+ PJSUB DIRECTORY           : /vol0004/hp200266/u01036/gzq/deepmd-kit/examples/water/fugaku_one_node_max_scale
+ FILE SYSTEM NAME          : 
+ APPLICATION NAME          : 
+ NUMA POLICY               : 0
+ SPECIFIED JOB START DATE  : -
+ AUTO RESTART              : no
+ MPI PROC (REQUIRE)        : 1
+ MPI PROC (ALLOC)          : 12
+ MPI STATIC PROC (REQUIRE) : 1
+ MPI STATIC PROC (ALLOC)   : 12
+ PROC CPU LIMIT            : unlimited <DEFAULT>
+ PROC COREFILE LIMIT       : 0.0 MB (0) <DEFAULT>
+ PROC CREATE PROCESS LIMIT : 4096 <DEFAULT>
+ PROC DATA LIMIT           : unlimited <DEFAULT>
+ PROC LOCKED MEMORY LIMIT  : unlimited <DEFAULT>
+ PROC MESSAGE QUEUE LIMIT  : unlimited <DEFAULT>
+ PROC OPEN FILES LIMIT     : 1024 <DEFAULT>
+ PROC PENDING SIGNAL LIMIT : unlimited <DEFAULT>
+ PROC PERMFILE LIMIT       : unlimited <DEFAULT>
+ PROC STACK LIMIT          : unlimited <DEFAULT>
+ PROC VIRTUAL MEMORY LIMIT : unlimited <DEFAULT>
+ COMMENT                   : 
+ SUPPLEMENTARY INFORMATION : 
+ RETRY NUM                 : 0
+ LAST STATE                : RNO
+ STATE                     : EXT
+ BACKFILL                  : 0
+ ACCEPT DATE               : 2021/07/25 10:28:22
+ QUEUED DATE               : 2021/07/25 10:28:22
+ PRO START DATE            : -
+ PRO END DATE              : -
+ JOB START DATE            : 2021/07/25 10:28:29
+ JOB END DATE              : 2021/07/25 10:28:48
+ EPI START DATE            : -
+ EPI END DATE              : -
+ EXIT DATE                 : 2021/07/25 10:28:56
+ JOB DELETE DATE (REQUIRE) : -
+ JOB DELETE DATE           : -
+ ALL PREC SUBJOB EXIT DATE : -
+ HOLD TIME                 : 0
+ LAST HOLD USER            : -
+ HOLD NUM                  : 0
+ PRM DATE                  : 2021/07/25 10:28:49
+ AFFECTED NODE ID          : -
+ EXIT CODE                 : -
+ SIGNAL NO                 : 9
+ PJM CODE                  : 23
+ REASON                    : -
+ PRO EXIT CODE             : -
+ EPI EXIT CODE             : -
+ ELAPSE TIME (LIMIT)       : 00:05:00 (300)
+ ELAPSE TIME (USE)         : 00:00:19 (19)
+ USER CPU TIME (USE)       : 247720 ms
+ SYSTEM CPU TIME (USE)     : 19590 ms
+ CPU TIME (TOTAL)          : 267310 ms
+ MEMORY SIZE (LIMIT)       : unlimited <DEFAULT>
+ MEMORY SIZE (ALLOC)       : unlimited
+ MAX MEMORY SIZE (USE)     : 28762.5 MiB (30159667200)
+ VNODE MEMORY SIZE (LIMIT) : -
+ VNODE MEMORY SIZE (ALLOC) : -
+ VNODE MAX MEMORY SIZE (USE) : -
+ CPU NUM (REQUIRE)         : 48 <DEFAULT>
+ CPU NUM (ALLOC)           : 48
+ CPU NUM (USE)             : 48
+ ASSISTANT CORE NUM (ALLOC) : 2
+ ASSISTANT CORE (USE)      : 2
+ ASSISTANT CORE USER CPU TIME (USE) : 30 ms
+ ASSISTANT CORE SYSTEM CPU TIME (USE) : 30 ms
+ TOFU USER COMM RECV BYTE  : 0.0 MB (0)
+ TOFU USER COMM SEND BYTE  : 0.0 MB (0)
+ TOFU SYSTEM COMM RECV BYTE : 461.3 MB (461265824)
+ TOFU SYSTEM COMM SEND BYTE : 7.5 MB (7494144)
+ FJ PROFILER               : -
+ SECTOR CACHE              : 12
+ INTRA NODE BARRIER        : -
+ AVG POWER CONSUMPTION OF CORES/CMG(0) (IDEAL) : 25.349152
+ AVG POWER CONSUMPTION OF CORES/CMG(1) (IDEAL) : 23.198062
+ AVG POWER CONSUMPTION OF CORES/CMG(2) (IDEAL) : 25.359079
+ AVG POWER CONSUMPTION OF CORES/CMG(3) (IDEAL) : 25.373527
+ ENERGY CONSUMPTION OF CORES/CMG(0) (IDEAL) : 0.161199
+ ENERGY CONSUMPTION OF CORES/CMG(1) (IDEAL) : 0.147520
+ ENERGY CONSUMPTION OF CORES/CMG(2) (IDEAL) : 0.161262
+ ENERGY CONSUMPTION OF CORES/CMG(3) (IDEAL) : 0.161354
+ AVG POWER CONSUMPTION OF L2CACHE/CMG(0) (IDEAL) : 1.734220
+ AVG POWER CONSUMPTION OF L2CACHE/CMG(1) (IDEAL) : 1.731930
+ AVG POWER CONSUMPTION OF L2CACHE/CMG(2) (IDEAL) : 1.737305
+ AVG POWER CONSUMPTION OF L2CACHE/CMG(3) (IDEAL) : 1.728910
+ ENERGY CONSUMPTION OF L2CACHE/CMG(0) (IDEAL) : 0.011028
+ ENERGY CONSUMPTION OF L2CACHE/CMG(1) (IDEAL) : 0.011014
+ ENERGY CONSUMPTION OF L2CACHE/CMG(2) (IDEAL) : 0.011048
+ ENERGY CONSUMPTION OF L2CACHE/CMG(3) (IDEAL) : 0.010994
+ AVG POWER CONSUMPTION OF MEM/CMG(0) (IDEAL) : 2.397891
+ AVG POWER CONSUMPTION OF MEM/CMG(1) (IDEAL) : 2.407065
+ AVG POWER CONSUMPTION OF MEM/CMG(2) (IDEAL) : 2.409336
+ AVG POWER CONSUMPTION OF MEM/CMG(3) (IDEAL) : 2.407611
+ ENERGY CONSUMPTION OF MEM/CMG(0) (IDEAL) : 0.015249
+ ENERGY CONSUMPTION OF MEM/CMG(1) (IDEAL) : 0.015307
+ ENERGY CONSUMPTION OF MEM/CMG(2) (IDEAL) : 0.015321
+ ENERGY CONSUMPTION OF MEM/CMG(3) (IDEAL) : 0.015310
+ AVG POWER CONSUMPTION OF TOFU (IDEAL) : 5.250017
+ ENERGY CONSUMPTION OF TOFU (IDEAL) : 0.033386
+ AVG POWER CONSUMPTION OF CPU PERIPHERALS (IDEAL) : 0.312501
+ ENERGY CONSUMPTION OF CPU PERIPHERALS (IDEAL) : 0.001987
+ AVG POWER CONSUMPTION OF OPTICAL MODULE (IDEAL) : 2.625009
+ ENERGY CONSUMPTION OF OPTICAL MODULE (IDEAL) : 0.016693
+ AVG POWER CONSUMPTION OF PCI-E (IDEAL) : -
+ ENERGY CONSUMPTION OF PCI-E (IDEAL) : -
+ AVG POWER CONSUMPTION OF NODE (IDEAL) : 121.436425
+ ENERGY CONSUMPTION OF NODE (IDEAL) : 0.772232
+ AVG POWER CONSUMPTION OF NODE (MEASURED) : 108.690237
+ ENERGY CONSUMPTION OF NODE (MEASURED) : 0.691177
+ UTILIZATION INFO OF POWER API : 0
+ AVG POWER CONSUMPTION OF CPU/PKG : -
+ ENERGY CONSUMPTION OF CPU/PKG : -
+ AVG POWER CONSUMPTION OF MEM/PKG : -
+ ENERGY CONSUMPTION OF MEM/PKG : -
+ AVG POWER CONSUMPTION OF PP0/PKG : -
+ ENERGY CONSUMPTION OF PP0/PKG : -
+ POWER CONSUMPTION STATE   : 1
+ POWER CONSUMPTION MEASURE START DATE : 2021/07/25 10:28:26
+ POWER CONSUMPTION MEASURE END DATE : 2021/07/25 10:28:49
+ LLIO SHAREDTMP SIZE (REQUIRE) : 0 <DEFAULT>
+ LLIO LOCALTMP SIZE (REQUIRE) : 0 <DEFAULT>
+ LLIO AUTO READAHEAD       : 1 <DEFAULT>
+ LLIO ASYNC CLOSE          : 1 <DEFAULT>
+ LLIO CN CACHED WRITE SIZE : 4194304 <DEFAULT>
+ LLIO CN CACHE SIZE        : 134217728 <DEFAULT>
+ LLIO CN READ CACHE        : 1 <DEFAULT>
+ LLIO SIO READ CACHE       : 0 <DEFAULT>
+ LLIO STRIPE COUNT         : 1 <DEFAULT>
+ LLIO STRIPE SIZE          : 2097152 <DEFAULT>
+ LLIO UNCOMPLETED FILEINFO PATH : /vol0004/hp200266/u01036/gzq/deepmd-kit/examples/water/fugaku_one_node_max_scale/run_compress_preprocess_12x4x1_720.sh.6995864.err <DEFAULT>
+ LLIO UNCOMPLETED FILEINFO SIZE : 0
+ LLIO PERF PATH            : 
+ POWER CAPPING DATE        : -
+ VNODE NUM (REQUIRE)       : -
+ VNODE NUM (ALLOC)         : -
+ VNODE NUM (USE)           : -
+ 2NDLAYERCACHE CACHE HIT RATIO : -nan
+ 2NDLAYERCACHE MIN FREE SPACE : 93749968896
+ SHAREDTMP MAX USE SPACE   : 0
+ LOCALTMP MAX USE SPACE    : 0
+ 2NDLAYERCACHE NODE CACHE MIN CACHE HIT RATIO : 0.000000
+ SHAREDTMP NODE CACHE MIN CACHE HIT RATIO : 0.000000
+ LOCALTMP NODE CACHE MIN CACHE HIT RATIO : 0.000000
+ MIN NODE CACHE HIT RATIO FREE SPACE : 134217728
+ 2NDLAYERCACHE READ TRANSFER AMOUNT : 0
+ 2NDLAYERCACHE WRITE TRANSFER AMOUNT : 0
+ SHAREDTMP READ TRANSFER AMOUNT : 0
+ SHAREDTMP WRITE TRANSFER AMOUNT : 0
+ LOCALTMP READ TRANSFER AMOUNT : 0
+ LOCALTMP WRITE TRANSFER AMOUNT : 0
+ 2NDLAYERCACHE OPEN COUNT  : 0
+ 2NDLAYERCACHE STATFS COUNT : 0
+ 2NDLAYERCACHE SYNC COUNT  : 0
+ SHAREDTMP OPEN COUNT      : 0
+ LOCALTMP OPEN COUNT       : 0
+ 2NDLAYERCACHE FLASH START TIME : 2021/07/25 10:28:48
+ 2NDLAYERCACHE FLASH END TIME : 2021/07/25 10:28:49
+ NODE NUM (REQUIRE)        : 1:noncont
+ NODE NUM (ALLOC)          : 1:noncont
+ NODE NUM (USE)            : 1
+ NODE NUM (UNUSED)         : 0
+ NODE ID (USE)             : 0x1EA2000F
+ TOFU COORDINATE (USE)     : (11,15,0)
+ NODE ID (RANK)            : 0x1EA2000F(0) 0x1EA2000F(1) 0x1EA2000F(2) 0x1EA2000F(3) 0x1EA2000F(4) 0x1EA2000F(5) 0x1EA2000F(6) 0x1EA2000F(7) 0x1EA2000F(8) 0x1EA2000F(9) 0x1EA2000F(10) 0x1EA2000F(11)
+ freq (REQUIRE)            : 2200
+ freq (ALLOC)              : 2200
+ freq (USE)                : 
+ throttling_state (REQUIRE) : 0 <DEFAULT>
+ throttling_state (ALLOC)  : 0
+ throttling_state (USE)    : 
+ issue_state (REQUIRE)     : 0 <DEFAULT>
+ issue_state (ALLOC)       : 0
+ issue_state (USE)         : 
+ ex_pipe_state (REQUIRE)   : 0 <DEFAULT>
+ ex_pipe_state (ALLOC)     : 0
+ ex_pipe_state (USE)       : 
+ eco_state (REQUIRE)       : 0 <DEFAULT>
+ eco_state (ALLOC)         : 0
+ eco_state (USE)           : 
+ retention_state (REQUIRE) : 0 <DEFAULT>
+ retention_state (ALLOC)   : 0
+ retention_state (USE)     : 
+ retention_state_acores (REQUIRE) : 0 <DEFAULT>
+ retention_state_acores (ALLOC) : 0
+ retention_state_acores (USE) : 
+ knob_io (REQUIRE)         : SYSTEM <DEFAULT>
+ knob_io (ALLOC)           : SYSTEM
+ knob_io (USE)             : 
+ freq_min (REQUIRE)        : 2000 <DEFAULT>
+ freq_min (ALLOC)          : 2000
+ freq_min (USE)            : 
+ freq_max (REQUIRE)        : 2200 <DEFAULT>
+ freq_max (ALLOC)          : 2200
+ freq_max (USE)            : 
+ throttling_state_min (REQUIRE) : 0 <DEFAULT>
+ throttling_state_min (ALLOC) : 0
+ throttling_state_min (USE) : 
+ throttling_state_max (REQUIRE) : 9 <DEFAULT>
+ throttling_state_max (ALLOC) : 9
+ throttling_state_max (USE) : 
+ issue_state_min (REQUIRE) : 0 <DEFAULT>
+ issue_state_min (ALLOC)   : 0
+ issue_state_min (USE)     : 
+ issue_state_max (REQUIRE) : 1 <DEFAULT>
+ issue_state_max (ALLOC)   : 1
+ issue_state_max (USE)     : 
+ ex_pipe_state_min (REQUIRE) : 0 <DEFAULT>
+ ex_pipe_state_min (ALLOC) : 0
+ ex_pipe_state_min (USE)   : 
+ ex_pipe_state_max (REQUIRE) : 1 <DEFAULT>
+ ex_pipe_state_max (ALLOC) : 1
+ ex_pipe_state_max (USE)   : 
+ eco_state_min (REQUIRE)   : 0 <DEFAULT>
+ eco_state_min (ALLOC)     : 0
+ eco_state_min (USE)       : 
+ eco_state_max (REQUIRE)   : 2 <DEFAULT>
+ eco_state_max (ALLOC)     : 2
+ eco_state_max (USE)       : 
+ retention_state_min (REQUIRE) : 0 <DEFAULT>
+ retention_state_min (ALLOC) : 0
+ retention_state_min (USE) : 
+ retention_state_max (REQUIRE) : 0 <DEFAULT>
+ retention_state_max (ALLOC) : 0
+ retention_state_max (USE) : 
+ jobenv (REQUIRE)          : linux2 <DEFAULT>
+ jobenv (ALLOC)            : linux2
+ jobenv (USE)              : 
+
