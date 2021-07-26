@@ -24,12 +24,12 @@ export LD_LIBRARY_PATH=$tensorflow_root/lib:$LD_LIBRARY_PATH
 export PATH=$lammps_root/src:$PATH
 
 INSTALL_PREFIX=$deepmd_root/dp
-FLOAT_PREC=low
+FLOAT_PREC=high
 DEEPMD_BUILD_DIR=$deepmd_root/source/build
 LAMMPS_BUILD_DIR=$deepmd_root/source/build_lammps
 
 export DP_VARIANT=cpu
-export DP_FLOAT_PREC=low
+export DP_FLOAT_PREC=high
 
 export CC="fcc -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0 -lfjlapackexsve -SSL2"
 export CXX="FCC -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0 -lfjlapackexsve -SSL2"

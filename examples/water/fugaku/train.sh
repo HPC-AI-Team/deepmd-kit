@@ -18,9 +18,17 @@ export TF_INTER_OP_PARALLELISM_THREADS=1
 
 export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 
-dp train ../se_e2_a/input_float_1000.json
-dp freeze -o ../model/float/original/graph-original-baseline.pb
-dp test -m ../model/float/original/graph-original-baseline.pb -s ../data/data_3 -n 1
+# dp train ../se_e2_a/input_float_1000.json
+# dp freeze -o ../model/float/original/graph-original-baseline.pb
+# dp test -m ../model/float/original/graph-original-baseline.pb -s ../data/data_3 -n 1
+
+# rm -rf model.ckpt.*
+# rm -rf checkpoint
+
+
+dp train ../se_e2_a/input_double_1000.json
+dp freeze -o ../model/double/original/graph-original-gemm_tanh.pb
+dp test -m ../model/double/original/graph-original-gemm_tanh.pb -s ../data/data_3 -n 1
 
 rm -rf model.ckpt.*
 rm -rf checkpoint
