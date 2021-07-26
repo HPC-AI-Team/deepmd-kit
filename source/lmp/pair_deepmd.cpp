@@ -384,7 +384,6 @@ void PairDeepMD::compute(int eflag, int vflag)
     
     if (single_model || multi_models_no_mod_devi) {
       if ( ! (eflag_atom || vflag_atom) ) {      
-#ifdef HIGH_PREC
 
   // std::vector<int> count (nall,0);
   // for(int i = 0; i < list->inum; i++){
@@ -417,7 +416,6 @@ void PairDeepMD::compute(int eflag, int vflag)
 
 // partition 
     if(ago == 0){
-
       for(int i = 0;i<num_threads;i++ ){
         backward_index_maps[i].clear();
       }
@@ -429,15 +427,24 @@ void PairDeepMD::compute(int eflag, int vflag)
     }
 
 // statistic info -------------------------------------------------------------------------------
+    // vector<double> infer_time(num_threads * 2);
     // vector<double> time(num_threads * 2);
     // vector<int> nlocs(num_threads);
     // vector<int> nghosts(num_threads);
     // vector<int> nalls(num_threads);
 // ----------------------------------------------------------------------------------------------
     // double t0 = omp_get_wtime();
+    
+#ifdef HIGH_PREC
     vector<double> parallel_dener (num_threads);
     vector<vector<double>> parallel_dforce (num_threads);
     vector<vector<double>> parallel_dvirial (num_threads);
+#else
+    vector<float> parallel_dener (num_threads);
+    vector<vector<float>> parallel_dforce (num_threads);
+    vector<vector<float>> parallel_dvirial (num_threads);
+#endif
+
 #pragma omp parallel num_threads(num_threads)
     {
       int tid = omp_get_thread_num();
@@ -499,8 +506,14 @@ void PairDeepMD::compute(int eflag, int vflag)
       }
 
       int local_nall = local_backward_index_map.size();
-      vector<double> local_dcoord(local_nall * 3);
+
       vector<int> local_dtype(local_nall);
+
+#ifdef HIGH_PREC
+      vector<double> local_dcoord(local_nall * 3);
+#else 
+      vector<float> local_dcoord(local_nall * 3);
+#endif
       for(int local_index = 0;local_index < local_nall;local_index++){
         int global_index = local_backward_index_map[local_index];
         local_dcoord[local_index*3+0] = dcoord[global_index*3+0];
@@ -510,6 +523,8 @@ void PairDeepMD::compute(int eflag, int vflag)
       }
 
       int local_nghost = local_nall - local_nlocal;
+
+#ifdef HIGH_PREC
       double local_dener = 0.;
       vector<double> local_dforce(local_nall * 3);
       vector<double> local_dvirial(9,0.);
@@ -523,6 +538,33 @@ void PairDeepMD::compute(int eflag, int vflag)
       }else{
           deep_pots[tid].compute (local_dener, local_dforce, local_dvirial, local_dcoord, local_dtype, dbox, local_nghost, local_lmp_list, ago, fparam, daparam);
       }
+#else 
+	    vector<float> dbox_(dbox.size());
+	    for (unsigned dd = 0; dd < dbox.size(); ++dd) dbox_[dd] = dbox[dd];
+      double local_dener = 0.;
+      vector<float> local_dforce(local_nall * 3);
+      vector<float> local_dvirial(9,0.);
+      if(first_time){
+        if(tid == 0)
+          deep_pots[tid].compute (local_dener, local_dforce, local_dvirial, local_dcoord, local_dtype, dbox_, local_nghost, local_lmp_list, ago, fparam, daparam);
+#pragma omp barrier
+        if(tid != 0)
+          deep_pots[tid].compute (local_dener, local_dforce, local_dvirial, local_dcoord, local_dtype, dbox_, local_nghost, local_lmp_list, ago, fparam, daparam);
+        first_time=false;
+      }else{
+//         for(int i=0;i<num_threads;i++){
+//           if(tid == i){
+//             infer_time[tid * 2 + 0] = omp_get_wtime();
+//             deep_pots[tid].compute (local_dener, local_dforce, local_dvirial, local_dcoord, local_dtype, dbox_, local_nghost, local_lmp_list, ago, fparam, daparam);
+//             infer_time[tid * 2 + 1] = omp_get_wtime();
+//           }
+// #pragma omp barrier
+//         }
+        // infer_time[tid * 2 + 0] = omp_get_wtime();
+        deep_pots[tid].compute (local_dener, local_dforce, local_dvirial, local_dcoord, local_dtype, dbox_, local_nghost, local_lmp_list, ago, fparam, daparam);
+        // infer_time[tid * 2 + 1] = omp_get_wtime();
+      }
+#endif
 
       parallel_dener[tid] = local_dener;
       parallel_dvirial[tid].resize(9);
@@ -544,7 +586,7 @@ void PairDeepMD::compute(int eflag, int vflag)
         parallel_dforce[tid][global_index * 3 + 1] = local_dforce[local_index * 3 + 1];
         parallel_dforce[tid][global_index * 3 + 2] = local_dforce[local_index * 3 + 2];
       }
-
+      
       // time[tid * 2 + 1] = omp_get_wtime();
       // nlocs[tid] = local_nlocal;
       // nghosts[tid] = local_nghost;
@@ -582,37 +624,41 @@ void PairDeepMD::compute(int eflag, int vflag)
     //   std::cout << "multithread merge result time" << " : " << t2 - t1 << "   " << (t2 - t1) / (t2 - t0) * 100 << "%" << std::endl;
     //   std::cout << "(nloc , nghost, nall, nghost rate)" << std::endl;
     //   for(int i = 0;i<num_threads;i++){
+    //     std::cout << i << " : " << infer_time[i * 2 + 1] - infer_time[i * 2] << std::endl;
     //     std::cout << i << " : " << time[i * 2 + 1] - time[i * 2] << std::endl;
     //     std::cout << "(" << nlocs[i] << " , "<< nghosts[i] << ", " << nalls[i] << ", " << nghosts[i] * 100. /nalls[i] << "%)" << std::endl;
     //   }  
     //   std::cout << "global : (" << nlocal << " , " << nghost << ", " << nall << ", " << nghost * 100. / nall  << "%)" << std::endl;
     // }
   }else{
-
+#ifdef HIGH_PREC
     // double t0 = omp_get_wtime();
     deep_pot.compute (dener, dforce, dvirial, dcoord, dtype, dbox, nghost, lmp_list, ago, fparam, daparam);
     // double t1 = omp_get_wtime();
     // std::cout << "total" << " : " << t1 - t0 << std::endl;
     // std::cout << "global : (" << nlocal << " , " << nghost << ", " << nall << ", " << nghost * 100. / nall  << "%)" << std::endl;
-  
+#else
+    // double t0 = omp_get_wtime();
+    vector<float> dcoord_(dcoord.size());
+    vector<float> dbox_(dbox.size());
+    for (unsigned dd = 0; dd < dcoord.size(); ++dd) dcoord_[dd] = dcoord[dd];
+    for (unsigned dd = 0; dd < dbox.size(); ++dd) dbox_[dd] = dbox[dd];
+    vector<float> dforce_(dforce.size(), 0);
+    vector<float> dvirial_(dvirial.size(), 0);
+    double dener_ = 0;
+    // double t1 = omp_get_wtime();
+    deep_pot.compute (dener_, dforce_, dvirial_, dcoord_, dtype, dbox_, nghost, lmp_list, ago, fparam, daparam);
+    // double t2 = omp_get_wtime();
+    for (unsigned dd = 0; dd < dforce.size(); ++dd) dforce[dd] = dforce_[dd];	
+    for (unsigned dd = 0; dd < dvirial.size(); ++dd) dvirial[dd] = dvirial_[dd];	
+    dener = dener_;
+    // double t3 = omp_get_wtime();
+    // std::cout << "compute" << " : " << t2 - t1 << std::endl;
+    // std::cout << "total" << " : " << t3 - t0 << std::endl;
+#endif
   }
   // std::cout << "HIGH_PREC end" << std::endl;
-#else
 
-	vector<float> dcoord_(dcoord.size());
-	vector<float> dbox_(dbox.size());
-	for (unsigned dd = 0; dd < dcoord.size(); ++dd) dcoord_[dd] = dcoord[dd];
-	for (unsigned dd = 0; dd < dbox.size(); ++dd) dbox_[dd] = dbox[dd];
-	vector<float> dforce_(dforce.size(), 0);
-	vector<float> dvirial_(dvirial.size(), 0);
-	double dener_ = 0;
-  std::cout << "compute 2 " << std::endl;
-	deep_pot.compute (dener_, dforce_, dvirial_, dcoord_, dtype, dbox_, nghost, lmp_list, ago, fparam, daparam);
-	for (unsigned dd = 0; dd < dforce.size(); ++dd) dforce[dd] = dforce_[dd];	
-	for (unsigned dd = 0; dd < dvirial.size(); ++dd) dvirial[dd] = dvirial_[dd];	
-	dener = dener_;
-
-#endif
 
       }
       // do atomic energy and virial
