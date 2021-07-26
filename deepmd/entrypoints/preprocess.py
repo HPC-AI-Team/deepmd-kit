@@ -68,7 +68,7 @@ def preprocess_tabulate_table_transpose(node):
     print("precessing tabulate table")
     tensor_proto = node.attr["value"].tensor
     node_type = PRECISION_MAPPING[tensor_proto.dtype]
-    array = np.frombuffer(tensor_proto.tensor_content).astype(node_type)
+    array = np.frombuffer(tensor_proto.tensor_content,dtype=node_type)
     array = array.reshape([-1,128,6]).transpose((0,2,1))
     node.attr["value"].tensor.tensor_content = array.tostring()
 
@@ -80,9 +80,17 @@ def preprocess_tabulate_table_packing(node):
     print("precessing tabulate table")
     tensor_proto = node.attr["value"].tensor
     node_type = PRECISION_MAPPING[tensor_proto.dtype]
-    array = np.frombuffer(tensor_proto.tensor_content).astype(node_type)
-    array = array.reshape([-1,8,16,6]).transpose((0,1,3,2))
-    node.attr["value"].tensor.tensor_content = array.tostring() 
+    if node_type == np.float64:
+        array = np.frombuffer(tensor_proto.tensor_content,dtype=np.float64)
+        array = array.reshape([-1,8,16,6]).transpose((0,1,3,2))
+        node.attr["value"].tensor.tensor_content = array.tostring() 
+    elif node_type == np.float32:
+        array = np.frombuffer(tensor_proto.tensor_content,dtype=np.float32)
+        array = array.reshape([-1,4,32,6]).transpose((0,1,3,2))
+        node.attr["value"].tensor.tensor_content = array.tostring() 
+    else :
+        print("Not support type !!!")
+        assert False
 
 def preprocess_std_reciprocal(node):
     tabulate_table_node_pattern = re.compile(r"descrpt_attr/t_std")
@@ -93,7 +101,7 @@ def preprocess_std_reciprocal(node):
 
     tensor_proto = node.attr["value"].tensor
     node_type = PRECISION_MAPPING[tensor_proto.dtype]
-    array = np.frombuffer(tensor_proto.tensor_content).astype(node_type)
+    array = np.frombuffer(tensor_proto.tensor_content,dtype=node_type)
     array = 1. / array
     
     node.attr["value"].tensor.tensor_content = array.tostring()

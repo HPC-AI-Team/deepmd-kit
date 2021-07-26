@@ -30,9 +30,9 @@ cp -r ${DEEPMD_BUILD_DIR}/USER-DEEPMD/* ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERS
 # mkdir -p ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}/build
 # cd ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}/build
 
-# if [ ${FLOAT_PREC} == "high" ]; then
-#     export PREC_DEF="-DHIGH_PREC"
-# fi
+if [ ${FLOAT_PREC} == "high" ]; then
+    export PREC_DEF="-DHIGH_PREC"
+fi
 
 # cmake -C ../cmake/presets/all_off.cmake -D PKG_USER-DEEPMD=ON -D PKG_KSPACE=ON -D CMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} -D CMAKE_CXX_FLAGS="${PREC_DEF} -I${INSTALL_PREFIX}/include -L${INSTALL_PREFIX}/lib -I$tensorflow_root/include  -L$tensorflow_root/lib -Wl,--no-as-needed -lrt -ldeepmd_op -ldeepmd -ldeepmd_cc -ltensorflow_cc -ltensorflow_framework -Wl,-rpath=${INSTALL_PREFIX}/lib" ../cmake
 

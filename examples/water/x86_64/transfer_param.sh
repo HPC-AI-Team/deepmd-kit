@@ -25,13 +25,13 @@ set -x
 # python /data/home/guozhuoqiang/deepmd-kit/_skbuild/linux-x86_64-3.7/cmake-install/deepmd/entrypoints/preprocess.py ../model/double/compress/graph-compress-gemm_tanh_fusion.pb ../model/double/compress-preprocess/graph-compress-preprocess-gemm_tanh_fusion.pb
 
 
-mkdir -p ../model/float/original
-mkdir -p ../model/float/compress
-mkdir -p ../model/float/compress-preprocess
+# mkdir -p ../model/float/original
+# mkdir -p ../model/float/compress
+# mkdir -p ../model/float/compress-preprocess
 
-cp ../model/float/graph.pb ../model/float/original/graph-original-baseline.pb
-dp compress ../se_e2_a/input_float.json -i ../model/float/original/graph-original-baseline.pb -o ../model/float/compress/graph-compress-baseline.pb
-python /data/home/guozhuoqiang/deepmd-kit/_skbuild/linux-x86_64-3.7/cmake-install/deepmd/entrypoints/preprocess.py ../model/float/compress/graph-compress-baseline.pb ../model/float/compress-preprocess/graph-compress-preprocess-baseline.pb
+# cp ../model/float/graph.pb ../model/float/original/graph-original-baseline.pb
+# dp compress ../se_e2_a/input_float.json -i ../model/float/original/graph-original-baseline.pb -o ../model/float/compress/graph-compress-baseline.pb
+# python /data/home/guozhuoqiang/deepmd-kit/_skbuild/linux-x86_64-3.7/cmake-install/deepmd/entrypoints/preprocess.py ../model/float/compress/graph-compress-baseline.pb ../model/float/compress-preprocess/graph-compress-preprocess-baseline.pb
 
 # dp transfer -O ../model/float/graph.pb -r ../model/float/original/graph-original-gemm.pb -o ../model/float/original/graph-original-gemm.pb
 # dp compress ../se_e2_a/input_float.json -i ../model/float/original/graph-original-gemm.pb -o ../model/float/compress/graph-compress-gemm.pb

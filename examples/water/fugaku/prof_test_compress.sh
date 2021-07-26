@@ -12,13 +12,15 @@ deepmd_root=$HOME/gzq/deepmd-kit
 source $deepmd_root/script/fugaku/env.sh
 # bash $deepmd_root/script/fugaku/build_deepmd.sh
 
-export OMP_NUM_THREADS=12
-export BLIS_JC_NT=1 BLIS_IC_NT=1 BLIS_JR_NT=12
-export TF_INTER_OP_PARALLELISM_THREADS=1
-export TF_INTRA_OP_PARALLELISM_THREADS=12
-
-export TF_PROFILE=1
+export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 export TF_CPP_MIN_LOG_LEVEL=3
+export HAVE_PREPROCESSED=1
+export TF_PROFILE=1
+
+export DEEPMD_NUM_THREADS=1
+export OMP_NUM_THREADS=1
+export TF_INTER_OP_PARALLELISM_THREADS=1
+export TF_INTRA_OP_PARALLELISM_THREADS=1
 
 rm -f profiler.json_*
 
