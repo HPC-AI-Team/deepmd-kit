@@ -12,24 +12,24 @@ neigh_modify    every 50 delay 0 check no
 read_data	    ../lmp/water.lmp
 Reading data file ...
   triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
-  3 by 4 by 4 MPI processor grid
+  5 by 8 by 10 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.033 seconds
+  read_data CPU = 0.022 seconds
 mass 		    1 16
 mass		    2 2
 
-replicate       6 6 8 bbox
+replicate       40 40 30 bbox
 Replicating atoms ...
-  triclinic box = (0.0000000 0.0000000 0.0000000) to (74.668200 74.668200 99.557600) with tilt (0.0000000 0.0000000 0.0000000)
-  3 by 4 by 4 MPI processor grid
+  triclinic box = (0.0000000 0.0000000 0.0000000) to (497.78800 497.78800 373.34100) with tilt (0.0000000 0.0000000 0.0000000)
+  8 by 10 by 5 MPI processor grid
   bounding box image = (0 0 0) to (0 0 0)
   bounding box extra memory = 0.02 MB
-  average # of replicas added to proc = 11.81 out of 288 (4.10%)
-  55296 atoms
-  replicate CPU = 0.027 seconds
+  average # of replicas added to proc = 126.08 out of 48000 (0.26%)
+  9216000 atoms
+  replicate CPU = 0.023 seconds
 
-pair_style	    deepmd ../model/graph-original.pb
+pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
@@ -53,6 +53,6 @@ Summary of lammps deepmd module ...
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
   build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
   >>> Info of model(s):
-  using   1 model(s): ../model/graph-original.pb 
+  using   1 model(s): ../model/graph-compress-preprocess.pb 
   rcut in model:      6
   ntypes in model:    2
