@@ -34,4 +34,7 @@ build
 build_lammps
 build_tests
 build_cc_tests
+examples/copper/data
+
+
 

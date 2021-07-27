@@ -20,7 +20,7 @@
             "resnet_dt": false,
             "axis_neuron": 16,
             "seed": 1,
-            "precision": "float32",
+            "precision": "float64",
             "activation_function": "tanh",
             "type_one_side": false,
             "trainable": true,
@@ -35,7 +35,7 @@
             ],
             "resnet_dt": true,
             "seed": 1,
-            "precision": "float32",
+            "precision": "float64",
             "type": "ener",
             "numb_fparam": 0,
             "numb_aparam": 0,
@@ -47,7 +47,7 @@
         "compress": {
             "type": "se_e2_a",
             "compress": true,
-            "model_file": "../model/float/original/graph-original-baseline.pb",
+            "model_file": "../model/double/original/graph-original-baseline.pb",
             "table_config": [
                 5,
                 0.01,
