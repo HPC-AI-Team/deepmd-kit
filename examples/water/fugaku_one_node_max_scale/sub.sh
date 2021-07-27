@@ -15,12 +15,8 @@
 # pjsub run_compress_preprocess_12x4x1_288.sh
 # pjsub run_compress_preprocess_12x4x1_576.sh
 # pjsub run_compress_preprocess_12x4x1_624.sh
-pjsub run_compress_preprocess_12x4x1_672.sh
-pjsub run_compress_preprocess_12x4x1_672.sh
-pjsub run_compress_preprocess_12x4x1_720.sh
-pjsub run_compress_preprocess_12x4x1_720.sh
-pjsub run_compress_preprocess_12x4x1_768.sh
-pjsub run_compress_preprocess_12x4x1_768.sh
+# pjsub run_compress_preprocess_12x4x1_720.sh
+# pjsub run_compress_preprocess_12x4x1_768.sh
 # pjsub run_compress_preprocess_12x4x1_816.sh
 # pjsub run_compress_preprocess_12x4x1_864.sh
 # pjsub run_compress_preprocess_12x4x1_912.sh
