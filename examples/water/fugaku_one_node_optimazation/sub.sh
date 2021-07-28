@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# pjsub run_48x1x1_48.sh
+pjsub run_48x1x1_48.sh
 pjsub run_compress_48x1x1_48.sh
 # pjsub run_compress_preprocess_48x1x1_48.sh
 

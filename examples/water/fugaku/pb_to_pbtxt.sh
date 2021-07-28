@@ -1,6 +1,6 @@
 #!/bin/bash
 
-deepmd_root=$HOME/gzq/deepmd-kit
+
 source $deepmd_root/script/fugaku/env.sh
 
 python_script=$deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/pb2pbtxt.py

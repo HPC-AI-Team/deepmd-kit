@@ -8,7 +8,7 @@
 set -ex
 
 
-deepmd_root=$HOME/gzq/deepmd-kit
+
 source $deepmd_root/script/fugaku/env.sh
 # bash $deepmd_root/script/fugaku/build_deepmd.sh
 

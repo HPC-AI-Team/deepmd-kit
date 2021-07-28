@@ -1,6 +1,6 @@
 #!/bin/bash
 
-deepmd_root=$HOME/gzq/deepmd-kit
+
 source $deepmd_root/script/fugaku/env.sh
 
 if [ $# != 2 ]

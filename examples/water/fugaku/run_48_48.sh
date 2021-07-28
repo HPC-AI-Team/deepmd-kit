@@ -19,4 +19,4 @@ export TF_CPP_MIN_LOG_LEVEL=3
 
 
 export DEEPMD_NUM_THREADS=1
-mpiexec -n 48 lmp_mpi -echo screen -in ../lmp/in.water_compress_1
+mpiexec  lmp_mpi -echo screen -in ../lmp/in.water_48
