@@ -6,7 +6,7 @@ export deepmd_root=$HOME/deepmd-kit
 source $deepmd_root/script/x86_64/env.sh
 bash $deepmd_root/script/x86_64/build_deepmd.sh
 
-dp train ../se_e2_a/input_double_50000.json
+dp train ../se_e2_a/input_double_100000.json
 dp freeze -o ../model/double/graph.pb
 dp test -m ../model/double/graph.pb -s ../data/data_3 -n 1
 

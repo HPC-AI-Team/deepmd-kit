@@ -6,15 +6,15 @@ bash $deepmd_root/script/x86_64/build_deepmd.sh
 
 set -x
 
-# mkdir -p ../model/double/original
-# mkdir -p ../model/double/compress
-# mkdir -p ../model/double/compress-preprocess
-# cp ../model/double/graph.pb ../model/double/original/graph-original-baseline.pb
+mkdir -p ../model/double/original
+mkdir -p ../model/double/compress
+mkdir -p ../model/double/compress-preprocess
+cp ../model/double/graph.pb ../model/double/original/graph-original-baseline.pb
 # dp transfer -O ../model/double/graph.pb -r ../model/double/original/graph-original-gemm.pb -o ../model/double/original/graph-original-gemm.pb
 # dp transfer -O ../model/double/graph.pb -r ../model/double/original/graph-original-gemm_tanh.pb -o ../model/double/original/graph-original-gemm_tanh.pb
 # dp transfer -O ../model/double/graph.pb -r ../model/double/original/graph-original-gemm_tanh_fusion.pb -o ../model/double/original/graph-original-gemm_tanh_fusion.pb
 
-# dp compress ../se_e2_a/input_double.json -i ../model/double/original/graph-original-baseline.pb -o ../model/double/compress/graph-compress-baseline.pb
+dp compress ../se_e2_a/input_double.json -i ../model/double/original/graph-original-baseline.pb -o ../model/double/compress/graph-compress-baseline.pb
 # dp compress ../se_e2_a/input_double.json -i ../model/double/original/graph-original-gemm.pb -o ../model/double/compress/graph-compress-gemm.pb
 # dp compress ../se_e2_a/input_double.json -i ../model/double/original/graph-original-gemm_tanh.pb -o ../model/double/compress/graph-compress-gemm_tanh.pb
 # dp compress ../se_e2_a/input_double.json -i ../model/double/original/graph-original-gemm_tanh_fusion.pb -o ../model/double/compress/graph-compress-gemm_tanh_fusion.pb
