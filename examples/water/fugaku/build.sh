@@ -7,6 +7,6 @@
 #PJM --mpi "max-proc-per-node=48"          # Maximum number of MPI processes created per node
 #PJM -s                                    # Statistical information output
 
-deepmd_root=$HOME/gzq/deepmd-kit
+
 source $deepmd_root/script/fugaku/env.sh
 bash $deepmd_root/script/fugaku/build_deepmd.sh
