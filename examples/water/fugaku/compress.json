@@ -47,7 +47,7 @@
         "compress": {
             "type": "se_e2_a",
             "compress": true,
-            "model_file": "../model/double/original/graph-original-gemm_tanh.pb",
+            "model_file": "../model/double/graph.pb",
             "table_config": [
                 5,
                 0.01,

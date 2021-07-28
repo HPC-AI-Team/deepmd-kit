@@ -21,4 +21,4 @@ export TF_INTRA_OP_PARALLELISM_THREADS=1
 export HAVE_PREPROCESSED=1
 export TF_CPP_MIN_LOG_LEVEL=3
 
-mpiexec -n 1 lmp_mpi -echo screen -in ../lmp/in.water_compress_preprocess_1
+mpiexec -n 1 lmp_mpi -echo screen -in ../lmp/in.water_compress_preprocess_4

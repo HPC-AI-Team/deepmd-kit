@@ -16,9 +16,8 @@ export PLE_MPI_STD_EMPTYFILE=off
 export OMP_NUM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=-1
 export TF_INTRA_OP_PARALLELISM_THREADS=1
-export HAVE_PREPROCESSED=1
 export TF_CPP_MIN_LOG_LEVEL=3
 
 
 export DEEPMD_NUM_THREADS=1
-mpiexec lmp_mpi -echo screen -in ../lmp/in.water_288
+mpiexec lmp_mpi -echo screen -in ../lmp/in.water_144

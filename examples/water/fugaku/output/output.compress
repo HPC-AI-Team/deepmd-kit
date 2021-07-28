@@ -15,7 +15,7 @@ Reading data file ...
   1 by 1 by 1 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.012 seconds
+  read_data CPU = 0.003 seconds
 mass 		    1 16
 mass		    2 2
 replicate       1 1 1 bbox
@@ -27,20 +27,20 @@ Replicating atoms ...
   average # of replicas added to proc = 1.00 out of 1 (100.00%)
   192 atoms
   replicate CPU = 0.000 seconds
-pair_style	    deepmd ../model/graph-original.pb
+pair_style	    deepmd ../model/graph-compress.pb
 Summary of lammps deepmd module ...
   >>> Info of deepmd-kit:
   installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
-  source:             v1.2.2-783-g0d78117e-dirty
+  source:             v1.2.2-786-g67b0276a-dirty
   source brach:       devel_
-  source commit:      0d78117e
-  source commit at:   2021-07-26 15:27:26 +0900
+  source commit:      67b0276a
+  source commit at:   2021-07-27 17:06:31 +0900
   surpport model ver.:1.0 
   build float prec:   double
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
   build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
   set tf intra_op_parallelism_threads: 1
-  set tf inter_op_parallelism_threads: -1
+  set tf inter_op_parallelism_threads: 1
   >>> Info of lammps module:
   use deepmd-kit at:  /home/hp200266/u01036/gzq/deepmd-kit/dp
   source:             v1.2.2-782-g23a7854b-dirty
@@ -51,7 +51,7 @@ Summary of lammps deepmd module ...
   build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
   build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
   >>> Info of model(s):
-  using   1 model(s): ../model/graph-original.pb 
+  using   1 model(s): ../model/graph-compress.pb 
   rcut in model:      6
   ntypes in model:    2
 pair_coeff
@@ -64,7 +64,7 @@ thermo_style    custom step pe ke etotal temp press vol
 thermo          20
 # dump		    1 all custom 100 water.dump id type x y z
 
-run             99
+run            99
 Neighbor list info ...
   update every 50 steps, delay 0 steps, check no
   max neighbors/atom: 2000, page size: 100000
@@ -83,30 +83,30 @@ Setting up Verlet run ...
   Time step     : 0.0005
 Per MPI rank memory allocation (min/avg/max) = 2.650 | 2.650 | 2.650 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
-       0   -29944.116    8.1472669   -29935.968          330    4862.1685    1927.3176 
-      20   -29943.788     7.820463   -29935.967    316.76301    514.11505    1927.3176 
-      40   -29944.397    8.4282167   -29935.969     341.3797   -2399.2369    1927.3176 
-      60   -29943.947    7.9866129    -29935.96    323.49281    4692.0863    1927.3176 
-      80   -29944.873    8.9002017   -29935.973    360.49716    2060.5061    1927.3176 
-      99   -29943.979    8.0192872    -29935.96    324.81626   -5250.2732    1927.3176 
-Loop time of 138.002 on 1 procs for 99 steps with 192 atoms
+       0   -29944.604    8.1472669   -29936.457          330    2400.0153    1927.3176 
+      20   -29944.218    7.7623404   -29936.456    314.40879   -2170.1577    1927.3176 
+      40   -29944.702    8.2448677   -29936.457    333.95326   -4342.1027    1927.3176 
+      60   -29944.444    7.9957504   -29936.449    323.86291    1732.1041    1927.3176 
+      80   -29945.484    9.0218045   -29936.462     365.4226    544.01073    1927.3176 
+      99   -29944.303    7.8570606   -29936.446    318.24537   -6266.6575    1927.3176 
+Loop time of 25.0422 on 1 procs for 99 steps with 192 atoms
 
-Performance: 0.031 ns/day, 774.422 hours/ns, 0.717 timesteps/s
-100.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 0.171 ns/day, 140.528 hours/ns, 3.953 timesteps/s
+99.5% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 137.97     | 137.97     | 137.97     |   0.0 | 99.98
-Neigh   | 0.010463   | 0.010463   | 0.010463   |   0.0 |  0.01
-Comm    | 0.0029333  | 0.0029333  | 0.0029333  |   0.0 |  0.00
-Output  | 0.00017722 | 0.00017722 | 0.00017722 |   0.0 |  0.00
-Modify  | 0.0018406  | 0.0018406  | 0.0018406  |   0.0 |  0.00
-Other   |            | 0.01727    |            |       |  0.01
+Pair    | 24.921     | 24.921     | 24.921     |   0.0 | 99.51
+Neigh   | 0.033643   | 0.033643   | 0.033643   |   0.0 |  0.13
+Comm    | 0.0027934  | 0.0027934  | 0.0027934  |   0.0 |  0.01
+Output  | 0.00018175 | 0.00018175 | 0.00018175 |   0.0 |  0.00
+Modify  | 0.0018332  | 0.0018332  | 0.0018332  |   0.0 |  0.01
+Other   |            | 0.08306    |            |       |  0.33
 
 Nlocal:        192.000 ave         192 max         192 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:        2107.00 ave        2107 max        2107 min
+Nghost:        2103.00 ave        2103 max        2103 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Neighs:        0.00000 ave           0 max           0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -118,4 +118,4 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:02:23
+Total wall time: 0:00:31
