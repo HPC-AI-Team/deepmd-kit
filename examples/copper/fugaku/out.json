@@ -44,17 +44,6 @@
             "rcond": 0.001,
             "atom_ener": []
         },
-        "compress": {
-            "type": "se_e2_a",
-            "compress": true,
-            "model_file": "../model/double/original/graph-original-gemm_tanh.pb",
-            "table_config": [
-                5,
-                0.01,
-                0.1,
-                -1
-            ]
-        },
         "data_stat_nbatch": 10,
         "data_stat_protect": 0.01
     },

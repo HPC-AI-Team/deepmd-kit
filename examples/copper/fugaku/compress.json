@@ -2,7 +2,7 @@
     "model": {
         "descriptor": {
             "seed": 98563835,
-            "type": "se_a",
+            "type": "se_e2_a",
             "sel": [
                 512
             ],
@@ -14,7 +14,13 @@
                 128
             ],
             "axis_neuron": 16,
-            "resnet_dt": false
+            "resnet_dt": false,
+            "activation_function": "tanh",
+            "type_one_side": false,
+            "precision": "float64",
+            "trainable": true,
+            "exclude_types": [],
+            "set_davg_zero": false
         },
         "fitting_net": {
             "seed": 98563835,
@@ -23,13 +29,35 @@
                 240,
                 240
             ],
-            "resnet_dt": true
-        }
+            "resnet_dt": true,
+            "type": "ener",
+            "numb_fparam": 0,
+            "numb_aparam": 0,
+            "activation_function": "tanh",
+            "precision": "float64",
+            "trainable": true,
+            "rcond": 0.001,
+            "atom_ener": []
+        },
+        "compress": {
+            "type": "se_e2_a",
+            "compress": true,
+            "model_file": "../model/double/graph.pb",
+            "table_config": [
+                5,
+                0.01,
+                0.1,
+                -1
+            ]
+        },
+        "data_stat_nbatch": 10,
+        "data_stat_protect": 0.01
     },
     "learning_rate": {
         "type": "exp",
         "decay_steps": 40000,
-        "start_lr": 0.001
+        "start_lr": 0.001,
+        "stop_lr": 1e-08
     },
     "loss": {
         "start_pref_e": 0.02,
@@ -37,7 +65,10 @@
         "start_pref_f": 1000,
         "limit_pref_f": 1,
         "start_pref_v": 0.0,
-        "limit_pref_v": 0.0
+        "limit_pref_v": 0.0,
+        "type": "ener",
+        "start_pref_ae": 0.0,
+        "limit_pref_ae": 0.0
     },
     "training": {
         "seed": 98563835,
@@ -338,7 +369,14 @@
                 3,
                 2,
                 3
-            ]
-        }
+            ],
+            "auto_prob": "prob_sys_size",
+            "sys_probs": null
+        },
+        "numb_steps": 2000,
+        "validation_data": null,
+        "profiling_file": "timeline.json",
+        "tensorboard": false,
+        "tensorboard_log_dir": "log"
     }
 }

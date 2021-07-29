@@ -9,19 +9,24 @@ lattice       	fcc 3.6342
 region        	box block 0 3 0 3 0 3
 create_box    	1 box
 create_atoms    1 box
-mass		1 63.546
 
-replicate     	3 3 3
-pair_style	deepmd copper-compress-double.pb 
+read_data	    ../lmp/copper.lmp
+
+mass		    1 63.546
+
+replicate     	1 1 1
+
+pair_style	    deepmd ../model/graph-original.pb
 pair_coeff	
 
 velocity        all create 330.0 23456789
 
-fix             1 all nvt temp 330.0 330.0 0.5
+fix             1 all nve
 timestep        0.0005
 thermo_style    custom step pe ke etotal temp press vol
-thermo          1
-# dump		1 all custom 100 copper.dump id type x y z 
+thermo          20
 
 
-run             499
+run             99
+
+#write_data	copper.lmp  

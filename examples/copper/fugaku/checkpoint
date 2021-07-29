@@ -1,0 +1,2 @@
+model_checkpoint_path: "/vol0004/hp200266/u01036/gzq/deepmd-kit/examples/copper/fugaku/model.ckpt"
+all_model_checkpoint_paths: "/vol0004/hp200266/u01036/gzq/deepmd-kit/examples/copper/fugaku/model.ckpt"
