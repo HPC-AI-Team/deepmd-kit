@@ -13,7 +13,7 @@ create_atoms    1 box
 # read_data	    ../lmp/copper.lmp
 mass		    1 63.546
 
-replicate     	1 1 1
+replicate     	4 2 3
 
 pair_style	    deepmd ../model/graph-original.pb
 pair_coeff	

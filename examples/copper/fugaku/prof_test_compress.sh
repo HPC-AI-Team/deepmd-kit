@@ -22,6 +22,6 @@ export TF_INTRA_OP_PARALLELISM_THREADS=1
 
 rm -f profiler.json_*
 
-dp test -m ../model/graph-compress.pb -s ../data/data_3 -n 1
+dp test -m ../model/graph-compress.pb -s ../data/init/cu.fcc.02x02x02/02.md/sys-0032/deepmd -n 1
 
 python $deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/profiler_visualization_topk.py profiler 
