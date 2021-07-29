@@ -1,0 +1,297 @@
++ source /home/hp200266/u01036/gzq/deepmd-kit/script/fugaku/env.sh
+++ export deepmd_root=/home/hp200266/u01036/gzq/deepmd-kit
+++ deepmd_root=/home/hp200266/u01036/gzq/deepmd-kit
+++ export tensorflow_root=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0
+++ tensorflow_root=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0
+++ export lammps_root=/home/hp200266/u01036/gzq/deepmd-kit/source/build_lammps/lammps-stable_29Oct2020
+++ lammps_root=/home/hp200266/u01036/gzq/deepmd-kit/source/build_lammps/lammps-stable_29Oct2020
+++ alias build_deempd=/home/hp200266/u01036/gzq/deepmd-kit/script/fugaku/build_deepmd.sh
+++ '[' -z /home/hp200266/u01036/gzq/deepmd-kit ']'
+++ export LD_LIBRARY_PATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/lib:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/lib:/home/hp200266/u01036/fj_software/likwid/lib:/home/hp200266/u01036/fj_software/blis/lib:/opt/FJSVxtclanga/tcsds-1.2.31/lib64
+++ LD_LIBRARY_PATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/lib:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/lib:/home/hp200266/u01036/fj_software/likwid/lib:/home/hp200266/u01036/fj_software/blis/lib:/opt/FJSVxtclanga/tcsds-1.2.31/lib64
+++ export CPATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/include:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/include:/home/hp200266/u01036/fj_software/likwid/include:/home/hp200266/u01036/fj_software/blis/include:
+++ CPATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/include:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/include:/home/hp200266/u01036/fj_software/likwid/include:/home/hp200266/u01036/fj_software/blis/include:
+++ export PATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
+++ PATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
+++ export PATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin:/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
+++ PATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin:/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
+++ export CPATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include:/home/hp200266/u01036/gzq/deepmd-kit/dp/include:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/include:/home/hp200266/u01036/fj_software/likwid/include:/home/hp200266/u01036/fj_software/blis/include:
+++ CPATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include:/home/hp200266/u01036/gzq/deepmd-kit/dp/include:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/include:/home/hp200266/u01036/fj_software/likwid/include:/home/hp200266/u01036/fj_software/blis/include:
+++ export LD_LIBRARY_PATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib:/home/hp200266/u01036/gzq/deepmd-kit/dp/lib:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/lib:/home/hp200266/u01036/fj_software/likwid/lib:/home/hp200266/u01036/fj_software/blis/lib:/opt/FJSVxtclanga/tcsds-1.2.31/lib64
+++ LD_LIBRARY_PATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib:/home/hp200266/u01036/gzq/deepmd-kit/dp/lib:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/lib:/home/hp200266/u01036/fj_software/likwid/lib:/home/hp200266/u01036/fj_software/blis/lib:/opt/FJSVxtclanga/tcsds-1.2.31/lib64
+++ export PATH=/home/hp200266/u01036/gzq/deepmd-kit/source/build_lammps/lammps-stable_29Oct2020/src:/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin:/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
+++ PATH=/home/hp200266/u01036/gzq/deepmd-kit/source/build_lammps/lammps-stable_29Oct2020/src:/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin:/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
+++ INSTALL_PREFIX=/home/hp200266/u01036/gzq/deepmd-kit/dp
+++ FLOAT_PREC=high
+++ DEEPMD_BUILD_DIR=/home/hp200266/u01036/gzq/deepmd-kit/source/build
+++ LAMMPS_BUILD_DIR=/home/hp200266/u01036/gzq/deepmd-kit/source/build_lammps
+++ export DP_VARIANT=cpu
+++ DP_VARIANT=cpu
+++ export DP_FLOAT_PREC=high
+++ DP_FLOAT_PREC=high
+++ export 'CC=fcc -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0'
+++ CC='fcc -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0'
+++ export 'CXX=FCC -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0'
+++ CXX='FCC -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0'
++ export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
++ LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
++ export TF_CPP_MIN_LOG_LEVEL=3
++ TF_CPP_MIN_LOG_LEVEL=3
++ export TF_PROFILE=1
++ TF_PROFILE=1
++ export DEEPMD_NUM_THREADS=1
++ DEEPMD_NUM_THREADS=1
++ export OMP_NUM_THREADS=1
++ OMP_NUM_THREADS=1
++ export TF_INTER_OP_PARALLELISM_THREADS=1
++ TF_INTER_OP_PARALLELISM_THREADS=1
++ export TF_INTRA_OP_PARALLELISM_THREADS=1
++ TF_INTRA_OP_PARALLELISM_THREADS=1
++ rm -f profiler.json_0
+[WARN] xos LPG 2002 - Failed to map HugeTLBfs for data/bss: /usr/bin/rm
+The e_type of elf header must be ET_EXEC when using libmpg. You can check it on your load module by readelf -h command.
++ dp test -m ../model/graph-compress.pb -s ../data/data_3 -n 1
+[WARN] xos LPG 2003 - Failed to map HugeTLBfs for data/bss: Layout problem with segments 0 and 1:
+	Segments would overlap.
+WARNING:tensorflow:From /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/python/compat/v2_compat.py:96: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+profile : ture
+WARNING:tensorflow:From /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+DEEPMD WARNING From /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+73 ops no flops stats due to incomplete shapes.
+Parsing Inputs...
+dp model type : ener
+DEEPMD INFO    # ---------------output of dp test---------------
+DEEPMD INFO    # testing system : ../data/data_3
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+generating trace file.
+
+******************************************************
+Timeline file is written to ./profiler.json_0.
+Open a Chrome browser, enter URL chrome://tracing and load the timeline file.
+******************************************************
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+
+=========================Options=============================
+-max_depth                  10
+-min_bytes                  0
+-min_peak_bytes             0
+-min_residual_bytes         0
+-min_output_bytes           0
+-min_micros                 0
+-min_accelerator_micros     0
+-min_cpu_micros             0
+-min_params                 0
+-min_float_ops              0
+-min_occurrence             0
+-step                       -1
+-order_by                   micros
+-account_type_regexes       .*
+-start_name_regexes         .*
+-trim_name_regexes
+-show_name_regexes          .*
+-hide_name_regexes
+-account_displayed_op_only  false
+-select                     bytes,float_ops,micros,occurrence
+-output                     stdout:
+
+==================Model Analysis Report======================
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+
+Doc:
+op: The nodes are operation kernel type, such as MatMul, Conv2D. Graph nodes belonging to the same type are aggregated together.
+requested bytes: The memory requested by the operation, accumulatively.
+flops: Number of float operations. Note: Please read the implementation for the math behind it.
+total execution time: Sum of accelerator execution time and cpu execution time.
+cpu execution time: The time from the start to the end of the operation. It's the sum of actual cpu run time plus the time that it spends waiting if part of computation is launched asynchronously.
+accelerator execution time: Time spent executing on the accelerator. This is normally measured by the actual hardware library.
+occurrence: The number of times it occurs
+
+Profile:
+node name | requested bytes | total execution time | accelerator execution time | cpu execution time | # float_ops | op occurrence (run|defined)
+TabulateFusionGrad              1.06MB (100.00%, 1.24%),      39.38ms (100.00%, 42.50%),             0us (0.00%, 0.00%),      39.38ms (100.00%, 42.50%),   0 float_ops (100.00%, 0.00%),        4|4
+TabulateFusion                   1.57MB (98.76%, 1.83%),       21.89ms (57.50%, 23.62%),             0us (0.00%, 0.00%),       21.89ms (57.50%, 23.62%),   0 float_ops (100.00%, 0.00%),        4|4
+ProdEnvMatA                      4.13MB (96.93%, 4.82%),         8.86ms (33.88%, 9.56%),             0us (0.00%, 0.00%),         8.86ms (33.88%, 9.56%),   0 float_ops (100.00%, 0.00%),        1|1
+MatmulNt                         4.25MB (92.11%, 4.96%),         6.45ms (24.31%, 6.96%),             0us (0.00%, 0.00%),         6.45ms (24.31%, 6.96%),   0 float_ops (100.00%, 0.00%),        8|8
+GemmLayer                        1.11MB (87.15%, 1.29%),         5.29ms (17.36%, 5.71%),             0us (0.00%, 0.00%),         5.29ms (17.36%, 5.71%),   0 float_ops (100.00%, 0.00%),        8|8
+BatchMatMulV2                    4.03MB (85.86%, 4.70%),         2.23ms (11.64%, 2.41%),             0us (0.00%, 0.00%),         2.23ms (11.64%, 2.41%), 106.95m float_ops (100.00%, 98.52%),        6|6
+ProdVirialSeA                   13.90KB (81.15%, 0.02%),          1.70ms (9.24%, 1.84%),             0us (0.00%, 0.00%),          1.70ms (9.24%, 1.84%),     0 float_ops (1.48%, 0.00%),        1|1
+Pad                            11.32MB (81.14%, 13.20%),          1.33ms (7.40%, 1.43%),             0us (0.00%, 0.00%),          1.33ms (7.40%, 1.43%),     0 float_ops (1.48%, 0.00%),      14|14
+Slice                            8.30MB (67.94%, 9.68%),          1.31ms (5.97%, 1.41%),             0us (0.00%, 0.00%),          1.31ms (5.97%, 1.41%),     0 float_ops (1.48%, 0.00%),      18|18
+ProdForceSeA                     4.61KB (58.25%, 0.01%),           744us (4.56%, 0.80%),             0us (0.00%, 0.00%),           744us (4.56%, 0.80%),     0 float_ops (1.48%, 0.00%),        1|1
+AddN                                  0B (0.00%, 0.00%),           659us (3.75%, 0.71%),             0us (0.00%, 0.00%),           659us (3.75%, 0.71%), 809.47k float_ops (1.48%, 0.75%),      14|14
+
+======================End of Report==========================
+DEEPMD INFO    # number of test data : 1
+DEEPMD INFO    Energy RMSE        : 7.471435e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 3.891372e-04 eV
+DEEPMD INFO    Force  RMSE        : 5.845047e-02 eV/A
+DEEPMD INFO    Virial RMSE        : 6.561504e+00 eV
+DEEPMD INFO    Virial RMSE/Natoms : 3.417450e-02 eV
+DEEPMD INFO    # -----------------------------------------------
++ python /home/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/profiler_visualization_topk.py profiler
+[WARN] xos LPG 2003 - Failed to map HugeTLBfs for data/bss: Layout problem with segments 0 and 1:
+	Segments would overlap.
+WARNING:tensorflow:From /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/python/compat/v2_compat.py:96: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+
+Top k op
+average time	min time	max time	percentage	op name
+17179.00	   17179	   17179	    0.19	load/gradients/filter_type_1/TabulateFusion_1_grad/TabulateFusionGrad
+ 9507.00	    9507	    9507	    0.10	load/filter_type_1/TabulateFusion_1
+ 9094.00	    9094	    9094	    0.10	load/gradients/filter_type_1/TabulateFusion_grad/TabulateFusionGrad
+ 8860.00	    8860	    8860	    0.10	load/ProdEnvMatA
+ 8798.00	    8798	    8798	    0.10	load/gradients/filter_type_0/TabulateFusion_1_grad/TabulateFusionGrad
+ 5131.00	    5131	    5131	    0.06	load/filter_type_1/TabulateFusion
+ 4845.00	    4845	    4845	    0.05	load/filter_type_0/TabulateFusion_1
+ 4310.00	    4310	    4310	    0.05	load/gradients/filter_type_0/TabulateFusion_grad/TabulateFusionGrad
+ 3238.00	    3238	    3238	    0.04	load/gradients/layer_0_type_1/GemmLayer_grad/MatmulNt
+ 2678.00	    2678	    2678	    0.03	load/layer_0_type_1/GemmLayer
+ 2406.00	    2406	    2406	    0.03	load/filter_type_0/TabulateFusion
+ 1939.00	    1939	    1939	    0.02	load/gradients/layer_0_type_0/GemmLayer_grad/MatmulNt
+ 1704.00	    1704	    1704	    0.02	load/ProdVirialSeA
+ 1485.00	    1485	    1485	    0.02	load/layer_0_type_0/GemmLayer
+  777.00	     777	     777	    0.01	load/filter_type_1/MatMul
+  744.00	     744	     744	    0.01	load/ProdForceSeA
+  516.00	     516	     516	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul
+  365.00	     365	     365	    0.00	load/gradients/layer_2_type_1/GemmLayer_grad/MatmulNt
+  362.00	     362	     362	    0.00	load/gradients/layer_1_type_1/GemmLayer_grad/MatmulNt
+  360.00	     360	     360	    0.00	load/filter_type_0/MatMul
+  340.00	     340	     340	    0.00	load/layer_1_type_1/GemmLayer
+  333.00	     333	     333	    0.00	load/layer_2_type_1/GemmLayer
+  303.00	     303	     303	    0.00	load/concat
+  266.00	     266	     266	    0.00	load/gradients/AddN_4
+  260.00	     260	     260	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul
+  247.00	     247	     247	    0.00	load/gradients/layer_2_type_0/GemmLayer_grad/MatmulNt
+  235.00	     235	     235	    0.00	load/gradients/filter_type_1/Slice_3_grad/Pad
+  234.00	     234	     234	    0.00	load/gradients/layer_1_type_0/GemmLayer_grad/MatmulNt
+  221.00	     221	     221	    0.00	load/gradients/Slice_3_grad/Pad
+  209.00	     209	     209	    0.00	load/gradients/concat_grad/Slice_1
+  209.00	     209	     209	    0.00	load/gradients/filter_type_1/MatMul_grad/MatMul_1
+  204.00	     204	     204	    0.00	load/Slice_3
+  194.00	     194	     194	    0.00	load/layer_1_type_0/GemmLayer
+  194.00	     194	     194	    0.00	load/layer_2_type_0/GemmLayer
+  186.00	     186	     186	    0.00	load/gradients/Slice_2_grad/Pad
+  149.00	     149	     149	    0.00	load/filter_type_1/Slice_3
+  127.00	     127	     127	    0.00	load/gradients/filter_type_1/Slice_1_grad/Pad
+  126.00	     126	     126	    0.00	load/gradients/filter_type_0/Slice_3_grad/Pad
+  109.00	     109	     109	    0.00	load/gradients/concat_grad/Slice
+  109.00	     109	     109	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul_1
+  108.00	     108	     108	    0.00	load/Slice_2
+   80.00	      80	      80	    0.00	load/filter_type_1/Slice_1
+   78.00	      78	      78	    0.00	load/filter_type_0/Slice_3
+   75.00	      75	      75	    0.00	load/gradients/AddN_13
+   71.00	      71	      71	    0.00	load/layer_0_type_1/FastTanh
+   69.00	      69	      69	    0.00	load/gradients/filter_type_0/Slice_1_grad/Pad
+   67.00	      67	      67	    0.00	load/gradients/Slice_1_grad/Pad
+   64.00	      64	      64	    0.00	load/gradients/Slice_grad/Pad
+   63.00	      63	      63	    0.00	load/layer_1_type_1/FastTanh
+   63.00	      63	      63	    0.00	load/layer_2_type_1/FastTanh
+   62.00	      62	      62	    0.00	load/Slice_1
+   58.00	      58	      58	    0.00	load/filter_type_1/add
+   58.00	      58	      58	    0.00	load/layer_1_type_1/mul
+   53.00	      53	      53	    0.00	load/gradients/layer_2_type_1/mul_grad/Mul
+   53.00	      53	      53	    0.00	load/gradients/filter_type_1/Slice_4_grad/Pad
+   52.00	      52	      52	    0.00	load/gradients/layer_1_type_1/mul_grad/Mul
+   51.00	      51	      51	    0.00	load/filter_type_1/Slice_4
+   51.00	      51	      51	    0.00	load/layer_2_type_1/mul
+   50.00	      50	      50	    0.00	load/gradients/AddN_12
+   48.00	      48	      48	    0.00	load/gradients/AddN_6
+   47.00	      47	      47	    0.00	load/filter_type_1/Slice_2
+   47.00	      47	      47	    0.00	load/gradients/filter_type_1/Slice_2_grad/Pad
+   44.00	      44	      44	    0.00	load/filter_type_0/Slice_1
+   43.00	      43	      43	    0.00	load/gradients/filter_type_1/Slice_grad/Pad
+   42.00	      42	      42	    0.00	load/final_layer_type_1/GemmLayer
+   42.00	      42	      42	    0.00	load/gradients/layer_2_type_0/mul_grad/Mul
+   39.00	      39	      39	    0.00	load/layer_1_type_0/mul
+   38.00	      38	      38	    0.00	load/filter_type_1/mul
+   38.00	      38	      38	    0.00	load/layer_0_type_0/FastTanh
+   38.00	      38	      38	    0.00	load/layer_1_type_0/FastTanh
+   38.00	      38	      38	    0.00	load/gradients/filter_type_1/mul_grad/Mul
+   36.00	      36	      36	    0.00	load/Slice
+   36.00	      36	      36	    0.00	load/layer_2_type_0/FastTanh
+   35.00	      35	      35	    0.00	load/gradients/layer_1_type_0/mul_grad/Mul
+   35.00	      35	      35	    0.00	load/gradients/AddN_10
+   33.00	      33	      33	    0.00	load/filter_type_0/add
+   32.00	      32	      32	    0.00	load/layer_2_type_0/mul
+   31.00	      31	      31	    0.00	load/filter_type_0/Slice_4
+   31.00	      31	      31	    0.00	load/filter_type_1/Slice
+   31.00	      31	      31	    0.00	load/gradients/final_layer_type_0/GemmLayer_grad/MatmulNt
+   31.00	      31	      31	    0.00	load/gradients/filter_type_0/Slice_4_grad/Pad
+   29.00	      29	      29	    0.00	load/filter_type_0/Slice_2
+   29.00	      29	      29	    0.00	load/gradients/final_layer_type_1/GemmLayer_grad/MatmulNt
+   29.00	      29	      29	    0.00	load/gradients/filter_type_0/Slice_2_grad/Pad
+   28.00	      28	      28	    0.00	load/gradients/filter_type_0/Slice_grad/Pad
+   27.00	      27	      27	    0.00	load/final_layer_type_0/GemmLayer
+   27.00	      27	      27	    0.00	load/gradients/AddN_11
+   26.00	      26	      26	    0.00	load/gradients/AddN_1
+   25.00	      25	      25	    0.00	load/gradients/layer_0_type_1/FastTanh_grad/Square
+   25.00	      25	      25	    0.00	load/add_5
+   25.00	      25	      25	    0.00	load/gradients/layer_2_type_1/FastTanh_grad/mul
+   25.00	      25	      25	    0.00	load/gradients/layer_1_type_1/FastTanh_grad/mul
+   25.00	      25	      25	    0.00	load/gradients/AddN_5
+   24.00	      24	      24	    0.00	load/add_6
+   24.00	      24	      24	    0.00	load/gradients/AddN_3
+   24.00	      24	      24	    0.00	load/gradients/layer_0_type_1/FastTanh_grad/mul
+   21.00	      21	      21	    0.00	load/filter_type_0/mul
+   21.00	      21	      21	    0.00	load/gradients/layer_0_type_1/FastTanh_grad/sub
+   21.00	      21	      21	    0.00	load/gradients/filter_type_0/mul_grad/Mul
+   20.00	      20	      20	    0.00	load/filter_type_0/Slice
+
+Top k op type
+average time	percentage	op type
+39381.00	    0.43	TabulateFusionGrad
+21889.00	    0.24	TabulateFusion
+ 8860.00	    0.10	ProdEnvMatA
+ 6445.00	    0.07	MatmulNt
+ 5293.00	    0.06	GemmLayer
+ 2231.00	    0.02	MatMul
+ 1704.00	    0.02	ProdVirialSeA
+ 1326.00	    0.01	Pad
+ 1307.00	    0.01	Slice
+  744.00	    0.01	ProdForceSeA
+  659.00	    0.01	AddN
+  426.00	    0.00	concat
+  407.00	    0.00	mul
+  309.00	    0.00	FastTanh
+  241.00	    0.00	Mul
+  233.00	    0.00	Shape
+  206.00	    0.00	Reshape
+  177.00	    0.00	add
+  104.00	    0.00	strided
+  101.00	    0.00	sub

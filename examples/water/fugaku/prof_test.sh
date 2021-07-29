@@ -13,10 +13,9 @@ source $deepmd_root/script/fugaku/env.sh
 # bash $deepmd_root/script/fugaku/build_deepmd.sh
 
 export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
-export TF_CPP_MIN_LOG_LEVEL=3
-export HAVE_PREPROCESSED=1
-export TF_PROFILE=1
 
+export TF_CPP_MIN_LOG_LEVEL=3
+export TF_PROFILE=1
 export DEEPMD_NUM_THREADS=1
 export OMP_NUM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
