@@ -1,0 +1,61 @@
+LAMMPS (29 Oct 2020)
+Lattice spacing in x,y,z = 3.6342000 3.6342000 3.6342000
+Created orthogonal box = (0.0000000 0.0000000 0.0000000) to (10.902600 10.902600 10.902600)
+  1 by 1 by 1 MPI processor grid
+Created 108 atoms
+  create_atoms CPU = 0.000 seconds
+Replicating atoms ...
+  orthogonal box = (0.0000000 0.0000000 0.0000000) to (10.902600 10.902600 10.902600)
+  1 by 1 by 1 MPI processor grid
+  108 atoms
+  replicate CPU = 0.001 seconds
+Neighbor list info ...
+  update every 50 steps, delay 0 steps, check no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 10
+  ghost atom cutoff = 10
+  binsize = 5, bins = 3 3 3
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair deepmd, perpetual
+      attributes: , newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 2.680 | 2.680 | 2.680 Mbytes
+Step PotEng KinEng TotEng Temp Press Volume 
+       0   -402.55181    4.5641757   -397.98763          330    5318.5194    1295.9559 
+      20   -402.12841    4.1408129    -397.9876    299.38993    6900.4947    1295.9559 
+      40   -401.05087    3.0633541   -397.98752    221.48728     10827.72    1295.9559 
+      60   -399.81226    1.8248307   -397.98743    131.93929     15152.31    1295.9559 
+      80   -398.96649   0.97910826   -397.98738    70.791693    17863.171    1295.9559 
+      99    -398.8021   0.81470023    -397.9874    58.904628    18032.657    1295.9559 
+Loop time of 12.9579 on 1 procs for 99 steps with 108 atoms
+
+Performance: 0.330 ns/day, 72.715 hours/ns, 7.640 timesteps/s
+101.2% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 12.951     | 12.951     | 12.951     |   0.0 | 99.95
+Neigh   | 0.002598   | 0.002598   | 0.002598   |   0.0 |  0.02
+Comm    | 0.0029743  | 0.0029743  | 0.0029743  |   0.0 |  0.02
+Output  | 0.00044227 | 0.00044227 | 0.00044227 |   0.0 |  0.00
+Modify  | 0.00047588 | 0.00047588 | 0.00047588 |   0.0 |  0.00
+Other   |            | 0.0005732  |            |       |  0.00
+
+Nlocal:        108.000 ave         108 max         108 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:        2348.00 ave        2348 max        2348 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:        0.00000 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0.0000000
+Neighbor list builds = 1
+Dangerous builds not checked
+
+Please see the log.cite file for references relevant to this simulation
+
+Total wall time: 0:00:19
