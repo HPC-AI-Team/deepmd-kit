@@ -78,7 +78,7 @@ prod_env_mat_a_cpu(
     FPTYPE* d_em_a_deriv = &em_deriv[ii * nem * 3];
     FPTYPE* d_rij_a = &rij[ii * nnei * 3];
 
-#ifdef __ARM_FEATURE_SVE 
+#ifdef __ARM_FEATURE_SVE
     env_mat_a_cpu_sve (d_em_a, d_em_a_deriv, d_rij_a, d_coord3, d_type, ii, fmt_nlist_a, sec, rcut_smth, rcut);
 #else
     env_mat_a_cpu (d_em_a, d_em_a_deriv, d_rij_a, d_coord3, d_type, ii, fmt_nlist_a, sec, rcut_smth, rcut);

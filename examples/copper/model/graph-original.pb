@@ -1,1 +1,1 @@
-../model/double/original/graph-original-baseline.pb
+../model/double/original/graph-original-gemm_tanh.pb

@@ -10,7 +10,7 @@ set -ex
 
 
 source $deepmd_root/script/fugaku/env.sh
-bash $deepmd_root/script/fugaku/build_deepmd.sh
+# bash $deepmd_root/script/fugaku/build_deepmd.sh
 
 export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 export TF_CPP_MIN_LOG_LEVEL=3
