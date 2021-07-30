@@ -30,103 +30,33 @@ prod_env_mat_a_cpu(
 {
 
   bool have_preprocessed = get_env_preprocessed();
-  
   const int nnei = sec.back();
   const int nem = nnei * 4;
-
-  // set & normalize coord
-  std::vector<FPTYPE> d_coord3(nall * 3);
-  for (int ii = 0; ii < nall; ++ii) {
-    for (int dd = 0; dd < 3; ++dd) {
-      d_coord3[ii * 3 + dd] = coord[ii * 3 + dd];
-    }
-  }
-
-  // set type
-  std::vector<int> d_type (nall);
-  for (int ii = 0; ii < nall; ++ii) {
-    d_type[ii] = type[ii];
-  }
-    
-  // build nlist
-  std::vector<std::vector<int > > d_nlist_a(nloc);
-
-  assert(nloc == inlist.inum);
-  for (unsigned ii = 0; ii < nloc; ++ii) {
-    d_nlist_a[ii].reserve(max_nbor_size);
-  }
-  for (unsigned ii = 0; ii < nloc; ++ii) {
-    int i_idx = inlist.ilist[ii];
-    for(unsigned jj = 0; jj < inlist.numneigh[ii]; ++jj){
-      int j_idx = inlist.firstneigh[ii][jj];
-      d_nlist_a[i_idx].push_back (j_idx);
-    }
-  }
-    
-#pragma omp parallel for 
   for (int ii = 0; ii < nloc; ++ii) {
-    
     // double t0 = omp_get_wtime();
-
     int*  fmt_nlist_a = &nlist[ii * nnei];
-    int ret = format_nlist_i_cpu(fmt_nlist_a, d_coord3, d_type, ii, d_nlist_a[ii], rcut, sec);
-
+    int ret = format_nlist_i_cpu(fmt_nlist_a, coord, type, ii, inlist.firstneigh[ii], inlist.numneigh[ii], rcut, sec);
     // double t1 = omp_get_wtime();
-    
-
     FPTYPE* d_em_a = &em[ii * nem];
     FPTYPE* d_em_a_deriv = &em_deriv[ii * nem * 3];
     FPTYPE* d_rij_a = &rij[ii * nnei * 3];
-
+    if(have_preprocessed){
 #ifdef __ARM_FEATURE_SVE
-    env_mat_a_cpu_sve (d_em_a, d_em_a_deriv, d_rij_a, d_coord3, d_type, ii, fmt_nlist_a, sec, rcut_smth, rcut);
+        env_mat_a_cpu_sve_normalize_preprocessed (d_em_a, d_em_a_deriv, d_rij_a, coord, type, ii, fmt_nlist_a, sec, rcut_smth, rcut, avg, std);
 #else
-    env_mat_a_cpu (d_em_a, d_em_a_deriv, d_rij_a, d_coord3, d_type, ii, fmt_nlist_a, sec, rcut_smth, rcut);
+        env_mat_a_cpu_normalize_preprocessed (d_em_a, d_em_a_deriv, d_rij_a, coord, type, ii, fmt_nlist_a, sec, rcut_smth, rcut, avg, std);
 #endif
-
-    // double t2 = omp_get_wtime();
-
-    // const FPTYPE * AVG = &avg[d_type[ii] * nem];
-    // const FPTYPE * STD = &std[d_type[ii] * nem];
-    // for (int jj = 0; jj < nem; ++jj) {
-    //   d_em_a[jj] = (d_em_a[jj] - AVG[jj]) / STD[jj];
-    //   d_em_a_deriv[jj*3+0] /= STD[jj];
-    //   d_em_a_deriv[jj*3+1] /= STD[jj];
-    //   d_em_a_deriv[jj*3+2] /= STD[jj];
-    // }
-
-    if(!have_preprocessed){
-      const FPTYPE * AVG = &avg[d_type[ii] * nem];
-      const FPTYPE * STD = &std[d_type[ii] * nem];
-      for (int jj = 0; jj < nem; ++jj) {
-        d_em_a[jj] = (d_em_a[jj] - AVG[jj]) / STD[jj];
-        d_em_a_deriv[jj*3+0] /= STD[jj];
-        d_em_a_deriv[jj*3+1] /= STD[jj];
-        d_em_a_deriv[jj*3+2] /= STD[jj];
-      }
     }else{
-      const FPTYPE * AVG = &avg[d_type[ii] * nem];
-      const FPTYPE * STD = &std[d_type[ii] * nem];
-      for (int jj = 0; jj < nem; ++jj) {
-        d_em_a[jj] = (d_em_a[jj] - AVG[jj]) * STD[jj];
-        d_em_a_deriv[jj*3+0] *= STD[jj];
-        d_em_a_deriv[jj*3+1] *= STD[jj];
-        d_em_a_deriv[jj*3+2] *= STD[jj];
-      }
+        env_mat_a_cpu_normalize (d_em_a, d_em_a_deriv, d_rij_a, coord, type, ii, fmt_nlist_a, sec, rcut_smth, rcut, avg, std);
     }
-
-    // double t3 = omp_get_wtime();
-
+    // double t2 = omp_get_wtime();
     // std::cout << (t1 - t0) << ", " 
-    //           << (t2 - t1) << ", " 
-    //           << (t3 - t2) << "--";
-  
-    // std::cout << (t1 - t0) / (t3 - t0) << ", " 
-    //           << (t2 - t1) / (t3 - t0) << ", " 
-    //           << (t3 - t2) / (t3 - t0) << std::endl;
-
+    //           << (t2 - t1) << "--";
+    // std::cout << (t1 - t0) / (t2 - t0) << ", " 
+    //           << (t2 - t1) / (t2 - t0) << std::endl;
   }
 }
+
 
 template<typename FPTYPE>
 void 

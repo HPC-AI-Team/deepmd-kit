@@ -4,6 +4,7 @@
 #include "fmt_nlist.h"
 #include "SimulationRegion.h"
 #include <iostream>
+#include <omp.h>
 
 using namespace deepmd;
 
@@ -252,60 +253,66 @@ format_nlist_cpu<float> (
 template<typename FPTYPE> 
 int format_nlist_i_cpu (
     int*                      	  fmt_nei_idx_a,
-    const std::vector<FPTYPE > &  posi,
-    const std::vector<int > &     type,
+    const FPTYPE*                 posi,
+    const int*                    type,
     const int &			              i_idx,
-    const std::vector<int > &     nei_idx_a, 
+    const int *		                nei_idx, 
+    int                           nei_size,
     const float &		              rcut,
     const std::vector<int > &     sec_a)
 {
+    // double t0 = omp_get_wtime();
     for(int i = 0;i< sec_a.back();i++){
       fmt_nei_idx_a[i] = -1;
     }
-
-    std::vector<int > nei_idx (nei_idx_a);
-    std::vector<NeighborInfo > sel_nei;
-    sel_nei.reserve (nei_idx_a.size());
+    std::vector<int64_t> sel_nei;
+    sel_nei.reserve (nei_size);
 
     FPTYPE ix = posi[i_idx * 3 + 0];
     FPTYPE iy = posi[i_idx * 3 + 1];
     FPTYPE iz = posi[i_idx * 3 + 2];
-    for (unsigned kk = 0; kk < nei_idx.size(); ++kk) {
+    for (unsigned kk = 0; kk < nei_size; ++kk) {
         FPTYPE diff[3];
         const int & j_idx = nei_idx[kk];
         diff[0] = posi[j_idx * 3 + 0] - ix;
         diff[1] = posi[j_idx * 3 + 1] - iy;
         diff[2] = posi[j_idx * 3 + 2] - iz;
-        FPTYPE rr = sqrt(diff[0] * diff[0] + diff[1] * diff[1] + diff[2] * diff[2]);    
-        if (rr <= rcut) {
-            sel_nei.push_back(NeighborInfo(type[j_idx], rr, j_idx));
+        FPTYPE rr = (diff[0] * diff[0] + diff[1] * diff[1] + diff[2] * diff[2]);    
+        // FPTYPE rr = sqrt(diff[0] * diff[0] + diff[1] * diff[1] + diff[2] * diff[2]);    
+        if (rr <= rcut*rcut) {
+          sel_nei.push_back( ((type[j_idx] & 0x1f) << 59) + (((int64_t)(rr * 1.0E14) & 0x7fffffffff) << 20) + j_idx & 0xfffff);
         }
     }
-
+    // double t1 = omp_get_wtime();
     sort(sel_nei.begin(), sel_nei.end());  
-
-
+    // double t2 = omp_get_wtime();
     std::vector<int > nei_iter = sec_a;
     int overflowed = -1;
     for (unsigned kk = 0; kk < sel_nei.size(); ++kk) {
-        const int & nei_type = sel_nei[kk].type;
+        int64_t compressed_info = sel_nei[kk];
+        int nei_type = (int)(( compressed_info >> 59 ) & 0x1f );
+        int index = compressed_info & 0xfffff;
         if (nei_iter[nei_type] < sec_a[nei_type+1]) {
-            fmt_nei_idx_a[nei_iter[nei_type] ++] = sel_nei[kk].index;
+            fmt_nei_idx_a[nei_iter[nei_type] ++] = index;
         }
         else{
-          overflowed = nei_type;
+            overflowed = nei_type;
 	      }
     }
+    // double t3 = omp_get_wtime();
+    // double total_time = t3 - t0;
+    // std::cout << "in format_nlist_i_cpu : " << (t1 - t0) / total_time << ", " << (t2 - t1) / total_time << ", " << (t3 - t2) / total_time << std::endl;
     return overflowed;
 }
 
 template
 int format_nlist_i_cpu<double> (
     int*		fmt_nei_idx_a,
-    const std::vector<double > &posi,
-    const std::vector<int > &   type,
+    const double*   posi,
+    const int*      type,
     const int &			i_idx,
-    const std::vector<int > &   nei_idx_a, 
+    const int *		                nei_idx_a, 
+    int                             nei_size,
     const float &		rcut,
     const std::vector<int > &   sec_a);
 
@@ -313,15 +320,12 @@ int format_nlist_i_cpu<double> (
 template
 int format_nlist_i_cpu<float> (
     int*		fmt_nei_idx_a,
-    const std::vector<float > &	posi,
-    const std::vector<int > &   type,
+    const float*	  posi,
+    const int*      type,
     const int &			i_idx,
-    const std::vector<int > &   nei_idx_a, 
+    const int *		                nei_idx_a, 
+    int                             nei_size,
     const float &		rcut,
     const std::vector<int > &   sec_a);
 
 // ----------------------------------------------------------------------------------------------
-
-
-
-

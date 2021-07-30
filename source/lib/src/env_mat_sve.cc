@@ -147,17 +147,19 @@ inline void spline5_switch_vector (
     v11 = svtbl(v11, vindices);                                                 \
 }
 
-void deepmd::env_mat_a_cpu_sve (
+void deepmd::env_mat_a_cpu_sve_normalize_preprocessed (
   double*	        descrpt_a,
   double*	        descrpt_a_deriv,
   double*	        rij_a,
-  const std::vector<double > &	  posi,
-  const std::vector<int > &		    type,
+  const double*         posi,
+  const int*            type,
   const int &				              i_idx,
   const int *		                  fmt_nlist_a,
   const std::vector<int > &		    sec_a, 
   const float &			              rmin,
-  const float &			              rmax
+  const float &			              rmax,
+  const double * avg, 
+  const double * std
   )  {
     
   // // compute the diff of the neighbors
@@ -171,16 +173,29 @@ void deepmd::env_mat_a_cpu_sve (
   // fill (descrpt_a_deriv.begin(), descrpt_a_deriv.end(), 0.0);
 
   memset(rij_a,'\0',sec_a.back() * 3 * sizeof(double));
-  memset(descrpt_a,'\0',sec_a.back() * 4 * sizeof(double));
+  // memset(descrpt_a,'\0',sec_a.back() * 4 * sizeof(double));
   memset(descrpt_a_deriv,'\0',sec_a.back() * 4 * 3 * sizeof(double));
 
+  const int nnei = sec_a.back();
+  const int nem = nnei * 4;
+  const double * AVG = &avg[type[i_idx] * nem];
+  const double * STD = &std[type[i_idx] * nem];
+
+  svfloat64_t vzero = svdup_f64(0.);
+  for (int jj = 0; jj < nem; jj += svcntd()) {
+    svbool_t pg0 = svwhilelt_b64(jj, nem);
+    svfloat64_t vavg = svld1(pg0, AVG + jj);
+    svfloat64_t vstd = svld1(pg0, STD + jj);
+    svfloat64_t vdescrpt_a = svmsb_z(pg0,vavg,vstd,vzero);
+    svst1(pg0, descrpt_a + jj, vdescrpt_a);
+  }
   svfloat64_t vposi_0 = svdup_f64(posi[i_idx*3]);
   svfloat64_t vposi_1 = svdup_f64(posi[i_idx*3+1]);
   svfloat64_t vposi_2 = svdup_f64(posi[i_idx*3+2]);
   svfloat64_t vone = svdup_f64(1.0);
   svfloat64_t vtwo = svdup_f64(2.0);
   for (int sec_iter = 0; sec_iter < int(sec_a.size()) - 1; ++sec_iter){
-    for (int nei_iter = sec_a[sec_iter]; nei_iter < sec_a[sec_iter+1]; nei_iter += 8){
+    for (int nei_iter = sec_a[sec_iter]; nei_iter < sec_a[sec_iter+1]; nei_iter += svcntd()){
       svbool_t pg0 = svwhilelt_b64(nei_iter, sec_a[sec_iter+1]);
       svint64_t vj_idx = svld1sw_s64(pg0, &fmt_nlist_a[nei_iter]);
       svbool_t lt_zero = svcmplt(pg0,vj_idx,0);
@@ -296,6 +311,44 @@ void deepmd::env_mat_a_cpu_sve (
       vdescrpt_a_2 = svmul_z(pg1, vdescrpt_a_2, vsw);
       vdescrpt_a_3 = svmul_z(pg1, vdescrpt_a_3, vsw);
 
+      svfloat64x4_t vavg = svld4(pg1, AVG + idx_value);
+      svfloat64x4_t vstd = svld4(pg1, STD + idx_value);
+      svfloat64_t vavg_0 = svget4(vavg, 0);
+      svfloat64_t vavg_1 = svget4(vavg, 1);
+      svfloat64_t vavg_2 = svget4(vavg, 2);
+      svfloat64_t vavg_3 = svget4(vavg, 3);
+      svfloat64_t vstd_0 = svget4(vstd, 0);
+      svfloat64_t vstd_1 = svget4(vstd, 1);
+      svfloat64_t vstd_2 = svget4(vstd, 2);
+      svfloat64_t vstd_3 = svget4(vstd, 3);
+      
+      vdescrpt_a_0 = svsub_z(pg1,vdescrpt_a_0,vavg_0);
+      vdescrpt_a_1 = svsub_z(pg1,vdescrpt_a_1,vavg_1);
+      vdescrpt_a_2 = svsub_z(pg1,vdescrpt_a_2,vavg_2);
+      vdescrpt_a_3 = svsub_z(pg1,vdescrpt_a_3,vavg_3);
+
+      vdescrpt_a_0 = svmul_z(pg1,vdescrpt_a_0,vstd_0);
+      vdescrpt_a_1 = svmul_z(pg1,vdescrpt_a_1,vstd_1);
+      vdescrpt_a_2 = svmul_z(pg1,vdescrpt_a_2,vstd_2);
+      vdescrpt_a_3 = svmul_z(pg1,vdescrpt_a_3,vstd_3);
+
+
+      vdescrpt_a_deriv_0_0 = svmul_z(pg1, vdescrpt_a_deriv_0_0, vstd_0);
+      vdescrpt_a_deriv_0_1 = svmul_z(pg1, vdescrpt_a_deriv_0_1, vstd_0);
+      vdescrpt_a_deriv_0_2 = svmul_z(pg1, vdescrpt_a_deriv_0_2, vstd_0);
+
+      vdescrpt_a_deriv_1_0 = svmul_z(pg1, vdescrpt_a_deriv_1_0, vstd_1);
+      vdescrpt_a_deriv_1_1 = svmul_z(pg1, vdescrpt_a_deriv_1_1, vstd_1);
+      vdescrpt_a_deriv_1_2 = svmul_z(pg1, vdescrpt_a_deriv_1_2, vstd_1);
+
+      vdescrpt_a_deriv_2_0 = svmul_z(pg1, vdescrpt_a_deriv_2_0, vstd_2);
+      vdescrpt_a_deriv_2_1 = svmul_z(pg1, vdescrpt_a_deriv_2_1, vstd_2);
+      vdescrpt_a_deriv_2_2 = svmul_z(pg1, vdescrpt_a_deriv_2_2, vstd_2);
+
+      vdescrpt_a_deriv_3_0 = svmul_z(pg1, vdescrpt_a_deriv_3_0, vstd_3);
+      vdescrpt_a_deriv_3_1 = svmul_z(pg1, vdescrpt_a_deriv_3_1, vstd_3);
+      vdescrpt_a_deriv_3_2 = svmul_z(pg1, vdescrpt_a_deriv_3_2, vstd_3);
+
       // 写回到descrpt_a 4*8 -> 8*4;
       svfloat64x4_t vdescrpt_a = svcreate4(vdescrpt_a_0,vdescrpt_a_1,vdescrpt_a_2,vdescrpt_a_3);
       svst4(pg1,&descrpt_a[idx_value],vdescrpt_a);
@@ -360,17 +413,19 @@ void deepmd::env_mat_a_cpu_sve (
   }
 }
 
-void deepmd::env_mat_a_cpu_sve (
+void deepmd::env_mat_a_cpu_sve_normalize_preprocessed (
     float*	        descrpt_a,
-    float*        descrpt_a_deriv,
+    float*          descrpt_a_deriv,
     float*	        rij_a,
-    const std::vector<float > &	  posi,
-    const std::vector<int > &		  type,
+    const float*          posi,
+    const int*            type,
     const int &				            i_idx,
     const int *		                fmt_nlist_a,
     const std::vector<int > &		  sec_a, 
     const float &			            rmin,
-    const float &			            rmax) {
+    const float &			            rmax,
+    const float * avg, 
+    const float * std) {
     // // compute the diff of the neighbors
     // rij_a.resize (sec_a.back() * 3);
     // fill (rij_a.begin(), rij_a.end(), 0.0);
@@ -382,8 +437,16 @@ void deepmd::env_mat_a_cpu_sve (
     // fill (descrpt_a_deriv.begin(), descrpt_a_deriv.end(), 0.0);
     
     memset(rij_a,'\0',sec_a.back() * 3 * sizeof(float));
-    memset(descrpt_a,'\0',sec_a.back() * 4 * sizeof(float));
-    memset(descrpt_a_deriv,'\0',sec_a.back() * 3 * 4 * sizeof(float));
+    // memset(descrpt_a,'\0',sec_a.back() * 4 * sizeof(float));
+    memset(descrpt_a_deriv,'\0',sec_a.back() * 4 * 3 * sizeof(float));
+
+    const int nnei = sec_a.back();
+    const int nem = nnei * 4;
+    const float * AVG = &avg[type[i_idx] * nem];
+    const float * STD = &std[type[i_idx] * nem];
+    for (int jj = 0; jj < nem; ++jj) {
+      descrpt_a[jj] = - AVG[jj] * STD[jj];
+    }
 
     for (int sec_iter = 0; sec_iter < int(sec_a.size()) - 1; ++sec_iter) {
         for (int nei_iter = sec_a[sec_iter]; nei_iter < sec_a[sec_iter + 1]; ++nei_iter) {
@@ -445,6 +508,27 @@ void deepmd::env_mat_a_cpu_sve (
             descrpt_a[idx_value + 1] *= sw;
             descrpt_a[idx_value + 2] *= sw;
             descrpt_a[idx_value + 3] *= sw;
+
+            descrpt_a[idx_value + 0] = (descrpt_a[idx_value + 0] - AVG[idx_value + 0]) * STD[idx_value + 0];
+            descrpt_a[idx_value + 1] = (descrpt_a[idx_value + 1] - AVG[idx_value + 1]) * STD[idx_value + 1];
+            descrpt_a[idx_value + 2] = (descrpt_a[idx_value + 2] - AVG[idx_value + 2]) * STD[idx_value + 2];
+            descrpt_a[idx_value + 3] = (descrpt_a[idx_value + 3] - AVG[idx_value + 3]) * STD[idx_value + 3];
+
+            descrpt_a_deriv[idx_deriv + 0] *=  STD[idx_value + 0];
+            descrpt_a_deriv[idx_deriv + 1] *=  STD[idx_value + 0];
+            descrpt_a_deriv[idx_deriv + 2] *=  STD[idx_value + 0];
+
+            descrpt_a_deriv[idx_deriv + 3] *=  STD[idx_value + 1];
+            descrpt_a_deriv[idx_deriv + 4] *=  STD[idx_value + 1];
+            descrpt_a_deriv[idx_deriv + 5] *=  STD[idx_value + 1];
+
+            descrpt_a_deriv[idx_deriv + 6] *=  STD[idx_value + 2];
+            descrpt_a_deriv[idx_deriv + 7] *=  STD[idx_value + 2];
+            descrpt_a_deriv[idx_deriv + 8] *=  STD[idx_value + 2];
+
+            descrpt_a_deriv[idx_deriv + 9] *=  STD[idx_value + 3];
+            descrpt_a_deriv[idx_deriv + 10] *=  STD[idx_value + 3];
+            descrpt_a_deriv[idx_deriv + 11] *=  STD[idx_value + 3];
         }
     }
 }

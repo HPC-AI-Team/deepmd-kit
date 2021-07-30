@@ -111,10 +111,11 @@ int format_nlist_i_cpu (
 template<typename FPTYPE> 
 int format_nlist_i_cpu (
     int*                			fmt_nei_idx_a,
-    const std::vector<FPTYPE > &	posi,
-    const std::vector<int > &		type,
+    const FPTYPE*                     	posi,
+    const int*		                    type,
     const int &				        i_idx,
-    const std::vector<int > &		nei_idx_a, 
+    const int *		                nei_idx_a, 
+    int                             nei_size,
     const float &			        rcut,
     const std::vector<int > &		sec_a);
 
