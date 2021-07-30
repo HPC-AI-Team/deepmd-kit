@@ -135,6 +135,7 @@ int format_nlist_i_cpu (
             sel_nei.push_back(NeighborInfo(type[j_idx], rr, j_idx));
         }
     }
+    
     sort(sel_nei.begin(), sel_nei.end());  
   
     std::vector<int > nei_iter = sec_a;
@@ -280,6 +281,7 @@ int format_nlist_i_cpu (
             sel_nei.push_back(NeighborInfo(type[j_idx], rr, j_idx));
         }
     }
+
     sort(sel_nei.begin(), sel_nei.end());  
 
 

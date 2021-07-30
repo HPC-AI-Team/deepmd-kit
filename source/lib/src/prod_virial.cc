@@ -53,14 +53,16 @@ prod_virial_a_cpu(
       int aa_start, aa_end;
       make_index_range (aa_start, aa_end, jj, nnei);
       for (int aa = aa_start; aa < aa_end; ++aa) {
-	FPTYPE pref = -1.0 * net_deriv[i_idx * ndescrpt + aa];
-	for (int dd0 = 0; dd0 < 3; ++dd0){
-	  for (int dd1 = 0; dd1 < 3; ++dd1){
-	    FPTYPE tmp_v = pref * rij[i_idx * nnei * 3 + jj * 3 + dd1] *  env_deriv[i_idx * ndescrpt * 3 + aa * 3 + dd0];
-	    virial[dd0 * 3 + dd1] -= tmp_v;
-	    atom_virial[j_idx * 9 + dd0 * 3 + dd1] -= tmp_v;
-	  }
-	}
+        FPTYPE pref = -1.0 * net_deriv[i_idx * ndescrpt + aa];
+        
+        for (int dd0 = 0; dd0 < 3; ++dd0){
+          for (int dd1 = 0; dd1 < 3; ++dd1){
+            FPTYPE tmp_v = pref * rij[i_idx * nnei * 3 + jj * 3 + dd1] *  env_deriv[i_idx * ndescrpt * 3 + aa * 3 + dd0];
+            virial[dd0 * 3 + dd1] -= tmp_v;
+            atom_virial[j_idx * 9 + dd0 * 3 + dd1] -= tmp_v;
+          }
+        }
+
       }
     }
   }  
