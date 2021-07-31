@@ -96,9 +96,15 @@ public:
       #endif // TENSORFLOW_USE_ROCM
     }
     else if (device == "CPU") {
+#ifdef __ARM_FEATURE_SVE
+      deepmd::prod_force_a_cpu_sve(    
+          force, 
+          net_deriv, in_deriv, nlist, nloc, nall, nnei);
+#else
       deepmd::prod_force_a_cpu(    
           force, 
           net_deriv, in_deriv, nlist, nloc, nall, nnei);
+#endif
     }
     }
   }
