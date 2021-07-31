@@ -63,40 +63,131 @@ make -f ipi/CMakeFiles/deepmd_ipi.dir/build.make ipi/CMakeFiles/deepmd_ipi.dir/b
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make[2]: Nothing to be done for 'ipi/CMakeFiles/deepmd_ipi.dir/build'.
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/op /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/op /home/hp200266/u01036/gzq/deepmd-kit/source/build/op/CMakeFiles/deepmd_op.dir/DependInfo.cmake --color=
+[  5%] Built target deepmd_ipi
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make -f lib/CMakeFiles/deepmd.dir/build.make lib/CMakeFiles/deepmd.dir/build
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make[2]: Nothing to be done for 'lib/CMakeFiles/deepmd.dir/build'.
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
-[  5%] Built target deepmd_ipi
-make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
-cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/op /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/op /home/hp200266/u01036/gzq/deepmd-kit/source/build/op/CMakeFiles/deepmd_op.dir/DependInfo.cmake --color=
-[ 50%] Built target deepmd
-make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
-make -f api_cc/CMakeFiles/deepmd_cc.dir/build.make api_cc/CMakeFiles/deepmd_cc.dir/build
-make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
-make[2]: Nothing to be done for 'api_cc/CMakeFiles/deepmd_cc.dir/build'.
-make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
-[ 58%] Built target deepmd_cc
+[ 52%] Built target deepmd
+Dependee "api_cc/version.h" is newer than depender "api_cc/CMakeFiles/deepmd_cc.dir/src/DataModifier.cc.o".
+Dependee "api_cc/version.h" is newer than depender "api_cc/CMakeFiles/deepmd_cc.dir/src/DeepPot.cc.o".
+Dependee "api_cc/version.h" is newer than depender "api_cc/CMakeFiles/deepmd_cc.dir/src/DeepTensor.cc.o".
+Dependee "api_cc/version.h" is newer than depender "api_cc/CMakeFiles/deepmd_cc.dir/src/common.cc.o".
+Clearing dependencies in "/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc/CMakeFiles/deepmd_cc.dir/depend.make".
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make -f op/CMakeFiles/deepmd_op.dir/build.make op/CMakeFiles/deepmd_op.dir/build
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make[2]: Nothing to be done for 'op/CMakeFiles/deepmd_op.dir/build'.
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
-[ 97%] Built target deepmd_op
+[ 88%] Built target deepmd_op
+Scanning dependencies of target deepmd_cc
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make -f api_cc/CMakeFiles/deepmd_cc.dir/build.make api_cc/CMakeFiles/deepmd_cc.dir/build
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+[ 92%] Building CXX object api_cc/CMakeFiles/deepmd_cc.dir/src/DataModifier.cc.o
+[ 92%] Building CXX object api_cc/CMakeFiles/deepmd_cc.dir/src/DeepPot.cc.o
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc && /opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0  -DHIGH_PREC -D_FUGAKU -Ddeepmd_cc_EXPORTS -I/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc -I/home/hp200266/u01036/gzq/deepmd-kit/source/lib/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/3rdparty -I/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/include -I/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g -fPIC   -o CMakeFiles/deepmd_cc.dir/src/DataModifier.cc.o -c /home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc && /opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0  -DHIGH_PREC -D_FUGAKU -Ddeepmd_cc_EXPORTS -I/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc -I/home/hp200266/u01036/gzq/deepmd-kit/source/lib/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/3rdparty -I/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/include -I/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g -fPIC   -o CMakeFiles/deepmd_cc.dir/src/DeepPot.cc.o -c /home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DeepPot.cc
+[ 94%] Building CXX object api_cc/CMakeFiles/deepmd_cc.dir/src/DeepTensor.cc.o
+[ 94%] Building CXX object api_cc/CMakeFiles/deepmd_cc.dir/src/common.cc.o
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc && /opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0  -DHIGH_PREC -D_FUGAKU -Ddeepmd_cc_EXPORTS -I/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc -I/home/hp200266/u01036/gzq/deepmd-kit/source/lib/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/3rdparty -I/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/include -I/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g -fPIC   -o CMakeFiles/deepmd_cc.dir/src/DeepTensor.cc.o -c /home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DeepTensor.cc
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc && /opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0  -DHIGH_PREC -D_FUGAKU -Ddeepmd_cc_EXPORTS -I/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc -I/home/hp200266/u01036/gzq/deepmd-kit/source/lib/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/3rdparty -I/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/include -I/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g -fPIC   -o CMakeFiles/deepmd_cc.dir/src/common.cc.o -c /home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/common.cc
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DeepTensor.cc:94:34: warning: expression result unused [-Wunused-value]
+  assert (output_t.dims() == 1), "dim of output tensor should be 1";
+                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:94:34: warning: expression result unused [-Wunused-value]
+  assert (output_f.dims() == 2), "dim of output tensor should be 2";
+                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:95:34: warning: expression result unused [-Wunused-value]
+  assert (output_v.dims() == 2), "dim of output tensor should be 2";
+                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:96:35: warning: expression result unused [-Wunused-value]
+  assert (output_av.dims() == 2), "dim of output tensor should be 2";
+                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:99:39: warning: expression result unused [-Wunused-value]
+  assert (output_f.dim_size(0) == 1), "nframes should match";
+                                      ^~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:100:28: warning: expression result unused [-Wunused-value]
+  assert (natoms == nall), "natoms should be nall";
+                           ^~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:101:45: warning: expression result unused [-Wunused-value]
+  assert (output_v.dim_size(0) == nframes), "nframes should match";
+                                            ^~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:102:39: warning: expression result unused [-Wunused-value]
+  assert (output_v.dim_size(1) == 9), "dof of virial should be 9";
+                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:103:46: warning: expression result unused [-Wunused-value]
+  assert (output_av.dim_size(0) == nframes), "nframes should match";
+                                             ^~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:104:49: warning: expression result unused [-Wunused-value]
+  assert (output_av.dim_size(1) == natoms * 9), "dof of atom virial should be 9 * natoms";  
+                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+9 warnings generated.
+[ 95%] Linking CXX shared library libdeepmd_cc.so
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc && /usr/bin/cmake -E cmake_link_script CMakeFiles/deepmd_cc.dir/link.txt --verbose=1
+/opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0 -fPIC  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g  -Wl,--no-as-needed -shared -Wl,-soname,libdeepmd_cc.so -o libdeepmd_cc.so CMakeFiles/deepmd_cc.dir/src/AtomMap.cc.o CMakeFiles/deepmd_cc.dir/src/DataModifier.cc.o CMakeFiles/deepmd_cc.dir/src/DeepPot.cc.o CMakeFiles/deepmd_cc.dir/src/DeepTensor.cc.o CMakeFiles/deepmd_cc.dir/src/common.cc.o 
+/usr/bin/cmake -E __run_co_compile --lwyu=libdeepmd_cc.so
+Warning: Unused direct dependencies:
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjomphk.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjomp.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfj90f.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjsrcinfo.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjcrt.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjompcrt.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjprofcore.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjprofomp.so.1
+	/lib64/libm.so.6
+	/lib64/librt.so.1
+	/lib64/libatomic.so.1
+	/lib64/libelf.so.1
+	/lib64/libz.so.1
+	/lib64/libdl.so.2
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+[ 97%] Built target deepmd_cc
 make -f ipi/CMakeFiles/dp_ipi.dir/build.make ipi/CMakeFiles/dp_ipi.dir/depend
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/ipi /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi/CMakeFiles/dp_ipi.dir/DependInfo.cmake --color=
+Dependee "api_cc/version.h" is newer than depender "ipi/CMakeFiles/dp_ipi.dir/driver.cc.o".
+Clearing dependencies in "/home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi/CMakeFiles/dp_ipi.dir/depend.make".
+Scanning dependencies of target dp_ipi
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make -f ipi/CMakeFiles/dp_ipi.dir/build.make ipi/CMakeFiles/dp_ipi.dir/build
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
-make[2]: Nothing to be done for 'ipi/CMakeFiles/dp_ipi.dir/build'.
+[ 98%] Building CXX object ipi/CMakeFiles/dp_ipi.dir/driver.cc.o
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi && /opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0  -DHIGH_PREC -D_FUGAKU -I/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc -I/home/hp200266/u01036/gzq/deepmd-kit/source/lib/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/3rdparty -I/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/include -I/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/ipi/include  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g   -o CMakeFiles/dp_ipi.dir/driver.cc.o -c /home/hp200266/u01036/gzq/deepmd-kit/source/ipi/driver.cc
+[100%] Linking CXX executable dp_ipi
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi && /usr/bin/cmake -E cmake_link_script CMakeFiles/dp_ipi.dir/link.txt --verbose=1
+/opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0   -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g   -Wl,--no-as-needed -Wl,-rpath,'$ORIGIN'/../lib -Wl,-z,defs CMakeFiles/dp_ipi.dir/driver.cc.o  -o dp_ipi -Wl,-rpath,/home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi:/home/hp200266/u01036/gzq/deepmd-kit/source/build/op:/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc:/home/hp200266/u01036/gzq/deepmd-kit/source/build/lib:/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib: libdeepmd_ipi.so ../op/libdeepmd_op.so ../api_cc/libdeepmd_cc.so ../lib/libdeepmd.so /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so 
+/usr/bin/cmake -E __run_co_compile --lwyu=dp_ipi
+Warning: Unused direct dependencies:
+	/home/hp200266/u01036/gzq/deepmd-kit/source/build/op/libdeepmd_op.so
+	/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so.2
+	/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so.2
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjomphk.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjomp.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfj90f.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjsrcinfo.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjcrt.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjompcrt.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjprofcore.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjprofomp.so.1
+	/opt/FJSVxos/mmm/lib64/libmpg.so.1
+	/lib64/libm.so.6
+	/lib64/librt.so.1
+	/lib64/libatomic.so.1
+	/lib64/libelf.so.1
+	/lib64/libz.so.1
+	/lib64/libdl.so.2
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 [100%] Built target dp_ipi
 make[1]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 /usr/bin/cmake -E cmake_progress_start /home/hp200266/u01036/gzq/deepmd-kit/source/build/CMakeFiles 0
-[ 38%] Built target deepmd_op
-[ 82%] Built target deepmd
+[ 36%] Built target deepmd_op
+[ 83%] Built target deepmd
 [ 91%] Built target deepmd_cc
 [ 97%] Built target deepmd_ipi
 [100%] Built target dp_ipi
@@ -139,18 +230,19 @@ Install the project...
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/tabulate.h
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/tools.h
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/utilities.h
--- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/lib/libdeepmd_cc.so
+-- Installing: /home/hp200266/u01036/gzq/deepmd-kit/dp/lib/libdeepmd_cc.so
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/AtomMap.h
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/DataModifier.h
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/DeepPot.h
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/DeepTensor.h
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/common.h
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/custom_op.h
--- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/version.h
+-- Installing: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/version.h
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/lib/libdeepmd_ipi.so
--- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/bin/dp_ipi
-[ 46%] Built target deepmd
-[ 56%] Built target op_grads
+-- Installing: /home/hp200266/u01036/gzq/deepmd-kit/dp/bin/dp_ipi
+-- Set runtime path of "/home/hp200266/u01036/gzq/deepmd-kit/dp/bin/dp_ipi" to "$ORIGIN/../lib:/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib:/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib"
+[ 48%] Built target deepmd
+[ 58%] Built target op_grads
 [100%] Built target op_abi
 Install the project...
 -- Install configuration: "debug"
@@ -441,17 +533,17 @@ copying deepmd_kit.egg-info/not-zip-safe -> _skbuild/linux-aarch64-3.8/setuptool
 copying deepmd_kit.egg-info/requires.txt -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
 copying deepmd_kit.egg-info/top_level.txt -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
 writing _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO/native_libs.txt
-creating 'dist/deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg' and adding '_skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg' to it
+creating 'dist/deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg' and adding '_skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg' to it
 removing '_skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg' (and everything under it)
-Processing deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg
-removing '/vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg' (and everything under it)
-creating /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg
-Extracting deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg to /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages
-deepmd-kit 1.2.3.dev793+gb6b9f593.d20210729 is already the active version in easy-install.pth
+Processing deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg
+creating /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg
+Extracting deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg to /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages
+Removing deepmd-kit 1.2.3.dev804+g6cea8342.d20210731 from easy-install.pth file
+Adding deepmd-kit 1.2.3.dev805+gf5300824.d20210731 to easy-install.pth file
 Installing dp script to /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin
 
-Installed /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg
-Processing dependencies for deepmd-kit==1.2.3.dev793+gb6b9f593.d20210729
+Installed /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg
+Processing dependencies for deepmd-kit==1.2.3.dev805+gf5300824.d20210731
 Searching for dargs==0.2.5
 Best match: dargs 0.2.5
 Processing dargs-0.2.5-py3.8.egg
@@ -477,7 +569,7 @@ Installing f2py3 script to /home/hp200266/u01036/gzq/fj_software/tensorflow/Tens
 Installing f2py3.8 script to /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin
 
 Using /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages
-Finished processing dependencies for deepmd-kit==1.2.3.dev793+gb6b9f593.d20210729
+Finished processing dependencies for deepmd-kit==1.2.3.dev805+gf5300824.d20210731
 ++ export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 ++ LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 ++ export TF_CPP_MIN_LOG_LEVEL=3
@@ -588,25 +680,25 @@ occurrence: The number of times it occurs
 
 Profile:
 node name | requested bytes | total execution time | accelerator execution time | cpu execution time | # float_ops | op occurrence (run|defined)
-Tanh                                  0B (0.00%, 0.00%),      18.50ms (100.00%, 30.38%),             0us (0.00%, 0.00%),      18.50ms (100.00%, 30.38%),   0 float_ops (100.00%, 0.00%),        6|6
-TabulateFusionGrad              1.06MB (100.00%, 1.26%),        8.85ms (69.62%, 14.54%),             0us (0.00%, 0.00%),        8.85ms (69.62%, 14.54%),   0 float_ops (100.00%, 0.00%),        4|4
-ProdEnvMatA                      4.13MB (98.74%, 4.90%),        7.65ms (55.08%, 12.57%),             0us (0.00%, 0.00%),        7.65ms (55.08%, 12.57%),   0 float_ops (100.00%, 0.00%),        1|1
-MatmulNt                         4.25MB (93.84%, 5.04%),        6.37ms (42.51%, 10.46%),             0us (0.00%, 0.00%),        6.37ms (42.51%, 10.46%),   0 float_ops (100.00%, 0.00%),        8|8
-GemmLayer                        1.11MB (88.81%, 1.31%),         5.29ms (32.05%, 8.69%),             0us (0.00%, 0.00%),         5.29ms (32.05%, 8.69%),   0 float_ops (100.00%, 0.00%),        8|8
-TabulateFusion                   1.57MB (87.49%, 1.86%),         4.02ms (23.36%, 6.60%),             0us (0.00%, 0.00%),         4.02ms (23.36%, 6.60%),   0 float_ops (100.00%, 0.00%),        4|4
-BatchMatMulV2                    4.03MB (85.63%, 4.78%),         2.09ms (16.76%, 3.44%),             0us (0.00%, 0.00%),         2.09ms (16.76%, 3.44%), 106.95m float_ops (100.00%, 98.90%),        6|6
-ProdVirialSeA                   13.90KB (80.85%, 0.02%),         1.71ms (13.33%, 2.81%),             0us (0.00%, 0.00%),         1.71ms (13.33%, 2.81%),     0 float_ops (1.10%, 0.00%),        1|1
-Pad                            11.32MB (80.84%, 13.41%),         1.33ms (10.52%, 2.19%),             0us (0.00%, 0.00%),         1.33ms (10.52%, 2.19%),     0 float_ops (1.10%, 0.00%),      14|14
-Slice                            8.30MB (67.42%, 9.84%),          1.31ms (8.33%, 2.15%),             0us (0.00%, 0.00%),          1.31ms (8.33%, 2.15%),     0 float_ops (1.10%, 0.00%),      18|18
-ProdForceSeA                     4.61KB (57.59%, 0.01%),           746us (6.18%, 1.23%),             0us (0.00%, 0.00%),           746us (6.18%, 1.23%),     0 float_ops (1.10%, 0.00%),        1|1
+Tanh                                  0B (0.00%, 0.00%),      18.50ms (100.00%, 31.64%),             0us (0.00%, 0.00%),      18.50ms (100.00%, 31.64%),   0 float_ops (100.00%, 0.00%),        6|6
+TabulateFusionGrad              1.06MB (100.00%, 1.26%),        8.92ms (68.36%, 15.26%),             0us (0.00%, 0.00%),        8.92ms (68.36%, 15.26%),   0 float_ops (100.00%, 0.00%),        4|4
+MatmulNt                         4.25MB (98.74%, 5.04%),        6.36ms (53.09%, 10.88%),             0us (0.00%, 0.00%),        6.36ms (53.09%, 10.88%),   0 float_ops (100.00%, 0.00%),        8|8
+ProdEnvMatA                      4.13MB (93.70%, 4.90%),         5.69ms (42.22%, 9.73%),             0us (0.00%, 0.00%),         5.69ms (42.22%, 9.73%),   0 float_ops (100.00%, 0.00%),        1|1
+GemmLayer                        1.11MB (88.81%, 1.31%),         5.28ms (32.48%, 9.04%),             0us (0.00%, 0.00%),         5.28ms (32.48%, 9.04%),   0 float_ops (100.00%, 0.00%),        8|8
+TabulateFusion                   1.57MB (87.49%, 1.86%),         4.13ms (23.45%, 7.06%),             0us (0.00%, 0.00%),         4.13ms (23.45%, 7.06%),   0 float_ops (100.00%, 0.00%),        4|4
+BatchMatMulV2                    4.03MB (85.63%, 4.78%),         2.19ms (16.38%, 3.74%),             0us (0.00%, 0.00%),         2.19ms (16.38%, 3.74%), 106.95m float_ops (100.00%, 98.90%),        6|6
+StridedSlice                        40B (80.85%, 0.00%),         1.53ms (12.64%, 2.62%),             0us (0.00%, 0.00%),         1.53ms (12.64%, 2.62%),     0 float_ops (1.10%, 0.00%),      10|26
+Pad                            11.32MB (80.85%, 13.41%),         1.33ms (10.02%, 2.27%),             0us (0.00%, 0.00%),         1.33ms (10.02%, 2.27%),     0 float_ops (1.10%, 0.00%),      14|14
+Slice                            8.30MB (67.44%, 9.84%),          1.32ms (7.75%, 2.26%),             0us (0.00%, 0.00%),          1.32ms (7.75%, 2.26%),     0 float_ops (1.10%, 0.00%),      18|18
+AddN                                  0B (0.00%, 0.00%),           656us (5.49%, 1.12%),             0us (0.00%, 0.00%),           656us (5.49%, 1.12%), 809.47k float_ops (1.10%, 0.75%),      14|14
 
 ======================End of Report==========================
 DEEPMD INFO    # number of test data : 1 
 DEEPMD INFO    Energy RMSE        : 7.472860e-02 eV
 DEEPMD INFO    Energy RMSE/Natoms : 3.892114e-04 eV
-DEEPMD INFO    Force  RMSE        : 5.845049e-02 eV/A
-DEEPMD INFO    Virial RMSE        : 6.561497e+00 eV
-DEEPMD INFO    Virial RMSE/Natoms : 3.417446e-02 eV
+DEEPMD INFO    Force  RMSE        : 7.544664e-01 eV/A
+DEEPMD INFO    Virial RMSE        : 8.520442e+01 eV
+DEEPMD INFO    Virial RMSE/Natoms : 4.437730e-01 eV
 DEEPMD INFO    # ----------------------------------------------- 
 profile : ture
 dp model type : ener
@@ -619,126 +711,126 @@ non-resource variables are not supported in the long term
 
 Top k op
 average time	min time	max time	percentage	op name
- 7653.00	    7653	    7653	    0.13	load/ProdEnvMatA
- 4333.00	    4333	    4333	    0.07	load/layer_0_type_1/Tanh
- 3902.00	    3902	    3902	    0.06	load/layer_1_type_1/Tanh
- 3833.00	    3833	    3833	    0.06	load/gradients/filter_type_1/TabulateFusion_1_grad/TabulateFusionGrad
- 3826.00	    3826	    3826	    0.06	load/layer_2_type_1/Tanh
- 3156.00	    3156	    3156	    0.05	load/gradients/layer_0_type_1/GemmLayer_grad/MatmulNt
- 2667.00	    2667	    2667	    0.04	load/layer_0_type_1/GemmLayer
- 2243.00	    2243	    2243	    0.04	load/layer_0_type_0/Tanh
- 2130.00	    2130	    2130	    0.04	load/layer_2_type_0/Tanh
- 2062.00	    2062	    2062	    0.03	load/layer_1_type_0/Tanh
- 2042.00	    2042	    2042	    0.03	load/gradients/filter_type_1/TabulateFusion_grad/TabulateFusionGrad
- 1992.00	    1992	    1992	    0.03	load/gradients/filter_type_0/TabulateFusion_1_grad/TabulateFusionGrad
- 1946.00	    1946	    1946	    0.03	load/gradients/layer_0_type_0/GemmLayer_grad/MatmulNt
- 1708.00	    1708	    1708	    0.03	load/ProdVirialSeA
- 1693.00	    1693	    1693	    0.03	load/filter_type_1/TabulateFusion_1
- 1484.00	    1484	    1484	    0.02	load/layer_0_type_0/GemmLayer
-  986.00	     986	     986	    0.02	load/gradients/filter_type_0/TabulateFusion_grad/TabulateFusionGrad
-  951.00	     951	     951	    0.02	load/filter_type_1/TabulateFusion
-  903.00	     903	     903	    0.01	load/filter_type_0/TabulateFusion_1
-  746.00	     746	     746	    0.01	load/ProdForceSeA
-  689.00	     689	     689	    0.01	load/filter_type_1/MatMul
-  487.00	     487	     487	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul
+ 5690.00	    5690	    5690	    0.10	load/ProdEnvMatA
+ 4332.00	    4332	    4332	    0.07	load/layer_0_type_1/Tanh
+ 3906.00	    3906	    3906	    0.07	load/layer_1_type_1/Tanh
+ 3868.00	    3868	    3868	    0.07	load/gradients/filter_type_1/TabulateFusion_1_grad/TabulateFusionGrad
+ 3823.00	    3823	    3823	    0.07	load/layer_2_type_1/Tanh
+ 3168.00	    3168	    3168	    0.05	load/gradients/layer_0_type_1/GemmLayer_grad/MatmulNt
+ 2671.00	    2671	    2671	    0.05	load/layer_0_type_1/GemmLayer
+ 2241.00	    2241	    2241	    0.04	load/layer_0_type_0/Tanh
+ 2131.00	    2131	    2131	    0.04	load/layer_2_type_0/Tanh
+ 2082.00	    2082	    2082	    0.04	load/gradients/filter_type_1/TabulateFusion_grad/TabulateFusionGrad
+ 2065.00	    2065	    2065	    0.04	load/layer_1_type_0/Tanh
+ 1989.00	    1989	    1989	    0.03	load/gradients/filter_type_0/TabulateFusion_1_grad/TabulateFusionGrad
+ 1927.00	    1927	    1927	    0.03	load/gradients/layer_0_type_0/GemmLayer_grad/MatmulNt
+ 1762.00	    1762	    1762	    0.03	load/filter_type_1/TabulateFusion_1
+ 1476.00	    1476	    1476	    0.03	load/layer_0_type_0/GemmLayer
+ 1441.00	    1441	    1441	    0.02	load/strided_slice_30
+  998.00	     998	     998	    0.02	load/filter_type_1/TabulateFusion
+  985.00	     985	     985	    0.02	load/gradients/filter_type_0/TabulateFusion_grad/TabulateFusionGrad
+  901.00	     901	     901	    0.02	load/filter_type_0/TabulateFusion_1
+  685.00	     685	     685	    0.01	load/filter_type_1/MatMul
+  493.00	     493	     493	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul
   469.00	     469	     469	    0.01	load/filter_type_0/TabulateFusion
-  366.00	     366	     366	    0.01	load/filter_type_0/MatMul
-  364.00	     364	     364	    0.01	load/gradients/layer_2_type_1/GemmLayer_grad/MatmulNt
+  439.00	     439	     439	    0.01	load/filter_type_0/MatMul
+  363.00	     363	     363	    0.01	load/gradients/layer_2_type_1/GemmLayer_grad/MatmulNt
   361.00	     361	     361	    0.01	load/gradients/layer_1_type_1/GemmLayer_grad/MatmulNt
-  345.00	     345	     345	    0.01	load/layer_1_type_1/GemmLayer
-  335.00	     335	     335	    0.01	load/layer_2_type_1/GemmLayer
-  304.00	     304	     304	    0.00	load/concat
-  267.00	     267	     267	    0.00	load/gradients/AddN_4
-  250.00	     250	     250	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul
-  247.00	     247	     247	    0.00	load/gradients/layer_2_type_0/GemmLayer_grad/MatmulNt
-  236.00	     236	     236	    0.00	load/gradients/filter_type_1/Slice_3_grad/Pad
-  235.00	     235	     235	    0.00	load/gradients/layer_1_type_0/GemmLayer_grad/MatmulNt
-  225.00	     225	     225	    0.00	load/gradients/Slice_3_grad/Pad
-  209.00	     209	     209	    0.00	load/gradients/concat_grad/Slice_1
+  344.00	     344	     344	    0.01	load/layer_1_type_1/GemmLayer
+  333.00	     333	     333	    0.01	load/layer_2_type_1/GemmLayer
+  305.00	     305	     305	    0.01	load/concat
+  269.00	     269	     269	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul
+  265.00	     265	     265	    0.00	load/gradients/AddN_4
+  248.00	     248	     248	    0.00	load/gradients/layer_2_type_0/GemmLayer_grad/MatmulNt
+  235.00	     235	     235	    0.00	load/gradients/filter_type_1/Slice_3_grad/Pad
+  234.00	     234	     234	    0.00	load/gradients/layer_1_type_0/GemmLayer_grad/MatmulNt
+  226.00	     226	     226	    0.00	load/gradients/Slice_3_grad/Pad
+  208.00	     208	     208	    0.00	load/gradients/concat_grad/Slice_1
   204.00	     204	     204	    0.00	load/Slice_3
-  197.00	     197	     197	    0.00	load/layer_1_type_0/GemmLayer
-  195.00	     195	     195	    0.00	load/layer_2_type_0/GemmLayer
-  194.00	     194	     194	    0.00	load/gradients/filter_type_1/MatMul_grad/MatMul_1
-  187.00	     187	     187	    0.00	load/gradients/Slice_2_grad/Pad
-  148.00	     148	     148	    0.00	load/filter_type_1/Slice_3
-  127.00	     127	     127	    0.00	load/gradients/filter_type_1/Slice_1_grad/Pad
-  124.00	     124	     124	    0.00	load/gradients/filter_type_0/Slice_3_grad/Pad
-  109.00	     109	     109	    0.00	load/Slice_2
-  107.00	     107	     107	    0.00	load/gradients/concat_grad/Slice
-  106.00	     106	     106	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul_1
-   79.00	      79	      79	    0.00	load/filter_type_0/Slice_3
-   79.00	      79	      79	    0.00	load/filter_type_1/Slice_1
+  196.00	     196	     196	    0.00	load/layer_2_type_0/GemmLayer
+  195.00	     195	     195	    0.00	load/layer_1_type_0/GemmLayer
+  193.00	     193	     193	    0.00	load/gradients/filter_type_1/MatMul_grad/MatMul_1
+  188.00	     188	     188	    0.00	load/gradients/Slice_2_grad/Pad
+  152.00	     152	     152	    0.00	load/ProdVirialSeA
+  151.00	     151	     151	    0.00	load/filter_type_1/Slice_3
+  133.00	     133	     133	    0.00	load/ProdForceSeA
+  126.00	     126	     126	    0.00	load/gradients/filter_type_1/Slice_1_grad/Pad
+  125.00	     125	     125	    0.00	load/gradients/filter_type_0/Slice_3_grad/Pad
+  108.00	     108	     108	    0.00	load/Slice_2
+  108.00	     108	     108	    0.00	load/gradients/concat_grad/Slice
+  108.00	     108	     108	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul_1
+   83.00	      83	      83	    0.00	load/filter_type_1/Slice_1
+   81.00	      81	      81	    0.00	load/filter_type_0/Slice_3
    73.00	      73	      73	    0.00	load/gradients/AddN_13
    68.00	      68	      68	    0.00	load/gradients/filter_type_0/Slice_1_grad/Pad
    68.00	      68	      68	    0.00	load/gradients/Slice_1_grad/Pad
    62.00	      62	      62	    0.00	load/Slice_1
    60.00	      60	      60	    0.00	load/gradients/Slice_grad/Pad
    59.00	      59	      59	    0.00	load/layer_1_type_1/mul
-   56.00	      56	      56	    0.00	load/filter_type_1/add
-   55.00	      55	      55	    0.00	load/gradients/layer_2_type_1/mul_grad/Mul
-   54.00	      54	      54	    0.00	load/layer_2_type_1/mul
-   52.00	      52	      52	    0.00	load/gradients/layer_1_type_1/mul_grad/Mul
+   57.00	      57	      57	    0.00	load/filter_type_1/add
+   53.00	      53	      53	    0.00	load/layer_2_type_1/mul
+   52.00	      52	      52	    0.00	load/gradients/layer_2_type_1/mul_grad/Mul
    52.00	      52	      52	    0.00	load/gradients/filter_type_1/Slice_4_grad/Pad
+   51.00	      51	      51	    0.00	load/gradients/layer_1_type_1/mul_grad/Mul
    51.00	      51	      51	    0.00	load/gradients/AddN_12
    50.00	      50	      50	    0.00	load/filter_type_1/Slice_4
-   50.00	      50	      50	    0.00	load/gradients/filter_type_1/Slice_grad/Pad
-   48.00	      48	      48	    0.00	load/gradients/AddN_6
-   48.00	      48	      48	    0.00	load/gradients/filter_type_1/Slice_2_grad/Pad
+   49.00	      49	      49	    0.00	load/gradients/AddN_6
+   48.00	      48	      48	    0.00	load/filter_type_0/Slice_1
    47.00	      47	      47	    0.00	load/filter_type_1/Slice_2
-   46.00	      46	      46	    0.00	load/filter_type_0/Slice_1
+   47.00	      47	      47	    0.00	load/gradients/filter_type_1/Slice_2_grad/Pad
    43.00	      43	      43	    0.00	load/gradients/layer_2_type_0/mul_grad/Mul
+   43.00	      43	      43	    0.00	load/gradients/filter_type_1/Slice_grad/Pad
    42.00	      42	      42	    0.00	load/final_layer_type_1/GemmLayer
-   40.00	      40	      40	    0.00	load/layer_1_type_0/mul
+   39.00	      39	      39	    0.00	load/layer_1_type_0/mul
    38.00	      38	      38	    0.00	load/filter_type_1/mul
+   38.00	      38	      38	    0.00	load/gradients/filter_type_1/mul_grad/Mul
    37.00	      37	      37	    0.00	load/Slice
-   37.00	      37	      37	    0.00	load/gradients/filter_type_1/mul_grad/Mul
-   35.00	      35	      35	    0.00	load/gradients/AddN_10
-   34.00	      34	      34	    0.00	load/layer_2_type_0/mul
-   33.00	      33	      33	    0.00	load/filter_type_0/add
+   34.00	      34	      34	    0.00	load/filter_type_0/add
+   34.00	      34	      34	    0.00	load/gradients/AddN_10
+   33.00	      33	      33	    0.00	load/layer_2_type_0/mul
    33.00	      33	      33	    0.00	load/gradients/layer_1_type_0/mul_grad/Mul
+   32.00	      32	      32	    0.00	load/filter_type_0/Slice_4
    32.00	      32	      32	    0.00	load/filter_type_1/Slice
-   32.00	      32	      32	    0.00	load/gradients/filter_type_0/Slice_4_grad/Pad
-   31.00	      31	      31	    0.00	load/filter_type_0/Slice_4
-   31.00	      31	      31	    0.00	load/gradients/final_layer_type_0/GemmLayer_grad/MatmulNt
+   32.00	      32	      32	    0.00	load/gradients/final_layer_type_0/GemmLayer_grad/MatmulNt
+   31.00	      31	      31	    0.00	load/gradients/filter_type_0/Slice_4_grad/Pad
+   30.00	      30	      30	    0.00	load/gradients/filter_type_0/Slice_2_grad/Pad
    29.00	      29	      29	    0.00	load/filter_type_0/Slice_2
-   29.00	      29	      29	    0.00	load/gradients/filter_type_0/Slice_2_grad/Pad
    29.00	      29	      29	    0.00	load/gradients/filter_type_0/Slice_grad/Pad
-   28.00	      28	      28	    0.00	load/gradients/final_layer_type_1/GemmLayer_grad/MatmulNt
-   28.00	      28	      28	    0.00	load/gradients/layer_2_type_1/Tanh_grad/TanhGrad
-   28.00	      28	      28	    0.00	load/gradients/layer_1_type_1/Tanh_grad/TanhGrad
    28.00	      28	      28	    0.00	load/gradients/layer_0_type_1/Tanh_grad/TanhGrad
-   27.00	      27	      27	    0.00	load/final_layer_type_0/GemmLayer
-   27.00	      27	      27	    0.00	load/gradients/AddN_1
-   27.00	      27	      27	    0.00	load/gradients/AddN_11
-   26.00	      26	      26	    0.00	load/gradients/AddN_5
+   28.00	      28	      28	    0.00	load/gradients/AddN_11
+   27.00	      27	      27	    0.00	load/gradients/final_layer_type_1/GemmLayer_grad/MatmulNt
+   27.00	      27	      27	    0.00	load/gradients/layer_2_type_1/Tanh_grad/TanhGrad
+   27.00	      27	      27	    0.00	load/gradients/layer_1_type_1/Tanh_grad/TanhGrad
+   26.00	      26	      26	    0.00	load/final_layer_type_0/GemmLayer
+   26.00	      26	      26	    0.00	load/gradients/AddN_1
    25.00	      25	      25	    0.00	load/add_5
-   25.00	      25	      25	    0.00	load/gradients/AddN_3
+   25.00	      25	      25	    0.00	load/gradients/AddN_5
    24.00	      24	      24	    0.00	load/add_6
-   21.00	      21	      21	    0.00	load/filter_type_0/mul
+   24.00	      24	      24	    0.00	load/gradients/AddN_3
+   22.00	      22	      22	    0.00	load/filter_type_0/mul
    21.00	      21	      21	    0.00	load/gradients/filter_type_0/mul_grad/Mul
    20.00	      20	      20	    0.00	load/filter_type_0/Slice
-   20.00	      20	      20	    0.00	load/gradients/AddN_9
    20.00	      20	      20	    0.00	load/gradients/AddN_8
 
 Top k op type
 average time	percentage	op type
-18496.00	    0.30	Tanh
- 8853.00	    0.15	TabulateFusionGrad
- 7653.00	    0.13	ProdEnvMatA
- 6368.00	    0.10	MatmulNt
- 5292.00	    0.09	GemmLayer
- 4016.00	    0.07	TabulateFusion
- 2092.00	    0.03	MatMul
- 1708.00	    0.03	ProdVirialSeA
- 1335.00	    0.02	Pad
- 1308.00	    0.02	Slice
-  746.00	    0.01	ProdForceSeA
-  661.00	    0.01	AddN
-  429.00	    0.01	concat
-  303.00	    0.00	mul
-  241.00	    0.00	Mul
-  231.00	    0.00	Shape
-  207.00	    0.00	Reshape
-  175.00	    0.00	add
-  133.00	    0.00	TanhGrad
-  106.00	    0.00	strided
+18498.00	    0.32	Tanh
+ 8924.00	    0.15	TabulateFusionGrad
+ 6360.00	    0.11	MatmulNt
+ 5690.00	    0.10	ProdEnvMatA
+ 5283.00	    0.09	GemmLayer
+ 4130.00	    0.07	TabulateFusion
+ 2187.00	    0.04	MatMul
+ 1531.00	    0.03	strided
+ 1328.00	    0.02	Pad
+ 1320.00	    0.02	Slice
+  656.00	    0.01	AddN
+  435.00	    0.01	concat
+  301.00	    0.01	mul
+  238.00	    0.00	Mul
+  237.00	    0.00	Shape
+  211.00	    0.00	Reshape
+  178.00	    0.00	add
+  152.00	    0.00	ProdVirialSeA
+  133.00	    0.00	ProdForceSeA
+  129.00	    0.00	TanhGrad

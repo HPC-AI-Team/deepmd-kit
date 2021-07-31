@@ -92,12 +92,12 @@ deepmd::prod_virial_a_cpu_sve(
 
       svbool_t pg0 = svwhilelt_b64(jj, nnei);
       svint64_t vj_idx = svld1sw_s64(pg0, nlist_i + jj);
-      svbool_t lt_zero = svcmplt(pg0,vj_idx,0);
-      svbool_t pg1 = svbrkb_z(pg0,lt_zero);
+      svbool_t ge_zero = svcmpge(pg0,vj_idx,0);
+      svbool_t pg1 = svand_z(pt,pg0,ge_zero);
       
       // pg1 all false
-      if(!svptest_first(pg0, pg1)){
-        break;
+      if(!svptest_any(pt, pg1)){
+        continue;
       }
 
       // 3*8
@@ -200,10 +200,6 @@ deepmd::prod_virial_a_cpu_sve(
       tmp_3_6 = svmla_m(pg1, tmp_3_6, env_3_2, rij_0);
       tmp_3_7 = svmla_m(pg1, tmp_3_7, env_3_2, rij_1);
       tmp_3_8 = svmla_m(pg1, tmp_3_8, env_3_2, rij_2);
-      // lt_zero
-      if(svptest_any(pg0, lt_zero)){
-        break;
-      }
     }
   }  
   tmp_0_0 = svadd_z(pt, tmp_0_0, tmp_1_0);

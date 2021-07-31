@@ -59,11 +59,12 @@ prod_force_a_cpu_sve(
       svbool_t pg0 = svwhilelt_b64(jj, nnei);
       svint64_t vj_idx = svld1sw_s64(pg0, nlist_i + jj);
 
-      svbool_t lt_zero = svcmplt(pg0,vj_idx,0);
-      svbool_t pg1 = svbrkb_z(pg0,lt_zero);
+      svbool_t ge_zero = svcmpge(pg0,vj_idx,0);
+      svbool_t pg1 = svand_z(pt,pg0,ge_zero);
       // pg1 all false
-      if(!svptest_first(pg0, pg1)){
-        break;
+      
+      if(!svptest_any(pt, pg1)){
+        continue;
       }
 
       svint64_t vj_idx_0 = svmul_z(pg1, vj_idx, 3);
@@ -113,8 +114,6 @@ prod_force_a_cpu_sve(
         env_deriv_3_1 = svld1_gather_u64index_f64(pg1, base, index10);
         env_deriv_3_2 = svld1_gather_u64index_f64(pg1, base, index11);
       }
-
-
       svfloat64_t force_0_0 = svmul_z(pg1, net_deriv_0, env_deriv_0_0);
       svfloat64_t force_0_1 = svmul_z(pg1, net_deriv_0, env_deriv_0_1);
       svfloat64_t force_0_2 = svmul_z(pg1, net_deriv_0, env_deriv_0_2);
@@ -157,10 +156,6 @@ prod_force_a_cpu_sve(
       force_i_1 = svadd_m(pg1, force_i_1, force_0_1);
       force_i_2 = svadd_m(pg1, force_i_2, force_0_2);
 
-      // break
-      if(svptest_any(pg0, lt_zero)){
-        break;
-      }
     }
 
     force[i_idx * 3 + 0] -= svaddv(pt, force_i_0);

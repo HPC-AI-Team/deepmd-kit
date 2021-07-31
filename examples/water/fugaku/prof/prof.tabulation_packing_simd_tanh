@@ -56,28 +56,28 @@ make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/buil
 cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/ipi /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi/CMakeFiles/deepmd_ipi.dir/DependInfo.cmake --color=
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/lib /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/lib /home/hp200266/u01036/gzq/deepmd-kit/source/build/lib/CMakeFiles/deepmd.dir/DependInfo.cmake --color=
-make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
-make -f ipi/CMakeFiles/deepmd_ipi.dir/build.make ipi/CMakeFiles/deepmd_ipi.dir/build
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/api_cc /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc/CMakeFiles/deepmd_cc.dir/DependInfo.cmake --color=
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make -f ipi/CMakeFiles/deepmd_ipi.dir/build.make ipi/CMakeFiles/deepmd_ipi.dir/build
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make[2]: Nothing to be done for 'ipi/CMakeFiles/deepmd_ipi.dir/build'.
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make -f lib/CMakeFiles/deepmd.dir/build.make lib/CMakeFiles/deepmd.dir/build
+[  5%] Built target deepmd_ipi
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make[2]: Nothing to be done for 'lib/CMakeFiles/deepmd.dir/build'.
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/op /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/op /home/hp200266/u01036/gzq/deepmd-kit/source/build/op/CMakeFiles/deepmd_op.dir/DependInfo.cmake --color=
-[  5%] Built target deepmd_ipi
-[ 50%] Built target deepmd
+[ 52%] Built target deepmd
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make -f api_cc/CMakeFiles/deepmd_cc.dir/build.make api_cc/CMakeFiles/deepmd_cc.dir/build
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make[2]: Nothing to be done for 'api_cc/CMakeFiles/deepmd_cc.dir/build'.
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
-[ 58%] Built target deepmd_cc
+[ 60%] Built target deepmd_cc
 make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 make -f op/CMakeFiles/deepmd_op.dir/build.make op/CMakeFiles/deepmd_op.dir/build
 make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
@@ -95,8 +95,8 @@ make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build
 [100%] Built target dp_ipi
 make[1]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
 /usr/bin/cmake -E cmake_progress_start /home/hp200266/u01036/gzq/deepmd-kit/source/build/CMakeFiles 0
-[ 38%] Built target deepmd_op
-[ 82%] Built target deepmd
+[ 36%] Built target deepmd_op
+[ 83%] Built target deepmd
 [ 91%] Built target deepmd_cc
 [ 97%] Built target deepmd_ipi
 [100%] Built target dp_ipi
@@ -149,8 +149,8 @@ Install the project...
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/version.h
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/lib/libdeepmd_ipi.so
 -- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/bin/dp_ipi
-[ 46%] Built target deepmd
-[ 56%] Built target op_grads
+[ 48%] Built target deepmd
+[ 58%] Built target op_grads
 [100%] Built target op_abi
 Install the project...
 -- Install configuration: "debug"
@@ -441,17 +441,17 @@ copying deepmd_kit.egg-info/not-zip-safe -> _skbuild/linux-aarch64-3.8/setuptool
 copying deepmd_kit.egg-info/requires.txt -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
 copying deepmd_kit.egg-info/top_level.txt -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
 writing _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO/native_libs.txt
-creating 'dist/deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg' and adding '_skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg' to it
+creating 'dist/deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg' and adding '_skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg' to it
 removing '_skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg' (and everything under it)
-Processing deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg
-removing '/vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg' (and everything under it)
-creating /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg
-Extracting deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg to /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages
-deepmd-kit 1.2.3.dev793+gb6b9f593.d20210729 is already the active version in easy-install.pth
+Processing deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg
+removing '/vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg' (and everything under it)
+creating /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg
+Extracting deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg to /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages
+deepmd-kit 1.2.3.dev805+gf5300824.d20210731 is already the active version in easy-install.pth
 Installing dp script to /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin
 
-Installed /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev793+gb6b9f593.d20210729-py3.8-linux-aarch64.egg
-Processing dependencies for deepmd-kit==1.2.3.dev793+gb6b9f593.d20210729
+Installed /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg
+Processing dependencies for deepmd-kit==1.2.3.dev805+gf5300824.d20210731
 Searching for dargs==0.2.5
 Best match: dargs 0.2.5
 Processing dargs-0.2.5-py3.8.egg
@@ -477,7 +477,7 @@ Installing f2py3 script to /home/hp200266/u01036/gzq/fj_software/tensorflow/Tens
 Installing f2py3.8 script to /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin
 
 Using /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages
-Finished processing dependencies for deepmd-kit==1.2.3.dev793+gb6b9f593.d20210729
+Finished processing dependencies for deepmd-kit==1.2.3.dev805+gf5300824.d20210731
 ++ export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 ++ LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 ++ export TF_CPP_MIN_LOG_LEVEL=3
@@ -588,25 +588,25 @@ occurrence: The number of times it occurs
 
 Profile:
 node name | requested bytes | total execution time | accelerator execution time | cpu execution time | # float_ops | op occurrence (run|defined)
-TabulateFusionGrad              1.06MB (100.00%, 1.24%),       8.95ms (100.00%, 20.72%),             0us (0.00%, 0.00%),       8.95ms (100.00%, 20.72%),   0 float_ops (100.00%, 0.00%),        4|4
-ProdEnvMatA                      4.13MB (98.76%, 4.82%),        7.67ms (79.28%, 17.74%),             0us (0.00%, 0.00%),        7.67ms (79.28%, 17.74%),   0 float_ops (100.00%, 0.00%),        1|1
-MatmulNt                         4.25MB (93.94%, 4.96%),        6.49ms (61.55%, 15.01%),             0us (0.00%, 0.00%),        6.49ms (61.55%, 15.01%),   0 float_ops (100.00%, 0.00%),        8|8
-GemmLayer                        1.11MB (88.98%, 1.29%),        5.27ms (46.54%, 12.20%),             0us (0.00%, 0.00%),        5.27ms (46.54%, 12.20%),   0 float_ops (100.00%, 0.00%),        8|8
-TabulateFusion                   1.57MB (87.69%, 1.83%),         4.09ms (34.34%, 9.47%),             0us (0.00%, 0.00%),         4.09ms (34.34%, 9.47%),   0 float_ops (100.00%, 0.00%),        4|4
-BatchMatMulV2                    4.03MB (85.86%, 4.70%),         2.17ms (24.86%, 5.01%),             0us (0.00%, 0.00%),         2.17ms (24.86%, 5.01%), 106.95m float_ops (100.00%, 98.52%),        6|6
-ProdVirialSeA                   13.90KB (81.15%, 0.02%),         1.70ms (19.85%, 3.94%),             0us (0.00%, 0.00%),         1.70ms (19.85%, 3.94%),     0 float_ops (1.48%, 0.00%),        1|1
-Pad                            11.32MB (81.14%, 13.20%),         1.33ms (15.91%, 3.08%),             0us (0.00%, 0.00%),         1.33ms (15.91%, 3.08%),     0 float_ops (1.48%, 0.00%),      14|14
-Slice                            8.30MB (67.94%, 9.68%),         1.30ms (12.83%, 3.00%),             0us (0.00%, 0.00%),         1.30ms (12.83%, 3.00%),     0 float_ops (1.48%, 0.00%),      18|18
-ProdForceSeA                     4.61KB (58.25%, 0.01%),           746us (9.83%, 1.73%),             0us (0.00%, 0.00%),           746us (9.83%, 1.73%),     0 float_ops (1.48%, 0.00%),        1|1
-AddN                                  0B (0.00%, 0.00%),           659us (8.10%, 1.52%),             0us (0.00%, 0.00%),           659us (8.10%, 1.52%), 809.47k float_ops (1.48%, 0.75%),      14|14
+TabulateFusionGrad              1.06MB (100.00%, 1.24%),       8.83ms (100.00%, 22.68%),             0us (0.00%, 0.00%),       8.83ms (100.00%, 22.68%),   0 float_ops (100.00%, 0.00%),        4|4
+MatmulNt                         4.25MB (98.76%, 4.96%),        6.44ms (77.32%, 16.53%),             0us (0.00%, 0.00%),        6.44ms (77.32%, 16.53%),   0 float_ops (100.00%, 0.00%),        8|8
+ProdEnvMatA                      4.13MB (93.80%, 4.82%),        5.70ms (60.79%, 14.64%),             0us (0.00%, 0.00%),        5.70ms (60.79%, 14.64%),   0 float_ops (100.00%, 0.00%),        1|1
+GemmLayer                        1.11MB (88.98%, 1.29%),        5.29ms (46.16%, 13.60%),             0us (0.00%, 0.00%),        5.29ms (46.16%, 13.60%),   0 float_ops (100.00%, 0.00%),        8|8
+TabulateFusion                   1.57MB (87.69%, 1.83%),        4.01ms (32.56%, 10.30%),             0us (0.00%, 0.00%),        4.01ms (32.56%, 10.30%),   0 float_ops (100.00%, 0.00%),        4|4
+BatchMatMulV2                    4.03MB (85.86%, 4.70%),         2.26ms (22.26%, 5.80%),             0us (0.00%, 0.00%),         2.26ms (22.26%, 5.80%), 106.95m float_ops (100.00%, 98.52%),        6|6
+Pad                            11.32MB (81.15%, 13.20%),         1.33ms (16.46%, 3.42%),             0us (0.00%, 0.00%),         1.33ms (16.46%, 3.42%),     0 float_ops (1.48%, 0.00%),      14|14
+Slice                            8.30MB (67.95%, 9.68%),         1.32ms (13.04%, 3.38%),             0us (0.00%, 0.00%),         1.32ms (13.04%, 3.38%),     0 float_ops (1.48%, 0.00%),      18|18
+AddN                                  0B (0.00%, 0.00%),           658us (9.65%, 1.69%),             0us (0.00%, 0.00%),           658us (9.65%, 1.69%), 809.47k float_ops (1.48%, 0.75%),      14|14
+Mul                              1.47MB (58.27%, 1.72%),           640us (7.96%, 1.64%),             0us (0.00%, 0.00%),           640us (7.96%, 1.64%), 519.18k float_ops (0.73%, 0.48%),      27|32
+ConcatV2                         3.15MB (56.55%, 3.67%),           432us (6.32%, 1.11%),             0us (0.00%, 0.00%),           432us (6.32%, 1.11%),     0 float_ops (0.25%, 0.00%),      16|16
 
 ======================End of Report==========================
 DEEPMD INFO    # number of test data : 1 
 DEEPMD INFO    Energy RMSE        : 7.471435e-02 eV
 DEEPMD INFO    Energy RMSE/Natoms : 3.891372e-04 eV
-DEEPMD INFO    Force  RMSE        : 5.845047e-02 eV/A
-DEEPMD INFO    Virial RMSE        : 6.561504e+00 eV
-DEEPMD INFO    Virial RMSE/Natoms : 3.417450e-02 eV
+DEEPMD INFO    Force  RMSE        : 7.544664e-01 eV/A
+DEEPMD INFO    Virial RMSE        : 8.520443e+01 eV
+DEEPMD INFO    Virial RMSE/Natoms : 4.437731e-01 eV
 DEEPMD INFO    # ----------------------------------------------- 
 profile : ture
 dp model type : ener
@@ -619,126 +619,126 @@ non-resource variables are not supported in the long term
 
 Top k op
 average time	min time	max time	percentage	op name
- 7667.00	    7667	    7667	    0.18	load/ProdEnvMatA
- 3860.00	    3860	    3860	    0.09	load/gradients/filter_type_1/TabulateFusion_1_grad/TabulateFusionGrad
- 3254.00	    3254	    3254	    0.08	load/gradients/layer_0_type_1/GemmLayer_grad/MatmulNt
- 2673.00	    2673	    2673	    0.06	load/layer_0_type_1/GemmLayer
- 2065.00	    2065	    2065	    0.05	load/gradients/filter_type_1/TabulateFusion_grad/TabulateFusionGrad
- 2031.00	    2031	    2031	    0.05	load/gradients/filter_type_0/TabulateFusion_1_grad/TabulateFusionGrad
- 1970.00	    1970	    1970	    0.05	load/gradients/layer_0_type_0/GemmLayer_grad/MatmulNt
- 1722.00	    1722	    1722	    0.04	load/filter_type_1/TabulateFusion_1
- 1703.00	    1703	    1703	    0.04	load/ProdVirialSeA
- 1475.00	    1475	    1475	    0.03	load/layer_0_type_0/GemmLayer
-  998.00	     998	     998	    0.02	load/gradients/filter_type_0/TabulateFusion_grad/TabulateFusionGrad
-  962.00	     962	     962	    0.02	load/filter_type_1/TabulateFusion
-  928.00	     928	     928	    0.02	load/filter_type_0/TabulateFusion_1
-  746.00	     746	     746	    0.02	load/ProdForceSeA
-  676.00	     676	     676	    0.02	load/filter_type_1/MatMul
-  489.00	     489	     489	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul
-  483.00	     483	     483	    0.01	load/filter_type_0/TabulateFusion
-  404.00	     404	     404	    0.01	load/filter_type_0/MatMul
-  362.00	     362	     362	    0.01	load/gradients/layer_2_type_1/GemmLayer_grad/MatmulNt
+ 5700.00	    5700	    5700	    0.15	load/ProdEnvMatA
+ 3809.00	    3809	    3809	    0.10	load/gradients/filter_type_1/TabulateFusion_1_grad/TabulateFusionGrad
+ 3235.00	    3235	    3235	    0.08	load/gradients/layer_0_type_1/GemmLayer_grad/MatmulNt
+ 2680.00	    2680	    2680	    0.07	load/layer_0_type_1/GemmLayer
+ 2046.00	    2046	    2046	    0.05	load/gradients/filter_type_1/TabulateFusion_grad/TabulateFusionGrad
+ 1989.00	    1989	    1989	    0.05	load/gradients/filter_type_0/TabulateFusion_1_grad/TabulateFusionGrad
+ 1932.00	    1932	    1932	    0.05	load/gradients/layer_0_type_0/GemmLayer_grad/MatmulNt
+ 1699.00	    1699	    1699	    0.04	load/filter_type_1/TabulateFusion_1
+ 1484.00	    1484	    1484	    0.04	load/layer_0_type_0/GemmLayer
+  987.00	     987	     987	    0.03	load/gradients/filter_type_0/TabulateFusion_grad/TabulateFusionGrad
+  956.00	     956	     956	    0.02	load/filter_type_1/TabulateFusion
+  893.00	     893	     893	    0.02	load/filter_type_0/TabulateFusion_1
+  778.00	     778	     778	    0.02	load/filter_type_1/MatMul
+  568.00	     568	     568	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul
+  465.00	     465	     465	    0.01	load/filter_type_0/TabulateFusion
+  365.00	     365	     365	    0.01	load/gradients/layer_2_type_1/GemmLayer_grad/MatmulNt
   359.00	     359	     359	    0.01	load/gradients/layer_1_type_1/GemmLayer_grad/MatmulNt
-  338.00	     338	     338	    0.01	load/layer_1_type_1/GemmLayer
+  358.00	     358	     358	    0.01	load/filter_type_0/MatMul
+  340.00	     340	     340	    0.01	load/layer_1_type_1/GemmLayer
   333.00	     333	     333	    0.01	load/layer_2_type_1/GemmLayer
   305.00	     305	     305	    0.01	load/concat
-  278.00	     278	     278	    0.01	load/gradients/filter_type_0/MatMul_grad/MatMul
   266.00	     266	     266	    0.01	load/gradients/AddN_4
-  247.00	     247	     247	    0.01	load/gradients/layer_2_type_0/GemmLayer_grad/MatmulNt
+  254.00	     254	     254	    0.01	load/gradients/filter_type_0/MatMul_grad/MatMul
+  250.00	     250	     250	    0.01	load/gradients/layer_2_type_0/GemmLayer_grad/MatmulNt
+  235.00	     235	     235	    0.01	load/gradients/layer_1_type_0/GemmLayer_grad/MatmulNt
   235.00	     235	     235	    0.01	load/gradients/filter_type_1/Slice_3_grad/Pad
-  234.00	     234	     234	    0.01	load/gradients/layer_1_type_0/GemmLayer_grad/MatmulNt
-  224.00	     224	     224	    0.01	load/gradients/Slice_3_grad/Pad
-  211.00	     211	     211	    0.00	load/gradients/filter_type_1/MatMul_grad/MatMul_1
-  210.00	     210	     210	    0.00	load/gradients/concat_grad/Slice_1
-  204.00	     204	     204	    0.00	load/Slice_3
-  194.00	     194	     194	    0.00	load/layer_1_type_0/GemmLayer
-  192.00	     192	     192	    0.00	load/layer_2_type_0/GemmLayer
-  186.00	     186	     186	    0.00	load/gradients/Slice_2_grad/Pad
-  141.00	     141	     141	    0.00	load/filter_type_1/Slice_3
+  222.00	     222	     222	    0.01	load/gradients/Slice_3_grad/Pad
+  208.00	     208	     208	    0.01	load/gradients/concat_grad/Slice_1
+  203.00	     203	     203	    0.01	load/Slice_3
+  195.00	     195	     195	    0.01	load/layer_1_type_0/GemmLayer
+  194.00	     194	     194	    0.01	load/layer_2_type_0/GemmLayer
+  193.00	     193	     193	    0.00	load/gradients/filter_type_1/MatMul_grad/MatMul_1
+  187.00	     187	     187	    0.00	load/gradients/Slice_2_grad/Pad
+  155.00	     155	     155	    0.00	load/filter_type_1/Slice_3
+  151.00	     151	     151	    0.00	load/ProdVirialSeA
+  132.00	     132	     132	    0.00	load/ProdForceSeA
   127.00	     127	     127	    0.00	load/gradients/filter_type_1/Slice_1_grad/Pad
-  124.00	     124	     124	    0.00	load/gradients/filter_type_0/Slice_3_grad/Pad
+  126.00	     126	     126	    0.00	load/gradients/filter_type_0/Slice_3_grad/Pad
   108.00	     108	     108	    0.00	load/Slice_2
-  108.00	     108	     108	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul_1
   107.00	     107	     107	    0.00	load/gradients/concat_grad/Slice
-   85.00	      85	      85	    0.00	load/filter_type_1/Slice_1
-   73.00	      73	      73	    0.00	load/filter_type_0/Slice_3
+  107.00	     107	     107	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul_1
+   80.00	      80	      80	    0.00	load/filter_type_1/Slice_1
+   79.00	      79	      79	    0.00	load/filter_type_0/Slice_3
    73.00	      73	      73	    0.00	load/gradients/AddN_13
    70.00	      70	      70	    0.00	load/layer_0_type_1/FastTanh
-   68.00	      68	      68	    0.00	load/gradients/Slice_1_grad/Pad
-   67.00	      67	      67	    0.00	load/gradients/filter_type_0/Slice_1_grad/Pad
-   64.00	      64	      64	    0.00	load/layer_2_type_1/FastTanh
-   63.00	      63	      63	    0.00	load/gradients/Slice_grad/Pad
+   68.00	      68	      68	    0.00	load/gradients/filter_type_0/Slice_1_grad/Pad
+   67.00	      67	      67	    0.00	load/gradients/Slice_1_grad/Pad
+   63.00	      63	      63	    0.00	load/Slice_1
+   63.00	      63	      63	    0.00	load/layer_2_type_1/FastTanh
    62.00	      62	      62	    0.00	load/layer_1_type_1/FastTanh
-   61.00	      61	      61	    0.00	load/Slice_1
-   56.00	      56	      56	    0.00	load/filter_type_1/add
+   61.00	      61	      61	    0.00	load/gradients/Slice_grad/Pad
+   57.00	      57	      57	    0.00	load/filter_type_1/add
    56.00	      56	      56	    0.00	load/layer_1_type_1/mul
    53.00	      53	      53	    0.00	load/gradients/layer_2_type_1/mul_grad/Mul
    53.00	      53	      53	    0.00	load/gradients/filter_type_1/Slice_4_grad/Pad
-   52.00	      52	      52	    0.00	load/gradients/layer_1_type_1/mul_grad/Mul
    52.00	      52	      52	    0.00	load/gradients/AddN_12
-   51.00	      51	      51	    0.00	load/layer_2_type_1/mul
-   50.00	      50	      50	    0.00	load/filter_type_1/Slice_4
-   48.00	      48	      48	    0.00	load/gradients/AddN_6
+   51.00	      51	      51	    0.00	load/filter_type_0/Slice_1
+   51.00	      51	      51	    0.00	load/gradients/layer_1_type_1/mul_grad/Mul
+   50.00	      50	      50	    0.00	load/layer_2_type_1/mul
+   50.00	      50	      50	    0.00	load/gradients/filter_type_1/Slice_grad/Pad
+   49.00	      49	      49	    0.00	load/filter_type_1/Slice_4
+   49.00	      49	      49	    0.00	load/gradients/AddN_6
    47.00	      47	      47	    0.00	load/gradients/filter_type_1/Slice_2_grad/Pad
    46.00	      46	      46	    0.00	load/filter_type_1/Slice_2
-   46.00	      46	      46	    0.00	load/gradients/filter_type_1/Slice_grad/Pad
-   44.00	      44	      44	    0.00	load/filter_type_0/Slice_1
    42.00	      42	      42	    0.00	load/final_layer_type_1/GemmLayer
    41.00	      41	      41	    0.00	load/gradients/layer_2_type_0/mul_grad/Mul
-   39.00	      39	      39	    0.00	load/layer_0_type_0/FastTanh
-   38.00	      38	      38	    0.00	load/filter_type_1/mul
    38.00	      38	      38	    0.00	load/layer_1_type_0/FastTanh
-   38.00	      38	      38	    0.00	load/layer_1_type_0/mul
-   38.00	      38	      38	    0.00	load/gradients/filter_type_1/mul_grad/Mul
    37.00	      37	      37	    0.00	load/Slice
+   37.00	      37	      37	    0.00	load/filter_type_1/mul
+   37.00	      37	      37	    0.00	load/layer_0_type_0/FastTanh
+   37.00	      37	      37	    0.00	load/layer_1_type_0/mul
+   37.00	      37	      37	    0.00	load/gradients/filter_type_1/mul_grad/Mul
    36.00	      36	      36	    0.00	load/layer_2_type_0/FastTanh
-   35.00	      35	      35	    0.00	load/gradients/AddN_10
-   34.00	      34	      34	    0.00	load/gradients/layer_1_type_0/mul_grad/Mul
-   32.00	      32	      32	    0.00	load/filter_type_0/add
-   32.00	      32	      32	    0.00	load/filter_type_1/Slice
+   35.00	      35	      35	    0.00	load/gradients/layer_1_type_0/mul_grad/Mul
+   34.00	      34	      34	    0.00	load/gradients/AddN_10
+   33.00	      33	      33	    0.00	load/filter_type_0/add
+   32.00	      32	      32	    0.00	load/filter_type_0/Slice_4
    32.00	      32	      32	    0.00	load/layer_2_type_0/mul
    32.00	      32	      32	    0.00	load/gradients/final_layer_type_0/GemmLayer_grad/MatmulNt
-   32.00	      32	      32	    0.00	load/gradients/filter_type_0/Slice_4_grad/Pad
-   31.00	      31	      31	    0.00	load/filter_type_0/Slice_4
-   30.00	      30	      30	    0.00	load/gradients/filter_type_0/Slice_2_grad/Pad
+   31.00	      31	      31	    0.00	load/filter_type_1/Slice
+   31.00	      31	      31	    0.00	load/gradients/filter_type_0/Slice_4_grad/Pad
    30.00	      30	      30	    0.00	load/gradients/filter_type_0/Slice_grad/Pad
    29.00	      29	      29	    0.00	load/filter_type_0/Slice_2
    29.00	      29	      29	    0.00	load/gradients/final_layer_type_1/GemmLayer_grad/MatmulNt
-   28.00	      28	      28	    0.00	load/gradients/AddN_11
+   29.00	      29	      29	    0.00	load/gradients/filter_type_0/Slice_2_grad/Pad
    27.00	      27	      27	    0.00	load/final_layer_type_0/GemmLayer
+   27.00	      27	      27	    0.00	load/gradients/AddN_11
    26.00	      26	      26	    0.00	load/gradients/layer_0_type_1/FastTanh_grad/Square
+   26.00	      26	      26	    0.00	load/gradients/layer_2_type_1/FastTanh_grad/mul
    26.00	      26	      26	    0.00	load/gradients/AddN_1
    25.00	      25	      25	    0.00	load/add_5
-   25.00	      25	      25	    0.00	load/gradients/layer_2_type_1/FastTanh_grad/mul
-   25.00	      25	      25	    0.00	load/gradients/layer_1_type_1/FastTanh_grad/mul
    25.00	      25	      25	    0.00	load/gradients/AddN_3
-   25.00	      25	      25	    0.00	load/gradients/layer_0_type_1/FastTanh_grad/mul
    25.00	      25	      25	    0.00	load/gradients/AddN_5
    24.00	      24	      24	    0.00	load/add_6
-   21.00	      21	      21	    0.00	load/filter_type_0/mul
+   24.00	      24	      24	    0.00	load/gradients/layer_1_type_1/FastTanh_grad/mul
+   24.00	      24	      24	    0.00	load/gradients/layer_0_type_1/FastTanh_grad/mul
+   22.00	      22	      22	    0.00	load/filter_type_0/mul
    21.00	      21	      21	    0.00	load/gradients/layer_0_type_1/FastTanh_grad/sub
    21.00	      21	      21	    0.00	load/gradients/filter_type_0/mul_grad/Mul
    20.00	      20	      20	    0.00	load/filter_type_0/Slice
 
 Top k op type
 average time	percentage	op type
- 8954.00	    0.21	TabulateFusionGrad
- 7667.00	    0.18	ProdEnvMatA
- 6487.00	    0.15	MatmulNt
- 5274.00	    0.12	GemmLayer
- 4095.00	    0.10	TabulateFusion
- 2166.00	    0.05	MatMul
- 1703.00	    0.04	ProdVirialSeA
- 1332.00	    0.03	Pad
- 1297.00	    0.03	Slice
-  746.00	    0.02	ProdForceSeA
-  659.00	    0.02	AddN
-  434.00	    0.01	concat
-  409.00	    0.01	mul
-  309.00	    0.01	FastTanh
-  239.00	    0.01	Mul
-  234.00	    0.01	Shape
-  206.00	    0.00	Reshape
-  174.00	    0.00	add
-  106.00	    0.00	sub
-  104.00	    0.00	strided
+ 8831.00	    0.23	TabulateFusionGrad
+ 6437.00	    0.17	MatmulNt
+ 5700.00	    0.15	ProdEnvMatA
+ 5295.00	    0.14	GemmLayer
+ 4013.00	    0.10	TabulateFusion
+ 2258.00	    0.06	MatMul
+ 1333.00	    0.03	Pad
+ 1318.00	    0.03	Slice
+  658.00	    0.02	AddN
+  432.00	    0.01	concat
+  402.00	    0.01	mul
+  306.00	    0.01	FastTanh
+  238.00	    0.01	Mul
+  229.00	    0.01	Shape
+  215.00	    0.01	Reshape
+  175.00	    0.00	add
+  151.00	    0.00	ProdVirialSeA
+  132.00	    0.00	ProdForceSeA
+  103.00	    0.00	sub
+  100.00	    0.00	strided
