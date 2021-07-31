@@ -32,10 +32,29 @@ prod_env_mat_a_cpu(
   bool have_preprocessed = get_env_preprocessed();
   const int nnei = sec.back();
   const int nem = nnei * 4;
+
+
+  // build nlist
+   std::vector<std::vector<int > > d_nlist_a(nloc);
+
+   assert(nloc == inlist.inum);
+   for (unsigned ii = 0; ii < nloc; ++ii) {
+     d_nlist_a[ii].reserve(max_nbor_size);
+   }
+   for (unsigned ii = 0; ii < nloc; ++ii) {
+     int i_idx = inlist.ilist[ii];
+     for(unsigned jj = 0; jj < inlist.numneigh[ii]; ++jj){
+       int j_idx = inlist.firstneigh[ii][jj];
+       d_nlist_a[i_idx].push_back (j_idx);
+     }
+   }
+
+
   for (int ii = 0; ii < nloc; ++ii) {
     // double t0 = omp_get_wtime();
     int*  fmt_nlist_a = &nlist[ii * nnei];
-    int ret = format_nlist_i_cpu(fmt_nlist_a, coord, type, ii, inlist.firstneigh[ii], inlist.numneigh[ii], rcut, sec);
+    // int ret = format_nlist_i_cpu(fmt_nlist_a, coord, type, ii, inlist.firstneigh[ii], inlist.numneigh[ii], rcut, sec);
+    int ret = format_nlist_i_cpu(fmt_nlist_a, coord, type, ii, d_nlist_a[ii], rcut, sec);
     // double t1 = omp_get_wtime();
     FPTYPE* d_em_a = &em[ii * nem];
     FPTYPE* d_em_a_deriv = &em_deriv[ii * nem * 3];

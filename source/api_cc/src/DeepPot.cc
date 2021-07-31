@@ -70,17 +70,17 @@ run_model (ENERGYTYPE &			dener,
   
   std::vector<Tensor> output_tensors;
   check_status (session->Run(input_tensors, 
-            {"o_energy", "o_force", "o_atom_virial"}, 
+            {"o_energy", "o_force", "o_virial"}, 
             {}, 
             &output_tensors));
   
   Tensor output_e = output_tensors[0];
   Tensor output_f = output_tensors[1];
-  Tensor output_av = output_tensors[2];
+  Tensor output_v = output_tensors[2];
 
   auto oe = output_e.flat <ENERGYTYPE> ();
   auto of = output_f.flat <VALUETYPE> ();
-  auto oav = output_av.flat <VALUETYPE> ();
+  auto ov = output_v.flat <VALUETYPE> ();
 
   dener = oe(0);
   std::vector<VALUETYPE> dforce (3 * nall);
@@ -88,17 +88,26 @@ run_model (ENERGYTYPE &			dener,
   for (unsigned ii = 0; ii < nall * 3; ++ii){
     dforce[ii] = of(ii);
   }
-  for (int ii = 0; ii < nall; ++ii) {
-    dvirial[0] += 1.0 * oav(9*ii+0);
-    dvirial[1] += 1.0 * oav(9*ii+1);
-    dvirial[2] += 1.0 * oav(9*ii+2);
-    dvirial[3] += 1.0 * oav(9*ii+3);
-    dvirial[4] += 1.0 * oav(9*ii+4);
-    dvirial[5] += 1.0 * oav(9*ii+5);
-    dvirial[6] += 1.0 * oav(9*ii+6);
-    dvirial[7] += 1.0 * oav(9*ii+7);
-    dvirial[8] += 1.0 * oav(9*ii+8);
-  }
+  // for (int ii = 0; ii < nall; ++ii) {
+  //   dvirial[0] += 1.0 * oav(9*ii+0);
+  //   dvirial[1] += 1.0 * oav(9*ii+1);
+  //   dvirial[2] += 1.0 * oav(9*ii+2);
+  //   dvirial[3] += 1.0 * oav(9*ii+3);
+  //   dvirial[4] += 1.0 * oav(9*ii+4);
+  //   dvirial[5] += 1.0 * oav(9*ii+5);
+  //   dvirial[6] += 1.0 * oav(9*ii+6);
+  //   dvirial[7] += 1.0 * oav(9*ii+7);
+  //   dvirial[8] += 1.0 * oav(9*ii+8);
+  // }
+  dvirial[0] = ov(0);
+  dvirial[1] = ov(1);
+  dvirial[2] = ov(2);
+  dvirial[3] = ov(3);
+  dvirial[4] = ov(4);
+  dvirial[5] = ov(5);
+  dvirial[6] = ov(6);
+  dvirial[7] = ov(7);
+  dvirial[8] = ov(8);
   dforce_ = dforce;
   atommap.backward (dforce_.begin(), dforce.begin(), 3);
 }

@@ -105,9 +105,17 @@ class ProdVirialSeAOp : public OpKernel {
       #endif // TENSORFLOW_USE_ROCM
     }
     else if (device == "CPU") {
+
+#ifdef __ARM_FEATURE_SVE 
+      deepmd::prod_virial_a_cpu_sve(    
+          virial, atom_virial,
+          net_deriv, in_deriv, rij, nlist, nloc, nall, nnei);
+#else 
       deepmd::prod_virial_a_cpu(    
           virial, atom_virial,
           net_deriv, in_deriv, rij, nlist, nloc, nall, nnei);
+#endif
+
     }
     }
   }
