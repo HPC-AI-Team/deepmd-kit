@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <cstring>
 #include "prod_force.h"
+#include "tools.h"
 
 #ifdef __ARM_FEATURE_SVE
 #include <arm_sve.h> 
@@ -33,6 +34,15 @@ prod_force_a_cpu_sve(
   svuint64_t index9 = svindex_u64(9, 12);
   svuint64_t index10 = svindex_u64(10, 12);
   svuint64_t index11 = svindex_u64(11, 12);
+
+  svbool_t pt = svptrue_b64();
+
+  svfloat64_t 
+    env_deriv_0_0, env_deriv_0_1, env_deriv_0_2,
+    env_deriv_1_0, env_deriv_1_1, env_deriv_1_2,
+    env_deriv_2_0, env_deriv_2_1, env_deriv_2_2,
+    env_deriv_3_0, env_deriv_3_1, env_deriv_3_2;
+
 
   for (int i_idx = 0; i_idx < nloc; ++i_idx) {
     const int* nlist_i = &nlist[i_idx * nnei];
@@ -69,18 +79,41 @@ prod_force_a_cpu_sve(
       
       // 12*8
       const double* base = &env_deriv_i[jj * 12];
-      svfloat64_t env_deriv_0_0 = svld1_gather_u64index_f64(pg1, base, index0);
-      svfloat64_t env_deriv_0_1 = svld1_gather_u64index_f64(pg1, base, index1);
-      svfloat64_t env_deriv_0_2 = svld1_gather_u64index_f64(pg1, base, index2);
-      svfloat64_t env_deriv_1_0 = svld1_gather_u64index_f64(pg1, base, index3);
-      svfloat64_t env_deriv_1_1 = svld1_gather_u64index_f64(pg1, base, index4);
-      svfloat64_t env_deriv_1_2 = svld1_gather_u64index_f64(pg1, base, index5);
-      svfloat64_t env_deriv_2_0 = svld1_gather_u64index_f64(pg1, base, index6);
-      svfloat64_t env_deriv_2_1 = svld1_gather_u64index_f64(pg1, base, index7);
-      svfloat64_t env_deriv_2_2 = svld1_gather_u64index_f64(pg1, base, index8);
-      svfloat64_t env_deriv_3_0 = svld1_gather_u64index_f64(pg1, base, index9);
-      svfloat64_t env_deriv_3_1 = svld1_gather_u64index_f64(pg1, base, index10);
-      svfloat64_t env_deriv_3_2 = svld1_gather_u64index_f64(pg1, base, index11);
+      
+      if(svptest_last(pt, pg1)){
+        env_deriv_0_0 = svld1_vnum(pt, base, 0);
+        env_deriv_0_1 = svld1_vnum(pt, base, 1);
+        env_deriv_0_2 = svld1_vnum(pt, base, 2);
+        env_deriv_1_0 = svld1_vnum(pt, base, 3);
+        env_deriv_1_1 = svld1_vnum(pt, base, 4);
+        env_deriv_1_2 = svld1_vnum(pt, base, 5);
+        env_deriv_2_0 = svld1_vnum(pt, base, 6);
+        env_deriv_2_1 = svld1_vnum(pt, base, 7);
+        env_deriv_2_2 = svld1_vnum(pt, base, 8);
+        env_deriv_3_0 = svld1_vnum(pt, base, 9);
+        env_deriv_3_1 = svld1_vnum(pt, base, 10);
+        env_deriv_3_2 = svld1_vnum(pt, base, 11);
+        sve_aos2soa_12x8_inplace(
+          env_deriv_0_0, env_deriv_0_1, env_deriv_0_2,
+          env_deriv_1_0, env_deriv_1_1, env_deriv_1_2,
+          env_deriv_2_0, env_deriv_2_1, env_deriv_2_2,
+          env_deriv_3_0, env_deriv_3_1, env_deriv_3_2
+        );
+      }else{
+        env_deriv_0_0 = svld1_gather_u64index_f64(pg1, base, index0);
+        env_deriv_0_1 = svld1_gather_u64index_f64(pg1, base, index1);
+        env_deriv_0_2 = svld1_gather_u64index_f64(pg1, base, index2);
+        env_deriv_1_0 = svld1_gather_u64index_f64(pg1, base, index3);
+        env_deriv_1_1 = svld1_gather_u64index_f64(pg1, base, index4);
+        env_deriv_1_2 = svld1_gather_u64index_f64(pg1, base, index5);
+        env_deriv_2_0 = svld1_gather_u64index_f64(pg1, base, index6);
+        env_deriv_2_1 = svld1_gather_u64index_f64(pg1, base, index7);
+        env_deriv_2_2 = svld1_gather_u64index_f64(pg1, base, index8);
+        env_deriv_3_0 = svld1_gather_u64index_f64(pg1, base, index9);
+        env_deriv_3_1 = svld1_gather_u64index_f64(pg1, base, index10);
+        env_deriv_3_2 = svld1_gather_u64index_f64(pg1, base, index11);
+      }
+
 
       svfloat64_t force_0_0 = svmul_z(pg1, net_deriv_0, env_deriv_0_0);
       svfloat64_t force_0_1 = svmul_z(pg1, net_deriv_0, env_deriv_0_1);
@@ -129,7 +162,6 @@ prod_force_a_cpu_sve(
         break;
       }
     }
-    svbool_t pt = svptrue_b64();
 
     force[i_idx * 3 + 0] -= svaddv(pt, force_i_0);
     force[i_idx * 3 + 1] -= svaddv(pt, force_i_1);

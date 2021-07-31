@@ -83,7 +83,7 @@ static int get_env_num_threads(){
 
 #ifdef __ARM_FEATURE_SVE 
 
-#define sve_transpose_12x8_inplace(v0,v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11){      \
+#define sve_soa2aos_12x8_inplace(v0,v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11){        \
     svfloat64_t _tmp0 = svzip1(v0,v4);                                          \
     svfloat64_t _tmp1 = svzip1(v1,v5);                                          \
     svfloat64_t _tmp2 = svzip1(v2,v6);                                          \
@@ -139,5 +139,57 @@ static int get_env_num_threads(){
     v10 = svtbl(v10, vindices);                                                 \
     v11 = svtbl(v11, vindices);                                                 \
 }
+
+#define sve_aos2soa_12x8_inplace(v0,v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11){        \
+    svfloat64_t _tmp0 = svzip1(v0,v6);                                          \
+    svfloat64_t _tmp1 = svzip2(v0,v6);                                          \
+    svfloat64_t _tmp2 = svzip1(v1,v7);                                          \
+    svfloat64_t _tmp3 = svzip2(v1,v7);                                          \
+    svfloat64_t _tmp4 = svzip1(v2,v8);                                          \
+    svfloat64_t _tmp5 = svzip2(v2,v8);                                          \
+    svfloat64_t _tmp6 = svzip1(v3,v9);                                          \
+    svfloat64_t _tmp7 = svzip2(v3,v9);                                          \
+    svfloat64_t _tmp8 = svzip1(v4,v10);                                         \
+    svfloat64_t _tmp9 = svzip2(v4,v10);                                         \
+    svfloat64_t _tmp10 = svzip1(v5,v11);                                        \
+    svfloat64_t _tmp11 = svzip2(v5,v11);                                        \
+    v0 = svzip1(_tmp0,_tmp6);                                                   \
+    v1 = svzip2(_tmp0,_tmp6);                                                   \
+    v2 = svzip1(_tmp1,_tmp7);                                                   \
+    v3 = svzip2(_tmp1,_tmp7);                                                   \
+    v4 = svzip1(_tmp2,_tmp8);                                                   \
+    v5 = svzip2(_tmp2,_tmp8);                                                   \
+    v6 = svzip1(_tmp3,_tmp9);                                                   \
+    v7 = svzip2(_tmp3,_tmp9);                                                   \
+    v8 = svzip1(_tmp4,_tmp10);                                                  \
+    v9 = svzip2(_tmp4,_tmp10);                                                  \
+    v10 = svzip1(_tmp5,_tmp11);                                                 \
+    v11 = svzip2(_tmp5,_tmp11);                                                 \
+    _tmp0 = svzip1(v0,v6);                                                      \
+    _tmp1 = svzip2(v0,v6);                                                      \
+    _tmp2 = svzip1(v1,v7);                                                      \
+    _tmp3 = svzip2(v1,v7);                                                      \
+    _tmp4 = svzip1(v2,v8);                                                      \
+    _tmp5 = svzip2(v2,v8);                                                      \
+    _tmp6 = svzip1(v3,v9);                                                      \
+    _tmp7 = svzip2(v3,v9);                                                      \
+    _tmp8 = svzip1(v4,v10);                                                     \
+    _tmp9 = svzip2(v4,v10);                                                     \
+    _tmp10 = svzip1(v5,v11);                                                    \
+    _tmp11 = svzip2(v5,v11);                                                    \
+    v0 = _tmp0;                                                                 \
+    v1 = _tmp1;                                                                 \
+    v2 = _tmp2;                                                                 \
+    v3 = _tmp3;                                                                 \
+    v4 = _tmp4;                                                                 \
+    v5 = _tmp5;                                                                 \
+    v6 = _tmp6;                                                                 \
+    v7 = _tmp7;                                                                 \
+    v8 = _tmp8;                                                                 \
+    v9 = _tmp9;                                                                 \
+    v10 = _tmp10;                                                               \
+    v11 = _tmp11;                                                               \
+}
+
 
 #endif

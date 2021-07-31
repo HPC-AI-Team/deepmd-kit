@@ -305,7 +305,7 @@ void deepmd::env_mat_a_cpu_sve_normalize_preprocessed (
       svbool_t ptrue = svptrue_b64();
       // sve transpose 实现
       if(svptest_last(ptrue, pg1)){
-        sve_transpose_12x8_inplace(
+        sve_soa2aos_12x8_inplace(
           vdescrpt_a_deriv_0_0,vdescrpt_a_deriv_0_1,vdescrpt_a_deriv_0_2,
           vdescrpt_a_deriv_1_0,vdescrpt_a_deriv_1_1,vdescrpt_a_deriv_1_2,
           vdescrpt_a_deriv_2_0,vdescrpt_a_deriv_2_1,vdescrpt_a_deriv_2_2,
