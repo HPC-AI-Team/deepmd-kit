@@ -7,6 +7,3 @@ pjsub run_compress_preprocess_12x4x57_1008x5.sh
 pjsub run_compress_preprocess_12x4x114_1008x5.sh
 pjsub run_compress_preprocess_12x4x228_1008x5.sh
 pjsub run_compress_preprocess_12x4x456_1008x5.sh
-
-
-watch pjstat
