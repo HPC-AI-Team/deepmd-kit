@@ -1,0 +1,9 @@
+
+
+pjsub run_compress_preprocess_48x1x2_1008x2.sh
+pjsub run_compress_preprocess_48x1x4_1008x2.sh
+pjsub run_compress_preprocess_48x1x15_1008x2.sh
+pjsub run_compress_preprocess_48x1x57_1008x2.sh
+pjsub run_compress_preprocess_48x1x114_1008x2.sh
+pjsub run_compress_preprocess_48x1x228_1008x2.sh
+pjsub run_compress_preprocess_48x1x456_1008x2.sh
