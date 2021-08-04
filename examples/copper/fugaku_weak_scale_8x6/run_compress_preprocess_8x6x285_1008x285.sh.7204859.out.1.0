@@ -1,0 +1,127 @@
+LAMMPS (29 Oct 2020)
+  using 1 OpenMP thread(s) per MPI task
+units           metal
+boundary        p p p
+atom_style      atomic
+
+neighbor        2.0 bin
+neigh_modify    every 50 delay 0 check no
+
+lattice       	fcc 3.6342
+Lattice spacing in x,y,z = 3.6342000 3.6342000 3.6342000
+region        	box block 0 3 0 3 0 3
+create_box    	1 box
+Created orthogonal box = (0.0000000 0.0000000 0.0000000) to (10.902600 10.902600 10.902600)
+  10 by 12 by 19 MPI processor grid
+create_atoms    1 box
+Created 108 atoms
+  create_atoms CPU = 0.026 seconds
+
+# read_data	    ../lmp/copper.lmp
+
+mass		    1 63.546
+
+replicate     	57 60 84
+Replicating atoms ...
+  orthogonal box = (0.0000000 0.0000000 0.0000000) to (621.44820 654.15600 915.81840)
+  10 by 12 by 19 MPI processor grid
+  31026240 atoms
+  replicate CPU = 3.778 seconds
+
+pair_style	    deepmd ../model/graph-compress-preprocess.pb
+Summary of lammps deepmd module ...
+  >>> Info of deepmd-kit:
+  installed to:       /home/hp200266/u01036/gzq/deepmd-kit/dp
+  source:             v1.2.2-811-g3d425046
+  source brach:       devel_
+  source commit:      3d425046
+  source commit at:   2021-08-02 18:22:16 +0900
+  surpport model ver.:1.0 
+  build float prec:   double
+  build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
+  build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
+  set tf intra_op_parallelism_threads: 1
+  set tf inter_op_parallelism_threads: -1
+  >>> Info of lammps module:
+  use deepmd-kit at:  /home/hp200266/u01036/gzq/deepmd-kit/dp
+  source:             v1.2.2-811-g3d425046
+  source branch:      devel_
+  source commit:      3d425046
+  source commit at:   2021-08-02 18:22:16 +0900
+  build float prec:   double
+  build with tf inc:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include
+  build with tf lib:  /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so
+  >>> Info of model(s):
+  using   1 model(s): ../model/graph-compress-preprocess.pb 
+  rcut in model:      8
+  ntypes in model:    1
+pair_coeff
+
+velocity        all create 330.0 23456789
+
+fix             1 all nve
+timestep        0.0005
+thermo_style    custom step pe ke etotal temp press vol
+thermo          20
+
+
+run             99
+Neighbor list info ...
+  update every 50 steps, delay 0 steps, check no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 10
+  ghost atom cutoff = 10
+  binsize = 5, bins = 125 131 184
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair deepmd, perpetual
+      attributes: , newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+Setting up Verlet run ...
+  Unit style    : metal
+  Current step  : 0
+  Time step     : 0.0005
+Per MPI rank memory allocation (min/avg/max) = 25.72 | 26.33 | 27.40 Mbytes
+Step PotEng KinEng TotEng Temp Press Volume 
+       0 -1.1564509e+08    1323450.5 -1.1432163e+08          330    5353.6375 3.7230222e+08 
+      20 -1.1551926e+08    1197635.2 -1.1432163e+08    298.62818    7006.1277 3.7230222e+08 
+      40 -1.1519908e+08    877500.41 -1.1432158e+08    218.80314    11109.395 3.7230222e+08 
+      60 -1.1483496e+08    513456.75 -1.143215e+08    128.02951    15586.663 3.7230222e+08 
+      80 -1.1459643e+08    274951.99 -1.1432148e+08    68.558783     18290.06 3.7230222e+08 
+      99 -1.1456595e+08    244464.97 -1.1432149e+08      60.9569    18289.303 3.7230222e+08 
+Loop time of 71.0532 on 2280 procs for 99 steps with 31026240 atoms
+
+Performance: 0.060 ns/day, 398.728 hours/ns, 1.393 timesteps/s
+577.9% CPU use with 2280 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 63.817     | 66.613     | 70.041     |  17.7 | 93.75
+Neigh   | 0.29267    | 0.31518    | 0.33686    |   1.4 |  0.44
+Comm    | 0.61958    | 4.0285     | 6.8325     |  72.3 |  5.67
+Output  | 0.01533    | 0.053674   | 0.097341   |   8.1 |  0.08
+Modify  | 0.033209   | 0.03487    | 0.038686   |   0.5 |  0.05
+Other   |            | 0.008356   |            |       |  0.01
+
+Nlocal:        13608.0 ave       14036 max       13217 min
+Histogram: 574 2 263 254 11 39 636 69 76 356
+Nghost:        21170.8 ave       22609 max       20097 min
+Histogram: 408 435 21 20 285 339 532 0 48 192
+Neighs:        0.00000 ave           0 max           0 min
+Histogram: 2280 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0.0000000
+Neighbor list builds = 1
+Dangerous builds not checked
+
+#write_data	copper.lmp
+
+Please see the log.cite file for references relevant to this simulation
+
+Total wall time: 0:01:23
+MPI Init time : 83.8206
+Compute time : 83.4472
+MPI Finalize time : 3.74329
