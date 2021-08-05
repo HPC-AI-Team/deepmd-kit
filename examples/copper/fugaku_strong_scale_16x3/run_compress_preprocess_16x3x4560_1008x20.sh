@@ -2,8 +2,8 @@
 #PJM -L  "node=4560"                          # Number of assign node 8 (1 dimention format)
 #PJM -L  "freq=2200"                         
 #PJM -L "rscgrp=large"         # Specify resource group
-#PJM -L  "elapse=00:15:00"                 # Elapsed time limit 1 hour
-#PJM --mpi "max-proc-per-node=48"          # Maximum number of MPI processes created per node
+#PJM -L  "elapse=00:20:00"                 # Elapsed time limit 1 hour
+#PJM --mpi "max-proc-per-node=16"          # Maximum number of MPI processes created per node
 #PJM -s                                    # Statistical information output
 
 
@@ -20,6 +20,6 @@ export HAVE_PREPROCESSED=1
 export TF_CPP_MIN_LOG_LEVEL=3
 
 
-export DEEPMD_NUM_THREADS=1
-mpiexec lmp_mpi -echo screen -in ../lmp/in.water_compress_preprocess_864x50
+export DEEPMD_NUM_THREADS=3
+mpiexec lmp_mpi -echo screen -in ../lmp/in.copper_compress_preprocess_1008x20
 

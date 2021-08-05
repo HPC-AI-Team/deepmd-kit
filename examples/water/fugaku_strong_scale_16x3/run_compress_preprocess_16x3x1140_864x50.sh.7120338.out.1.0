@@ -12,22 +12,22 @@ neigh_modify    every 50 delay 0 check no
 read_data	    ../lmp/water.lmp
 Reading data file ...
   triclinic box = (0.0000000 0.0000000 0.0000000) to (12.444700 12.444700 12.444700) with tilt (0.0000000 0.0000000 0.0000000)
-  10 by 11 by 16 MPI processor grid
+  19 by 30 by 32 MPI processor grid
   reading atoms ...
   192 atoms
-  read_data CPU = 0.034 seconds
+  read_data CPU = 0.332 seconds
 mass 		    1 16
 mass		    2 2
 
 replicate       40 30 36 bbox
 Replicating atoms ...
   triclinic box = (0.0000000 0.0000000 0.0000000) to (497.78800 373.34100 448.00920) with tilt (0.0000000 0.0000000 0.0000000)
-  16 by 10 by 11 MPI processor grid
+  32 by 19 by 30 MPI processor grid
   bounding box image = (0 0 0) to (0 0 0)
   bounding box extra memory = 0.02 MB
-  average # of replicas added to proc = 39.70 out of 43200 (0.09%)
+  average # of replicas added to proc = 10.48 out of 43200 (0.02%)
   8294400 atoms
-  replicate CPU = 0.019 seconds
+  replicate CPU = 1.197 seconds
 
 pair_style	    deepmd ../model/graph-compress-preprocess.pb
 Summary of lammps deepmd module ...
@@ -83,35 +83,35 @@ Setting up Verlet run ...
   Unit style    : metal
   Current step  : 0
   Time step     : 0.0005
-Per MPI rank memory allocation (min/avg/max) = 6.765 | 6.780 | 6.793 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 2.753 | 2.840 | 3.150 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
        0 -1.2935978e+09    353804.62 -1.293244e+09          330    1897.7364     83260122 
-      20 -1.2935906e+09    346629.13 -1.293244e+09    323.30729   -1323.9093     83260122 
-      40 -1.2936037e+09    359732.27 -1.2932439e+09    335.52882   -4515.7947     83260122 
-      60 -1.2936055e+09    361561.86 -1.2932439e+09    337.23531   -1379.7191     83260122 
-      80 -1.2936011e+09     357090.3 -1.293244e+09    333.06461   -49.569362     83260122 
-      99 -1.2935884e+09    344527.31 -1.2932439e+09    321.34688   -3617.7696     83260122 
-Loop time of 34.78 on 1760 procs for 99 steps with 8294400 atoms
+      20 -1.2935908e+09    346865.56 -1.293244e+09    323.52781   -1352.6965     83260122 
+      40 -1.2936037e+09    359718.25 -1.2932439e+09    335.51574   -4518.8004     83260122 
+      60 -1.2936054e+09    361480.04 -1.2932439e+09      337.159   -1373.1899     83260122 
+      80 -1.2936011e+09    357122.98 -1.293244e+09    333.09509   -70.371213     83260122 
+      99 -1.2935884e+09    344569.02 -1.2932439e+09    321.38579   -3637.0073     83260122 
+Loop time of 4.29001 on 18240 procs for 99 steps with 8294400 atoms
 
-Performance: 0.123 ns/day, 195.174 hours/ns, 2.846 timesteps/s
-292.9% CPU use with 1760 MPI tasks x 1 OpenMP threads
+Performance: 0.997 ns/day, 24.074 hours/ns, 23.077 timesteps/s
+279.3% CPU use with 18240 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 31.508     | 32.981     | 34.415     |   7.6 | 94.83
-Neigh   | 0.07038    | 0.074341   | 0.081328   |   0.5 |  0.21
-Comm    | 0.10616    | 1.0365     | 2.7456     |  44.0 |  2.98
-Output  | 0.0051874  | 0.0052111  | 0.0054499  |   0.0 |  0.01
-Modify  | 0.13708    | 0.67627    | 1.4478     |  45.0 |  1.94
-Other   |            | 0.006979   |            |       |  0.02
+Pair    | 3.6078     | 3.8754     | 4.0924     |   3.4 | 90.33
+Neigh   | 0.0060689  | 0.00688    | 0.065047   |   2.9 |  0.16
+Comm    | 0.03215    | 0.17632    | 0.48978    |  17.1 |  4.11
+Output  | 0.0094477  | 0.0094817  | 0.0095411  |   0.0 |  0.22
+Modify  | 0.0684     | 0.21928    | 0.30799    |   6.4 |  5.11
+Other   |            | 0.002686   |            |       |  0.06
 
-Nlocal:        4712.73 ave        4771 max        4645 min
-Histogram: 55 90 65 245 246 328 275 281 159 16
-Nghost:        9486.72 ave        9747 max        9298 min
-Histogram: 81 276 153 406 231 148 334 51 8 72
+Nlocal:        454.737 ave         485 max         418 min
+Histogram: 40 214 674 1935 3684 5060 3635 2354 562 82
+Nghost:        3012.81 ave        3163 max        2878 min
+Histogram: 254 597 1969 3452 4203 3424 2622 1204 420 95
 Neighs:        0.00000 ave           0 max           0 min
-Histogram: 1760 0 0 0 0 0 0 0 0 0
+Histogram: 18240 0 0 0 0 0 0 0 0 0
 
 Total # of neighbors = 0
 Ave neighs/atom = 0.0000000
@@ -120,4 +120,4 @@ Dangerous builds not checked
 
 Please see the log.cite file for references relevant to this simulation
 
-Total wall time: 0:00:42
+Total wall time: 0:00:21
