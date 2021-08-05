@@ -46,5 +46,5 @@ cd $lammps_root/src
 # make no-user-deepmd
 make yes-user-deepmd
 make yes-kspace
-# make serial -j16
+make serial -j16
 make mpi -j16
