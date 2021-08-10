@@ -8,11 +8,11 @@ neigh_modify    every 50 delay 0 check no
 
 lattice       	fcc 3.6342
 Lattice spacing in x,y,z = 3.6342000 3.6342000 3.6342000
-region        	box block 0 3 0 3 0 3
-create_box    	1 box
+# region        	box block 0 3 0 3 0 3
+# create_box    	1 box
 Created orthogonal box = (0.0000000 0.0000000 0.0000000) to (10.902600 10.902600 10.902600)
   1 by 1 by 1 MPI processor grid
-create_atoms    1 box
+# create_atoms    1 box
 Created 108 atoms
   create_atoms CPU = 0.000 seconds
 #read_data	copper.lmp

@@ -1,0 +1,6 @@
+
+# pjsub run_compress_preprocess_16x3x285_816x285.sh
+# pjsub run_compress_preprocess_16x3x570_816x570.sh
+# pjsub run_compress_preprocess_16x3x1140_816x1140.sh
+# pjsub run_compress_preprocess_16x3x2280_816x2280.sh
+pjsub run_compress_preprocess_16x3x4560_816x4560.sh

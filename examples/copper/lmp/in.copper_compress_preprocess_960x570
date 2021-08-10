@@ -5,12 +5,12 @@ atom_style      atomic
 neighbor        2.0 bin
 neigh_modify    every 50 delay 0 check no
 
-lattice       	fcc 3.6342 
-region        	box block 0 3 0 3 0 3
-create_box    	1 box
-create_atoms    1 box
+# lattice       	fcc 3.6342 
+# region        	box block 0 3 0 3 0 3
+# create_box    	1 box
+# create_atoms    1 box
 
-# read_data	    ../lmp/copper.lmp
+read_data	    ../lmp/copper.lmp
 
 mass		    1 63.546
 

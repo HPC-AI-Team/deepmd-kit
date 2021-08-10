@@ -40,10 +40,14 @@ lammps_root=${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}
 cd $lammps_root/src
 # make clean-all
 make no-user-deepmd
+make yes-mpiio
 make yes-user-deepmd
 make yes-kspace
+# make no-mpiio
+# make serial -j16
+make yes-mpiio
 make mpi -j16
-make serial -j16
+
 
 
 

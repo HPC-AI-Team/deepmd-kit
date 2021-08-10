@@ -1,0 +1,9 @@
+#!/bin/bash
+
+pjsub run_compress_preprocess_16x3x155_1008x155.sh
+# pjsub run_compress_preprocess_16x3x310_1008x310.sh
+# pjsub run_compress_preprocess_16x3x621_1008x621.sh
+# pjsub run_compress_preprocess_16x3x1242_1008x1242.sh
+# pjsub run_compress_preprocess_16x3x2484_1008x2484.sh
+# pjsub run_compress_preprocess_16x3x4968_1008x4968.sh
+# pjsub run_compress_preprocess_16x3x9936_1008x9936.sh

@@ -15,7 +15,7 @@ rm -f *.out
 
 # pjsub run_48x1x1_96.sh
 # pjsub run_compress_48x1x1_96.sh
-# pjsub run_compress_preprocess_48x1x1_96.sh
+pjsub run_compress_preprocess_48x1x1_96.sh
 
 # pjsub run_compress_preprocess_4x12x1_96.sh
 # pjsub run_compress_preprocess_8x6x1_96.sh
