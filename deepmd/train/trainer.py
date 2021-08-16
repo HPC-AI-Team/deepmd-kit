@@ -643,5 +643,7 @@ class DPTrainer (object):
                     sum_natoms += v
                 else:
                     sum_results[k] = sum_results.get(k, 0.) + v * results["natoms"]
+
+                    
         avg_results = {k: v / sum_natoms for k, v in sum_results.items() if not k == "natoms"}
         return avg_results

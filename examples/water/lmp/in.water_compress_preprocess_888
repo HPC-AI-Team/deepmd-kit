@@ -11,7 +11,8 @@ read_data	    ../lmp/water.lmp
 mass 		    1 16
 mass		    2 2
 
-replicate       1008 1 1 bbox
+#replicate       888 1 1 bbox
+replicate       37 6 4 bbox
 
 pair_style	    deepmd ../model/graph-compress-preprocess.pb
 pair_coeff	

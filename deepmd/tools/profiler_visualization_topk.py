@@ -60,7 +60,7 @@ def print_topk_ops(time_list,total_time,k = 100):
     print("Top k op")
     print("{:8}\t{:8}\t{:8}\t{:8}\t{}".format("average time","min time","max time","percentage","op name"))
     for i in range(min(k,len(time_list))):
-        print("{:8.2f}\t{:8}\t{:8}\t{:8.2f}\t{}".format(time_list[i][1],time_list[i][2],time_list[i][3],time_list[i][1]/total_time,time_list[i][0]))
+        print("{:8.2f}\t{:8}\t{:8}\t{:8.4f}\t{}".format(time_list[i][1],time_list[i][2],time_list[i][3],time_list[i][1]/total_time,time_list[i][0]))
         
 def get_op_type_from_name(name):
     return name.split('/')[-1].split('_')[0]
@@ -90,7 +90,7 @@ def print_topk_op_type(op_type_time_list,total_time,k = 20):
     print("Top k op type")
     print("{:8}\t{:8}\t{}".format("average time", "percentage", "op type"))
     for i in range(min(k,len(op_type_time_list))):
-        print("{:8.2f}\t{:8.2f}\t{}".format(op_type_time_list[i][1],op_type_time_list[i][1]/total_time,op_type_time_list[i][0]))
+        print("{:8.2f}\t{:8.4f}\t{}".format(op_type_time_list[i][1],op_type_time_list[i][1]/total_time,op_type_time_list[i][0]))
 
 
 if __name__ == "__main__":
