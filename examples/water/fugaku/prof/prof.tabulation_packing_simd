@@ -1,0 +1,836 @@
+++ source /home/hp200266/u01036/gzq/deepmd-kit/script/fugaku/env.sh
++++ export deepmd_root=/home/hp200266/u01036/gzq/deepmd-kit
++++ deepmd_root=/home/hp200266/u01036/gzq/deepmd-kit
++++ export tensorflow_root=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0
++++ tensorflow_root=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0
++++ export lammps_root=/home/hp200266/u01036/gzq/deepmd-kit/source/build_lammps/lammps-stable_29Oct2020
++++ lammps_root=/home/hp200266/u01036/gzq/deepmd-kit/source/build_lammps/lammps-stable_29Oct2020
++++ alias build_deempd=/home/hp200266/u01036/gzq/deepmd-kit/script/fugaku/build_deepmd.sh
++++ '[' -z /home/hp200266/u01036/gzq/deepmd-kit ']'
++++ export LD_LIBRARY_PATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/lib:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/lib:/home/hp200266/u01036/fj_software/likwid/lib:/home/hp200266/u01036/fj_software/blis/lib:/opt/FJSVxtclanga/tcsds-1.2.31/lib64
++++ LD_LIBRARY_PATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/lib:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/lib:/home/hp200266/u01036/fj_software/likwid/lib:/home/hp200266/u01036/fj_software/blis/lib:/opt/FJSVxtclanga/tcsds-1.2.31/lib64
++++ export CPATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/include:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/include:/home/hp200266/u01036/fj_software/likwid/include:/home/hp200266/u01036/fj_software/blis/include:
++++ CPATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/include:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/include:/home/hp200266/u01036/fj_software/likwid/include:/home/hp200266/u01036/fj_software/blis/include:
++++ export PATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
++++ PATH=/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
++++ export PATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin:/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
++++ PATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin:/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
++++ export CPATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include:/home/hp200266/u01036/gzq/deepmd-kit/dp/include:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/include:/home/hp200266/u01036/fj_software/likwid/include:/home/hp200266/u01036/fj_software/blis/include:
++++ CPATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include:/home/hp200266/u01036/gzq/deepmd-kit/dp/include:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/include:/home/hp200266/u01036/fj_software/likwid/include:/home/hp200266/u01036/fj_software/blis/include:
++++ export LD_LIBRARY_PATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib:/home/hp200266/u01036/gzq/deepmd-kit/dp/lib:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/lib:/home/hp200266/u01036/fj_software/likwid/lib:/home/hp200266/u01036/fj_software/blis/lib:/opt/FJSVxtclanga/tcsds-1.2.31/lib64
++++ LD_LIBRARY_PATH=/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib:/home/hp200266/u01036/gzq/deepmd-kit/dp/lib:/vol0004/hp200266/u01036/gzq/fj_software/oneDNN/lib:/home/hp200266/u01036/fj_software/likwid/lib:/home/hp200266/u01036/fj_software/blis/lib:/opt/FJSVxtclanga/tcsds-1.2.31/lib64
++++ export PATH=/home/hp200266/u01036/gzq/deepmd-kit/source/build_lammps/lammps-stable_29Oct2020/src:/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin:/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
++++ PATH=/home/hp200266/u01036/gzq/deepmd-kit/source/build_lammps/lammps-stable_29Oct2020/src:/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin:/home/hp200266/u01036/gzq/deepmd-kit/dp/bin:/home/hp200266/u01036/fj_software/likwid/bin:/home/hp200266/u01036/software/spack/bin:/opt/local/mpiexec:/opt/FJSVxtclanga/tcsds-1.2.31/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/hp200266/u01036/.local/bin:/home/hp200266/u01036/bin
++++ INSTALL_PREFIX=/home/hp200266/u01036/gzq/deepmd-kit/dp
++++ FLOAT_PREC=high
++++ DEEPMD_BUILD_DIR=/home/hp200266/u01036/gzq/deepmd-kit/source/build
++++ LAMMPS_BUILD_DIR=/home/hp200266/u01036/gzq/deepmd-kit/source/build_lammps
++++ export DP_VARIANT=cpu
++++ DP_VARIANT=cpu
++++ export DP_FLOAT_PREC=high
++++ DP_FLOAT_PREC=high
++++ export 'CC=fcc -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0'
++++ CC='fcc -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0'
++++ export 'CXX=FCC -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0'
++++ CXX='FCC -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0'
+++ bash /home/hp200266/u01036/gzq/deepmd-kit/script/fugaku/build_deepmd.sh
+-- Supported model version: 1.0 
+-- Will not build nv GPU support
+-- Will not build AMD GPU support
+-- Enabled cpp interface build, looking for tensorflow_cc and tensorflow_framework
+-- Found TensorFlow: /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include, /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so, /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so  in /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/../tensorflow_core;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0;/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/../tensorflow_core;/usr/;/usr/local/
+-- Automatically determined OP_CXX_ABI=0 
+-- Set GLIBCXX_USE_CXX_ABI=0 when compiling ops
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/hp200266/u01036/gzq/deepmd-kit/source/build
+/usr/bin/cmake -H/home/hp200266/u01036/gzq/deepmd-kit/source -B/home/hp200266/u01036/gzq/deepmd-kit/source/build --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /home/hp200266/u01036/gzq/deepmd-kit/source/build/CMakeFiles /home/hp200266/u01036/gzq/deepmd-kit/source/build/CMakeFiles/progress.marks
+make -f CMakeFiles/Makefile2 all
+make[1]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make -f op/CMakeFiles/deepmd_op.dir/build.make op/CMakeFiles/deepmd_op.dir/depend
+make -f lib/CMakeFiles/deepmd.dir/build.make lib/CMakeFiles/deepmd.dir/depend
+make -f api_cc/CMakeFiles/deepmd_cc.dir/build.make api_cc/CMakeFiles/deepmd_cc.dir/depend
+make -f ipi/CMakeFiles/deepmd_ipi.dir/build.make ipi/CMakeFiles/deepmd_ipi.dir/depend
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/ipi /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi/CMakeFiles/deepmd_ipi.dir/DependInfo.cmake --color=
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/lib /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/lib /home/hp200266/u01036/gzq/deepmd-kit/source/build/lib/CMakeFiles/deepmd.dir/DependInfo.cmake --color=
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/api_cc /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc/CMakeFiles/deepmd_cc.dir/DependInfo.cmake --color=
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make -f ipi/CMakeFiles/deepmd_ipi.dir/build.make ipi/CMakeFiles/deepmd_ipi.dir/build
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make[2]: Nothing to be done for 'ipi/CMakeFiles/deepmd_ipi.dir/build'.
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/op /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/op /home/hp200266/u01036/gzq/deepmd-kit/source/build/op/CMakeFiles/deepmd_op.dir/DependInfo.cmake --color=
+[  5%] Built target deepmd_ipi
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make -f lib/CMakeFiles/deepmd.dir/build.make lib/CMakeFiles/deepmd.dir/build
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make[2]: Nothing to be done for 'lib/CMakeFiles/deepmd.dir/build'.
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+[ 52%] Built target deepmd
+Dependee "api_cc/version.h" is newer than depender "api_cc/CMakeFiles/deepmd_cc.dir/src/DataModifier.cc.o".
+Dependee "api_cc/version.h" is newer than depender "api_cc/CMakeFiles/deepmd_cc.dir/src/DeepPot.cc.o".
+Dependee "api_cc/version.h" is newer than depender "api_cc/CMakeFiles/deepmd_cc.dir/src/DeepTensor.cc.o".
+Dependee "api_cc/version.h" is newer than depender "api_cc/CMakeFiles/deepmd_cc.dir/src/common.cc.o".
+Clearing dependencies in "/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc/CMakeFiles/deepmd_cc.dir/depend.make".
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make -f op/CMakeFiles/deepmd_op.dir/build.make op/CMakeFiles/deepmd_op.dir/build
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make[2]: Nothing to be done for 'op/CMakeFiles/deepmd_op.dir/build'.
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+[ 88%] Built target deepmd_op
+Scanning dependencies of target deepmd_cc
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make -f api_cc/CMakeFiles/deepmd_cc.dir/build.make api_cc/CMakeFiles/deepmd_cc.dir/build
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+[ 92%] Building CXX object api_cc/CMakeFiles/deepmd_cc.dir/src/DataModifier.cc.o
+[ 92%] Building CXX object api_cc/CMakeFiles/deepmd_cc.dir/src/DeepPot.cc.o
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc && /opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0  -DHIGH_PREC -D_FUGAKU -Ddeepmd_cc_EXPORTS -I/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc -I/home/hp200266/u01036/gzq/deepmd-kit/source/lib/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/3rdparty -I/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/include -I/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g -fPIC   -o CMakeFiles/deepmd_cc.dir/src/DataModifier.cc.o -c /home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc && /opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0  -DHIGH_PREC -D_FUGAKU -Ddeepmd_cc_EXPORTS -I/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc -I/home/hp200266/u01036/gzq/deepmd-kit/source/lib/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/3rdparty -I/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/include -I/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g -fPIC   -o CMakeFiles/deepmd_cc.dir/src/DeepPot.cc.o -c /home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DeepPot.cc
+[ 94%] Building CXX object api_cc/CMakeFiles/deepmd_cc.dir/src/DeepTensor.cc.o
+[ 94%] Building CXX object api_cc/CMakeFiles/deepmd_cc.dir/src/common.cc.o
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc && /opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0  -DHIGH_PREC -D_FUGAKU -Ddeepmd_cc_EXPORTS -I/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc -I/home/hp200266/u01036/gzq/deepmd-kit/source/lib/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/3rdparty -I/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/include -I/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g -fPIC   -o CMakeFiles/deepmd_cc.dir/src/DeepTensor.cc.o -c /home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DeepTensor.cc
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc && /opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0  -DHIGH_PREC -D_FUGAKU -Ddeepmd_cc_EXPORTS -I/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc -I/home/hp200266/u01036/gzq/deepmd-kit/source/lib/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/3rdparty -I/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/include -I/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g -fPIC   -o CMakeFiles/deepmd_cc.dir/src/common.cc.o -c /home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/common.cc
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DeepTensor.cc:94:34: warning: expression result unused [-Wunused-value]
+  assert (output_t.dims() == 1), "dim of output tensor should be 1";
+                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:94:34: warning: expression result unused [-Wunused-value]
+  assert (output_f.dims() == 2), "dim of output tensor should be 2";
+                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:95:34: warning: expression result unused [-Wunused-value]
+  assert (output_v.dims() == 2), "dim of output tensor should be 2";
+                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:96:35: warning: expression result unused [-Wunused-value]
+  assert (output_av.dims() == 2), "dim of output tensor should be 2";
+                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:99:39: warning: expression result unused [-Wunused-value]
+  assert (output_f.dim_size(0) == 1), "nframes should match";
+                                      ^~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:100:28: warning: expression result unused [-Wunused-value]
+  assert (natoms == nall), "natoms should be nall";
+                           ^~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:101:45: warning: expression result unused [-Wunused-value]
+  assert (output_v.dim_size(0) == nframes), "nframes should match";
+                                            ^~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:102:39: warning: expression result unused [-Wunused-value]
+  assert (output_v.dim_size(1) == 9), "dof of virial should be 9";
+                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:103:46: warning: expression result unused [-Wunused-value]
+  assert (output_av.dim_size(0) == nframes), "nframes should match";
+                                             ^~~~~~~~~~~~~~~~~~~~~~
+/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/src/DataModifier.cc:104:49: warning: expression result unused [-Wunused-value]
+  assert (output_av.dim_size(1) == natoms * 9), "dof of atom virial should be 9 * natoms";  
+                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+9 warnings generated.
+[ 95%] Linking CXX shared library libdeepmd_cc.so
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc && /usr/bin/cmake -E cmake_link_script CMakeFiles/deepmd_cc.dir/link.txt --verbose=1
+/opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0 -fPIC  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g  -Wl,--no-as-needed -shared -Wl,-soname,libdeepmd_cc.so -o libdeepmd_cc.so CMakeFiles/deepmd_cc.dir/src/AtomMap.cc.o CMakeFiles/deepmd_cc.dir/src/DataModifier.cc.o CMakeFiles/deepmd_cc.dir/src/DeepPot.cc.o CMakeFiles/deepmd_cc.dir/src/DeepTensor.cc.o CMakeFiles/deepmd_cc.dir/src/common.cc.o 
+/usr/bin/cmake -E __run_co_compile --lwyu=libdeepmd_cc.so
+Warning: Unused direct dependencies:
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjomphk.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjomp.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfj90f.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjsrcinfo.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjcrt.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjompcrt.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjprofcore.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjprofomp.so.1
+	/lib64/libm.so.6
+	/lib64/librt.so.1
+	/lib64/libatomic.so.1
+	/lib64/libelf.so.1
+	/lib64/libz.so.1
+	/lib64/libdl.so.2
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+[ 97%] Built target deepmd_cc
+make -f ipi/CMakeFiles/dp_ipi.dir/build.make ipi/CMakeFiles/dp_ipi.dir/depend
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/hp200266/u01036/gzq/deepmd-kit/source /home/hp200266/u01036/gzq/deepmd-kit/source/ipi /home/hp200266/u01036/gzq/deepmd-kit/source/build /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi/CMakeFiles/dp_ipi.dir/DependInfo.cmake --color=
+Dependee "api_cc/version.h" is newer than depender "ipi/CMakeFiles/dp_ipi.dir/driver.cc.o".
+Clearing dependencies in "/home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi/CMakeFiles/dp_ipi.dir/depend.make".
+Scanning dependencies of target dp_ipi
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+make -f ipi/CMakeFiles/dp_ipi.dir/build.make ipi/CMakeFiles/dp_ipi.dir/build
+make[2]: Entering directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+[ 98%] Building CXX object ipi/CMakeFiles/dp_ipi.dir/driver.cc.o
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi && /opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0  -DHIGH_PREC -D_FUGAKU -I/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc -I/home/hp200266/u01036/gzq/deepmd-kit/source/lib/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/3rdparty -I/home/hp200266/u01036/gzq/deepmd-kit/source/api_cc/include -I/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/include -I/home/hp200266/u01036/gzq/deepmd-kit/source/ipi/include  -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g   -o CMakeFiles/dp_ipi.dir/driver.cc.o -c /home/hp200266/u01036/gzq/deepmd-kit/source/ipi/driver.cc
+[100%] Linking CXX executable dp_ipi
+cd /home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi && /usr/bin/cmake -E cmake_link_script CMakeFiles/dp_ipi.dir/link.txt --verbose=1
+/opt/FJSVxtclanga/tcsds-1.2.31/bin/FCC  -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0   -std=c++11 -Wno-ignored-attributes -fopenmp=libomp -g   -Wl,--no-as-needed -Wl,-rpath,'$ORIGIN'/../lib -Wl,-z,defs CMakeFiles/dp_ipi.dir/driver.cc.o  -o dp_ipi -Wl,-rpath,/home/hp200266/u01036/gzq/deepmd-kit/source/build/ipi:/home/hp200266/u01036/gzq/deepmd-kit/source/build/op:/home/hp200266/u01036/gzq/deepmd-kit/source/build/api_cc:/home/hp200266/u01036/gzq/deepmd-kit/source/build/lib:/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib: libdeepmd_ipi.so ../op/libdeepmd_op.so ../api_cc/libdeepmd_cc.so ../lib/libdeepmd.so /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so 
+/usr/bin/cmake -E __run_co_compile --lwyu=dp_ipi
+Warning: Unused direct dependencies:
+	/home/hp200266/u01036/gzq/deepmd-kit/source/build/op/libdeepmd_op.so
+	/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_cc.so.2
+	/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/libtensorflow_framework.so.2
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjomphk.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjomp.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfj90f.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjsrcinfo.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjcrt.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjompcrt.so
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjprofcore.so.1
+	/opt/FJSVxtclanga/tcsds-1.2.31/lib64/libfjprofomp.so.1
+	/opt/FJSVxos/mmm/lib64/libmpg.so.1
+	/lib64/libm.so.6
+	/lib64/librt.so.1
+	/lib64/libatomic.so.1
+	/lib64/libelf.so.1
+	/lib64/libz.so.1
+	/lib64/libdl.so.2
+make[2]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+[100%] Built target dp_ipi
+make[1]: Leaving directory '/vol0004/hp200266/u01036/gzq/deepmd-kit/source/build'
+/usr/bin/cmake -E cmake_progress_start /home/hp200266/u01036/gzq/deepmd-kit/source/build/CMakeFiles 0
+[ 36%] Built target deepmd_op
+[ 83%] Built target deepmd
+[ 91%] Built target deepmd_cc
+[ 97%] Built target deepmd_ipi
+[100%] Built target dp_ipi
+Install the project...
+-- Install configuration: "debug"
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/lib/libdeepmd_op.so
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/lib/libdeepmd.so
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/ComputeDescriptor.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/DeviceFunctor.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/SimulationRegion.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/SimulationRegion_Impl.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/coord.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/device.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/env_mat.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/ewald.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/fast_tanh.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/fmt_nlist.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/gelu.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/gemm.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/gemm_tanh.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/gpu_cuda.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/gpu_rocm.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/map_aparam.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/matmul.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/neighbor_list.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/pair_tab.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/poly_table_f.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/prod_env_mat.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/prod_force.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/prod_force_grad.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/prod_virial.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/prod_virial_grad.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/region.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/soft_min_switch.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/soft_min_switch_force.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/soft_min_switch_force_grad.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/soft_min_switch_virial.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/soft_min_switch_virial_grad.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/switcher.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/tabulate.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/tools.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/utilities.h
+-- Installing: /home/hp200266/u01036/gzq/deepmd-kit/dp/lib/libdeepmd_cc.so
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/AtomMap.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/DataModifier.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/DeepPot.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/DeepTensor.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/common.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/custom_op.h
+-- Installing: /home/hp200266/u01036/gzq/deepmd-kit/dp/include/deepmd/version.h
+-- Up-to-date: /home/hp200266/u01036/gzq/deepmd-kit/dp/lib/libdeepmd_ipi.so
+-- Installing: /home/hp200266/u01036/gzq/deepmd-kit/dp/bin/dp_ipi
+-- Set runtime path of "/home/hp200266/u01036/gzq/deepmd-kit/dp/bin/dp_ipi" to "$ORIGIN/../lib:/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib:/home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib"
+[ 48%] Built target deepmd
+[ 58%] Built target op_grads
+[100%] Built target op_abi
+Install the project...
+-- Install configuration: "debug"
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/libop_abi.so
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/libop_grads.so
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_fast_tanh_grad.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_gelu.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_gemm_layer_grad.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_prod_force_grad.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_prod_force_se_a_grad.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_prod_force_se_r_grad.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_prod_virial_grad.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_prod_virial_se_a_grad.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_prod_virial_se_r_grad.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_soft_min_force_grad.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_soft_min_virial_grad.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/_tabulate_grad.py
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/libdeepmd.so
+-- Up-to-date: /vol0004/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/pkg_config/run_config.ini
+package init file 'deepmd/train/__init__.py' not found (or not a regular file)
+package init file 'deepmd/tools/__init__.py' not found (or not a regular file)
+
+copying deepmd/_version.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/_version.py
+copying deepmd/__main__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/__main__.py
+copying deepmd/__init__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/__init__.py
+copying deepmd/env.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/env.py
+copying deepmd/__about__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/__about__.py
+copying deepmd/calculator.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/calculator.py
+copying deepmd/common.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/common.py
+copying deepmd/descriptor/se_t.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_t.py
+copying deepmd/descriptor/se_a_ef.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_a_ef.py
+copying deepmd/descriptor/__init__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/__init__.py
+copying deepmd/descriptor/se_ar.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_ar.py
+copying deepmd/descriptor/hybrid.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/hybrid.py
+copying deepmd/descriptor/se_a.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_a.py
+copying deepmd/descriptor/loc_frame.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/loc_frame.py
+copying deepmd/descriptor/se_a_ebd.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_a_ebd.py
+copying deepmd/descriptor/se_r.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_r.py
+copying deepmd/fit/polar.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/fit/polar.py
+copying deepmd/fit/wfc.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/fit/wfc.py
+copying deepmd/fit/__init__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/fit/__init__.py
+copying deepmd/fit/dipole.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/fit/dipole.py
+copying deepmd/fit/ener.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/fit/ener.py
+copying deepmd/infer/deep_dipole.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_dipole.py
+copying deepmd/infer/deep_eval.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_eval.py
+copying deepmd/infer/__init__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/__init__.py
+copying deepmd/infer/model_devi.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/model_devi.py
+copying deepmd/infer/ewald_recp.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/ewald_recp.py
+copying deepmd/infer/deep_pot.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_pot.py
+copying deepmd/infer/deep_wfc.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_wfc.py
+copying deepmd/infer/data_modifier.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/data_modifier.py
+copying deepmd/infer/deep_tensor.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_tensor.py
+copying deepmd/infer/deep_polar.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_polar.py
+copying deepmd/loss/__init__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/loss/__init__.py
+copying deepmd/loss/tensor.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/loss/tensor.py
+copying deepmd/loss/ener.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/loss/ener.py
+copying deepmd/utils/pair_tab.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/pair_tab.py
+copying deepmd/utils/tabulate.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/tabulate.py
+copying deepmd/utils/data_system.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/data_system.py
+copying deepmd/utils/neighbor_stat.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/neighbor_stat.py
+copying deepmd/utils/__init__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/__init__.py
+copying deepmd/utils/learning_rate.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/learning_rate.py
+copying deepmd/utils/argcheck.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/argcheck.py
+copying deepmd/utils/data.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/data.py
+copying deepmd/utils/compat.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/compat.py
+copying deepmd/utils/type_embed.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/type_embed.py
+copying deepmd/utils/network.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/network.py
+copying deepmd/utils/weight_avg.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/weight_avg.py
+copying deepmd/loggers/__init__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/loggers/__init__.py
+copying deepmd/loggers/loggers.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/loggers/loggers.py
+copying deepmd/cluster/local.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/cluster/local.py
+copying deepmd/cluster/__init__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/cluster/__init__.py
+copying deepmd/cluster/slurm.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/cluster/slurm.py
+copying deepmd/entrypoints/main.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/main.py
+copying deepmd/entrypoints/compress.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/compress.py
+copying deepmd/entrypoints/freeze.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/freeze.py
+copying deepmd/entrypoints/train.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/train.py
+copying deepmd/entrypoints/test.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/test.py
+copying deepmd/entrypoints/__init__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/__init__.py
+copying deepmd/entrypoints/preprocess.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/preprocess.py
+copying deepmd/entrypoints/transfer.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/transfer.py
+copying deepmd/entrypoints/doc.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/doc.py
+copying deepmd/entrypoints/config.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/config.py
+copying deepmd/op/__init__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/__init__.py
+copying deepmd/model/model_stat.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/model/model_stat.py
+copying deepmd/model/__init__.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/model/__init__.py
+copying deepmd/model/tensor.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/model/tensor.py
+copying deepmd/model/ener.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/model/ener.py
+copying deepmd/train/run_options.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/train/run_options.py
+copying deepmd/train/trainer.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/train/trainer.py
+copying deepmd/tools/profiler_visualization_topk.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/profiler_visualization_topk.py
+copying deepmd/tools/pb2pbtxt.py -> _skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/pb2pbtxt.py
+
+running install
+running bdist_egg
+running egg_info
+writing deepmd_kit.egg-info/PKG-INFO
+writing dependency_links to deepmd_kit.egg-info/dependency_links.txt
+writing entry points to deepmd_kit.egg-info/entry_points.txt
+writing requirements to deepmd_kit.egg-info/requires.txt
+writing top-level names to deepmd_kit.egg-info/top_level.txt
+package init file '_skbuild/linux-aarch64-3.8/cmake-install/deepmd/train/__init__.py' not found (or not a regular file)
+package init file '_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/__init__.py' not found (or not a regular file)
+writing manifest file 'deepmd_kit.egg-info/SOURCES.txt'
+installing library code to _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg
+running install_lib
+running build_py
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/_version.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/__main__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/env.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/__about__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/calculator.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/common.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_t.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_a_ef.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_ar.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/hybrid.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_a.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/loc_frame.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_a_ebd.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/descriptor/se_r.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/fit/polar.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/fit
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/fit/wfc.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/fit
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/fit/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/fit
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/fit/dipole.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/fit
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/fit/ener.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/fit
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_dipole.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_eval.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/model_devi.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/ewald_recp.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_pot.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_wfc.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/data_modifier.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_tensor.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/infer/deep_polar.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/loss/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/loss
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/loss/tensor.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/loss
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/loss/ener.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/loss
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/pair_tab.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/tabulate.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/data_system.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/neighbor_stat.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/learning_rate.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/argcheck.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/data.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/compat.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/type_embed.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/network.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/utils/weight_avg.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/loggers/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/loggers
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/loggers/loggers.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/loggers
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/cluster/local.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/cluster
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/cluster/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/cluster
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/cluster/slurm.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/cluster
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/main.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/compress.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/freeze.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/train.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/test.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/preprocess.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/transfer.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/doc.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/config.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/op/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/model/model_stat.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/model
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/model/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/model
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/model/tensor.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/model
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/model/ener.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/model
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/train/run_options.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/train
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/train/trainer.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/train
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/profiler_visualization_topk.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/tools
+copying _skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/pb2pbtxt.py -> _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/tools
+copied 82 files
+running build_ext
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer/deep_dipole.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer/deep_eval.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer/model_devi.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer/ewald_recp.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer/deep_pot.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer/deep_wfc.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer/data_modifier.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer/deep_tensor.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/infer
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/infer/deep_polar.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/infer
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/model
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/model/model_stat.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/model
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/model/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/model
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/model/tensor.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/model
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/model/ener.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/model
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/cluster
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/cluster/local.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/cluster
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/cluster/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/cluster
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/cluster/slurm.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/cluster
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/_version.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/__main__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/train
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/train/run_options.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/train
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/train/trainer.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/train
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/fit
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/fit/polar.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/fit
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/fit/wfc.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/fit
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/fit/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/fit
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/fit/dipole.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/fit
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/fit/ener.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/fit
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/pair_tab.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/tabulate.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/data_system.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/neighbor_stat.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/learning_rate.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/argcheck.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/data.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/compat.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/type_embed.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/network.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/utils/weight_avg.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/utils
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints/main.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints/compress.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints/freeze.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints/train.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints/test.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints/preprocess.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints/transfer.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints/doc.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/entrypoints/config.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/entrypoints
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/env.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/loggers
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/loggers/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/loggers
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/loggers/loggers.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/loggers
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor/se_t.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor/se_a_ef.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor/se_ar.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor/hybrid.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor/se_a.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor/loc_frame.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor/se_a_ebd.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/descriptor
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/descriptor/se_r.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/descriptor
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/libdeepmd.so -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_soft_min_force_grad.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_prod_virial_se_r_grad.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_gemm_layer_grad.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_soft_min_virial_grad.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_prod_virial_grad.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/libop_grads.so -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_prod_force_grad.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_prod_force_se_r_grad.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/libop_abi.so -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_prod_virial_se_a_grad.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_fast_tanh_grad.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_gelu.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_tabulate_grad.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/op/_prod_force_se_a_grad.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/op
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/__about__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/pkg_config
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/pkg_config/run_config.ini -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/pkg_config
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/calculator.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/loss
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/loss/__init__.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/loss
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/loss/tensor.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/loss
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/loss/ener.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/loss
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/common.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/tools
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/tools/profiler_visualization_topk.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/tools
+copying _skbuild/linux-aarch64-3.8/setuptools/lib/deepmd/tools/pb2pbtxt.py -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/deepmd/tools
+copied 86 files
+creating _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
+copying deepmd_kit.egg-info/PKG-INFO -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
+copying deepmd_kit.egg-info/SOURCES.txt -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
+copying deepmd_kit.egg-info/dependency_links.txt -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
+copying deepmd_kit.egg-info/entry_points.txt -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
+copying deepmd_kit.egg-info/not-zip-safe -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
+copying deepmd_kit.egg-info/requires.txt -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
+copying deepmd_kit.egg-info/top_level.txt -> _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO
+writing _skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg/EGG-INFO/native_libs.txt
+creating 'dist/deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg' and adding '_skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg' to it
+removing '_skbuild/linux-aarch64-3.8/setuptools/bdist.linux-aarch64/egg' (and everything under it)
+Processing deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg
+creating /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg
+Extracting deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg to /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages
+Removing deepmd-kit 1.2.3.dev804+g6cea8342.d20210731 from easy-install.pth file
+Adding deepmd-kit 1.2.3.dev805+gf5300824.d20210731 to easy-install.pth file
+Installing dp script to /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin
+
+Installed /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/deepmd_kit-1.2.3.dev805+gf5300824.d20210731-py3.8-linux-aarch64.egg
+Processing dependencies for deepmd-kit==1.2.3.dev805+gf5300824.d20210731
+Searching for dargs==0.2.5
+Best match: dargs 0.2.5
+Processing dargs-0.2.5-py3.8.egg
+dargs 0.2.5 is already the active version in easy-install.pth
+
+Using /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/dargs-0.2.5-py3.8.egg
+Searching for PyYAML==5.4.1
+Best match: PyYAML 5.4.1
+Processing PyYAML-5.4.1-py3.8-linux-aarch64.egg
+PyYAML 5.4.1 is already the active version in easy-install.pth
+
+Using /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/PyYAML-5.4.1-py3.8-linux-aarch64.egg
+Searching for scipy==1.4.1
+Best match: scipy 1.4.1
+Adding scipy 1.4.1 to easy-install.pth file
+
+Using /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages
+Searching for numpy==1.18.4
+Best match: numpy 1.18.4
+Adding numpy 1.18.4 to easy-install.pth file
+Installing f2py script to /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin
+Installing f2py3 script to /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin
+Installing f2py3.8 script to /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/bin
+
+Using /vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages
+Finished processing dependencies for deepmd-kit==1.2.3.dev805+gf5300824.d20210731
+++ export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
+++ LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
+++ export TF_CPP_MIN_LOG_LEVEL=3
+++ TF_CPP_MIN_LOG_LEVEL=3
+++ export HAVE_PREPROCESSED=1
+++ HAVE_PREPROCESSED=1
+++ export TF_PROFILE=1
+++ TF_PROFILE=1
+++ export DEEPMD_NUM_THREADS=1
+++ DEEPMD_NUM_THREADS=1
+++ export OMP_NUM_THREADS=1
+++ OMP_NUM_THREADS=1
+++ export TF_INTER_OP_PARALLELISM_THREADS=1
+++ TF_INTER_OP_PARALLELISM_THREADS=1
+++ export TF_INTRA_OP_PARALLELISM_THREADS=1
+++ TF_INTRA_OP_PARALLELISM_THREADS=1
+++ rm -f profiler.json_0
+[WARN] xos LPG 2002 - Failed to map HugeTLBfs for data/bss: /usr/bin/rm
+The e_type of elf header must be ET_EXEC when using libmpg. You can check it on your load module by readelf -h command.
+++ dp test -m ../model/graph-compress-preprocess.pb -s ../data/data_3 -n 1
+[WARN] xos LPG 2003 - Failed to map HugeTLBfs for data/bss: Layout problem with segments 0 and 1:
+	Segments would overlap.
+WARNING:tensorflow:From /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/python/compat/v2_compat.py:96: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+WARNING:tensorflow:From /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+DEEPMD WARNING From /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/python/profiler/internal/flops_registry.py:142: tensor_shape_from_node_def_name (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.tensor_shape_from_node_def_name`
+55 ops no flops stats due to incomplete shapes.
+DEEPMD INFO    # ---------------output of dp test--------------- 
+DEEPMD INFO    # testing system : ../data/data_3
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Parsing Inputs...
+generating trace file.
+
+******************************************************
+Timeline file is written to ./profiler.json_0.
+Open a Chrome browser, enter URL chrome://tracing and load the timeline file.
+******************************************************
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+Incomplete shape.
+
+=========================Options=============================
+-max_depth                  10
+-min_bytes                  0
+-min_peak_bytes             0
+-min_residual_bytes         0
+-min_output_bytes           0
+-min_micros                 0
+-min_accelerator_micros     0
+-min_cpu_micros             0
+-min_params                 0
+-min_float_ops              0
+-min_occurrence             0
+-step                       -1
+-order_by                   micros
+-account_type_regexes       .*
+-start_name_regexes         .*
+-trim_name_regexes          
+-show_name_regexes          .*
+-hide_name_regexes          
+-account_displayed_op_only  false
+-select                     bytes,float_ops,micros,occurrence
+-output                     stdout:
+
+==================Model Analysis Report======================
+
+Doc:
+op: The nodes are operation kernel type, such as MatMul, Conv2D. Graph nodes belonging to the same type are aggregated together.
+requested bytes: The memory requested by the operation, accumulatively.
+flops: Number of float operations. Note: Please read the implementation for the math behind it.
+total execution time: Sum of accelerator execution time and cpu execution time.
+cpu execution time: The time from the start to the end of the operation. It's the sum of actual cpu run time plus the time that it spends waiting if part of computation is launched asynchronously.
+accelerator execution time: Time spent executing on the accelerator. This is normally measured by the actual hardware library.
+occurrence: The number of times it occurs
+
+Profile:
+node name | requested bytes | total execution time | accelerator execution time | cpu execution time | # float_ops | op occurrence (run|defined)
+Tanh                                  0B (0.00%, 0.00%),      18.50ms (100.00%, 31.64%),             0us (0.00%, 0.00%),      18.50ms (100.00%, 31.64%),   0 float_ops (100.00%, 0.00%),        6|6
+TabulateFusionGrad              1.06MB (100.00%, 1.26%),        8.92ms (68.36%, 15.26%),             0us (0.00%, 0.00%),        8.92ms (68.36%, 15.26%),   0 float_ops (100.00%, 0.00%),        4|4
+MatmulNt                         4.25MB (98.74%, 5.04%),        6.36ms (53.09%, 10.88%),             0us (0.00%, 0.00%),        6.36ms (53.09%, 10.88%),   0 float_ops (100.00%, 0.00%),        8|8
+ProdEnvMatA                      4.13MB (93.70%, 4.90%),         5.69ms (42.22%, 9.73%),             0us (0.00%, 0.00%),         5.69ms (42.22%, 9.73%),   0 float_ops (100.00%, 0.00%),        1|1
+GemmLayer                        1.11MB (88.81%, 1.31%),         5.28ms (32.48%, 9.04%),             0us (0.00%, 0.00%),         5.28ms (32.48%, 9.04%),   0 float_ops (100.00%, 0.00%),        8|8
+TabulateFusion                   1.57MB (87.49%, 1.86%),         4.13ms (23.45%, 7.06%),             0us (0.00%, 0.00%),         4.13ms (23.45%, 7.06%),   0 float_ops (100.00%, 0.00%),        4|4
+BatchMatMulV2                    4.03MB (85.63%, 4.78%),         2.19ms (16.38%, 3.74%),             0us (0.00%, 0.00%),         2.19ms (16.38%, 3.74%), 106.95m float_ops (100.00%, 98.90%),        6|6
+StridedSlice                        40B (80.85%, 0.00%),         1.53ms (12.64%, 2.62%),             0us (0.00%, 0.00%),         1.53ms (12.64%, 2.62%),     0 float_ops (1.10%, 0.00%),      10|26
+Pad                            11.32MB (80.85%, 13.41%),         1.33ms (10.02%, 2.27%),             0us (0.00%, 0.00%),         1.33ms (10.02%, 2.27%),     0 float_ops (1.10%, 0.00%),      14|14
+Slice                            8.30MB (67.44%, 9.84%),          1.32ms (7.75%, 2.26%),             0us (0.00%, 0.00%),          1.32ms (7.75%, 2.26%),     0 float_ops (1.10%, 0.00%),      18|18
+AddN                                  0B (0.00%, 0.00%),           656us (5.49%, 1.12%),             0us (0.00%, 0.00%),           656us (5.49%, 1.12%), 809.47k float_ops (1.10%, 0.75%),      14|14
+
+======================End of Report==========================
+DEEPMD INFO    # number of test data : 1 
+DEEPMD INFO    Energy RMSE        : 7.472860e-02 eV
+DEEPMD INFO    Energy RMSE/Natoms : 3.892114e-04 eV
+DEEPMD INFO    Force  RMSE        : 7.544664e-01 eV/A
+DEEPMD INFO    Virial RMSE        : 8.520442e+01 eV
+DEEPMD INFO    Virial RMSE/Natoms : 4.437730e-01 eV
+DEEPMD INFO    # ----------------------------------------------- 
+profile : ture
+dp model type : ener
+++ python /home/hp200266/u01036/gzq/deepmd-kit/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/tools/profiler_visualization_topk.py profiler
+[WARN] xos LPG 2003 - Failed to map HugeTLBfs for data/bss: Layout problem with segments 0 and 1:
+	Segments would overlap.
+WARNING:tensorflow:From /home/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0/lib/python3.8/site-packages/tensorflow/python/compat/v2_compat.py:96: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+
+Top k op
+average time	min time	max time	percentage	op name
+ 5690.00	    5690	    5690	    0.10	load/ProdEnvMatA
+ 4332.00	    4332	    4332	    0.07	load/layer_0_type_1/Tanh
+ 3906.00	    3906	    3906	    0.07	load/layer_1_type_1/Tanh
+ 3868.00	    3868	    3868	    0.07	load/gradients/filter_type_1/TabulateFusion_1_grad/TabulateFusionGrad
+ 3823.00	    3823	    3823	    0.07	load/layer_2_type_1/Tanh
+ 3168.00	    3168	    3168	    0.05	load/gradients/layer_0_type_1/GemmLayer_grad/MatmulNt
+ 2671.00	    2671	    2671	    0.05	load/layer_0_type_1/GemmLayer
+ 2241.00	    2241	    2241	    0.04	load/layer_0_type_0/Tanh
+ 2131.00	    2131	    2131	    0.04	load/layer_2_type_0/Tanh
+ 2082.00	    2082	    2082	    0.04	load/gradients/filter_type_1/TabulateFusion_grad/TabulateFusionGrad
+ 2065.00	    2065	    2065	    0.04	load/layer_1_type_0/Tanh
+ 1989.00	    1989	    1989	    0.03	load/gradients/filter_type_0/TabulateFusion_1_grad/TabulateFusionGrad
+ 1927.00	    1927	    1927	    0.03	load/gradients/layer_0_type_0/GemmLayer_grad/MatmulNt
+ 1762.00	    1762	    1762	    0.03	load/filter_type_1/TabulateFusion_1
+ 1476.00	    1476	    1476	    0.03	load/layer_0_type_0/GemmLayer
+ 1441.00	    1441	    1441	    0.02	load/strided_slice_30
+  998.00	     998	     998	    0.02	load/filter_type_1/TabulateFusion
+  985.00	     985	     985	    0.02	load/gradients/filter_type_0/TabulateFusion_grad/TabulateFusionGrad
+  901.00	     901	     901	    0.02	load/filter_type_0/TabulateFusion_1
+  685.00	     685	     685	    0.01	load/filter_type_1/MatMul
+  493.00	     493	     493	    0.01	load/gradients/filter_type_1/MatMul_grad/MatMul
+  469.00	     469	     469	    0.01	load/filter_type_0/TabulateFusion
+  439.00	     439	     439	    0.01	load/filter_type_0/MatMul
+  363.00	     363	     363	    0.01	load/gradients/layer_2_type_1/GemmLayer_grad/MatmulNt
+  361.00	     361	     361	    0.01	load/gradients/layer_1_type_1/GemmLayer_grad/MatmulNt
+  344.00	     344	     344	    0.01	load/layer_1_type_1/GemmLayer
+  333.00	     333	     333	    0.01	load/layer_2_type_1/GemmLayer
+  305.00	     305	     305	    0.01	load/concat
+  269.00	     269	     269	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul
+  265.00	     265	     265	    0.00	load/gradients/AddN_4
+  248.00	     248	     248	    0.00	load/gradients/layer_2_type_0/GemmLayer_grad/MatmulNt
+  235.00	     235	     235	    0.00	load/gradients/filter_type_1/Slice_3_grad/Pad
+  234.00	     234	     234	    0.00	load/gradients/layer_1_type_0/GemmLayer_grad/MatmulNt
+  226.00	     226	     226	    0.00	load/gradients/Slice_3_grad/Pad
+  208.00	     208	     208	    0.00	load/gradients/concat_grad/Slice_1
+  204.00	     204	     204	    0.00	load/Slice_3
+  196.00	     196	     196	    0.00	load/layer_2_type_0/GemmLayer
+  195.00	     195	     195	    0.00	load/layer_1_type_0/GemmLayer
+  193.00	     193	     193	    0.00	load/gradients/filter_type_1/MatMul_grad/MatMul_1
+  188.00	     188	     188	    0.00	load/gradients/Slice_2_grad/Pad
+  152.00	     152	     152	    0.00	load/ProdVirialSeA
+  151.00	     151	     151	    0.00	load/filter_type_1/Slice_3
+  133.00	     133	     133	    0.00	load/ProdForceSeA
+  126.00	     126	     126	    0.00	load/gradients/filter_type_1/Slice_1_grad/Pad
+  125.00	     125	     125	    0.00	load/gradients/filter_type_0/Slice_3_grad/Pad
+  108.00	     108	     108	    0.00	load/Slice_2
+  108.00	     108	     108	    0.00	load/gradients/concat_grad/Slice
+  108.00	     108	     108	    0.00	load/gradients/filter_type_0/MatMul_grad/MatMul_1
+   83.00	      83	      83	    0.00	load/filter_type_1/Slice_1
+   81.00	      81	      81	    0.00	load/filter_type_0/Slice_3
+   73.00	      73	      73	    0.00	load/gradients/AddN_13
+   68.00	      68	      68	    0.00	load/gradients/filter_type_0/Slice_1_grad/Pad
+   68.00	      68	      68	    0.00	load/gradients/Slice_1_grad/Pad
+   62.00	      62	      62	    0.00	load/Slice_1
+   60.00	      60	      60	    0.00	load/gradients/Slice_grad/Pad
+   59.00	      59	      59	    0.00	load/layer_1_type_1/mul
+   57.00	      57	      57	    0.00	load/filter_type_1/add
+   53.00	      53	      53	    0.00	load/layer_2_type_1/mul
+   52.00	      52	      52	    0.00	load/gradients/layer_2_type_1/mul_grad/Mul
+   52.00	      52	      52	    0.00	load/gradients/filter_type_1/Slice_4_grad/Pad
+   51.00	      51	      51	    0.00	load/gradients/layer_1_type_1/mul_grad/Mul
+   51.00	      51	      51	    0.00	load/gradients/AddN_12
+   50.00	      50	      50	    0.00	load/filter_type_1/Slice_4
+   49.00	      49	      49	    0.00	load/gradients/AddN_6
+   48.00	      48	      48	    0.00	load/filter_type_0/Slice_1
+   47.00	      47	      47	    0.00	load/filter_type_1/Slice_2
+   47.00	      47	      47	    0.00	load/gradients/filter_type_1/Slice_2_grad/Pad
+   43.00	      43	      43	    0.00	load/gradients/layer_2_type_0/mul_grad/Mul
+   43.00	      43	      43	    0.00	load/gradients/filter_type_1/Slice_grad/Pad
+   42.00	      42	      42	    0.00	load/final_layer_type_1/GemmLayer
+   39.00	      39	      39	    0.00	load/layer_1_type_0/mul
+   38.00	      38	      38	    0.00	load/filter_type_1/mul
+   38.00	      38	      38	    0.00	load/gradients/filter_type_1/mul_grad/Mul
+   37.00	      37	      37	    0.00	load/Slice
+   34.00	      34	      34	    0.00	load/filter_type_0/add
+   34.00	      34	      34	    0.00	load/gradients/AddN_10
+   33.00	      33	      33	    0.00	load/layer_2_type_0/mul
+   33.00	      33	      33	    0.00	load/gradients/layer_1_type_0/mul_grad/Mul
+   32.00	      32	      32	    0.00	load/filter_type_0/Slice_4
+   32.00	      32	      32	    0.00	load/filter_type_1/Slice
+   32.00	      32	      32	    0.00	load/gradients/final_layer_type_0/GemmLayer_grad/MatmulNt
+   31.00	      31	      31	    0.00	load/gradients/filter_type_0/Slice_4_grad/Pad
+   30.00	      30	      30	    0.00	load/gradients/filter_type_0/Slice_2_grad/Pad
+   29.00	      29	      29	    0.00	load/filter_type_0/Slice_2
+   29.00	      29	      29	    0.00	load/gradients/filter_type_0/Slice_grad/Pad
+   28.00	      28	      28	    0.00	load/gradients/layer_0_type_1/Tanh_grad/TanhGrad
+   28.00	      28	      28	    0.00	load/gradients/AddN_11
+   27.00	      27	      27	    0.00	load/gradients/final_layer_type_1/GemmLayer_grad/MatmulNt
+   27.00	      27	      27	    0.00	load/gradients/layer_2_type_1/Tanh_grad/TanhGrad
+   27.00	      27	      27	    0.00	load/gradients/layer_1_type_1/Tanh_grad/TanhGrad
+   26.00	      26	      26	    0.00	load/final_layer_type_0/GemmLayer
+   26.00	      26	      26	    0.00	load/gradients/AddN_1
+   25.00	      25	      25	    0.00	load/add_5
+   25.00	      25	      25	    0.00	load/gradients/AddN_5
+   24.00	      24	      24	    0.00	load/add_6
+   24.00	      24	      24	    0.00	load/gradients/AddN_3
+   22.00	      22	      22	    0.00	load/filter_type_0/mul
+   21.00	      21	      21	    0.00	load/gradients/filter_type_0/mul_grad/Mul
+   20.00	      20	      20	    0.00	load/filter_type_0/Slice
+   20.00	      20	      20	    0.00	load/gradients/AddN_8
+
+Top k op type
+average time	percentage	op type
+18498.00	    0.32	Tanh
+ 8924.00	    0.15	TabulateFusionGrad
+ 6360.00	    0.11	MatmulNt
+ 5690.00	    0.10	ProdEnvMatA
+ 5283.00	    0.09	GemmLayer
+ 4130.00	    0.07	TabulateFusion
+ 2187.00	    0.04	MatMul
+ 1531.00	    0.03	strided
+ 1328.00	    0.02	Pad
+ 1320.00	    0.02	Slice
+  656.00	    0.01	AddN
+  435.00	    0.01	concat
+  301.00	    0.01	mul
+  238.00	    0.00	Mul
+  237.00	    0.00	Shape
+  211.00	    0.00	Reshape
+  178.00	    0.00	add
+  152.00	    0.00	ProdVirialSeA
+  133.00	    0.00	ProdForceSeA
+  129.00	    0.00	TanhGrad
