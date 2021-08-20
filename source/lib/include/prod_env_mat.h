@@ -142,4 +142,3 @@ void env_mat_nbor_update(
 #endif // TENSORFLOW_USE_ROCM
 
 }
-

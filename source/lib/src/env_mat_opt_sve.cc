@@ -1,4 +1,4 @@
-#include "env_mat.h"
+#include "env_mat_opt.h"
 #include "switcher.h"
 #include "tools.h"
 #include <string.h>
@@ -93,7 +93,7 @@ inline void spline5_switch_vector (
 
 
 
-void deepmd::env_mat_a_cpu_sve_normalize_preprocessed (
+void deepmd::env_mat_a_cpu_normalize_sve (
   double*	        descrpt_a,
   double*	        descrpt_a_deriv,
   double*	        rij_a,
@@ -132,7 +132,8 @@ void deepmd::env_mat_a_cpu_sve_normalize_preprocessed (
     svbool_t pg0 = svwhilelt_b64(jj, nem);
     svfloat64_t vavg = svld1(pg0, AVG + jj);
     svfloat64_t vstd = svld1(pg0, STD + jj);
-    svfloat64_t vdescrpt_a = svmsb_z(pg0,vavg,vstd,vzero);
+    svfloat64_t vdiv = svdiv_z(pg0,vavg,vstd);
+    svfloat64_t vdescrpt_a = svneg_z(pg0,vdiv);
     svst1(pg0, descrpt_a + jj, vdescrpt_a);
   }
   svfloat64_t vposi_0 = svdup_f64(posi[i_idx*3]);
@@ -273,27 +274,27 @@ void deepmd::env_mat_a_cpu_sve_normalize_preprocessed (
       vdescrpt_a_2 = svsub_z(pg1,vdescrpt_a_2,vavg_2);
       vdescrpt_a_3 = svsub_z(pg1,vdescrpt_a_3,vavg_3);
 
-      vdescrpt_a_0 = svmul_z(pg1,vdescrpt_a_0,vstd_0);
-      vdescrpt_a_1 = svmul_z(pg1,vdescrpt_a_1,vstd_1);
-      vdescrpt_a_2 = svmul_z(pg1,vdescrpt_a_2,vstd_2);
-      vdescrpt_a_3 = svmul_z(pg1,vdescrpt_a_3,vstd_3);
+      vdescrpt_a_0 = svdiv_z(pg1,vdescrpt_a_0,vstd_0);
+      vdescrpt_a_1 = svdiv_z(pg1,vdescrpt_a_1,vstd_1);
+      vdescrpt_a_2 = svdiv_z(pg1,vdescrpt_a_2,vstd_2);
+      vdescrpt_a_3 = svdiv_z(pg1,vdescrpt_a_3,vstd_3);
 
 
-      vdescrpt_a_deriv_0_0 = svmul_z(pg1, vdescrpt_a_deriv_0_0, vstd_0);
-      vdescrpt_a_deriv_0_1 = svmul_z(pg1, vdescrpt_a_deriv_0_1, vstd_0);
-      vdescrpt_a_deriv_0_2 = svmul_z(pg1, vdescrpt_a_deriv_0_2, vstd_0);
+      vdescrpt_a_deriv_0_0 = svdiv_z(pg1, vdescrpt_a_deriv_0_0, vstd_0);
+      vdescrpt_a_deriv_0_1 = svdiv_z(pg1, vdescrpt_a_deriv_0_1, vstd_0);
+      vdescrpt_a_deriv_0_2 = svdiv_z(pg1, vdescrpt_a_deriv_0_2, vstd_0);
 
-      vdescrpt_a_deriv_1_0 = svmul_z(pg1, vdescrpt_a_deriv_1_0, vstd_1);
-      vdescrpt_a_deriv_1_1 = svmul_z(pg1, vdescrpt_a_deriv_1_1, vstd_1);
-      vdescrpt_a_deriv_1_2 = svmul_z(pg1, vdescrpt_a_deriv_1_2, vstd_1);
+      vdescrpt_a_deriv_1_0 = svdiv_z(pg1, vdescrpt_a_deriv_1_0, vstd_1);
+      vdescrpt_a_deriv_1_1 = svdiv_z(pg1, vdescrpt_a_deriv_1_1, vstd_1);
+      vdescrpt_a_deriv_1_2 = svdiv_z(pg1, vdescrpt_a_deriv_1_2, vstd_1);
 
-      vdescrpt_a_deriv_2_0 = svmul_z(pg1, vdescrpt_a_deriv_2_0, vstd_2);
-      vdescrpt_a_deriv_2_1 = svmul_z(pg1, vdescrpt_a_deriv_2_1, vstd_2);
-      vdescrpt_a_deriv_2_2 = svmul_z(pg1, vdescrpt_a_deriv_2_2, vstd_2);
+      vdescrpt_a_deriv_2_0 = svdiv_z(pg1, vdescrpt_a_deriv_2_0, vstd_2);
+      vdescrpt_a_deriv_2_1 = svdiv_z(pg1, vdescrpt_a_deriv_2_1, vstd_2);
+      vdescrpt_a_deriv_2_2 = svdiv_z(pg1, vdescrpt_a_deriv_2_2, vstd_2);
 
-      vdescrpt_a_deriv_3_0 = svmul_z(pg1, vdescrpt_a_deriv_3_0, vstd_3);
-      vdescrpt_a_deriv_3_1 = svmul_z(pg1, vdescrpt_a_deriv_3_1, vstd_3);
-      vdescrpt_a_deriv_3_2 = svmul_z(pg1, vdescrpt_a_deriv_3_2, vstd_3);
+      vdescrpt_a_deriv_3_0 = svdiv_z(pg1, vdescrpt_a_deriv_3_0, vstd_3);
+      vdescrpt_a_deriv_3_1 = svdiv_z(pg1, vdescrpt_a_deriv_3_1, vstd_3);
+      vdescrpt_a_deriv_3_2 = svdiv_z(pg1, vdescrpt_a_deriv_3_2, vstd_3);
 
       // 写回到descrpt_a 4*8 -> 8*4;
       svfloat64x4_t vdescrpt_a = svcreate4(vdescrpt_a_0,vdescrpt_a_1,vdescrpt_a_2,vdescrpt_a_3);
@@ -359,7 +360,7 @@ void deepmd::env_mat_a_cpu_sve_normalize_preprocessed (
   }
 }
 
-void deepmd::env_mat_a_cpu_sve_normalize_preprocessed (
+void deepmd::env_mat_a_cpu_normalize_sve (
     float*	        descrpt_a,
     float*          descrpt_a_deriv,
     float*	        rij_a,
@@ -455,239 +456,28 @@ void deepmd::env_mat_a_cpu_sve_normalize_preprocessed (
             descrpt_a[idx_value + 2] *= sw;
             descrpt_a[idx_value + 3] *= sw;
 
-            descrpt_a[idx_value + 0] = (descrpt_a[idx_value + 0] - AVG[idx_value + 0]) * STD[idx_value + 0];
-            descrpt_a[idx_value + 1] = (descrpt_a[idx_value + 1] - AVG[idx_value + 1]) * STD[idx_value + 1];
-            descrpt_a[idx_value + 2] = (descrpt_a[idx_value + 2] - AVG[idx_value + 2]) * STD[idx_value + 2];
-            descrpt_a[idx_value + 3] = (descrpt_a[idx_value + 3] - AVG[idx_value + 3]) * STD[idx_value + 3];
+            descrpt_a[idx_value + 0] = (descrpt_a[idx_value + 0] - AVG[idx_value + 0]) / STD[idx_value + 0];
+            descrpt_a[idx_value + 1] = (descrpt_a[idx_value + 1] - AVG[idx_value + 1]) / STD[idx_value + 1];
+            descrpt_a[idx_value + 2] = (descrpt_a[idx_value + 2] - AVG[idx_value + 2]) / STD[idx_value + 2];
+            descrpt_a[idx_value + 3] = (descrpt_a[idx_value + 3] - AVG[idx_value + 3]) / STD[idx_value + 3];
 
-            descrpt_a_deriv[idx_deriv + 0] *=  STD[idx_value + 0];
-            descrpt_a_deriv[idx_deriv + 1] *=  STD[idx_value + 0];
-            descrpt_a_deriv[idx_deriv + 2] *=  STD[idx_value + 0];
+            descrpt_a_deriv[idx_deriv + 0] /=  STD[idx_value + 0];
+            descrpt_a_deriv[idx_deriv + 1] /=  STD[idx_value + 0];
+            descrpt_a_deriv[idx_deriv + 2] /=  STD[idx_value + 0];
 
-            descrpt_a_deriv[idx_deriv + 3] *=  STD[idx_value + 1];
-            descrpt_a_deriv[idx_deriv + 4] *=  STD[idx_value + 1];
-            descrpt_a_deriv[idx_deriv + 5] *=  STD[idx_value + 1];
+            descrpt_a_deriv[idx_deriv + 3] /=  STD[idx_value + 1];
+            descrpt_a_deriv[idx_deriv + 4] /=  STD[idx_value + 1];
+            descrpt_a_deriv[idx_deriv + 5] /=  STD[idx_value + 1];
 
-            descrpt_a_deriv[idx_deriv + 6] *=  STD[idx_value + 2];
-            descrpt_a_deriv[idx_deriv + 7] *=  STD[idx_value + 2];
-            descrpt_a_deriv[idx_deriv + 8] *=  STD[idx_value + 2];
+            descrpt_a_deriv[idx_deriv + 6] /=  STD[idx_value + 2];
+            descrpt_a_deriv[idx_deriv + 7] /=  STD[idx_value + 2];
+            descrpt_a_deriv[idx_deriv + 8] /=  STD[idx_value + 2];
 
-            descrpt_a_deriv[idx_deriv + 9] *=  STD[idx_value + 3];
-            descrpt_a_deriv[idx_deriv + 10] *=  STD[idx_value + 3];
-            descrpt_a_deriv[idx_deriv + 11] *=  STD[idx_value + 3];
+            descrpt_a_deriv[idx_deriv + 9] /=  STD[idx_value + 3];
+            descrpt_a_deriv[idx_deriv + 10] /=  STD[idx_value + 3];
+            descrpt_a_deriv[idx_deriv + 11] /=  STD[idx_value + 3];
         }
     }
 }
-
-// void deepmd::env_mat_a_cpu_sve (
-//     float*	        descrpt_a,
-//     float*        descrpt_a_deriv,
-//     float*	        rij_a,
-//     const std::vector<float > &	  posi,
-//     const std::vector<int > &		  type,
-//     const int &				            i_idx,
-//     const int *		                fmt_nlist_a,
-//     const std::vector<int > &		  sec_a, 
-//     const float &			            rmin,
-//     const float &			            rmax) {
-//     // // compute the diff of the neighbors
-//     // rij_a.resize (sec_a.back() * 3);
-//     // fill (rij_a.begin(), rij_a.end(), 0.0);
-//     // // 1./rr, cos(theta), cos(phi), sin(phi)
-//     // descrpt_a.resize (sec_a.back() * 4);
-//     // fill (descrpt_a.begin(), descrpt_a.end(), 0.0);
-//     // // deriv wrt center: 3
-//     // descrpt_a_deriv.resize (sec_a.back() * 4 * 3);
-//     // fill (descrpt_a_deriv.begin(), descrpt_a_deriv.end(), 0.0);
-    
-//     memset(rij_a,'\0',sec_a.back() * 3 * sizeof(float));
-//     memset(descrpt_a,'\0',sec_a.back() * 4 * sizeof(float));
-//     memset(descrpt_a_deriv,'\0',sec_a.back() * 3 * 4 * sizeof(float));
-
-//     svfloat32_t vposi_0 = svdup_f32(posi[i_idx*3]);
-//     svfloat32_t vposi_1 = svdup_f32(posi[i_idx*3+1]);
-//     svfloat32_t vposi_2 = svdup_f32(posi[i_idx*3+2]);
-//     svfloat32_t vone = svdup_f32(1.0);
-//     svfloat32_t vtwo = svdup_f32(2.0);
-//     for (int sec_iter = 0; sec_iter < int(sec_a.size()) - 1; ++sec_iter) {
-//         for (int nei_iter = sec_a[sec_iter]; nei_iter < sec_a[sec_iter + 1]; ++nei_iter) {
-//           svbool_t pg0 = svwhilelt_b32(nei_iter, sec_a[sec_iter+1]);
-//           svint32_t vj_idx = svld1_s32(pg0, &fmt_nlist_a[nei_iter]);
-//           svbool_t lt_zero = svcmplt(pg0,vj_idx,0);
-//           svbool_t pg1 = svbrkb_z(pg0,lt_zero);
-//           // pg1 all false
-//           if(!svptest_first(pg0, pg1)){
-//             break;
-//           }
-//           svint32_t vj_idx0 = svmul_z(pg1, vj_idx, 3);
-//           svint32_t vj_idx1 = svadd_z(pg1, vj_idx0, 1);
-//           svint32_t vj_idx2 = svadd_z(pg1, vj_idx0, 2);
-//           svfloat32_t vposj_0 = svld1_gather_s32index_f32(pg1,&posi[0],vj_idx0);
-//           svfloat32_t vposj_1 = svld1_gather_s32index_f32(pg1,&posi[0],vj_idx1);
-//           svfloat32_t vposj_2 = svld1_gather_s32index_f32(pg1,&posi[0],vj_idx2);
-//           svfloat32_t vr_0 = svsub_z(pg1,vposj_0,vposi_0);
-//           svfloat32_t vr_1 = svsub_z(pg1,vposj_1,vposi_1);
-//           svfloat32_t vr_2 = svsub_z(pg1,vposj_2,vposi_2);
-
-//           // 写回rij_a 3*8 -> 8*3
-//           svfloat32x3_t vr = svcreate3(vr_0,vr_1,vr_2);
-//           svst3(pg1,&rij_a[nei_iter*3],vr);
-
-//           svfloat32_t vr2_0 = svmul_z(pg1,vr_0,vr_0);
-//           svfloat32_t vr2_1 = svmul_z(pg1,vr_1,vr_1);
-//           svfloat32_t vr2_2 = svmul_z(pg1,vr_2,vr_2);
-//           svfloat32_t vnr2 = svadd_z(pg1,vr2_0,vr2_1);
-//           vnr2 = svadd_z(pg1,vnr2,vr2_2);
-
-//           // 近似算法
-//           // svfloat64_t vinr = svrsqrte(vnr2);
-//           svfloat32_t vinr = svsqrt_z(pg1,vnr2);
-//           vinr = svdiv_z(pg1,vone,vinr);
-
-//           svfloat32_t vnr = svmul_z(pg1, vnr2, vinr);
-//           svfloat32_t vinr2 = svmul_z(pg1, vinr, vinr);
-//           svfloat32_t vinr4 = svmul_z(pg1, vinr2, vinr2);
-//           svfloat32_t vinr3 = svmul_z(pg1, vinr4, vnr);
-//           // spline5 swich 展开
-//           svfloat32_t vsw,vdsw;
-//           spline5_switch_vector(pg1, vsw, vdsw, vnr, rmin, rmax);
-//           int idx_value = nei_iter * 4;
-//           int idx_deriv = nei_iter * 4 * 3;
-//           // 4 value components
-//           // svfloat64_t vdescrpt_a_0 = svdiv_z(pg1, vone, vnr);
-//           svfloat32_t vdescrpt_a_0 = vinr;
-//           svfloat32_t vdescrpt_a_1 = svdiv_z(pg1, vr_0, vnr2);
-//           svfloat32_t vdescrpt_a_2 = svdiv_z(pg1, vr_1, vnr2);
-//           svfloat32_t vdescrpt_a_3 = svdiv_z(pg1, vr_2, vnr2);
-
-//           // deriv of component 1/r
-//           // descrpt_a_deriv[idx_deriv + 0] = rr[0] * (inr3 * sw - descrpt_a[idx_value + 0] * dsw * inr);
-//           // descrpt_a_deriv[idx_deriv + 1] = rr[1] * (inr3 * sw - descrpt_a[idx_value + 0] * dsw * inr);
-//           // descrpt_a_deriv[idx_deriv + 2] = rr[2] * (inr3 * sw - descrpt_a[idx_value + 0] * dsw * inr);
-
-//           // deriv of component x/r2
-//           // descrpt_a_deriv[idx_deriv + 3] = rr[0] * (2. * rr[0] * inr4 * sw - descrpt_a[idx_value + 1] * dsw * inr) - inr2 * sw;
-//           // descrpt_a_deriv[idx_deriv + 4] = rr[1] * (2. * rr[0] * inr4 * sw - descrpt_a[idx_value + 1] * dsw * inr);
-//           // descrpt_a_deriv[idx_deriv + 5] = rr[2] * (2. * rr[0] * inr4 * sw - descrpt_a[idx_value + 1] * dsw * inr);
-
-//           // deriv of component y/r2
-//           // descrpt_a_deriv[idx_deriv + 6] = rr[0] * (2. * rr[1] * inr4 * sw - descrpt_a[idx_value + 2] * dsw * inr);
-//           // descrpt_a_deriv[idx_deriv + 7] = rr[1] * (2. * rr[1] * inr4 * sw - descrpt_a[idx_value + 2] * dsw * inr) - inr2 * sw;
-//           // descrpt_a_deriv[idx_deriv + 8] = rr[2] * (2. * rr[1] * inr4 * sw - descrpt_a[idx_value + 2] * dsw * inr);
-
-//           // deriv of component z/r2
-//           // descrpt_a_deriv[idx_deriv + 9] = rr[0] * (2. * rr[2] * inr4 * sw - descrpt_a[idx_value + 3] * dsw * inr);
-//           // descrpt_a_deriv[idx_deriv +10] = rr[1] * (2. * rr[2] * inr4 * sw - descrpt_a[idx_value + 3] * dsw * inr);
-//           // descrpt_a_deriv[idx_deriv +11] = rr[2] * (2. * rr[2] * inr4 * sw - descrpt_a[idx_value + 3] * dsw * inr) - inr2 * sw;
-
-//           // common 
-//           // inr3 * sw
-//           // dsw * inr 
-//           // 2. * inr4 * sw
-//           // inr2 * sw
-//           svfloat32_t tmp1 = svmul_z(pg1, vinr3, vsw); // inr3 * sw
-//           svfloat32_t tmp2 = svmul_z(pg1, vdsw, vinr);   // dsw * inr 
-
-//           svfloat32_t tmp3 = svmul_z(pg1, vinr4, vsw); // inr4 * sw
-//           svfloat32_t tmp4 = svmul_z(pg1, vtwo, tmp3); // 2. * inr4 * sw
-//           svfloat32_t tmp5 = svmul_z(pg1, vinr2, vsw); // inr2 * sw
-
-//           svfloat32_t tmp6 = svmul_z(pg1, vr_0, tmp4); // 2. * rr[0] * inr4 * sw
-//           svfloat32_t tmp7 = svmul_z(pg1, vr_1, tmp4); // 2. * rr[1] * inr4 * sw
-//           svfloat32_t tmp8 = svmul_z(pg1, vr_2, tmp4); // 2. * rr[2] * inr4 * sw
-
-//           svfloat32_t tmp9 = svmsb_z(pg1, vdescrpt_a_0, tmp2, tmp1);   // (inr3 * sw - descrpt_a[idx_value + 0] * dsw * inr)
-//           svfloat32_t tmp10 = svmsb_z(pg1, vdescrpt_a_1, tmp2, tmp6);  // (2. * rr[0] * inr4 * sw - descrpt_a[idx_value + 1] * dsw * inr)
-//           svfloat32_t tmp11 = svmsb_z(pg1, vdescrpt_a_2, tmp2, tmp7);  // (2. * rr[1] * inr4 * sw - descrpt_a[idx_value + 2] * dsw * inr)
-//           svfloat32_t tmp12 = svmsb_z(pg1, vdescrpt_a_3, tmp2, tmp8);  // (2. * rr[2] * inr4 * sw - descrpt_a[idx_value + 3] * dsw * inr)
-
-//           svfloat32_t vdescrpt_a_deriv_0_0 = svmul_z(pg1, vr_0, tmp9);  // rr[0] * (inr3 * sw - descrpt_a[idx_value + 0] * dsw * inr)
-//           svfloat32_t vdescrpt_a_deriv_0_1 = svmul_z(pg1, vr_1, tmp9);  // rr[1] * (inr3 * sw - descrpt_a[idx_value + 0] * dsw * inr)
-//           svfloat32_t vdescrpt_a_deriv_0_2 = svmul_z(pg1, vr_2, tmp9);  // rr[2] * (inr3 * sw - descrpt_a[idx_value + 0] * dsw * inr)
-
-//           svfloat32_t vdescrpt_a_deriv_1_0 = svmul_z(pg1, vr_0, tmp10);  // rr[0] * (2. * rr[0] * inr4 * sw - descrpt_a[idx_value + 1] * dsw * inr)
-//           svfloat32_t vdescrpt_a_deriv_1_1 = svmul_z(pg1, vr_1, tmp10);  // rr[1] * (2. * rr[0] * inr4 * sw - descrpt_a[idx_value + 1] * dsw * inr)
-//           svfloat32_t vdescrpt_a_deriv_1_2 = svmul_z(pg1, vr_2, tmp10);  // rr[2] * (2. * rr[0] * inr4 * sw - descrpt_a[idx_value + 1] * dsw * inr)
-
-//           svfloat32_t vdescrpt_a_deriv_2_0 = svmul_z(pg1, vr_0, tmp11);  // rr[0] * (2. * rr[1] * inr4 * sw - descrpt_a[idx_value + 2] * dsw * inr)
-//           svfloat32_t vdescrpt_a_deriv_2_1 = svmul_z(pg1, vr_1, tmp11);  // rr[1] * (2. * rr[1] * inr4 * sw - descrpt_a[idx_value + 2] * dsw * inr)
-//           svfloat32_t vdescrpt_a_deriv_2_2 = svmul_z(pg1, vr_2, tmp11);  // rr[2] * (2. * rr[1] * inr4 * sw - descrpt_a[idx_value + 2] * dsw * inr)
-
-//           svfloat32_t vdescrpt_a_deriv_3_0 = svmul_z(pg1, vr_0, tmp12);  // rr[0] * (2. * rr[2] * inr4 * sw - descrpt_a[idx_value + 3] * dsw * inr)
-//           svfloat32_t vdescrpt_a_deriv_3_1 = svmul_z(pg1, vr_1, tmp12);  // rr[1] * (2. * rr[2] * inr4 * sw - descrpt_a[idx_value + 3] * dsw * inr)
-//           svfloat32_t vdescrpt_a_deriv_3_2 = svmul_z(pg1, vr_2, tmp12);  // rr[2] * (2. * rr[2] * inr4 * sw - descrpt_a[idx_value + 3] * dsw * inr)
-
-//           vdescrpt_a_deriv_1_0 = svsub_z(pg1, vdescrpt_a_deriv_1_0, tmp5); // rr[0] * (2. * rr[0] * inr4 * sw - descrpt_a[idx_value + 1] * dsw * inr) - inr2 * sw
-//           vdescrpt_a_deriv_2_1 = svsub_z(pg1, vdescrpt_a_deriv_2_1, tmp5); // rr[0] * (2. * rr[0] * inr4 * sw - descrpt_a[idx_value + 1] * dsw * inr) - inr2 * sw
-//           vdescrpt_a_deriv_3_2 = svsub_z(pg1, vdescrpt_a_deriv_3_2, tmp5); // rr[0] * (2. * rr[0] * inr4 * sw - descrpt_a[idx_value + 1] * dsw * inr) - inr2 * sw
-
-//           vdescrpt_a_0 = svmul_z(pg1, vdescrpt_a_0, vsw);
-//           vdescrpt_a_1 = svmul_z(pg1, vdescrpt_a_1, vsw);
-//           vdescrpt_a_2 = svmul_z(pg1, vdescrpt_a_2, vsw);
-//           vdescrpt_a_3 = svmul_z(pg1, vdescrpt_a_3, vsw);
-
-//           // 写回到descrpt_a 4*8 -> 8*4;
-//           svfloat32x4_t vdescrpt_a = svcreate4(vdescrpt_a_0,vdescrpt_a_1,vdescrpt_a_2,vdescrpt_a_3);
-//           svst4(pg1,&descrpt_a[idx_value],vdescrpt_a);
-          
-//           // 写回descrpt_a_deriv 12*8 -> 8*12
-//           float* base = &descrpt_a_deriv[idx_deriv];
-
-//           svbool_t ptrue = svptrue_b32();
-//           // sve transpose 实现
-//           // if(svptest_last(ptrue, pg1)){
-//           //   sve_transpose_12x8_inplace(
-//           //     vdescrpt_a_deriv_0_0,vdescrpt_a_deriv_0_1,vdescrpt_a_deriv_0_2,
-//           //     vdescrpt_a_deriv_1_0,vdescrpt_a_deriv_1_1,vdescrpt_a_deriv_1_2,
-//           //     vdescrpt_a_deriv_2_0,vdescrpt_a_deriv_2_1,vdescrpt_a_deriv_2_2,
-//           //     vdescrpt_a_deriv_3_0,vdescrpt_a_deriv_3_1,vdescrpt_a_deriv_3_2
-//           //   );
-//           //   svst1(ptrue, base   , vdescrpt_a_deriv_0_0);
-//           //   svst1(ptrue, base+ 8, vdescrpt_a_deriv_0_1);
-//           //   svst1(ptrue, base+16, vdescrpt_a_deriv_0_2);
-//           //   svst1(ptrue, base+24, vdescrpt_a_deriv_1_0);
-//           //   svst1(ptrue, base+32, vdescrpt_a_deriv_1_1);
-//           //   svst1(ptrue, base+40, vdescrpt_a_deriv_1_2);
-//           //   svst1(ptrue, base+48, vdescrpt_a_deriv_2_0);
-//           //   svst1(ptrue, base+56, vdescrpt_a_deriv_2_1);
-//           //   svst1(ptrue, base+64, vdescrpt_a_deriv_2_2);
-//           //   svst1(ptrue, base+72, vdescrpt_a_deriv_3_0);
-//           //   svst1(ptrue, base+80, vdescrpt_a_deriv_3_1);
-//           //   svst1(ptrue, base+88, vdescrpt_a_deriv_3_2);
-//           // }else{
-//             // scater 实现
-//             // compute index
-//             svuint32_t index0 = svindex_u32(0, 12);
-//             svuint32_t index1 = svindex_u32(1, 12);
-//             svuint32_t index2 = svindex_u32(2, 12);
-//             svuint32_t index3 = svindex_u32(3, 12);
-//             svuint32_t index4 = svindex_u32(4, 12);
-//             svuint32_t index5 = svindex_u32(5, 12);
-//             svuint32_t index6 = svindex_u32(6, 12);
-//             svuint32_t index7 = svindex_u32(7, 12);
-//             svuint32_t index8 = svindex_u32(8, 12);
-//             svuint32_t index9 = svindex_u32(9, 12);
-//             svuint32_t index10 = svindex_u32(10, 12);
-//             svuint32_t index11 = svindex_u32(11, 12);
-//             svst1_scatter_u32index_f32(pg1,base,index0,vdescrpt_a_deriv_0_0);
-//             svst1_scatter_u32index_f32(pg1,base,index1,vdescrpt_a_deriv_0_1);
-//             svst1_scatter_u32index_f32(pg1,base,index2,vdescrpt_a_deriv_0_2);
-//             svst1_scatter_u32index_f32(pg1,base,index3,vdescrpt_a_deriv_1_0);
-//             svst1_scatter_u32index_f32(pg1,base,index4,vdescrpt_a_deriv_1_1);
-//             svst1_scatter_u32index_f32(pg1,base,index5,vdescrpt_a_deriv_1_2);
-//             svst1_scatter_u32index_f32(pg1,base,index6,vdescrpt_a_deriv_2_0);
-//             svst1_scatter_u32index_f32(pg1,base,index7,vdescrpt_a_deriv_2_1);
-//             svst1_scatter_u32index_f32(pg1,base,index8,vdescrpt_a_deriv_2_2);
-//             svst1_scatter_u32index_f32(pg1,base,index9,vdescrpt_a_deriv_3_0);
-//             svst1_scatter_u32index_f32(pg1,base,index10,vdescrpt_a_deriv_3_1);
-//             svst1_scatter_u32index_f32(pg1,base,index11,vdescrpt_a_deriv_3_2);
-//           // }
-//           // lt_zero
-//           if(svptest_any(pg0, lt_zero)){
-//             break;
-//           }
-//         }
-//     }
-// }
 
 #endif

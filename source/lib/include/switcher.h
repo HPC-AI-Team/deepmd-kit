@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utilities.h"
+
 namespace deepmd{
 
 inline double

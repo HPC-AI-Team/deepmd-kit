@@ -6,80 +6,16 @@ namespace deepmd{
 
 template<typename FPTYPE> 
 void env_mat_a_cpu (
-    FPTYPE*	        descrpt_a,
-    FPTYPE*	        descrpt_a_deriv,
-    FPTYPE*	        rij_a,
+    std::vector<FPTYPE > &	        descrpt_a,
+    std::vector<FPTYPE > &	        descrpt_a_deriv,
+    std::vector<FPTYPE > &	        rij_a,
     const std::vector<FPTYPE > &	posi,
     const std::vector<int > &		type,
-    const int &				        i_idx,
-    const int *		                fmt_nlist_a,
+    const int &				i_idx,
+    const std::vector<int > &		fmt_nlist,
     const std::vector<int > &		sec, 
-    const float &			        rmin,
-    const float &			        rmax) ;
-
-template<typename FPTYPE> 
-void env_mat_a_cpu_normalize (
-    FPTYPE*	        descrpt_a,
-    FPTYPE*	        descrpt_a_deriv,
-    FPTYPE*	        rij_a,
-    const FPTYPE*      	posi,
-    const int*		    type,
-    const int &				        i_idx,
-    const int *		                fmt_nlist_a,
-    const std::vector<int > &		sec, 
-    const float &			        rmin,
-    const float &			        rmax,
-    const FPTYPE * avg, 
-    const FPTYPE * std
-    ) ;
-
-template<typename FPTYPE> 
-void env_mat_a_cpu_normalize_preprocessed (
-    FPTYPE*	        descrpt_a,
-    FPTYPE*	        descrpt_a_deriv,
-    FPTYPE*	        rij_a,
-    const FPTYPE*      	posi,
-    const int*		    type,
-    const int &				        i_idx,
-    const int *		                fmt_nlist_a,
-    const std::vector<int > &		sec, 
-    const float &			        rmin,
-    const float &			        rmax,
-    const FPTYPE * avg, 
-    const FPTYPE * std
-    ) ;
-
-#ifdef __ARM_FEATURE_SVE 
-
-void env_mat_a_cpu_sve_normalize_preprocessed (
-    double*	            descrpt_a,
-    double*		        descrpt_a_deriv,
-    double*		        rij_a,
-    const double*      	posi,
-    const int*		    type,
-    const int &				        i_idx,
-    const int *		                fmt_nlist_a,
-    const std::vector<int > &		sec_a, 
-    const float &			        rmin,
-    const float &			        rmax,
-    const double * avg, 
-    const double * std) ;
-
-void env_mat_a_cpu_sve_normalize_preprocessed (
-    float*	        descrpt_a,
-    float*	        descrpt_a_deriv,
-    float*	        rij_a,
-    const float*      	posi,
-    const int*		    type,
-    const int &				        i_idx,
-    const int *		                fmt_nlist_a,
-    const std::vector<int > &		sec_a, 
-    const float &			        rmin,
-    const float &			        rmax,
-    const float * avg, 
-    const float * std) ;
-
-#endif
+    const float &			rmin,
+    const float &			rmax) ;
 
 template<typename FPTYPE> 
 void env_mat_r_cpu (
@@ -88,11 +24,11 @@ void env_mat_r_cpu (
     std::vector<FPTYPE > &	        rij_a,
     const std::vector<FPTYPE > &	posi,
     const std::vector<int > &		type,
-    const int &				        i_idx,
+    const int &				i_idx,
     const std::vector<int > &		fmt_nlist_a,
     const std::vector<int > &		sec_a, 
-    const float &			        rmin,
-    const float &			        rmax);
+    const float &			rmin,
+    const float &			rmax);
 
 }
 
@@ -131,4 +67,3 @@ void env_mat_r (
     const std::vector<int > &		sec,
     const double &			rmin, 
     const double &			rmax);
-

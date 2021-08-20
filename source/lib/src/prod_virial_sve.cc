@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstring>
-#include "prod_virial.h"
+#include "prod_virial_opt.h"
 #include "tools.h"
 
 

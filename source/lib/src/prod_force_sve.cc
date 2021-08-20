@@ -1,6 +1,6 @@
 #include <stdexcept>
 #include <cstring>
-#include "prod_force.h"
+#include "prod_force_opt.h"
 #include "tools.h"
 
 #ifdef __ARM_FEATURE_SVE

@@ -4,6 +4,7 @@
 #include "region.h"
 #include "neighbor_list.h"
 #include "prod_env_mat.h"
+#include "prod_env_mat_opt.h"
 #include "tools.h"
 
 REGISTER_OP("ProdEnvMatA")
@@ -504,9 +505,12 @@ public:
         
         // double t1 = omp_get_wtime();
         
-        deepmd::prod_env_mat_a_cpu(
+        // deepmd::prod_env_mat_a_cpu(
+        //   em, em_deriv, rij, nlist, 
+        //   coord, type, inlist, max_nbor_size, avg, std, nloc, frame_nall, rcut_r, rcut_r_smth, sec_a);
+        deepmd::prod_env_mat_a_cpu_opt(
           em, em_deriv, rij, nlist, 
-          coord, type, inlist, max_nbor_size, avg, std, nloc, frame_nall, rcut_r, rcut_r_smth, sec_a);
+          coord, type, inlist, max_nbor_size, avg, std, nloc, frame_nall, rcut_r, rcut_r_smth, sec_a);       
 
         // double t2 = omp_get_wtime();
 

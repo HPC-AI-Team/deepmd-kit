@@ -17,9 +17,9 @@ then
 	curl -L -o lammps.tar.gz https://github.com/lammps/lammps/archive/refs/tags/${LAMMPS_VERSION}.tar.gz
 	tar xzf lammps.tar.gz
 fi
-curl -L -o lammps.patch https://github.com/deepmd-kit-recipes/lammps-dp-feedstock/raw/fdd954a1af4fadabe5c0dd2f3bed260a484175a4/recipe/deepmd.patch
-cd ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}
-patch -f -p1 < ../lammps.patch || true 
+# curl -L -o lammps.patch https://github.com/deepmd-kit-recipes/lammps-dp-feedstock/raw/fdd954a1af4fadabe5c0dd2f3bed260a484175a4/recipe/deepmd.patch
+# cd ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}
+# patch -f -p1 < ../lammps.patch || true 
 # 
 rm -rf ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}/src/USER-DEEPMD
 mkdir -p ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}/src/USER-DEEPMD

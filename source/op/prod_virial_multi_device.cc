@@ -1,5 +1,6 @@
 #include "custom_op.h"
 #include "prod_virial.h"
+#include "prod_virial_opt.h"
 
 REGISTER_OP("ProdVirialSeA")
     .Attr("T: {float, double}")
@@ -105,8 +106,7 @@ class ProdVirialSeAOp : public OpKernel {
       #endif // TENSORFLOW_USE_ROCM
     }
     else if (device == "CPU") {
-
-#ifdef __ARM_FEATURE_SVE 
+#ifdef __ARM_FEATURE_SVE
       deepmd::prod_virial_a_cpu_sve(    
           virial, atom_virial,
           net_deriv, in_deriv, rij, nlist, nloc, nall, nnei);

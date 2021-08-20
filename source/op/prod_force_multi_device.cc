@@ -1,5 +1,6 @@
 #include "custom_op.h"
 #include "prod_force.h"
+#include "prod_force_opt.h"
 
 REGISTER_OP("ProdForceSeA")
     .Attr("T: {float, double}")

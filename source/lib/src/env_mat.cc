@@ -1,6 +1,5 @@
 #include "env_mat.h"
 #include "switcher.h"
-#include <string.h>
 
 // output deriv size: n_sel_a_nei x 4 x 12				    
 //		      (1./rr, cos_theta, cos_phi, sin_phi)  x 4 x (x, y, z) 
@@ -96,39 +95,39 @@ template<typename FPTYPE>
 void 
 deepmd::
 env_mat_a_cpu (
-    FPTYPE*	                        descrpt_a,
-    FPTYPE*	                        descrpt_a_deriv,
-    FPTYPE*               	        rij_a,
+    std::vector<FPTYPE > &	        descrpt_a,
+    std::vector<FPTYPE > &	        descrpt_a_deriv,
+    std::vector<FPTYPE > &	        rij_a,
     const std::vector<FPTYPE > &	posi,
     const std::vector<int > &		type,
     const int &				i_idx,
-    const int *		                fmt_nlist_a,
+    const std::vector<int > &		fmt_nlist_a,
     const std::vector<int > &		sec_a, 
     const float &			rmin,
     const float &			rmax) 
 {  
-    memset(rij_a,'\0',sec_a.back() * 3 * sizeof(FPTYPE));
-    memset(descrpt_a,'\0',sec_a.back() * 4 * sizeof(FPTYPE));
-    memset(descrpt_a_deriv,'\0',sec_a.back() * 3 * 4 * sizeof(FPTYPE));
-
     // compute the diff of the neighbors
-    // rij_a.resize (sec_a.back() * 3);
-    // fill (rij_a.begin(), rij_a.end(), 0.0);
-    // 1./rr, cos(theta), cos(phi), sin(phi)
-    // descrpt_a.resize (sec_a.back() * 4);
-    // fill (descrpt_a.begin(), descrpt_a.end(), 0.0);
-    // deriv wrt center: 3
-    // descrpt_a_deriv.resize (sec_a.back() * 4 * 3);
-    // fill (descrpt_a_deriv.begin(), descrpt_a_deriv.end(), 0.0);
-    
-    for (int sec_iter = 0; sec_iter < int(sec_a.size()) - 1; ++sec_iter) {
-        for (int nei_iter = sec_a[sec_iter]; nei_iter < sec_a[sec_iter + 1]; ++nei_iter) {
-            if (fmt_nlist_a[nei_iter] < 0) break;
-            const int & j_idx = fmt_nlist_a[nei_iter];
+    rij_a.resize (sec_a.back() * 3);
+    fill (rij_a.begin(), rij_a.end(), 0.0);
+    for (int ii = 0; ii < int(sec_a.size()) - 1; ++ii) {
+        for (int jj = sec_a[ii]; jj < sec_a[ii + 1]; ++jj) {
+            if (fmt_nlist_a[jj] < 0) break;
+            const int & j_idx = fmt_nlist_a[jj];
             for (int dd = 0; dd < 3; ++dd) {
-                rij_a[nei_iter * 3 + dd] = posi[j_idx * 3 + dd] - posi[i_idx * 3 + dd];
+                rij_a[jj * 3 + dd] = posi[j_idx * 3 + dd] - posi[i_idx * 3 + dd];
             }
+        }
+    }
+    // 1./rr, cos(theta), cos(phi), sin(phi)
+    descrpt_a.resize (sec_a.back() * 4);
+    fill (descrpt_a.begin(), descrpt_a.end(), 0.0);
+    // deriv wrt center: 3
+    descrpt_a_deriv.resize (sec_a.back() * 4 * 3);
+    fill (descrpt_a_deriv.begin(), descrpt_a_deriv.end(), 0.0);
 
+    for (int sec_iter = 0; sec_iter < int(sec_a.size()) - 1; ++sec_iter) {
+        for (int nei_iter = sec_a[sec_iter]; nei_iter < sec_a[sec_iter+1]; ++nei_iter) {      
+            if (fmt_nlist_a[nei_iter] < 0) break;
             const FPTYPE * rr = &rij_a[nei_iter * 3];
             FPTYPE nr2 = deepmd::dot3(rr, rr);
             FPTYPE inr = 1./sqrt(nr2);
@@ -306,13 +305,13 @@ template
 void 
 deepmd::
 env_mat_a_cpu<double> (
-    double*	        descrpt_a,
-    double*	        descrpt_a_deriv,
-    double*	        rij_a,
+    std::vector<double > &	        descrpt_a,
+    std::vector<double > &	        descrpt_a_deriv,
+    std::vector<double > &	        rij_a,
     const std::vector<double > &	posi,
     const std::vector<int > &		type,
     const int &				i_idx,
-    const int *		                fmt_nlist,
+    const std::vector<int > &		fmt_nlist,
     const std::vector<int > &		sec, 
     const float &			rmin,
     const float &			rmax) ;
@@ -322,13 +321,13 @@ template
 void 
 deepmd::
 env_mat_a_cpu<float> (
-    float*	        descrpt_a,
-    float*	        descrpt_a_deriv,
-    float*	        rij_a,
+    std::vector<float > &	        descrpt_a,
+    std::vector<float > &	        descrpt_a_deriv,
+    std::vector<float > &	        rij_a,
     const std::vector<float > &		posi,
     const std::vector<int > &		type,
     const int &				i_idx,
-    const int *		                fmt_nlist,
+    const std::vector<int > &		fmt_nlist,
     const std::vector<int > &		sec, 
     const float &			rmin,
     const float &			rmax) ;
@@ -364,5 +363,4 @@ env_mat_r_cpu<float> (
     const std::vector<int > &		sec, 
     const float &			rmin,
     const float &			rmax) ;
-
 
