@@ -1,2 +1,0 @@
-model_checkpoint_path: "/data/home/guozhuoqiang/deepmd-kit/examples/copper/x86_64/model.ckpt"
-all_model_checkpoint_paths: "/data/home/guozhuoqiang/deepmd-kit/examples/copper/x86_64/model.ckpt"

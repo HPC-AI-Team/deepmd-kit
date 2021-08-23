@@ -37,6 +37,7 @@ cp -r ${DEEPMD_BUILD_DIR}/USER-DEEPMD/* ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERS
 # make install
 
 lammps_root=${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}
+cp -r $deepmd_root/script/x86_64/x86_64_lammps_patch/* $lammps_root/src
 cd $lammps_root/src
 # make clean-all
 make no-user-deepmd
