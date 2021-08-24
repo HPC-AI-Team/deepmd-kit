@@ -21,8 +21,6 @@ cd $deepmd_root
 pip install packaging
 pip install scikit-build
 
-export DP_VARIANT=cpu
-# export DP_VARIANT=cuda
 
 python ./setup.py install -j48
 

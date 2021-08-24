@@ -1,0 +1,126 @@
+LAMMPS (29 Oct 2020)
+  using 1 OpenMP thread(s) per MPI task
+units           metal
+boundary        p p p
+atom_style      atomic
+
+neighbor        2.0 bin
+neigh_modify    every 50 delay 0 check no
+
+# lattice       	fcc 3.6342
+# region        	box block 0 3 0 3 0 3
+# create_box    	1 box
+# create_atoms    1 box
+
+read_data	    ../lmp/copper.lmp
+Reading data file ...
+  orthogonal box = (0.0000000 0.0000000 0.0000000) to (10.902600 10.902600 10.902600)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  108 atoms
+  reading velocities ...
+  108 velocities
+  read_data CPU = 0.003 seconds
+mass		    1 63.546
+
+replicate     	1 1 1
+Replicating atoms ...
+  orthogonal box = (0.0000000 0.0000000 0.0000000) to (10.902600 10.902600 10.902600)
+  1 by 1 by 1 MPI processor grid
+  108 atoms
+  replicate CPU = 0.000 seconds
+
+pair_style	    deepmd ../model/graph-original.pb
+Summary of lammps deepmd module ...
+  >>> Info of deepmd-kit:
+  installed to:       /data/home/guozhuoqiang/deepmd-kit/dp
+  source:             v1.2.2-821-g4e8764e-dirty
+  source brach:       fugaku
+  source commit:      4e8764e
+  source commit at:   2021-08-23 13:36:07 +0800
+  surpport model ver.:1.0 
+  build float prec:   double
+  build with tf inc:  /data/home/guozhuoqiang/software/tensorflow-gpu-2.4/include;/data/home/guozhuoqiang/software/tensorflow-gpu-2.4/include
+  build with tf lib:  /data/home/guozhuoqiang/software/tensorflow-gpu-2.4/lib/libtensorflow_cc.so;/data/home/guozhuoqiang/software/tensorflow-gpu-2.4/lib/libtensorflow_framework.so
+  set tf intra_op_parallelism_threads: 1
+  set tf inter_op_parallelism_threads: 1
+  >>> Info of lammps module:
+  use deepmd-kit at:  /data/home/guozhuoqiang/deepmd-kit/dp
+  source:             v1.2.2-821-g4e8764e-dirty
+  source branch:      fugaku
+  source commit:      4e8764e
+  source commit at:   2021-08-23 13:36:07 +0800
+  build float prec:   double
+  build with tf inc:  /data/home/guozhuoqiang/software/tensorflow-gpu-2.4/include;/data/home/guozhuoqiang/software/tensorflow-gpu-2.4/include
+  build with tf lib:  /data/home/guozhuoqiang/software/tensorflow-gpu-2.4/lib/libtensorflow_cc.so;/data/home/guozhuoqiang/software/tensorflow-gpu-2.4/lib/libtensorflow_framework.so
+  >>> Info of model(s):
+  using   1 model(s): ../model/graph-original.pb 
+  rcut in model:      8
+  ntypes in model:    1
+pair_coeff
+
+velocity        all create 330.0 23456789
+
+fix             1 all nve
+timestep        0.0005
+thermo_style    custom step pe ke etotal temp press vol
+thermo          20
+
+
+run             99
+Neighbor list info ...
+  update every 50 steps, delay 0 steps, check no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 10
+  ghost atom cutoff = 10
+  binsize = 5, bins = 3 3 3
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair deepmd, perpetual
+      attributes: , newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+Setting up Verlet run ...
+  Unit style    : metal
+  Current step  : 0
+  Time step     : 0.0005
+Per MPI rank memory allocation (min/avg/max) = 2.671 | 2.671 | 2.671 Mbytes
+Step PotEng KinEng TotEng Temp Press Volume 
+       0   -398.07772    4.5641757   -393.51354          330    23916.817    1295.9559 
+      20   -397.74867     4.235148   -393.51352    306.21057    24939.076    1295.9559 
+      40   -397.55143    4.0379188   -393.51351    291.95046     25565.63    1295.9559 
+      60   -397.52827    4.0147426   -393.51352    290.27477    25619.269    1295.9559 
+      80   -397.62817    4.1146355   -393.51354    297.49725    25256.022    1295.9559 
+      99   -397.77133    4.2577898   -393.51354    307.84762    24754.816    1295.9559 
+Loop time of 82.7176 on 1 procs for 99 steps with 108 atoms
+
+Performance: 0.052 ns/day, 464.184 hours/ns, 1.197 timesteps/s
+91.6% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 82.713     | 82.713     | 82.713     |   0.0 | 99.99
+Neigh   | 0.0013416  | 0.0013416  | 0.0013416  |   0.0 |  0.00
+Comm    | 0.0019779  | 0.0019779  | 0.0019779  |   0.0 |  0.00
+Output  | 0.00043739 | 0.00043739 | 0.00043739 |   0.0 |  0.00
+Modify  | 0.00056783 | 0.00056783 | 0.00056783 |   0.0 |  0.00
+Other   |            | 0.0003871  |            |       |  0.00
+
+Nlocal:        108.000 ave         108 max         108 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:        2348.00 ave        2348 max        2348 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:        0.00000 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0.0000000
+Neighbor list builds = 1
+Dangerous builds not checked
+
+#write_data	copper.lmp
+
+Please see the log.cite file for references relevant to this simulation
+
+Total wall time: 0:01:23

@@ -20,14 +20,14 @@ export TF_CPP_MIN_LOG_LEVEL=3
 export OMP_NUM_THREADS=1
 export DEEPMD_NUM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
-mpiexec -n 1 --bind-to core --report-bindings lmp_serial -echo screen -in ../lmp/in.water_compress_preprocess_27 &> run_compress_preprocess_1_27_1.log
+mpiexec -n 1 --bind-to core --report-bindings lmp_serial -echo screen -in ../lmp/in.copper_compress_preprocess_27 &> run_compress_preprocess_1_27_1.log
 
 export OMP_NUM_THREADS=8
 export DEEPMD_NUM_THREADS=8
 export TF_INTER_OP_PARALLELISM_THREADS=8
-mpiexec -n 1 --bind-to numa --report-bindings lmp_mpi  -echo screen -in ../lmp/in.water_compress_preprocess_27 &> run_compress_preprocess_1_27_8.log
+mpiexec -n 1 --bind-to numa --report-bindings lmp_mpi  -echo screen -in ../lmp/in.copper_compress_preprocess_27 &> run_compress_preprocess_1_27_8.log
 
 export OMP_NUM_THREADS=8
 export DEEPMD_NUM_THREADS=8
 export TF_INTER_OP_PARALLELISM_THREADS=8
-mpiexec -n 2 --bind-to numa --report-bindings lmp_mpi  -echo screen -in ../lmp/in.water_compress_preprocess_27 &> run_compress_preprocess_1_27_16.log
+mpiexec -n 2 --bind-to numa --report-bindings lmp_mpi  -echo screen -in ../lmp/in.copper_compress_preprocess_27 &> run_compress_preprocess_1_27_16.log

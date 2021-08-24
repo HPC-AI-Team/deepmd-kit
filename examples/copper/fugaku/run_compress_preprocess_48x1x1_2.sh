@@ -19,4 +19,5 @@ export HAVE_PREPROCESSED=1
 export TF_CPP_MIN_LOG_LEVEL=3
 
 export DEEPMD_NUM_THREADS=1
+
 mpiexec lmp_mpi -echo screen -in ../lmp/in.copper_compress_preprocess_2

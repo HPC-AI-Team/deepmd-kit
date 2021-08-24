@@ -1,4 +1,4 @@
-#!/bin/bash
+# !/bin/bash
 #PJM -L "node=1"               # Number of node
 #PJM -L "freq=2200"                         
 #PJM -L "rscgrp=small"     # Specify resource group
@@ -9,19 +9,19 @@ set -ex
 
 
 
-source $deepmd_root/script/fugaku/env.sh
-# bash $deepmd_root/script/fugaku/build_deepmd.sh
-
+source $deepmd_root/script/x86_64/env.sh
+# bash $deepmd_root/script/x86_64/build_deepmd.sh
 
 export TF_CPP_MIN_LOG_LEVEL=3
+export HAVE_PREPROCESSED=1
 export TF_PROFILE=1
+
 export DEEPMD_NUM_THREADS=1
 export OMP_NUM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
 export TF_INTRA_OP_PARALLELISM_THREADS=1
 
+
 rm -f profiler.json_*
-
-dp test -m ../model/graph-original.pb -s ../data/init/cu.fcc.02x02x02/02.md/sys-0032/deepmd -n 1
-
+dp test -m ../model/graph-compress-preprocess.pb -s ../data/init/cu.fcc.02x02x02/02.md/sys-0032/deepmd -n 1
 # python $deepmd_root/_skbuild/linux-x86_64-3.7/cmake-install/deepmd/tools/profiler_visualization_topk.py profiler

@@ -12,5 +12,6 @@ export TF_INTER_OP_PARALLELISM_THREADS=1
 export TF_INTRA_OP_PARALLELISM_THREADS=1
 # export PRINT_TIME=1
 
-lmp_serial -echo screen -in ../lmp/in.water_1
-# mpiexec -n 1 lmp_mpi -echo screen -in ../lmp/in.water_1
+export CUDA_VISIBLE_DEVICES=-1
+# lmp_serial -echo screen -in ../lmp/in.water_1
+mpiexec -n 1 lmp_mpi -echo screen -in ../lmp/in.water_1ZZ

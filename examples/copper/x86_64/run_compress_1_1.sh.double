@@ -1,5 +1,18 @@
 LAMMPS (29 Oct 2020)
   using 1 OpenMP thread(s) per MPI task
+units           metal
+boundary        p p p
+atom_style      atomic
+
+neighbor        2.0 bin
+neigh_modify    every 50 delay 0 check no
+
+# lattice       	fcc 3.6342
+# region        	box block 0 3 0 3 0 3
+# create_box    	1 box
+# create_atoms    1 box
+
+read_data	    ../lmp/copper.lmp
 Reading data file ...
   orthogonal box = (0.0000000 0.0000000 0.0000000) to (10.902600 10.902600 10.902600)
   1 by 1 by 1 MPI processor grid
@@ -8,11 +21,54 @@ Reading data file ...
   reading velocities ...
   108 velocities
   read_data CPU = 0.002 seconds
+
+mass		    1 63.546
+
+replicate     	1 1 1
 Replicating atoms ...
   orthogonal box = (0.0000000 0.0000000 0.0000000) to (10.902600 10.902600 10.902600)
   1 by 1 by 1 MPI processor grid
   108 atoms
   replicate CPU = 0.000 seconds
+
+pair_style	    deepmd ../model/graph-compress.pb
+Summary of lammps deepmd module ...
+  >>> Info of deepmd-kit:
+  installed to:       /data/home/guozhuoqiang/deepmd-kit/dp
+  source:             v1.2.2-821-g4e8764e-dirty
+  source brach:       fugaku
+  source commit:      4e8764e
+  source commit at:   2021-08-23 13:36:07 +0800
+  surpport model ver.:1.0 
+  build float prec:   double
+  build with tf inc:  /data/home/guozhuoqiang/software/tensorflow-gpu-2.4/include;/data/home/guozhuoqiang/software/tensorflow-gpu-2.4/include
+  build with tf lib:  /data/home/guozhuoqiang/software/tensorflow-gpu-2.4/lib/libtensorflow_cc.so;/data/home/guozhuoqiang/software/tensorflow-gpu-2.4/lib/libtensorflow_framework.so
+  set tf intra_op_parallelism_threads: 1
+  set tf inter_op_parallelism_threads: 1
+  >>> Info of lammps module:
+  use deepmd-kit at:  /data/home/guozhuoqiang/deepmd-kit/dp
+  source:             v1.2.2-821-g4e8764e-dirty
+  source branch:      fugaku
+  source commit:      4e8764e
+  source commit at:   2021-08-23 13:36:07 +0800
+  build float prec:   double
+  build with tf inc:  /data/home/guozhuoqiang/software/tensorflow-gpu-2.4/include;/data/home/guozhuoqiang/software/tensorflow-gpu-2.4/include
+  build with tf lib:  /data/home/guozhuoqiang/software/tensorflow-gpu-2.4/lib/libtensorflow_cc.so;/data/home/guozhuoqiang/software/tensorflow-gpu-2.4/lib/libtensorflow_framework.so
+  >>> Info of model(s):
+  using   1 model(s): ../model/graph-compress.pb 
+  rcut in model:      8
+  ntypes in model:    1
+pair_coeff
+
+velocity        all create 330.0 23456789
+
+fix             1 all nve
+timestep        0.0005
+thermo_style    custom step pe ke etotal temp press vol
+thermo          20
+
+
+run             99
 Neighbor list info ...
   update every 50 steps, delay 0 steps, check no
   max neighbors/atom: 2000, page size: 100000
@@ -25,6 +81,10 @@ Neighbor list info ...
       pair build: full/bin/atomonly
       stencil: full/bin/3d
       bin: standard
+Setting up Verlet run ...
+  Unit style    : metal
+  Current step  : 0
+  Time step     : 0.0005
 Per MPI rank memory allocation (min/avg/max) = 2.671 | 2.671 | 2.671 Mbytes
 Step PotEng KinEng TotEng Temp Press Volume 
        0   -398.07772    4.5641757   -393.51355          330     23916.87    1295.9559 
@@ -59,6 +119,8 @@ Total # of neighbors = 0
 Ave neighs/atom = 0.0000000
 Neighbor list builds = 1
 Dangerous builds not checked
+
+#write_data	copper.lmp
 
 Please see the log.cite file for references relevant to this simulation
 

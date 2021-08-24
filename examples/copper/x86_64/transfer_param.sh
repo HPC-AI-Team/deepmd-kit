@@ -28,9 +28,8 @@ mkdir -p ../model/float/original
 mkdir -p ../model/float/compress
 mkdir -p ../model/float/compress-preprocess
 
-# dp transfer -O ../model/double/graph.pb -r ../model/float/graph.pb -o ../model/float/graph.pb
-# cp ../model/float/graph.pb ../model/float/original/graph-original-baseline.pb
-# dp transfer -O ../model/double/graph.pb -r ../model/float/graph.pb -o ../model/float/graph.pb
+dp transfer -O ../model/double/graph.pb -r ../model/float/graph.pb -o ../model/float/graph.pb
+cp ../model/float/graph.pb ../model/float/original/graph-original-baseline.pb
 
 dp compress ../train/input_v2_compat_compress_float.json -i ../model/double/graph.pb -o ../model/float/compress/graph-compress-baseline.pb
 # dp compress -i ../model/double/graph.pb -o ../model/float/compress/graph-compress-baseline.pb
