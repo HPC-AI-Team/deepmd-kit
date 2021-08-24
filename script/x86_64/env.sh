@@ -31,7 +31,7 @@ FLOAT_PREC=high
 DEEPMD_BUILD_DIR=$deepmd_root/source/build
 LAMMPS_BUILD_DIR=$deepmd_root/source/build_lammps
 
-export DP_VARIANT=cpu
+export DP_VARIANT=cuda
 export DP_FLOAT_PREC=high
 
 export CUDA_VISIBLE_DEVICES=-1
