@@ -41,14 +41,11 @@ cp -r $deepmd_root/script/x86_64/x86_64_lammps_patch/* $lammps_root/src
 cd $lammps_root/src
 # make clean-all
 make no-user-deepmd
-make yes-mpiio
 make yes-user-deepmd
 make yes-kspace
-# make no-mpiio
-# make serial -j16
+make no-mpiio
+make serial -j16
 make yes-mpiio
 make mpi -j16
-
-
 
 
