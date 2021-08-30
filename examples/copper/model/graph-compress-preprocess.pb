@@ -1,1 +1,1 @@
-../model/double/compress-preprocess/graph-compress-preprocess-gemm_tanh.pb
+../model/double/compress-preprocess/graph-compress-preprocess-baseline.pb

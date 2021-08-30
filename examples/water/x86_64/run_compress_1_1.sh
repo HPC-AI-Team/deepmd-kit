@@ -9,8 +9,11 @@ source $deepmd_root/script/x86_64/env.sh
 export DEEPMD_NUM_THREADS=1
 export OMP_NUM_THREADS=1
 export TF_INTER_OP_PARALLELISM_THREADS=1
-export TF_INTRA_OP_PARALLELISM_THREADS=1
+export TF_INTRA_OP_PARALLELISM_THREADS=-1
 # export PRINT_TIME=1
 
+
 # mpiexec -n 1 lmp_mpi -echo screen -in ../lmp/in.water_compress_1
+# nsys profile lmp_serial -echo screen -in ../lmp/in.water_compress_1
+# ncu lmp_serial -echo screen -in ../lmp/in.water_compress_1
 lmp_serial -echo screen -in ../lmp/in.water_compress_1

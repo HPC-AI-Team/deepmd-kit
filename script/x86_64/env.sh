@@ -34,7 +34,7 @@ LAMMPS_BUILD_DIR=$deepmd_root/source/build_lammps
 export DP_VARIANT=cuda
 export DP_FLOAT_PREC=high
 
-export CUDA_VISIBLE_DEVICES=-1
+export CUDA_VISIBLE_DEVICES=1
 
 export LD_PRELOAD=/data/home/guozhuoqiang/software/spack-0.16.2/opt/spack/linux-centos7-haswell/gcc-4.8.5/gcc-7.5.0-apfqefcs5zty75lid2nxwyh5f4uagvtp/lib64/libgomp.so.1
 # # gcc
