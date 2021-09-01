@@ -36,3 +36,7 @@ build_tests
 build_cc_tests
 examples/copper/data
 log.lammps
+
+/lammps-*
+/model
+/training-data

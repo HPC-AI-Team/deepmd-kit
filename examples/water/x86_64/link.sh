@@ -15,7 +15,7 @@ name=$2
 echo "precision : $precision"
 echo "name : $name"
 
-model_path=../model
+model_path=$deepmd_root/model/water
 
 type_list=(original compress compress-preprocess)
 

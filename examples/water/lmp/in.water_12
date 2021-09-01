@@ -11,7 +11,7 @@ read_data	    ../lmp/water.lmp
 mass 		    1 16
 mass		    2 2
 replicate       2 2 3 bbox
-pair_style	    deepmd ../model/graph-original.pb
+pair_style	    deepmd ../../../model/water/graph-original.pb
 pair_coeff	
 
 velocity        all create 330.0 23456789

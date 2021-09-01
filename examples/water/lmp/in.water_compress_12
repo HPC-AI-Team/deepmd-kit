@@ -13,7 +13,7 @@ mass		    2 2
 
 replicate       2 2 3 bbox
 
-pair_style	    deepmd ../model/graph-compress.pb
+pair_style	    deepmd ../../../model/water/graph-compress.pb
 pair_coeff	
 
 velocity        all create 330.0 23456789 loop local

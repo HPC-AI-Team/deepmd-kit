@@ -1,1 +1,0 @@
-../model/double/compress-preprocess/graph-compress-preprocess-baseline.pb
