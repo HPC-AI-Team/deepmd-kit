@@ -7,9 +7,10 @@ set -x
 
 model_path=$deepmd_root/model/water
 
-# mkdir -p $model_path/double/original
-# mkdir -p $model_path/double/compress
-# mkdir -p $model_path/double/compress-preprocess
+mkdir -p $model_path/double/original
+mkdir -p $model_path/double/compress
+mkdir -p $model_path/double/compress-preprocess
+
 cp $model_path/double/graph.pb $model_path/double/original/graph-original-baseline.pb
 # dp transfer -O $model_path/double/graph.pb -r $model_path/double/original/graph-original-gemm.pb -o $model_path/double/original/graph-original-gemm.pb
 # dp transfer -O $model_path/double/graph.pb -r $model_path/double/original/graph-original-gemm_tanh.pb -o $model_path/double/original/graph-original-gemm_tanh.pb

@@ -6,8 +6,7 @@ export deepmd_root=$HOME/deepmd-kit
 export tensorflow_root=$HOME/software/tensorflow-gpu-2.4
 export lammps_root=$deepmd_root/source/build_lammps/lammps-stable_29Oct2020/
 
-source $HOME/software/cmake/env.sh
-
+spack load cmake
 spack load openblas
 
 if [ -z $deepmd_root ]
@@ -36,7 +35,6 @@ export DP_FLOAT_PREC=high
 
 export CUDA_VISIBLE_DEVICES=1
 
-export LD_PRELOAD=/data/home/guozhuoqiang/software/spack-0.16.2/opt/spack/linux-centos7-haswell/gcc-4.8.5/gcc-7.5.0-apfqefcs5zty75lid2nxwyh5f4uagvtp/lib64/libgomp.so.1
 # # gcc
 export CC="gcc -Ofast -fopenmp -lopenblas"
 export CXX="g++ -Ofast -fopenmp -lopenblas"

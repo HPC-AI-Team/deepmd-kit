@@ -3,7 +3,7 @@ lcurve*ref
 tab.xvg
 
 # for training dirs
-*.out
+
 out.json
 model.ckpt*
 checkpoint

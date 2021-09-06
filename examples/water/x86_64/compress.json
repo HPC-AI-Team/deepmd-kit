@@ -47,7 +47,7 @@
         "compress": {
             "type": "se_e2_a",
             "compress": true,
-            "model_file": "/data/home/guozhuoqiang/deepmd-kit/model/water/double/original/graph-original-baseline.pb",
+            "model_file": "/home/guozhuoqiang/deepmd-kit/model/water/double/original/graph-original-baseline.pb",
             "table_config": [
                 5,
                 0.01,
