@@ -13,6 +13,7 @@ events.*
 graph-compress-preprocess.pb
 graph-compress.pb
 graph-original.pb
+model
 
 # for lammps
 log.cite
