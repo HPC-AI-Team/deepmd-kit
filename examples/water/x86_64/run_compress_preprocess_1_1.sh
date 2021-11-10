@@ -6,7 +6,10 @@
 #PJM --mpi "max-proc-per-node=48"          # Maximum number of MPI processes created per node
 #PJM -s                                    # Statistical information output
 
-export deepmd_root=$HOME/deepmd-kit
+export if [ -z $deepmd_root ]
+then
+    echo "not found envoriment variable : deepmd_root"
+fi
 source $deepmd_root/script/x86_64/env.sh
 # bash $deepmd_root/script/x86_64/build_deepmd.sh
 

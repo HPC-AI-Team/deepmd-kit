@@ -1,6 +1,9 @@
 #!/bin/bash -e
 
-deepmd_root=$HOME/gzq/deepmd-kit
+if [ -z $deepmd_root ]
+then
+    echo "not found envoriment variable : deepmd_root"
+fi
 source $deepmd_root/script/fugaku/env.sh
 
 cd $deepmd_root
@@ -17,5 +20,5 @@ make install
 
 cd $deepmd_root
 
-python ./setup.py install -j48
+# python ./setup.py install -j48
 

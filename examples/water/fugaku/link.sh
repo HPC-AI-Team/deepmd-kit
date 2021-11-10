@@ -19,10 +19,12 @@ model_path=../model
 
 type_list=(original compress compress-preprocess)
 
+cd $model_path
+
 for type in ${type_list[*]}
 do 
-    origin_model_path=$model_path/$precision/$type/graph-$type-$name.pb
-    link_path=$model_path/graph-$type.pb
+    origin_model_path=./$precision/$type/graph-$type-$name.pb
+    link_path=graph-$type.pb
     if [ -e $origin_model ]
     then
         ln -sf $origin_model_path $link_path

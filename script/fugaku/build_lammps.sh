@@ -1,9 +1,11 @@
 #!/bin/bash -e
 
-deepmd_root=$HOME/gzq/deepmd-kit
+if [ -z $deepmd_root ]
+then
+    echo "not found envoriment variable : deepmd_root"
+fi
 source $deepmd_root/script/fugaku/env.sh
-bash $deepmd_root/script/fugaku/build_deepmd.sh
-
+# bash $deepmd_root/script/fugaku/build_deepmd.sh
 
 cd $DEEPMD_BUILD_DIR
 make lammps
@@ -14,8 +16,12 @@ cd $LAMMPS_BUILD_DIR
 LAMMPS_VERSION=stable_29Oct2020
 if [ ! -d "lammps-${LAMMPS_VERSION}" ]
 then
-	curl -L -o lammps.tar.gz https://github.com/lammps/lammps/archive/refs/tags/${LAMMPS_VERSION}.tar.gz
-	tar xzf lammps.tar.gz
+    if [ ! -e "$deepmd_root/../package/${LAMMPS_VERSION}.tar.gz" ]
+    then
+        wget https://github.com/lammps/lammps/archive/refs/tags/${LAMMPS_VERSION}.tar.gz
+        mv ${LAMMPS_VERSION}.tar.gz $deepmd_root/../package
+    fi
+    tar -xzvf $deepmd_root/../package/${LAMMPS_VERSION}.tar.gz
 fi
 # curl -L -o lammps.patch https://github.com/deepmd-kit-recipes/lammps-dp-feedstock/raw/fdd954a1af4fadabe5c0dd2f3bed260a484175a4/recipe/deepmd.patch
 # cd ${LAMMPS_BUILD_DIR}/lammps-${LAMMPS_VERSION}
@@ -47,6 +53,6 @@ cd $lammps_root/src
 make yes-user-deepmd
 make yes-kspace
 # make no-mpiio
-# make serial -j16
+# make serial -j48
 make yes-mpiio
-make mpi -j16
+make mpi -j48

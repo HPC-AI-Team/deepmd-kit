@@ -1,6 +1,9 @@
 #!/bin/bash
 
-deepmd_root=$HOME/deepmd-kit
+if [ -z $deepmd_root ]
+then
+    echo "not found envoriment variable : deepmd_root"
+fi
 source $deepmd_root/script/x86_64/env.sh
 
 if [ $# != 2 ]
