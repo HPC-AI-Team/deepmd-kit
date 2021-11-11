@@ -43,17 +43,17 @@ run_model (ENERGYTYPE &			dener,
 
   std::vector<Tensor> output_tensors;
   check_status (session->Run(input_tensors, 
-			    {"o_energy", "o_force", "o_atom_energy", "o_virial"}, 
+			    {"o_energy", "o_force", "o_atom_energy", "o_atom_virial"}, 
 			    {}, 
 			    &output_tensors));
   
   Tensor output_e = output_tensors[0];
   Tensor output_f = output_tensors[1];
-  Tensor output_v = output_tensors[3];
+  Tensor output_av = output_tensors[3];
 
   auto oe = output_e.flat <ENERGYTYPE> ();
   auto of = output_f.flat <VALUETYPE> ();
-  auto ov = output_v.flat <VALUETYPE> ();
+  auto oav = output_av.flat <VALUETYPE> ();
 
   dener = oe(0);
   std::vector<VALUETYPE> dforce (3 * nall);
@@ -61,26 +61,17 @@ run_model (ENERGYTYPE &			dener,
   for (unsigned ii = 0; ii < nall * 3; ++ii){
     dforce[ii] = of(ii);
   }
-  // for (int ii = 0; ii < nall; ++ii) {
-  //   dvirial[0] += 1.0 * oav(9*ii+0);
-  //   dvirial[1] += 1.0 * oav(9*ii+1);
-  //   dvirial[2] += 1.0 * oav(9*ii+2);
-  //   dvirial[3] += 1.0 * oav(9*ii+3);
-  //   dvirial[4] += 1.0 * oav(9*ii+4);
-  //   dvirial[5] += 1.0 * oav(9*ii+5);
-  //   dvirial[6] += 1.0 * oav(9*ii+6);
-  //   dvirial[7] += 1.0 * oav(9*ii+7);
-  //   dvirial[8] += 1.0 * oav(9*ii+8);
-  // }
-  dvirial[0] = ov(0);
-  dvirial[1] = ov(1);
-  dvirial[2] = ov(2);
-  dvirial[3] = ov(3);
-  dvirial[4] = ov(4);
-  dvirial[5] = ov(5);
-  dvirial[6] = ov(6);
-  dvirial[7] = ov(7);
-  dvirial[8] = ov(8);
+  for (int ii = 0; ii < nall; ++ii) {
+    dvirial[0] += 1.0 * oav(9*ii+0);
+    dvirial[1] += 1.0 * oav(9*ii+1);
+    dvirial[2] += 1.0 * oav(9*ii+2);
+    dvirial[3] += 1.0 * oav(9*ii+3);
+    dvirial[4] += 1.0 * oav(9*ii+4);
+    dvirial[5] += 1.0 * oav(9*ii+5);
+    dvirial[6] += 1.0 * oav(9*ii+6);
+    dvirial[7] += 1.0 * oav(9*ii+7);
+    dvirial[8] += 1.0 * oav(9*ii+8);
+  }
   dforce_ = dforce;
   atommap.backward (dforce_.begin(), dforce.begin(), 3);
 }
@@ -190,35 +181,30 @@ init (const std::string & model, const int & gpu_rank, const std::string & file_
     std::cerr << "WARNING: deepmd-kit should not be initialized twice, do nothing at the second call of initializer" << std::endl;
     return ;
   }
+  SessionOptions options;
+  get_env_nthreads(num_intra_nthreads, num_inter_nthreads);
+  options.config.set_inter_op_parallelism_threads(num_inter_nthreads);
+  options.config.set_intra_op_parallelism_threads(num_intra_nthreads);
 
-  if(session == NULL){
-    SessionOptions options;
-    get_env_nthreads(num_intra_nthreads, num_inter_nthreads);
-    options.config.set_inter_op_parallelism_threads(num_inter_nthreads);
-    options.config.set_intra_op_parallelism_threads(num_intra_nthreads);
-
-    if(file_content.size() == 0)
-      check_status (ReadBinaryProto(Env::Default(), model, &graph_def));
-    else
-      graph_def.ParseFromString(file_content);
-    int gpu_num = -1;
-    #if GOOGLE_CUDA || TENSORFLOW_USE_ROCM
-    DPGetDeviceCount(gpu_num); // check current device environment
-    if (gpu_num > 0) {
-      options.config.set_allow_soft_placement(true);
-      options.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.9);
-      options.config.mutable_gpu_options()->set_allow_growth(true);
-      DPErrcheck(DPSetDevice(gpu_rank % gpu_num));
-      std::string str = "/gpu:";
-      str += std::to_string(gpu_rank % gpu_num);
-      graph::SetDefaultDevice(str, &graph_def);
-    }
-    #endif // GOOGLE_CUDA || TENSORFLOW_USE_ROCM
-
-    check_status (NewSession(options, &session));
-    check_status (session->Create(graph_def));
+  if(file_content.size() == 0)
+    check_status (ReadBinaryProto(Env::Default(), model, &graph_def));
+  else
+    graph_def.ParseFromString(file_content);
+  int gpu_num = -1;
+  #if GOOGLE_CUDA || TENSORFLOW_USE_ROCM
+  DPGetDeviceCount(gpu_num); // check current device environment
+  if (gpu_num > 0) {
+    options.config.set_allow_soft_placement(true);
+    options.config.mutable_gpu_options()->set_per_process_gpu_memory_fraction(0.9);
+    options.config.mutable_gpu_options()->set_allow_growth(true);
+    DPErrcheck(DPSetDevice(gpu_rank % gpu_num));
+    std::string str = "/gpu:";
+    str += std::to_string(gpu_rank % gpu_num);
+    graph::SetDefaultDevice(str, &graph_def);
   }
-
+  #endif // GOOGLE_CUDA || TENSORFLOW_USE_ROCM
+  check_status (NewSession(options, &session));
+  check_status (session->Create(graph_def));
   rcut = get_scalar<VALUETYPE>("descrpt_attr/rcut");
   cell_size = rcut;
   ntypes = get_scalar<int>("descrpt_attr/ntypes");
@@ -405,8 +391,8 @@ compute_inner (ENERGYTYPE &			dener,
 	       const std::vector<VALUETYPE> &	fparam,
 	       const std::vector<VALUETYPE> &	aparam)
 {
-    int nall = dcoord_.size() / 3;
-    int nloc = nall - nghost;
+  int nall = dcoord_.size() / 3;
+  int nloc = nall - nghost;
 
     validate_fparam_aparam(nloc, fparam, aparam);
     std::vector<std::pair<std::string, Tensor>> input_tensors;
@@ -475,7 +461,7 @@ compute (ENERGYTYPE &			dener,
 
         nlist_data.copy_from_nlist(lmp_list);
         nlist_data.shuffle(atommap);
-	      nlist_data.make_inlist(nlist);
+	nlist_data.make_inlist(nlist);
     }
 
     int ret = session_input_tensors (input_tensors, dcoord_, ntypes, datype_, dbox, nlist, fparam, aparam, atommap, nghost, ago);

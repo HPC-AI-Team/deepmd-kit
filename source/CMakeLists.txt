@@ -4,6 +4,11 @@ if (CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_LINK_WHAT_YOU_USE TRUE)
 endif ()
 
+option(BUILD_FUGAKU "Build for fugaku" OFF)
+if(BUILD_FUGAKU)
+  add_definitions(-D_FUGAKU)
+endif()
+
 # build cpp or python interfaces
 if (NOT DEFINED BUILD_CPP_IF) 
   set(BUILD_CPP_IF TRUE)
