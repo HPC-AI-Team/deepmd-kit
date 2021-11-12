@@ -7,6 +7,7 @@ fi
 
 # export tensorflow_root=/vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0
 export tensorflow_root=$deepmd_root/../dependents/TensorFlow-2.2.0
+# export tensorflow_root=/home/hp200266/u01036/gzq/DeepMD/package/Tensorflow-2.2.0
 
 lammps_version=stable_29Sep2021
 export lammps_root=$deepmd_root/../dependents/lammps-$lammps_version
@@ -21,5 +22,7 @@ export LD_LIBRARY_PATH=$tensorflow_root/lib:$tensorflow_root/lib64:$LD_LIBRARY_P
 
 export DP_VARIANT=cpu
 
-export CC="mpifcc -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0"
-export CXX="mpiFCC -Nclang -Ofast -fopenmp -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0"
+export CC="mpifcc -Nclang -Ofast -fopenmp -lfjlapacksve -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0"
+export CXX="mpiFCC -Nclang -Ofast -fopenmp -lfjlapacksve -mcpu=a64fx -march=armv8.3-a+sve -D_GLIBCXX_USE_CXX11_ABI=0"
+
+# export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
