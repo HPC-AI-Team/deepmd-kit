@@ -14,16 +14,6 @@ static bool get_env_preprocessed(){
     }
 }
 
-static int get_env_num_threads(){
-    char *var = getenv("DEEPMD_NUM_THREADS");
-    int ret = 12;
-    if(var != NULL){
-        ret = atoi(var);
-    }
-    // std::cout << "thread num : " << var << ", " << ret << std::endl;
-    return ret;
-}
-
 #ifdef __ARM_FEATURE_SVE 
 
 #define sve_soa2aos_12x8_inplace(v0,v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11){        \

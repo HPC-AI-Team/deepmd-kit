@@ -403,31 +403,6 @@ def parse_args(args: Optional[List[str]] = None):
         type=str, 
 		help='the output model',
     )
-
-# --------------------------------------------------------
-# * preprocess models
-    parser_transform = subparsers.add_parser(
-        'preprocess',
-        parents=[],
-        help='preprocess model, adjust tabulation layout !!!',
-    )
-    parser_transform.add_argument(
-        '-i',
-        "--input-model",
-        default = "frozen_model.pb",
-        type=str, 
-		help = "the input model",
-    )
-    parser_transform.add_argument(
-        "-o",
-        "--output-model",
-        default = "convert_out.pb",
-        type=str, 
-		help='the output model',
-    )
-
-# --------------------------------------------------------
-
     # --version
     parser.add_argument('--version', action='version', version='DeePMD-kit v%s' % __version__)
 
@@ -436,8 +411,6 @@ def parse_args(args: Optional[List[str]] = None):
         parser.print_help()
     else:
         parsed_args.log_level = get_ll(parsed_args.log_level)
-
-
 
     return parsed_args
 
@@ -478,8 +451,6 @@ def main():
         make_model_devi(**dict_args)
     elif args.command == "convert-from":
         convert(**dict_args)
-    elif args.command == "preprocess":
-        preprocess(**dict_args)
     elif args.command is None:
         pass
     else:

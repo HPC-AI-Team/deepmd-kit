@@ -21,7 +21,7 @@
 #endif
 
 #include "pair_deepmd.h"
-#include "tools.h"
+#include "api_tools.h"
 #include <omp.h>
 #include <iostream>
 #include <vector>

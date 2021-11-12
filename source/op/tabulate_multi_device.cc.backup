@@ -1,7 +1,5 @@
 #include "custom_op.h"
 #include "tabulate.h"
-#include "op_tools.h"
-#include "tabulate_packing.h"
 
 REGISTER_OP("TabulateFusion")
     .Attr("T: {float, double} = DT_DOUBLE")
@@ -39,7 +37,6 @@ class TabulateFusionOp : public OpKernel {
  public:
   explicit TabulateFusionOp(OpKernelConstruction* context) : OpKernel(context) {
     OP_REQUIRES_OK(context, context->GetAttr("last_layer_size", &last_layer_size));
-    have_preprocessed = get_env_preprocessed();
   }
   void Compute(OpKernelContext* context) override {
       deepmd::safe_compute(context, [this](OpKernelContext* context) {this->_Compute(context);});
@@ -93,25 +90,12 @@ class TabulateFusionOp : public OpKernel {
       #endif // TENSORFLOW_USE_ROCM
     }
     else if (device == "CPU") {
-        if(!have_preprocessed){
-            deepmd::tabulate_fusion_cpu(    
-                descriptor,
-                table, table_info, em_x, em, nloc, nnei, last_layer_size);
-        }else{
-// #ifdef __ARM_FEATURE_SVE
-//             deepmd::tabulate_fusion_cpu_packing_sve(    
-//                 descriptor, 
-//                 table, table_info, em_x, em, nloc, nnei, last_layer_size);  
-// #else 
-            deepmd::tabulate_fusion_cpu_packing(    
-                descriptor, 
-                table, table_info, em_x, em, nloc, nnei, last_layer_size); 
-// #endif
-        }
+      deepmd::tabulate_fusion_cpu(    
+          descriptor,
+          table, table_info, em_x, em, nloc, nnei, last_layer_size);
     }
   }
 private:
-    bool have_preprocessed = false;
     int last_layer_size;
     std::string device;
 };
@@ -119,9 +103,7 @@ private:
 template<typename Device, typename FPTYPE>
 class TabulateFusionGradOp : public OpKernel {
  public:
-  explicit TabulateFusionGradOp(OpKernelConstruction* context) : OpKernel(context) {
-    have_preprocessed = get_env_preprocessed();
-  }
+  explicit TabulateFusionGradOp(OpKernelConstruction* context) : OpKernel(context) {}
   void Compute(OpKernelContext* context) override {
       deepmd::safe_compute(context, [this](OpKernelContext* context) {this->_Compute(context);});
   }
@@ -180,25 +162,12 @@ class TabulateFusionGradOp : public OpKernel {
       #endif // TENSORFLOW_USE_ROCM
     }
     else if (device == "CPU") {
-        if(!have_preprocessed){
-            deepmd::tabulate_fusion_grad_cpu(    
-                dy_dem_x, dy_dem,
-                table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
-        }else{
-// #ifdef __ARM_FEATURE_SVE
-//             deepmd::tabulate_fusion_grad_cpu_packing_sve(    
-//                 dy_dem_x, dy_dem,
-//                 table, table_info, em_x, em, dy, nloc, nnei, last_layer_size); 
-// #else
-            deepmd::tabulate_fusion_grad_cpu_packing(    
-                dy_dem_x, dy_dem,
-                table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
-// #endif
-        }
+      deepmd::tabulate_fusion_grad_cpu(    
+          dy_dem_x, dy_dem,
+          table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
     }
   }
 private:
-    bool have_preprocessed = false;
     std::string device;
 };
 
