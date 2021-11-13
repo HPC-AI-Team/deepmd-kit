@@ -98,15 +98,15 @@ class TabulateFusionOp : public OpKernel {
                 descriptor,
                 table, table_info, em_x, em, nloc, nnei, last_layer_size);
         }else{
-// #ifdef __ARM_FEATURE_SVE
-//             deepmd::tabulate_fusion_cpu_packing_sve(    
-//                 descriptor, 
-//                 table, table_info, em_x, em, nloc, nnei, last_layer_size);  
-// #else 
+#ifdef __ARM_FEATURE_SVE
+            deepmd::tabulate_fusion_cpu_packing_sve(    
+                descriptor, 
+                table, table_info, em_x, em, nloc, nnei, last_layer_size);  
+#else 
             deepmd::tabulate_fusion_cpu_packing(    
                 descriptor, 
                 table, table_info, em_x, em, nloc, nnei, last_layer_size); 
-// #endif
+#endif
         }
     }
   }
@@ -185,15 +185,15 @@ class TabulateFusionGradOp : public OpKernel {
                 dy_dem_x, dy_dem,
                 table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
         }else{
-// #ifdef __ARM_FEATURE_SVE
-//             deepmd::tabulate_fusion_grad_cpu_packing_sve(    
-//                 dy_dem_x, dy_dem,
-//                 table, table_info, em_x, em, dy, nloc, nnei, last_layer_size); 
-// #else
+#ifdef __ARM_FEATURE_SVE
+            deepmd::tabulate_fusion_grad_cpu_packing_sve(    
+                dy_dem_x, dy_dem,
+                table, table_info, em_x, em, dy, nloc, nnei, last_layer_size); 
+#else
             deepmd::tabulate_fusion_grad_cpu_packing(    
                 dy_dem_x, dy_dem,
                 table, table_info, em_x, em, dy, nloc, nnei, last_layer_size);
-// #endif
+#endif
         }
     }
   }
