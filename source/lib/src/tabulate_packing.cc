@@ -62,6 +62,7 @@ void deepmd::tabulate_fusion_cpu_packing(
     const int nnei, 
     const int last_layer_size)
 {
+  
   memset(out, 0.0, sizeof(double) * nloc * 4 * last_layer_size);
   const double lower   = table_info[0];
   const double upper   = table_info[1];
