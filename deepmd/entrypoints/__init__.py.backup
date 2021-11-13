@@ -11,7 +11,6 @@ from .train import train as train_dp
 from .transfer import transfer
 from ..infer.model_devi import make_model_devi
 from .convert import convert
-from .preprocess import preprocess
 
 __all__ = [
     "config",
@@ -24,5 +23,4 @@ __all__ = [
     "doc_train_input",
     "make_model_devi",
     "convert",
-    "preprocess",
 ]

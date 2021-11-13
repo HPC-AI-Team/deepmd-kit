@@ -16,6 +16,7 @@ from deepmd.entrypoints import (
     transfer,
     make_model_devi,
     convert,
+    preprocess,
 )
 from deepmd.loggers import set_log_handles
 
@@ -408,7 +409,7 @@ def parse_args(args: Optional[List[str]] = None):
 # * preprocess models
     parser_transform = subparsers.add_parser(
         'preprocess',
-        parents=[],
+        parents=[parser_log],
         help='preprocess model, adjust tabulation layout !!!',
     )
     parser_transform.add_argument(
@@ -436,8 +437,6 @@ def parse_args(args: Optional[List[str]] = None):
         parser.print_help()
     else:
         parsed_args.log_level = get_ll(parsed_args.log_level)
-
-
 
     return parsed_args
 

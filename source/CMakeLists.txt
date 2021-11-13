@@ -205,7 +205,7 @@ if (BUILD_CPP_IF)
   if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.8)
 #   add_subdirectory (md/)
     add_subdirectory (ipi/)
-    add_subdirectory (gmx/)
+#   add_subdirectory (gmx/)
   endif ()
 endif (BUILD_CPP_IF)
 
