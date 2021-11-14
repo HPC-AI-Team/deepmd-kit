@@ -7,7 +7,7 @@ fi
 
 # export tensorflow_root=/vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0
 export tensorflow_root=$deepmd_root/../dependents/TensorFlow-2.2.0
-# export tensorflow_root=/home/hp200266/u01036/gzq/DeepMD/package/Tensorflow-2.2.0
+# export tensorflow_root=$deepmd_root/../package/Tensorflow-2.2.0
 
 lammps_version=stable_29Sep2021
 export lammps_root=$deepmd_root/../dependents/lammps-$lammps_version

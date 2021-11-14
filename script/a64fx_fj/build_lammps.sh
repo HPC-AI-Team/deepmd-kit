@@ -27,10 +27,10 @@ fi
 
 cd $lammps_root
 
-rm -rf build
+# rm -rf build
 mkdir -p build
 cd build
 
 cmake -D PKG_PLUGIN=ON -D PKG_KSPACE=ON -D LAMMPS_INSTALL_RPATH=ON -D BUILD_SHARED_LIBS=yes -D CMAKE_INSTALL_PREFIX=${deepmd_root} -D CMAKE_INSTALL_LIBDIR=lib -D CMAKE_INSTALL_FULL_LIBDIR=${deepmd_root}/lib ../cmake
-make VERBOSE=1 -j4
+make VERBOSE=1 -j48
 make install
