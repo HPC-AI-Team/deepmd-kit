@@ -11,6 +11,7 @@ then
     echo "not found envoriment variable : deepmd_root"
 fi
 source $deepmd_root/script/a64fx_fj/env.sh
+# bash $deepmd_root/script/a64fx_fj/build_python.sh
 
 export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 

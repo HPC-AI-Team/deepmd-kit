@@ -4,7 +4,6 @@
 #include "region.h"
 #include "neighbor_list.h"
 #include "prod_env_mat.h"
-#include "prod_env_mat_opt.h"
 #include "errors.h"
 
 REGISTER_OP("ProdEnvMatA")
@@ -541,10 +540,7 @@ public:
 	  frame_nall, mem_cpy, mem_nnei, max_nbor_size,
 	  box, mesh_tensor.flat<int>().data(), nloc, nei_mode, rcut_r, max_cpy_trial, max_nnei_trial);
       // launch the cpu compute function
-    //   deepmd::prod_env_mat_a_cpu(
-	  // em, em_deriv, rij, nlist, 
-	  // coord, type, inlist, max_nbor_size, avg, std, nloc, frame_nall, rcut_r, rcut_r_smth, sec_a);
-      deepmd::prod_env_mat_a_cpu_opt(
+      deepmd::prod_env_mat_a_cpu(
 	  em, em_deriv, rij, nlist, 
 	  coord, type, inlist, max_nbor_size, avg, std, nloc, frame_nall, rcut_r, rcut_r_smth, sec_a);
       // do nlist mapping if coords were copied

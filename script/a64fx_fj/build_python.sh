@@ -14,5 +14,6 @@ source $deepmd_root/script/a64fx_fj/env.sh
 
 cd $deepmd_root
 
+# python -m pip uninstall -y deepmd-kit
 python ./setup.py install -j48
 
