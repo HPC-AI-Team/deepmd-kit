@@ -1,6 +1,6 @@
 #include "custom_op.h"
 #include "tabulate.h"
-#include "op_tools.h"
+#include "lib_tools.h"
 #include "tabulate_packing.h"
 
 REGISTER_OP("TabulateFusion")
