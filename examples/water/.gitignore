@@ -19,3 +19,8 @@ model
 log.cite
 log.lammps
 *.dump
+
+diff
+draw
+res
+table
