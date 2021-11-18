@@ -19,15 +19,10 @@ source $tensorflow_root/env_no_cuda.sh
 
 export DP_VARIANT=cpu
 
-# spack load gcc@7.5.0
+spack load gcc@7.5.0
 spack load cmake
-# spack load openmpi
-# spack load openblas
+spack load openmpi
+spack load openblas@0.3.18
 
-# export CC="gcc -Ofast -fopenmp -lopenblas"
-# export CXX="g++ -Ofast -fopenmp -lopenblas"
-
-source /opt/intel/parallel_studio_xe_2020/psxevars.sh
-# export LD_PRELOAD=/opt/intel/compilers_and_libraries_2020.2.254/linux/mkl/lib/intel64_lin/libmkl_rt.so
-export CC="icc -Ofast -fopenmp -mkl=parallel -liomp5 -lpthread -lm -ldl"
-export CXX="icpc -Ofast -fopenmp -mkl=parallel -liomp5 -lpthread -lm -ldl" 
+export CC="gcc -Ofast -fopenmp -lopenblas"
+export CXX="g++ -Ofast -fopenmp -lopenblas"

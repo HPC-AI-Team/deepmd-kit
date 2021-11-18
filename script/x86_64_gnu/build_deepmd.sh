@@ -19,5 +19,5 @@ cmake   -DTENSORFLOW_ROOT=$tensorflow_root      \
         -DLAMMPS_SOURCE_ROOT=$lammps_root       \
         ../source
 
-make VERBOSE=1 -j1
+make VERBOSE=1 -j48
 make install
