@@ -1,4 +1,11 @@
-#include <cblas.h>
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+   #include <cblas.h>
+#ifdef __cplusplus
+}
+#endif
 #include <cstring>
 #include "gemm_tanh.h"
 
