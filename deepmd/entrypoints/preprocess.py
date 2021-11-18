@@ -78,9 +78,13 @@ def preprocess_tabulate_table_transpose(node):
     node.attr["value"].tensor.tensor_content = array.tostring()
 
 def preprocess_tabulate_table_packing(node):
-    tabulate_table_node_pattern = re.compile(r"filter_type_\d/TabulateFusion(_\d)?/table")
-    if tabulate_table_node_pattern.fullmatch(node.name) is None:
+    
+    tabulate_table_node_pattern_1 = re.compile(r"filter_type_\d/TabulateFusion(_\d)?/table")
+    tabulate_table_node_pattern_2 = re.compile(r"filter_type_\d/Cast(_\d)?/x")
+
+    if tabulate_table_node_pattern_1.fullmatch(node.name) is None and tabulate_table_node_pattern_2.fullmatch(node.name) is None:
         return
+
     print(f"preprocess_tabulate_table match node : {node.name}")
     print("precessing tabulate table")
     tensor_proto = node.attr["value"].tensor
@@ -121,7 +125,6 @@ def preprocess_graph(old_graph):
     return old_graph_def
         
 
-
 if __name__ == "__main__" :
     if len(sys.argv) != 3:
         print(f"{sys.argv[0]} input_model output_model")
@@ -130,3 +133,4 @@ if __name__ == "__main__" :
     print(f"input model path : {input_model}")
     print(f"output model path : {output_model}")
     preprocess(input_model=input_model, output_model=output_model)
+    

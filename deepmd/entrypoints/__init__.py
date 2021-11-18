@@ -12,6 +12,7 @@ from .transfer import transfer
 from ..infer.model_devi import make_model_devi
 from .convert import convert
 from .preprocess import preprocess
+from .pb2pbtxt import pb2pbtxt
 
 __all__ = [
     "config",
@@ -25,4 +26,5 @@ __all__ = [
     "make_model_devi",
     "convert",
     "preprocess",
+    "pb2pbtxt"
 ]

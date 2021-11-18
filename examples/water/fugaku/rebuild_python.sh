@@ -1,0 +1,1 @@
+../../../script/a64fx_fj/rebuild_python.sh

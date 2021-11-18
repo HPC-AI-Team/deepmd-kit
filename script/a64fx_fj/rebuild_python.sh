@@ -12,7 +12,9 @@ then
 fi
 source $deepmd_root/script/a64fx_fj/env.sh
 
-cd $deepmd_root
+python -m pip uninstall -y deepmd-kit
+rm -rf $deepmd_root/_skbuild
+rm -rf $deepmd_root/deepmd_kit.egg-info
+rm -rf $deepmd_root/dist
 
-python ./setup.py install -j48
-
+bash $deepmd_root/script/a64fx_fj/build_python.sh

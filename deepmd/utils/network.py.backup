@@ -2,7 +2,6 @@ import numpy as np
 
 from deepmd.env import tf
 from deepmd.env import GLOBAL_TF_FLOAT_PRECISION
-from deepmd.env import op_module
 
 def one_layer_rand_seed_shift():
     return 3
@@ -45,10 +44,7 @@ def one_layer(inputs,
                             b_initializer, 
                             trainable = trainable)
         variable_summaries(b, 'bias')
-
-        # hidden = tf.matmul(inputs, w) + b
-        # hidden = op_module.gemm_layer(inputs, w, b)
-        
+        hidden = tf.matmul(inputs, w) + b
         if activation_fn != None and use_timestep :
             idt_initializer = tf.random_normal_initializer(
                                     stddev=0.001,
@@ -69,22 +65,15 @@ def one_layer(inputs,
                 # return activation_fn(hidden_bn)
             else:
                 if use_timestep :
-                    return tf.reshape(activation_fn(tf.matmul(inputs, w) + b), [-1, outputs_size]) * idt
-                    # return activation_fn(op_module.gemm_layer(inputs, w, b)) * idt
-                    # return op_module.fast_tanh(op_module.gemm_layer(inputs, w, b)) * idt
-                    # return op_module.gemm_tanh_layer(inputs, w, b) * idt
+                    return tf.reshape(activation_fn(hidden), [-1, outputs_size]) * idt
                 else :
-                    return activation_fn(tf.matmul(inputs, w) + b)                  
-                    # return activation_fn(op_module.gemm_layer(inputs, w, b))                  
-                    # return op_module.fast_tanh(op_module.gemm_layer(inputs, w, b))                  
-                    # return op_module.gemm_tanh_layer(inputs, w, b)                
+                    return tf.reshape(activation_fn(hidden), [-1, outputs_size])                    
         else:
             if useBN:
                 None
                 # return self._batch_norm(hidden, name=name+'_normalization', reuse=reuse)
             else:
-                return tf.matmul(inputs, w) + b
-                # return op_module.gemm_layer(inputs, w, b)
+                return hidden
 
 
 def embedding_net_rand_seed_shift(
@@ -190,17 +179,13 @@ def embedding_net(xx,
         variable_summaries(w, 'matrix_'+str(ii)+name_suffix)
 
         b = tf.get_variable('bias_'+str(ii)+name_suffix, 
-                            [outputs_size[ii]], 
+                            [1, outputs_size[ii]], 
                             precision,
                             b_initializer, 
                             trainable = trainable)
         variable_summaries(b, 'bias_'+str(ii)+name_suffix)
 
-        # hidden = tf.reshape(activation_fn(tf.matmul(xx, w) + b), [-1, outputs_size[ii]])
-        # hidden = activation_fn(op_module.gemm_layer(xx, w, b))
-        hidden = op_module.fast_tanh(op_module.gemm_layer(xx, w, b))
-        
-
+        hidden = tf.reshape(activation_fn(tf.matmul(xx, w) + b), [-1, outputs_size[ii]])
         if resnet_dt :
             idt_initializer = tf.random_normal_initializer(
                                   stddev=0.001, 
@@ -211,7 +196,7 @@ def embedding_net(xx,
                 scope = tf.get_variable_scope().name
                 idt_initializer = tf.constant_initializer(initial_variables[scope+'/idt_'+str(ii)+name_suffix])
             idt = tf.get_variable('idt_'+str(ii)+name_suffix, 
-                                  [outputs_size[ii]], 
+                                  [1, outputs_size[ii]], 
                                   precision,
                                   idt_initializer, 
                                   trainable = trainable)

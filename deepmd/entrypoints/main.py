@@ -17,6 +17,7 @@ from deepmd.entrypoints import (
     make_model_devi,
     convert,
     preprocess,
+    pb2pbtxt,
 )
 from deepmd.loggers import set_log_handles
 
@@ -426,9 +427,28 @@ def parse_args(args: Optional[List[str]] = None):
         type=str, 
 		help='the output model',
     )
-
 # --------------------------------------------------------
-
+# * preprocess models
+    parser_transform = subparsers.add_parser(
+        'pb2pbtxt',
+        parents=[parser_log],
+        help='convert pb to pbtxt',
+    )
+    parser_transform.add_argument(
+        '-i',
+        "--input-model",
+        default = "graph.pb",
+        type=str, 
+		help = "the input model",
+    )
+    parser_transform.add_argument(
+        "-o",
+        "--output-model",
+        default = "graph.pbtxt",
+        type=str, 
+		help='the output model txt',
+    )
+# --------------------------------------------------------
     # --version
     parser.add_argument('--version', action='version', version='DeePMD-kit v%s' % __version__)
 
@@ -479,6 +499,8 @@ def main():
         convert(**dict_args)
     elif args.command == "preprocess":
         preprocess(**dict_args)
+    elif args.command == "pb2pbtxt":
+        pb2pbtxt(**dict_args)
     elif args.command is None:
         pass
     else:

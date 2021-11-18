@@ -1,0 +1,1 @@
+../../../script/a64fx_fj/build_deepmd.sh

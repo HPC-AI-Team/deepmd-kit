@@ -1,7 +1,10 @@
 #!/bin/bash
 
 
-source $deepmd_root/script/fugaku/env.sh
+if [ -z $deepmd_root ]
+then
+    echo "not found envoriment variable : deepmd_root"
+fi
 
 if [ $# != 2 ]
 then

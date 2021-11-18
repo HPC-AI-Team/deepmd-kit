@@ -11,7 +11,6 @@ then
     echo "not found envoriment variable : deepmd_root"
 fi
 source $deepmd_root/script/a64fx_fj/env.sh
-# bash $deepmd_root/script/a64fx_fj/build_python.sh
 
 export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 
@@ -20,7 +19,7 @@ model_path=../model
 # python_file_path=$deepmd_root/_skbuild/linux-aarch64-3.8/cmake-install/deepmd/entrypoints/preprocess.py
 rm $model_path/double/compress-preprocess/* -rf
 
-name_list=(baseline gemm gemm_tanh)
+name_list=(baseline gemm gemm_tanh test)
 precision_list=(double float)
 
 for precision in ${precision_list[*]}

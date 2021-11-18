@@ -10,9 +10,9 @@ if [ -z $deepmd_root ]
 then
     echo "not found envoriment variable : deepmd_root"
 fi
-source $deepmd_root/script/a64fx_fj/env.sh
 
-cd $deepmd_root
+set -ex
 
-python ./setup.py install -j48
+rm -rf $deepmd_root/build
 
+bash $deepmd_root/script/a64fx_fj/build_deepmd.sh

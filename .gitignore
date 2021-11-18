@@ -38,4 +38,6 @@ build_cc_tests
 /lib
 /share
 
+compress.json
+
 source/gmx/patches/2020.2/CMakeLists.txt.patch

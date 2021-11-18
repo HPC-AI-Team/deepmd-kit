@@ -10,9 +10,18 @@ if [ -z $deepmd_root ]
 then
     echo "not found envoriment variable : deepmd_root"
 fi
+
 source $deepmd_root/script/a64fx_fj/env.sh
 
-cd $deepmd_root
+set -ex
 
-python ./setup.py install -j48
+export OMP_NUM_THREADS=1
+export TF_INTRA_OP_PARALLELISM_THREADS=1
+export TF_INTER_OP_PARALLELISM_THREADS=1
 
+export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
+
+origin_model=$deepmd_root/examples/water/fugaku/model_optimized_compressed.pb
+preprocessed_model=$deepmd_root/examples/water/fugaku/model_optimized_compressed_preprocessed.pb
+
+dp preprocess -i $origin_model -o $preprocessed_model
