@@ -1,16 +1,15 @@
-
-
-# 
-
+# DeepMD for Fugaku
 
 ## build deepmd for fugaku
 
 ```bash
-# in login node (two line below can write to ~/.bashrc)
+# in login node 
+
+# (The following two lines can be written to ~/.bashrc for convenience.)
 export deepmd_root=<your deepmd path>
 alias "interact=pjsub --interact -L node=1 -L freq=2200 --sparam wait-time=600 "
 
-# build lammps plugin mode
+# build lammps in plugin mode
 interact $deepmd_root/script/a64fx_fj/build_lammps.sh
 
 # build deepmd c++
@@ -23,13 +22,13 @@ interact $deepmd_root/script/a64fx_fj/build_python.sh
 
 ## use deepmd for fugaku
 
-1. prepare model
+### 1. prepare model
 
 Prepare a trained model and its training config and data. (non-compressed)
 
 Training model on fugaku is not optimized, so you can train the model on other platforms
 
-2. optimize model for fugaku
+### 2. optimize model for fugaku
 
 ```bash
 # in login node 
@@ -58,10 +57,12 @@ interact $deepmd_root/script/a64fx_fj/2-model_preprocess.sh
 # There is an example in water system. (examples/water/fugaku)
 ```
 
-3. run lammps+deepmd with optimized model
+### 3. run lammps+deepmd with optimized model
 
-### job script example
-run.sh
+#### job script example 
+
+more example can be found in water example. (examples/water/fugaku)
+
 ```bash
 #!/bin/bash -e
 #PJM -L "node=1"                        # Number of assign node
@@ -101,7 +102,7 @@ export DEEPMD_NUM_THREADS=3
 mpiexec lmp -echo screen -in <lammps input file>
 ```
 
-### run job
+#### run job
 ```bash
 # in login node
 
