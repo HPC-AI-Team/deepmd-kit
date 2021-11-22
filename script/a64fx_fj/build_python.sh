@@ -16,5 +16,7 @@ source $deepmd_root/script/a64fx_fj/env.sh
 
 cd $deepmd_root
 
+pip install packaging
+pip install scikit-build
 python ./setup.py install -j48
 
