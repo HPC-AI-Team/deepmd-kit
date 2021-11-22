@@ -1,3 +1,8 @@
+
+# DeepMD for Fugaku
+
+[DeepMD for Fugaku](README_for_fugaku.md)
+
 <span style="font-size:larger;">DeePMD-kit Manual</span>
 ========
 [![GitHub release](https://img.shields.io/github/release/deepmodeling/deepmd-kit.svg?maxAge=86400)](https://github.com/deepmodeling/deepmd-kit/releases)

@@ -6,6 +6,12 @@
 #PJM --mpi "max-proc-per-node=1"            # Maximum number of MPI processes created per node
 export PLE_MPI_STD_EMPTYFILE=off
 
+if [ -z $deepmd_root ]
+then
+    echo "not found envoriment variable : deepmd_root"
+    exit -1
+fi
+
 source $deepmd_root/script/a64fx_fj/env.sh
 
 export OMPI_MCA_plm_ple_memory_allocation_policy=bind_local

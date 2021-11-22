@@ -9,6 +9,7 @@ export PLE_MPI_STD_EMPTYFILE=off
 if [ -z $deepmd_root ]
 then
     echo "not found envoriment variable : deepmd_root"
+    exit -1
 fi
 
 set -ex

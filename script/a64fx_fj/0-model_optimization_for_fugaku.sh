@@ -13,7 +13,6 @@ fi
 
 source $deepmd_root/script/a64fx_fj/env.sh
 
-set -ex
 
 export OMP_NUM_THREADS=1
 export TF_INTRA_OP_PARALLELISM_THREADS=1
@@ -22,16 +21,38 @@ export TF_INTER_OP_PARALLELISM_THREADS=1
 export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 
 # modify for your path ----------------------------------------------------------
-raw_model=$deepmd_root/examples/water/model/double/original/graph-original-baseline.pb
-training_config=$deepmd_root/examples/water/se_e2_a/input_100.json
-optimized_model=$deepmd_root/examples/water/fugaku/model_optimized.pb
+
+# trained model path you have prepared (non compressed)
+raw_model=
+# train config file. modify the trainning step (numb_steps or stop_betch) to 100.
+# (we just need a model pattern and model weights will be transfered from your trained model) 
+training_config=
+# optimized model path (output path)
+optimized_model=
+
 # -------------------------------------------------------------------------------
+
+if [ -z $raw_model ]
+then
+    echo "raw model path is not set !!!"
+    exit -1
+fi 
+
+if [ -z $training_config ]
+then
+    echo "training config path is not set !!!"
+    exit -1
+fi 
+
+if [ -z $optimized_model ]
+then
+    echo "optimized model path is not set !!!"
+    exit -1
+fi 
+
+set -ex
 
 dp train $training_config
 dp freeze -o $optimized_model
 
 dp transfer -O $raw_model -r $optimized_model -o$optimized_model
-
-cp $deepmd_root/examples/water/fugaku/model_optimized.pb $deepmd_root/examples/water/model/double/original/graph-original-test.pb
-./link.sh double test
-

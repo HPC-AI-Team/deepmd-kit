@@ -23,12 +23,32 @@ export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 
 
 # modify for your path ----------------------------------------------------------
-training_config=$deepmd_root/examples/water/se_e2_a/input_100.json
-origin_model=$deepmd_root/examples/water/fugaku/model_optimized.pb
-compressed_model=$deepmd_root/examples/water/fugaku/model_optimized_compressed.pb
+
+# train config file path. 
+training_config=
+# The path of the model to be compressed
+origin_model=
+# Compressed model path (output path)
+compressed_model=
+
 # -------------------------------------------------------------------------------
 
+if [ -z $origin_model ]
+then
+    echo "origin model path is not set !!!"
+    exit -1
+fi 
+
+if [ -z $training_config ]
+then
+    echo "training config path is not set !!!"
+    exit -1
+fi 
+
+if [ -z $compressed_model ]
+then
+    echo "compressed model path is not set !!!"
+    exit -1
+fi 
 
 dp compress -t $training_config -i $origin_model -o $compressed_model
-
-cp $deepmd_root/examples/water/fugaku/model_optimized_compressed.pb $deepmd_root/examples/water/model/double/compress/graph-compress-test.pb

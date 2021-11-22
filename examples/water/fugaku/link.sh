@@ -4,6 +4,7 @@
 if [ -z $deepmd_root ]
 then
     echo "not found envoriment variable : deepmd_root"
+    exit -1
 fi
 
 if [ $# != 2 ]

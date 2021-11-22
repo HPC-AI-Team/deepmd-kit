@@ -22,8 +22,24 @@ export TF_INTER_OP_PARALLELISM_THREADS=1
 export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 
 # modify for your path ----------------------------------------------------------
-origin_model=$deepmd_root/examples/water/fugaku/model_optimized_compressed.pb
-preprocessed_model=$deepmd_root/examples/water/fugaku/model_optimized_compressed_preprocessed.pb
+
+# Compressed model path (input path)
+origin_model=
+# preprocessed model path (output path)
+preprocessed_model=
+
 # -------------------------------------------------------------------------------
+
+if [ -z $origin_model ]
+then
+    echo "origin model path is not set !!!"
+    exit -1
+fi 
+
+if [ -z $preprocessed_model ]
+then
+    echo "preprocessed model path is not set !!!"
+    exit -1
+fi 
 
 dp preprocess -i $origin_model -o $preprocessed_model
