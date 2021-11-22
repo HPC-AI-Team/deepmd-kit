@@ -5,17 +5,17 @@ then
     echo "not found envoriment variable : deepmd_root"
 fi
 
-# export tensorflow_root=/vol0004/hp200266/u01036/gzq/fj_software/tensorflow/TensorFlow-2.2.0
 export tensorflow_root=$deepmd_root/../dependents/TensorFlow-2.2.0
-# export tensorflow_root=$deepmd_root/../package/Tensorflow-2.2.0
 
 lammps_version=stable_29Sep2021
 export lammps_root=$deepmd_root/../dependents/lammps-$lammps_version
 
+# deepmd path 
 export LD_LIBRARY_PATH=$deepmd_root/lib:$LD_LIBRARY_PATH
 export CPATH=$deepmd_root/include:$CPATH
 export PATH=$deepmd_root/bin:$PATH
 
+# tensorflow path
 export PATH=$tensorflow_root/bin:$PATH
 export CPATH=$tensorflow_root/include:$tensorflow_root/lib/python3.8/site-packages/tensorflow/include:$CPATH
 export LD_LIBRARY_PATH=$tensorflow_root/lib:$tensorflow_root/lib64:$LD_LIBRARY_PATH

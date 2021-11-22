@@ -21,7 +21,9 @@ export TF_INTER_OP_PARALLELISM_THREADS=1
 
 export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 
+# modify for your path ----------------------------------------------------------
 origin_model=$deepmd_root/examples/water/fugaku/model_optimized_compressed.pb
 preprocessed_model=$deepmd_root/examples/water/fugaku/model_optimized_compressed_preprocessed.pb
+# -------------------------------------------------------------------------------
 
 dp preprocess -i $origin_model -o $preprocessed_model

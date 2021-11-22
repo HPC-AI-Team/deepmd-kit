@@ -1,0 +1,1 @@
+../../../script/a64fx_fj/1-model_compress.sh

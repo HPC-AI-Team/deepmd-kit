@@ -1,0 +1,1 @@
+../../../script/a64fx_fj/2-model_preprocess.sh

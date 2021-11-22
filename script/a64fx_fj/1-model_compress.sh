@@ -21,15 +21,14 @@ export TF_INTER_OP_PARALLELISM_THREADS=1
 
 export LD_PRELOAD=/opt/FJSVxos/mmm/lib64/libmpg.so.1
 
-raw_model=$deepmd_root/examples/water/model/double/original/graph-original-baseline.pb
-training_config=$deepmd_root/examples/water/se_e2_a/input_1.json
-optimized_model=$deepmd_root/examples/water/fugaku/model_optimized.pb
 
-dp train $training_config
-dp freeze -o $optimized_model
+# modify for your path ----------------------------------------------------------
+training_config=$deepmd_root/examples/water/se_e2_a/input_100.json
+origin_model=$deepmd_root/examples/water/fugaku/model_optimized.pb
+compressed_model=$deepmd_root/examples/water/fugaku/model_optimized_compressed.pb
+# -------------------------------------------------------------------------------
 
-dp transfer -O $raw_model -r $optimized_model -o$optimized_model
 
-cp $deepmd_root/examples/water/fugaku/model_optimized.pb $deepmd_root/examples/water/model/double/original/graph-original-test.pb
-./link.sh double test
+dp compress -t $training_config -i $origin_model -o $compressed_model
 
+cp $deepmd_root/examples/water/fugaku/model_optimized_compressed.pb $deepmd_root/examples/water/model/double/compress/graph-compress-test.pb

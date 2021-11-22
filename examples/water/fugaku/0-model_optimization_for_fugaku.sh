@@ -1,0 +1,1 @@
+../../../script/a64fx_fj/0-model_optimization_for_fugaku.sh
