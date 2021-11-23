@@ -5,9 +5,31 @@
 ```bash
 # in login node 
 
-# (The following two lines can be written to ~/.bashrc for convenience.)
-export deepmd_root=<your deepmd path>
-alias "interact=pjsub --interact -L node=1 -L freq=2200 --sparam wait-time=600 "
+cd <samewhere you want to put deepmd>
+mkdir DeepMD
+cd DeepMD
+
+# tensroflow for fugaku
+
+mkdir package
+# copy from group shared directory or download from network (TODO)
+cp /share/hp210260/TensorFlow-2.2.0.tar.gz ./package
+
+mkdir dependents
+cd dependents
+tar -xzf ./package/TensorFlow-2.2.0.tar.gz
+
+cd ..
+git clone git@github.com:gzq942560379/deepmd-kit.git
+
+cd deepmd-kit
+git checkout -b fugaku-v2.0.3 origin/fugaku-v2.0.3
+
+# The following two lines will write to ~/.bashrc for convenience.(Only execute once)
+echo "export deepmd_root=$(pwd)" >> ~/.bashrc
+echo "interact=pjsub --interact -L node=1 -L freq=2200 --sparam wait-time=600 " >> ~/.bashrc
+
+source ~/.bashrc
 
 # build lammps in plugin mode
 interact $deepmd_root/script/a64fx_fj/build_lammps.sh
@@ -32,10 +54,6 @@ Training model on fugaku is not optimized, so you can train the model on other p
 
 ```bash
 # in login node 
-
-# (The following two lines can be written to ~/.bashrc for convenience.)
-export deepmd_root=<your deepmd path>
-alias "interact=pjsub --interact -L node=1 -L freq=2200 --sparam wait-time=600 "
 
 # modify the paths in script/a64fx_fj/0-model_optimization_for_fugaku.sh
 # the Training step (numb_steps or stop_betch) in training config file set to 100. because we just need a model pattern and the model weights will be transfered from your trained model.
