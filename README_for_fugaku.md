@@ -113,7 +113,7 @@ export TF_CPP_MIN_LOG_LEVEL=3
 # If you use a preprocessed model, this environment variable is required. Otherwise, comment out this line.
 export HAVE_PREPROCESSED=1
 # The number of threads used by each process.
-# The product of A and B should be 48. 16x3 is a recommended configuration.
+# The product of max-proc-per-node and DEEPMD_NUM_THREADS should be 48. 16x3 is a recommended configuration.
 export DEEPMD_NUM_THREADS=3
 
 # Running lammps uses 1 node, 16 processes, and each process has 3 threads.
