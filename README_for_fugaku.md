@@ -17,7 +17,7 @@ cp /share/hp210260/TensorFlow-2.2.0.tar.gz ./package
 
 mkdir dependents
 cd dependents
-tar -xzf ./package/TensorFlow-2.2.0.tar.gz
+tar -xzf ../package/TensorFlow-2.2.0.tar.gz
 
 cd ..
 git clone git@github.com:gzq942560379/deepmd-kit.git
@@ -48,7 +48,7 @@ interact $deepmd_root/script/a64fx_fj/build_python.sh
 
 Prepare a trained model and its training config and data. (non-compressed)
 
-Training model on fugaku is not optimized, so you can train the model on other platforms
+Training on fugaku is not optimized, you can train the model on other platforms.
 
 ### 2. optimize model for fugaku
 
