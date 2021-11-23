@@ -41,6 +41,51 @@ interact $deepmd_root/script/a64fx_fj/build_python.sh
 interact $deepmd_root/script/a64fx_fj/build_lammps.sh
 ```
 
+## run script example
+
+```bash
+# water
+cd $deepmd_root/examples/water/fugaku
+
+# run lammps + deepmd with 1 core for water
+interact run_compress_preprocess_1_1.sh
+
+# copper
+cd $deepmd_root/examples/copper/fugaku
+# run lammps + deepmd with 1 core for water
+interact run_compress_preprocess_1_1.sh
+```
+
+## run script and output data
+
+
+```bash
+pjsub run.sh 
+```
+
+### step-by-step speedup (Fig.8)
+
+water: examples/water/fugaku_one_node_optimazation
+
+copper: examples/copper/fugaku_one_node_optimazation
+
+### strong scaling (Fig.9 Fig.10)
+
+water: examples/water/fugaku_strong_scale_16x3
+
+copper: examples/copper/fugaku_strong_scale_16x3
+
+### weak scaling (Fig.11)
+
+water: examples/water/fugaku_weak_scale_16x3_
+
+copper: examples/copper/fugaku_weak_scale_16x3_
+
+
+
+
+
+
 
 
 
