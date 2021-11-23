@@ -12,7 +12,7 @@ cd DeepMD
 # tensroflow for fugaku
 
 mkdir package
-# copy from group shared directory or download from network (TODO)
+# copy from group shared directory or download from [google driver](https://drive.google.com/file/d/1BF3ereji7g0Aj0X_q4tjwC1wjbKB7zqd/view?usp=sharing)
 cp /share/hp210260/TensorFlow-2.2.0.tar.gz ./package
 
 mkdir dependents
