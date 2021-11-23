@@ -27,7 +27,7 @@ git checkout -b fugaku-v2.0.3 origin/fugaku-v2.0.3
 
 # The following two lines will write to ~/.bashrc for convenience.(Only execute once)
 echo "export deepmd_root=$(pwd)" >> ~/.bashrc
-echo "alias interact=pjsub --interact -L node=1 -L freq=2200 --sparam wait-time=600 " >> ~/.bashrc
+echo 'alias "interact=pjsub --interact -L node=1 -L freq=2200 --sparam wait-time=600 "' >> ~/.bashrc
 
 source ~/.bashrc
 
