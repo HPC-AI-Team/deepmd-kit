@@ -9,7 +9,6 @@ out.json
 model.ckpt*
 checkpoint
 model
-fugaku/output
 
 # for lammps
 log.cite
